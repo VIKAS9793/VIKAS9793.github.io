@@ -436,6 +436,9 @@
             <div style="font-size: 0.7rem; color: var(--text-secondary);">
                 Response accuracy: 94.7% | Context retention: 100%
             </div>
+            <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem;">
+                Input latency: <span id="rumLatency">--</span> ms
+            </div>
         </div>
     </div>
 
@@ -1232,6 +1235,7 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
             messages.scrollTop = messages.scrollHeight;
         }
 
+        let rumStartTs = 0;
         function sendMessage() {
             const input = document.getElementById('chatInput');
             const message = input.value.trim();
@@ -1246,6 +1250,7 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
             showTypingIndicator();
             
             // Process with AI engine
+            rumStartTs = performance.now();
             setTimeout(() => {
                 const analysis = aiChat.analyzeQuery(message);
                 const response = aiChat.generateResponse(analysis);
@@ -1261,9 +1266,18 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
 • Processing Time: ${response.processing_time.toFixed(2)}s`;
                 
                 addMessage(enhancedResponse);
+                // RUM latency update
+                const rum = Math.max(0, Math.round(performance.now() - rumStartTs));
+                const rl = document.getElementById('rumLatency');
+                if (rl) rl.textContent = String(rum);
                 
                 // Update real-time metrics
                 aiChat.responseAccuracy = Math.min(aiChat.responseAccuracy + 0.001, 0.999);
+                if (voiceActive && 'speechSynthesis' in window) {
+                    const spoken = response.text.replace(/\*\*|\n|`/g, ' ').slice(0, 300);
+                    const u = new SpeechSynthesisUtterance(spoken);
+                    u.rate = 1.0; u.pitch = 1.0; speechSynthesis.speak(u);
+                }
                 
             }, Math.random() * 1500 + 500); // 0.5-2s realistic processing time
         }
@@ -1280,13 +1294,48 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
             }
         }
 
+        let voiceActive = false;
+        let recognition;
         function toggleVoiceAssistant() {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance("Hello! I'm Vikas's advanced AI portfolio assistant. I have real-time access to his project data, business metrics, and technical expertise. Feel free to ask detailed questions about his AI products, financial achievements, or technical architecture.");
-                utterance.rate = 0.9;
-                utterance.pitch = 1.1;
-                speechSynthesis.speak(utterance);
+            if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance("Voice features limited on this browser. You can still type your question.");
+                    utterance.rate = 0.95; utterance.pitch = 1.05; speechSynthesis.speak(utterance);
+                }
+                return;
             }
+            if (!recognition) {
+                const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SR();
+                recognition.lang = 'en-US';
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+                recognition.onresult = (event) => {
+                    const text = event.results[0][0].transcript;
+                    const input = document.getElementById('chatInput');
+                    input.value = text;
+                    sendMessage();
+                };
+                recognition.onend = () => {
+                    if (voiceActive) { try { recognition.start(); } catch(e) {} }
+                };
+            }
+            voiceActive = !voiceActive;
+            try {
+                if (voiceActive) {
+                    recognition.start();
+                    if ('speechSynthesis' in window) {
+                        const u = new SpeechSynthesisUtterance('Listening. Ask your question.');
+                        u.rate = 1.0; u.pitch = 1.0; speechSynthesis.speak(u);
+                    }
+                } else {
+                    recognition.stop();
+                    if ('speechSynthesis' in window) {
+                        const u = new SpeechSynthesisUtterance('Voice assistant paused.');
+                        u.rate = 1.0; u.pitch = 1.0; speechSynthesis.speak(u);
+                    }
+                }
+            } catch (e) {}
         }
 
         // Enhanced search functionality with ML-like matching
@@ -1386,6 +1435,47 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
             });
         }
 
+        // IndexedDB chat memory (local-only)
+        let db;
+        function openDB() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open('aiPortfolioDB', 1);
+                req.onupgradeneeded = () => {
+                    const d = req.result;
+                    if (!d.objectStoreNames.contains('messages')) {
+                        d.createObjectStore('messages', { keyPath: 'id', autoIncrement: true });
+                    }
+                };
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+        async function saveMessage(role, content) {
+            try {
+                if (!db) db = await openDB();
+                const tx = db.transaction('messages', 'readwrite');
+                tx.objectStore('messages').add({ ts: Date.now(), role, content });
+            } catch (e) {}
+        }
+        async function loadHistory() {
+            try {
+                if (!db) db = await openDB();
+                const tx = db.transaction('messages', 'readonly');
+                const store = tx.objectStore('messages');
+                const req = store.getAll();
+                req.onsuccess = () => {
+                    const list = req.result || [];
+                    list.slice(-30).forEach(m => addMessage(m.content, m.role === 'user'));
+                };
+            } catch (e) {}
+        }
+        // Hook storage into renderer
+        const _origAddMessage = addMessage;
+        addMessage = function(content, isUser = false) {
+            _origAddMessage(content, isUser);
+            saveMessage(isUser ? 'user' : 'ai', content);
+        }
+
         // Initialize everything
         window.addEventListener('load', () => {
             const loadingAI = document.getElementById('loadingAI');
@@ -1394,6 +1484,8 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
                 loadingAI.style.opacity = '0';
                 setTimeout(() => {
                     loadingAI.style.display = 'none';
+                    // Load local chat history
+                    loadHistory();
                     // Defer heavy non-critical initializations
                     defer(() => {
                         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
