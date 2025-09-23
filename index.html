@@ -439,6 +439,9 @@
             <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem;">
                 Input latency: <span id="rumLatency">--</span> ms
             </div>
+            <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem;">
+                Inference: <span id="mlModel">-</span> | <span id="mlLatency">--</span> ms
+            </div>
         </div>
     </div>
 
@@ -1540,6 +1543,63 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
         // Initialize lazy loading
         document.addEventListener('DOMContentLoaded', lazyLoadComponents);
 
+        // ML Worker wiring with progressive loading
+        let mlWorker;
+        function initML() {
+            if (typeof Worker === 'undefined') return;
+            mlWorker = new Worker('modelWorker.js');
+            mlWorker.onmessage = (e) => {
+                const { type, payload } = e.data || {};
+                if (type === 'model-status') {
+                    const el = document.getElementById('mlModel');
+                    if (el) el.textContent = payload.full ? 'full' : (payload.tiny ? 'tiny' : '-');
+                }
+                if (type === 'infer-result') {
+                    const el = document.getElementById('mlLatency');
+                    if (el) el.textContent = String(payload.latency);
+                    const mdl = document.getElementById('mlModel');
+                    if (mdl) mdl.textContent = payload.model;
+                }
+            };
+            // Load tiny model immediately
+            mlWorker.postMessage({ type: 'load-tiny-model' });
+            // Load full model when idle
+            const idleLoad = () => {
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(() => mlWorker.postMessage({ type: 'load-full-model' }), { timeout: 2000 });
+                } else {
+                    setTimeout(() => mlWorker.postMessage({ type: 'load-full-model' }), 1000);
+                }
+            };
+            idleLoad();
+            // Periodic inference throttled to avoid UI jank
+            let lastInfer = 0;
+            function scheduleInfer(ts){
+                if (!mlWorker) return;
+                if (ts - lastInfer > 500) { // 2Hz sampling
+                    lastInfer = ts;
+                    mlWorker.postMessage({ type: 'infer', payload: { stub: true } });
+                }
+                requestAnimationFrame(scheduleInfer);
+            }
+            requestAnimationFrame(scheduleInfer);
+        }
+
+        // Adaptive frame-rate guard: reduce visual intensity if frame time spikes
+        let frameBudgetMs = 8; // 120fps target
+        ;(function adaptiveFrames(){
+            let last = performance.now();
+            function raf(now){
+                const dt = now - last; last = now;
+                if (dt > frameBudgetMs * 1.8) {
+                    document.documentElement.style.setProperty('--px', '0');
+                    document.documentElement.style.setProperty('--py', '0');
+                }
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        })();
+
         // Real-time data updates (simulated)
         function updateRealTimeMetrics() {
             const metrics = {
@@ -1561,6 +1621,11 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
                 navigator.serviceWorker.register('sw.js').catch(() => {});
             });
         }
+
+        // Boot ML after load
+        window.addEventListener('load', () => {
+            setTimeout(initML, 600);
+        });
     </script>
 </body>
 </html>
