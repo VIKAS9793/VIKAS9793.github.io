@@ -448,6 +448,9 @@
             <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem;">
                 Inference: <span id="mlModel">-</span> | <span id="mlLatency">--</span> ms
             </div>
+            <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.3rem;">
+                Agent: <span id="agentState">idle</span>
+            </div>
         </div>
     </div>
 
@@ -1321,6 +1324,14 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
             
             if (!message) return;
             
+            if (message.toLowerCase().startsWith('/agent')) {
+                const goal = message.replace('/agent', '').trim() || 'portfolio insight';
+                addMessage(`Starting agent: ${goal}`, true);
+                if (mlWorker) mlWorker.postMessage({ type: 'agent-start', payload: { goal } });
+                input.value = '';
+                return;
+            }
+
             // Add user message
             addMessage(message, true);
             input.value = '';
@@ -1639,6 +1650,16 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
                     if (el) el.textContent = String(payload.latency);
                     const mdl = document.getElementById('mlModel');
                     if (mdl) mdl.textContent = payload.model;
+                }
+                if (type === 'agent-status') {
+                    const a = document.getElementById('agentState');
+                    if (a) a.textContent = payload.state || '...';
+                }
+                if (type === 'agent-plan') {
+                    addMessage(`Planned steps: ${payload.steps.join(' → ')}`);
+                }
+                if (type === 'agent-result') {
+                    addMessage(`Agent Result: ${payload.summary} (tokens=${payload.tokens}, time=${payload.timeMs}ms)`);
                 }
             };
             // Load tiny model immediately

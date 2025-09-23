@@ -5,6 +5,7 @@ let tinyModelLoaded = false;
 let fullModelLoaded = false;
 let isInferencing = false;
 let tinyModel;
+let agentRunning = false;
 
 function sleep(ms){ return new Promise(res => setTimeout(res, ms)); }
 
@@ -60,6 +61,30 @@ self.onmessage = async (e) => {
             const latency = Date.now() - started;
             isInferencing = false;
             self.postMessage({ type: 'infer-result', payload: { latency, model: fullModelLoaded ? 'full' : 'tiny', intent } });
+            break;
+        }
+        case 'agent-start': {
+            if (agentRunning) return;
+            agentRunning = true;
+            // Very small demo agent: parse goal -> plan 2-3 steps -> emit progress
+            (async () => {
+                const goal = (payload && payload.goal) || 'analyze portfolio';
+                self.postMessage({ type: 'agent-status', payload: { state: 'planning', goal } });
+                await sleep(60);
+                const steps = [`Understand goal: ${goal}`, 'Retrieve relevant context', 'Summarize findings'];
+                self.postMessage({ type: 'agent-plan', payload: { steps } });
+                for (let i = 0; i < steps.length; i++) {
+                    self.postMessage({ type: 'agent-status', payload: { state: 'executing', step: i, total: steps.length } });
+                    await sleep(120);
+                }
+                self.postMessage({ type: 'agent-result', payload: { summary: `Completed: ${goal}`, tokens: 64, timeMs: 200 } });
+                agentRunning = false;
+            })();
+            break;
+        }
+        case 'agent-cancel': {
+            agentRunning = false; // cooperative cancel for demo
+            self.postMessage({ type: 'agent-status', payload: { state: 'cancelled' } });
             break;
         }
         default:
