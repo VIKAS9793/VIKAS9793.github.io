@@ -82,6 +82,23 @@ Or use any static server (VS Code Live Server, http-server, serve, etc.).
 
 ---
 
+### 🧠 On‑Device ML & Performance (2025)
+
+- **Tiny intent model (offline)**: `tiny_model.json` bundled, keyword‑weight scoring
+- **ML Web Worker**: `modelWorker.js` runs inference off main thread
+  - Progressive load: tiny model immediately, full model hook reserved for idle
+  - Throttled inference (≈2 Hz) to avoid jank
+- **RUM metrics**: chat input→response latency and model inference ms
+- **Adaptive frame guard**: dampens parallax on frame spikes to protect 120 fps
+- **Offline ready**: Service Worker caches `index.html`, `modelWorker.js`, `tiny_model.json`
+
+How it works
+- UI posts chat text to the worker; worker returns `{intent, latency, model}`
+- Indicators in chat show current model and last inference time
+- Full model upgrade path kept for future (idle hot‑swap)
+
+---
+
 ### 🔧 Customization
 
 - Swap the Google Font in the `@import` and `preconnect` lines
