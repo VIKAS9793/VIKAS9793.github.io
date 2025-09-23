@@ -67,14 +67,14 @@ Building a lightning‑fast, visually spellbinding portfolio that scales to plan
 
 ```mermaid
 flowchart LR
-  U[User] -- text/voice --> UI[Portfolio UI (index.html)]
-  UI -- /agent, infer --> W[Web Worker (modelWorker.js)]
-  W -- load --> M[(tiny_model.json)]
-  W -- events --> UI
-  UI -- metrics --> RUM[Latency/FPS Indicators]
-  UI -- background --> GFX[WebGPU/WebGL Background]
-  SW[Service Worker] --- cache ---|offline| UI
-  SW --- cache --- M
+  U[User] -->|text/voice| UI["Portfolio UI (index.html)"]
+  UI -->|/agent, infer| W["Web Worker (modelWorker.js)"]
+  W -->|load| M["tiny_model.json"]
+  W -->|events| UI
+  UI -->|metrics| RUM["Latency & FPS Indicators"]
+  UI -->|background| GFX["WebGPU/WebGL Background"]
+  SW[Service Worker] ---|offline cache| UI
+  SW ---|cache| M
 ```
 
 ---
