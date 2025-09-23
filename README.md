@@ -53,9 +53,28 @@ Building a lightning‑fast, visually spellbinding portfolio that scales to plan
 ### 📁 Project Structure
 
 ```
-index.html       # Main application document
-sw.js            # Service Worker (caching strategy)
-README.md        # This file
+.
+├─ index.html          # Main app (UI, graphics init, chat, RUM, commands)
+├─ sw.js               # Service Worker (offline cache: HTML, worker, tiny model)
+├─ modelWorker.js      # Web Worker: tiny intent model, inference, agent demo
+├─ tiny_model.json     # Offline tiny intent model (keyword-weight scoring)
+└─ README.md           # Documentation
+```
+
+---
+
+### 🗺️ System Flow (Mermaid)
+
+```mermaid
+flowchart LR
+  U[User] -- text/voice --> UI[Portfolio UI (index.html)]
+  UI -- /agent, infer --> W[Web Worker (modelWorker.js)]
+  W -- load --> M[(tiny_model.json)]
+  W -- events --> UI
+  UI -- metrics --> RUM[Latency/FPS Indicators]
+  UI -- background --> GFX[WebGPU/WebGL Background]
+  SW[Service Worker] --- cache ---|offline| UI
+  SW --- cache --- M
 ```
 
 ---
