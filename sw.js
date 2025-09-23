@@ -2,6 +2,8 @@ const CACHE_NAME = 'ai-portfolio-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
+  '/modelWorker.js',
+  '/tiny_model.json',
 ];
 
 self.addEventListener('install', (event) => {

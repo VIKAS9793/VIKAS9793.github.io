@@ -1273,6 +1273,10 @@ Current Analysis Engine: **${this.responseAccuracy * 100}% accuracy** | **${this
                 const rum = Math.max(0, Math.round(performance.now() - rumStartTs));
                 const rl = document.getElementById('rumLatency');
                 if (rl) rl.textContent = String(rum);
+                // Send text to ML worker for tiny intent inference
+                if (mlWorker) {
+                    mlWorker.postMessage({ type: 'infer', payload: { text: message } });
+                }
                 
                 // Update real-time metrics
                 aiChat.responseAccuracy = Math.min(aiChat.responseAccuracy + 0.001, 0.999);
