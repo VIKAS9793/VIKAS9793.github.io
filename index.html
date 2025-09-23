@@ -715,13 +715,16 @@ Methodology: Data-driven decision making
 
     <script>
         // Cursor element
-        (function addCursor(){
-            const dot = document.createElement('div');
-            dot.id = 'cursorDot';
-            document.body.appendChild(dot);
-        })();
+        try {
+            (function addCursor(){
+                const dot = document.createElement('div');
+                dot.id = 'cursorDot';
+                document.body.appendChild(dot);
+            })();
+        } catch(e) { console.warn('Cursor init skipped', e); }
 
         // Parallax pointer tracking
+        try {
         (function parallaxPointer(){
             const root = document.documentElement;
             let px = 0, py = 0, tx = 0, ty = 0;
@@ -740,8 +743,10 @@ Methodology: Data-driven decision making
             }
             raf();
         })();
+        } catch(e) { console.warn('Parallax init skipped', e); }
 
         // Custom cursor follow
+        try {
         (function cursorFollow(){
             const dot = document.getElementById('cursorDot');
             if (!dot) return;
@@ -759,9 +764,10 @@ Methodology: Data-driven decision making
                 el.addEventListener('pointerleave', () => { dot.style.width = '14px'; dot.style.height = '14px'; });
             });
         })();
+        } catch(e) { console.warn('Cursor follow skipped', e); }
 
         // 3D tilt interactions
-        (function tilt(){
+        try { (function tilt(){
             const els = document.querySelectorAll('[data-tilt]');
             els.forEach(el => {
                 let rx = 0, ry = 0, trx = 0, try_ = 0, rafId;
@@ -784,10 +790,10 @@ Methodology: Data-driven decision making
                 el.addEventListener('pointermove', onMove);
                 el.addEventListener('pointerleave', reset);
             });
-        })();
+        })(); } catch(e) { console.warn('Tilt skipped', e); }
 
         // Magnetic buttons
-        (function magnetic(){
+        try { (function magnetic(){
             const btns = document.querySelectorAll('.btn-2025[data-magnetic]');
             btns.forEach(btn => {
                 let tx = 0, ty = 0; let rafId;
@@ -803,10 +809,10 @@ Methodology: Data-driven decision making
                 btn.addEventListener('pointermove', onMove);
                 btn.addEventListener('pointerleave', reset);
             });
-        })();
+        })(); } catch(e) { console.warn('Magnetic skipped', e); }
 
         // Lightweight tooltips
-        (function tooltips(){
+        try { (function tooltips(){
             const tip = document.createElement('div');
             tip.style.position = 'fixed'; tip.style.pointerEvents = 'none'; tip.style.zIndex = '1500';
             tip.style.padding = '6px 10px'; tip.style.borderRadius = '8px'; tip.style.fontSize = '12px';
@@ -829,7 +835,7 @@ Methodology: Data-driven decision making
                 el.addEventListener('pointermove', move);
                 el.addEventListener('pointerleave', hide);
             });
-        })();
+        })(); } catch(e) { console.warn('Tooltips skipped', e); }
         // AI Knowledge Base - Real portfolio data
         const aiKnowledgeBase = {
             projects: {
