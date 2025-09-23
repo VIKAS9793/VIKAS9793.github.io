@@ -99,6 +99,31 @@ How it works
 
 ---
 
+### 🤖 Agentic Demo (Local, Offline)
+
+- **/agent command**: Type `/agent <goal>` in chat to start a demo agent
+- **Planner/Executor**: Runs inside `modelWorker.js` (off main thread)
+  - Emits `agent-status`, `agent-plan`, and `agent-result` events
+  - Prints planned steps and completion summary in chat
+- **Privacy & Safety**: No external calls; runs fully in a worker sandbox
+
+---
+
+### 🖥️ Graphics & Motion (WebGPU/WebGL)
+
+- **WebGPU background** with automatic WebGL fallback via `initGraphics()`
+- **Adaptive intensity**: visual effects scale using `--intensity` to protect 120fps
+- **Reduced motion**: respects `prefers-reduced-motion` and tab visibility changes
+
+---
+
+### 🔐 Security & Headers
+
+- **CSP**: Locks down sources to self + fonts/CDN; workers restricted to self
+- **No external AI APIs** by design; inference and agent logic run locally
+
+---
+
 ### 🔧 Customization
 
 - Swap the Google Font in the `@import` and `preconnect` lines
