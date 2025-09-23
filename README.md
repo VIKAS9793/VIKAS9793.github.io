@@ -2,6 +2,9 @@
 
 Building a lightning‑fast, visually spellbinding portfolio that scales to planetary traffic. Every frame and millisecond is engineered for delight and resilience.
 
+### 🔗 Live Site
+- https://vikas9793.github.io/
+
 ---
 
 ### ✨ Highlights
