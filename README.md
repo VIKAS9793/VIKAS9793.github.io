@@ -1,41 +1,28 @@
-## Quantum‑Pixel Web Architect – 2025 Edition
+## Welcome to My Portfolio! 👋
 
-Building a lightning‑fast, visually spellbinding portfolio that scales to planetary traffic. Every frame and millisecond is engineered for delight and resilience.
+**Hello there!** Welcome to my digital space where technology meets innovation. I'm **Vikas Sahani**, a Certified AI Product Manager with a passion for building impactful solutions that bridge the gap between complex AI/ML technologies and real-world business value.
 
-### 🔗 Live Site
-- https://vikas9793.github.io/
+### 🚀 My Mission
+To transform complex AI/ML technologies into user-friendly, scalable products that deliver measurable business impact. I specialize in translating technical concepts into clear business value while managing the entire product lifecycle from conception to market success.
 
----
+### 💼 Let's Connect!
+- **📧 Email**: vikassahani17@gmail.com
+- **📱 Phone**: +91 7715072817
+- **💼 LinkedIn**: [linkedin.com/in/vikas-sahani-727420358](https://www.linkedin.com/in/vikas-sahani-727420358)
+- **🐙 GitHub**: [github.com/VIKAS9793](https://github.com/VIKAS9793)
 
-### ✨ Highlights
-- **Instant feel**: Critical hints, deferred heavy work, and a lean service worker deliver snappy loads.
-- **Alive visuals**: GPU‑friendly motion, parallax nebula, magnetic buttons, and tasteful micro‑interactions.
-- **Robust UX**: Accessible, keyboard‑friendly, and resilient on low‑power devices.
-- **Comprehensive Portfolio**: Showcases 8 featured AI/ML projects and PM case studies
-- **Professional Credentials**: IBM & Google certified AI Product Manager with extensive certifications
-
----
-
-### 🎯 Portfolio Content
-
-**Featured Projects (8 total):**
-1. **Netflix India PM Case Study** - Educational framework demonstrating PM research methodology
-2. **MoatMetrics** - Enterprise analytics platform for MSPs ($12B market opportunity)
-3. **CharacterCraft Pro** - AI platform for character consistency in generated images (94% accuracy)
-4. **EduVault** - Offline-first educational platform for rural India with accessibility compliance
-5. **AI Interview Simulation System** - Privacy-first conversational agent with enterprise pilot
-6. **KrishiSahayak+Gemma** - Offline AI advisory system for rural agriculture
-7. **Docu-Agent** - Local-first AI documentation system for enterprise knowledge management
-8. **Portfolio Management** - AI-driven analytics at Aditya Birla Capital (₹100Cr AUM)
-
-**Professional Sections:**
-- Industry simulation experience (EA, JPMorgan, AWS)
-- 11+ professional certifications (IBM, Google, PMI, DeepLearning.AI, etc.)
-- Contact information and social links
+*Open to opportunities in AI Product Management, strategic consulting, and innovative tech collaborations.*
 
 ---
 
-### 🧱 Tech Stack Overview
+## 🔗 Live Portfolio
+**https://vikas9793.github.io/**
+
+*Explore my featured projects, professional credentials, and industry experience directly on the portfolio.*
+
+---
+
+## 🧱 Technical Architecture
 
 - **Core**
   - HTML5 semantic structure (`index.html`)
@@ -60,14 +47,10 @@ Building a lightning‑fast, visually spellbinding portfolio that scales to plan
   - Parallax using pointer tracking + `requestAnimationFrame`
   - Magnetic buttons + tilt cards (pointer‑based micro‑interactions)
 
-- **AI/UX Layer**
-  - In‑page “AI Assistant” widget with simulated analysis pipeline
-  - Typing effect with variable pacing and idle/burst timing
-
 - **Accessibility & UX**
   - High‑contrast palette on dark surface
-  - Keyboard shortcuts (focus search, toggle chat, ESC to close)
-  - ARIA attributes for interactive widgets
+  - Keyboard navigation and ARIA attributes
+  - Reduced motion preferences respected
 
 ---
 
@@ -122,69 +105,12 @@ Or use any static server (VS Code Live Server, http-server, serve, etc.).
 
 ---
 
-### 🧠 On‑Device ML & Performance (2025)
+### 🧠 Advanced Features
 
-- **Tiny intent model (offline)**: `tiny_model.json` bundled, keyword‑weight scoring
-- **ML Web Worker**: `modelWorker.js` runs inference off main thread
-  - Progressive load: tiny model immediately, full model hook reserved for idle
-  - Throttled inference (≈2 Hz) to avoid jank
-- **RUM metrics**: chat input→response latency and model inference ms
-- **Adaptive frame guard**: dampens parallax on frame spikes to protect 120 fps
-- **Offline ready**: Service Worker caches `index.html`, `modelWorker.js`, `tiny_model.json`
-
-How it works
-- UI posts chat text to the worker; worker returns `{intent, latency, model}`
-- Indicators in chat show current model and last inference time
-- Full model upgrade path kept for future (idle hot‑swap)
-
----
-
-### 🤖 Agentic Demo (Local, Offline)
-
-- **/agent command**: Type `/agent <goal>` in chat to start a demo agent
-- **Planner/Executor**: Runs inside `modelWorker.js` (off main thread)
-  - Emits `agent-status`, `agent-plan`, and `agent-result` events
-  - Prints planned steps and completion summary in chat
-- **Privacy & Safety**: No external calls; runs fully in a worker sandbox
-
----
-
-### 🖥️ Graphics & Motion (WebGPU/WebGL)
-
-- **WebGPU background** with automatic WebGL fallback via `initGraphics()`
-- **Adaptive intensity**: visual effects scale using `--intensity` to protect 120fps
-- **Reduced motion**: respects `prefers-reduced-motion` and tab visibility changes
-
----
-
-### 🔐 Security & Headers
-
-- **CSP**: Locks down sources to self + fonts/CDN; workers restricted to self
-- **No external AI APIs** by design; inference and agent logic run locally
-
----
-
-### 🔧 Customization
-
-- Swap the Google Font in the `@import` and `preconnect` lines
-- Tune hero typography via the `.hero-title` `clamp()` values
-- Adjust shader intensity/opacity inside `initWebGL()`
-- Expand the service worker `STATIC_ASSETS` list if you add new static files
-
----
-
-### ✅ Compatibility Targets
-
-- Modern evergreen browsers (Chromium, Firefox, Safari)
-- Graceful degradation when WebGL or View Transitions are unavailable
-
----
-
-### 🧪 Suggested Checks (Optional)
-
-- Lighthouse (Performance, Accessibility, Best Practices, SEO)
-- WebPageTest for first‑byte and render path
-- Throttle CPU/Network in DevTools to validate motion smoothness
+- **On-device ML**: Tiny intent model with Web Worker inference
+- **Service Worker**: Offline functionality and performance optimization
+- **WebGL Graphics**: Interactive 3D background with Three.js
+- **Privacy-first**: All processing happens locally, no external APIs
 
 ---
 
