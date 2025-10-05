@@ -11,6 +11,27 @@ Building a lightning‑fast, visually spellbinding portfolio that scales to plan
 - **Instant feel**: Critical hints, deferred heavy work, and a lean service worker deliver snappy loads.
 - **Alive visuals**: GPU‑friendly motion, parallax nebula, magnetic buttons, and tasteful micro‑interactions.
 - **Robust UX**: Accessible, keyboard‑friendly, and resilient on low‑power devices.
+- **Comprehensive Portfolio**: Showcases 8 featured AI/ML projects and PM case studies
+- **Professional Credentials**: IBM & Google certified AI Product Manager with extensive certifications
+
+---
+
+### 🎯 Portfolio Content
+
+**Featured Projects (8 total):**
+1. **Netflix India PM Case Study** - Educational framework demonstrating PM research methodology
+2. **MoatMetrics** - Enterprise analytics platform for MSPs ($12B market opportunity)
+3. **CharacterCraft Pro** - AI platform for character consistency in generated images (94% accuracy)
+4. **EduVault** - Offline-first educational platform for rural India with accessibility compliance
+5. **AI Interview Simulation System** - Privacy-first conversational agent with enterprise pilot
+6. **KrishiSahayak+Gemma** - Offline AI advisory system for rural agriculture
+7. **Docu-Agent** - Local-first AI documentation system for enterprise knowledge management
+8. **Portfolio Management** - AI-driven analytics at Aditya Birla Capital (₹100Cr AUM)
+
+**Professional Sections:**
+- Industry simulation experience (EA, JPMorgan, AWS)
+- 11+ professional certifications (IBM, Google, PMI, DeepLearning.AI, etc.)
+- Contact information and social links
 
 ---
 
@@ -22,7 +43,7 @@ Building a lightning‑fast, visually spellbinding portfolio that scales to plan
   - Vanilla JavaScript (no heavy frameworks)
 
 - **Typography & Icons**
-  - Google Fonts: `Inter`
+  - Google Fonts: `Space Grotesk` (primary) & `JetBrains Mono` (code/monospace)
   - Font Awesome 6 via CDN
 
 - **Performance Engineering**
