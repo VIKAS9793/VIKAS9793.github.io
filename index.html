@@ -25,6 +25,7 @@
 
         html {
              scroll-behavior: smooth;
+             scroll-padding-top: 6rem;
         }
 
         body {
@@ -365,6 +366,13 @@
             gap: 1rem;
             opacity: 0;
             animation: fadeIn 1s ease forwards 1.5s;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-indicator:hover {
+            color: var(--primary);
+            transform: translateX(-50%) translateY(-5px);
         }
 
         @keyframes fadeIn {
@@ -788,7 +796,7 @@
 
         /* Footer */
         footer {
-            padding: 4rem;
+            padding: 4rem 4rem;
             text-align: center;
             border-top: 1px solid rgba(0, 255, 136, 0.1);
             font-family: 'JetBrains Mono', monospace;
@@ -798,11 +806,11 @@
 
         /* Mobile */
         @media (max-width: 1024px) {
-            nav { padding: 1.5rem; }
-            .hero { padding: 0 1.5rem; }
+            nav { padding: 1.5rem 2rem; }
+            .hero { padding: 0 2rem; }
             .nav-menu { display: none; }
             .mobile-nav-toggle { display: block; }
-            .stats, .projects, .certs, .contact, .simulations { padding: 4rem 1.5rem; }
+            .stats, .projects, .certs, .contact, .simulations { padding: 6rem 2rem; }
             .project {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -811,6 +819,27 @@
                 direction: ltr;
             }
             .projects-list { gap: 4rem; }
+            footer { padding: 3rem 2rem; }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .hero { padding: 0 1.5rem; }
+            .stats, .projects, .certs, .contact, .simulations { padding: 4rem 1.5rem; }
+            footer { padding: 2rem 1.5rem; }
+            .section-header { margin-bottom: 4rem; }
+            .projects-list { gap: 3rem; }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            nav { padding: 0.8rem 1rem; }
+            .hero { padding: 0 1rem; }
+            .stats, .projects, .certs, .contact, .simulations { padding: 3rem 1rem; }
+            footer { padding: 1.5rem 1rem; }
+            .section-header { margin-bottom: 3rem; }
+            .projects-list { gap: 2.5rem; }
         }
 
         /* Animations */
@@ -872,7 +901,7 @@
                     <a href="tel:+917715072817" class="btn btn-secondary"><span>+91 7715072817</span></a>
                 </div>
             </div>
-            <div class="scroll-indicator">
+            <div class="scroll-indicator" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">
                 Scroll
                 <div class="scroll-line"></div>
             </div>
