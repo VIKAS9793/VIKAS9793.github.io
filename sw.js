@@ -11,7 +11,7 @@ const CRITICAL_RESOURCES = [
     'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'
 ];
 
-// Critical images to cache aggressively - [FIX: Updated with GitHub repository URLs]
+// Critical images to cache aggressively - [FIX: Updated with correct project-image mappings]
 const CRITICAL_IMAGES = [
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/saralpolicy.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/charactercraft-pro.png',
@@ -20,14 +20,15 @@ const CRITICAL_IMAGES = [
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/moatmetrics.png'
 ];
 
-// All project images - [FIX: Updated with GitHub repository URLs]
+// All project images - [FIX: Updated with correct project-image mappings]
 const ALL_IMAGES = [
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/saralpolicy.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/charactercraft-pro.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/ai-interview-system.jpg',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/eduvault.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/moatmetrics.png',
-    'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/netflix-case-study.png',
+    'https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
 ];
 

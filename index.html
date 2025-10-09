@@ -90,7 +90,8 @@
     <link rel="preload" href="https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/moatmetrics.png" as="image" fetchpriority="high">
     
     <!-- Secondary images with standard preloading -->
-    <link rel="preload" href="https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/netflix-case-study.png" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" as="image">
     <link rel="preload" href="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" as="image">
     
     <!-- DNS prefetch for Unsplash CDN -->
@@ -675,9 +676,9 @@
             background: 
                 linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%),
                 var(--project-bg, linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(10, 132, 255, 0.1)));
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-size: cover, cover;
+            background-position: center center, center center;
+            background-repeat: no-repeat, no-repeat;
             /* [ENHANCE: Advanced image loading optimizations] */
             will-change: transform, background-image;
             image-rendering: -webkit-optimize-contrast;
@@ -1260,7 +1261,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual" style="--project-bg: url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/netflix-case-study.png');">
+                    <div class="project-visual" style="--project-bg: url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/moatmetrics.png');">
                         <!-- [FIX: Removed project icon to showcase beautiful background image] -->
                     </div>
                     <div class="project-content">
@@ -1394,7 +1395,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual" style="--project-bg: url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/moatmetrics.png');">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <!-- [FIX: Removed project icon to showcase beautiful background image] -->
                     </div>
                     <div class="project-content">
@@ -1425,7 +1426,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual" style="--project-bg: url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/netflix-case-study.png');">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <!-- [FIX: Removed project icon to showcase beautiful background image] -->
                     </div>
                     <div class="project-content">
@@ -1745,7 +1746,8 @@
                     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/ai-interview-system.jpg',
                     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/eduvault.png',
                     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/moatmetrics.png',
-                    'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/netflix-case-study.png',
+                    'https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+                    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
                     'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
                 ];
                 
@@ -1850,7 +1852,8 @@
                 'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/ai-interview-system.jpg',
                 'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/eduvault.png',
                 'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/moatmetrics.png',
-                'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/netflix-case-study.png',
+                'https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+                'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
                 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
             ];
             
