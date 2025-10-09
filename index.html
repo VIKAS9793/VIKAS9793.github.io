@@ -22,8 +22,8 @@
     <meta name="twitter:title" content="Vikas Sahani | AI Product Visionary">
     <meta name="twitter:description" content="Certified AI Product Manager with expertise in leading end-to-end development of sophisticated AI/ML solutions.">
     
-    <!-- [FIX: Added Content Security Policy for security] -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <!-- [FIX: Added Content Security Policy for security - relaxed for GitHub Pages] -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https:;">
     
     <!-- [EDIT: Added structured data for SEO] -->
     <script type="application/ld+json">
@@ -1701,11 +1701,11 @@
             const cursor = document.getElementById('cursor');
             const follower = document.getElementById('cursor-follower');
             
-            // [FIX: Added null checks for DOM elements]
+            // [FIX: Added null checks for DOM elements - make cursor optional]
             if (!cursor || !follower) {
                 console.warn('Cursor elements not found, skipping cursor functionality');
-                return;
-            }
+                // [FIX: Don't return early - continue with other functionality]
+            } else {
             
             let mouseX = 0;
             let mouseY = 0;
@@ -1749,6 +1749,7 @@
                     follower.classList.remove('hover');
                 });
             });
+            } // [FIX: Close the else block for cursor functionality]
 
             // [FIX: Enhanced Three.js error handling with better fallback]
             let scene;
