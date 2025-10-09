@@ -75,6 +75,11 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
     
+    <!-- [ENHANCE: Preload critical project background images for better performance] -->
+    <link rel="preload" href="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
+    
     <!-- [EDIT: Added integrity check for external resources] -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iDTGsz7THA8uISVpTZbhjp5xerRdcQH/TogSJzQJ/ueikvjBzvvpxd9oLCZMzE2+WlXQ==" crossorigin="anonymous"></script>
@@ -667,10 +672,13 @@
             clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
             border: 1px solid rgba(0, 255, 136, 0.2);
             transition: all 0.5s;
-            /* [ENHANCE: Netflix-inspired visual effects] */
+            /* [ENHANCE: High-quality background images with loading optimization] */
             background: 
-                linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(10, 132, 255, 0.1) 100%),
-                radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+                linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%),
+                var(--project-bg, linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(10, 132, 255, 0.1)));
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .project-visual:hover {
@@ -679,28 +687,50 @@
             /* [ENHANCE: Apple-inspired hover effects] */
             transform: translateY(-5px) scale(1.02);
             background: 
-                linear-gradient(135deg, rgba(0, 255, 136, 0.15) 0%, rgba(10, 132, 255, 0.15) 100%),
-                radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+                linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%),
+                var(--project-bg, linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(10, 132, 255, 0.1)));
+        }
+        
+        /* [ENHANCE: Loading state for images] */
+        .project-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 2s infinite;
+            z-index: 1;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .project-preview {
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(10, 132, 255, 0.1)),
-                /* [ENHANCE: AI-themed data visualization pattern] */
+                /* [ENHANCE: Beautiful overlay for better text readability] */
+                linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%),
+                /* [ENHANCE: Subtle tech pattern overlay] */
                 repeating-linear-gradient(
                     45deg,
                     transparent,
                     transparent 2px,
-                    rgba(0, 255, 136, 0.03) 2px,
-                    rgba(0, 255, 136, 0.03) 4px
+                    rgba(0, 255, 136, 0.05) 2px,
+                    rgba(0, 255, 136, 0.05) 4px
                 );
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            /* [ENHANCE: Smooth loading transition] */
+            transition: all 0.3s ease;
         }
 
         .project-preview::before {
@@ -1126,7 +1156,7 @@
 
             <div class="projects-list">
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
@@ -1176,7 +1206,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
@@ -1226,7 +1256,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
@@ -1270,7 +1300,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
@@ -1312,7 +1342,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
@@ -1364,7 +1394,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1485827404703-5b1c458d8c6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
@@ -1407,7 +1437,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
@@ -1451,7 +1481,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
@@ -1494,7 +1524,7 @@
                 </div>
 
                 <div class="project" data-animate>
-                    <div class="project-visual">
+                    <div class="project-visual" style="--project-bg: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
                         <div class="project-preview">
                             <!-- [EDIT: Replaced emoji with accessible SVG icon] -->
                             <div class="project-icon">
