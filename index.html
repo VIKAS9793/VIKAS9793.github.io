@@ -25,6 +25,12 @@
     <!-- [FIX: Temporarily removed CSP to debug blank page issue] -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https:;"> -->
     
+    <!-- [ENHANCE: Advanced caching headers for persistent visual consistency] -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
+    <meta http-equiv="Expires" content="Thu, 31 Dec 2025 23:59:59 GMT">
+    <meta name="cache-control" content="public, max-age=31536000">
+    <meta name="expires" content="Thu, 31 Dec 2025 23:59:59 GMT">
+    
     <!-- [EDIT: Added structured data for SEO] -->
     <script type="application/ld+json">
     {
@@ -75,10 +81,23 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
     
-    <!-- [ENHANCE: Preload critical project background images for better performance] -->
-    <link rel="preload" href="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
-    <link rel="preload" href="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
-    <link rel="preload" href="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
+    <!-- [ENHANCE: Advanced preloading and caching for consistent image visibility] -->
+    <!-- Critical images with aggressive preloading -->
+    <link rel="preload" href="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image" fetchpriority="high">
+    <link rel="preload" href="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image" fetchpriority="high">
+    <link rel="preload" href="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image" fetchpriority="high">
+    
+    <!-- Secondary images with standard preloading -->
+    <link rel="preload" href="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1485827404703-5b1c458d8c6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2058&q=80" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
+    <link rel="preload" href="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" as="image">
+    
+    <!-- DNS prefetch for Unsplash CDN -->
+    <link rel="dns-prefetch" href="//images.unsplash.com">
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     
     <!-- [EDIT: Added integrity check for external resources] -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
@@ -679,6 +698,29 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            /* [ENHANCE: Advanced image loading optimizations] */
+            will-change: transform, background-image;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            /* [ENHANCE: Loading state with skeleton animation] */
+            background-color: #0a0a0a;
+        }
+        
+        /* [ENHANCE: Loading skeleton for consistent visual feedback] */
+        .project-visual.loading {
+            background: 
+                linear-gradient(90deg, #0a0a0a 25%, #1a1a1a 50%, #0a0a0a 75%),
+                var(--project-bg, linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(10, 132, 255, 0.1)));
+            background-size: 200% 100%, cover;
+            background-position: 0% 0%, center;
+            animation: skeleton-loading 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes skeleton-loading {
+            0% { background-position: 0% 0%, center; }
+            100% { background-position: 200% 0%, center; }
         }
 
         .project-visual:hover {
@@ -1708,8 +1750,148 @@
     </footer>
 
     <script>
+        // [ENHANCE: Advanced image loading and caching for consistent visibility]
+        class ImageCacheManager {
+            constructor() {
+                this.cache = new Map();
+                this.loadingPromises = new Map();
+                this.preloadImages();
+            }
+            
+            preloadImages() {
+                const imageUrls = [
+                    'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80',
+                    'https://images.unsplash.com/photo-1485827404703-5b1c458d8c6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2058&q=80',
+                    'https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
+                ];
+                
+                imageUrls.forEach(url => this.preloadImage(url));
+            }
+            
+            preloadImage(url) {
+                if (this.cache.has(url)) return Promise.resolve(this.cache.get(url));
+                if (this.loadingPromises.has(url)) return this.loadingPromises.get(url);
+                
+                const promise = new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+                    img.onload = () => {
+                        this.cache.set(url, img);
+                        resolve(img);
+                    };
+                    img.onerror = reject;
+                    img.src = url;
+                });
+                
+                this.loadingPromises.set(url, promise);
+                return promise;
+            }
+            
+            getImage(url) {
+                return this.cache.get(url) || null;
+            }
+        }
+        
+        // Initialize image cache manager
+        const imageCache = new ImageCacheManager();
+        
+        // [ENHANCE: Service Worker registration for persistent caching]
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+        
+        // [ENHANCE: Advanced image loading with fallback and retry logic]
+        function ensureImageLoad(url, retries = 3) {
+            return new Promise((resolve, reject) => {
+                const attemptLoad = (attempt) => {
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+                    img.onload = () => resolve(img);
+                    img.onerror = () => {
+                        if (attempt < retries) {
+                            setTimeout(() => attemptLoad(attempt + 1), 1000 * attempt);
+                        } else {
+                            reject(new Error(`Failed to load image after ${retries} attempts: ${url}`));
+                        }
+                    };
+                    img.src = url;
+                };
+                attemptLoad(1);
+            });
+        }
+        
+        // [ENHANCE: Advanced image loading management for consistent visibility]
+        function initializeImageLoading() {
+            const projectVisuals = document.querySelectorAll('.project-visual');
+            
+            projectVisuals.forEach(visual => {
+                // Add loading class initially
+                visual.classList.add('loading');
+                
+                // Get background image URL
+                const bgImage = getComputedStyle(visual).getPropertyValue('--project-bg');
+                if (bgImage && bgImage !== 'none') {
+                    const imageUrl = bgImage.replace(/url\(['"]?([^'"]*)['"]?\)/, '$1');
+                    
+                    // Preload image with retry logic
+                    ensureImageLoad(imageUrl, 3).then(() => {
+                        // Image loaded successfully, remove loading class
+                        visual.classList.remove('loading');
+                        console.log('Image loaded successfully:', imageUrl);
+                    }).catch(error => {
+                        console.warn('Failed to load image:', imageUrl, error);
+                        // Keep loading state or show fallback
+                        visual.classList.remove('loading');
+                    });
+                } else {
+                    // No background image, remove loading class
+                    visual.classList.remove('loading');
+                }
+            });
+        }
+        
+        // [ENHANCE: Cache warming for consistent performance]
+        function warmImageCache() {
+            const allImageUrls = [
+                'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80',
+                'https://images.unsplash.com/photo-1485827404703-5b1c458d8c6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2058&q=80',
+                'https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
+            ];
+            
+            // Warm cache in background
+            allImageUrls.forEach(url => {
+                imageCache.preloadImage(url).catch(error => {
+                    console.warn('Cache warming failed for:', url, error);
+                });
+            });
+        }
+        
         // [STYLE: Applied consistent JavaScript formatting per Airbnb Style Guide]
         document.addEventListener('DOMContentLoaded', () => {
+            // [ENHANCE: Initialize advanced image loading]
+            initializeImageLoading();
+            warmImageCache();
+            
             // [FIX: Added comprehensive error handling for DOM elements]
             const cursor = document.getElementById('cursor');
             const follower = document.getElementById('cursor-follower');
