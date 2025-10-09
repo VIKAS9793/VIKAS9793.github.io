@@ -22,8 +22,8 @@
     <meta name="twitter:title" content="Vikas Sahani | AI Product Visionary">
     <meta name="twitter:description" content="Certified AI Product Manager with expertise in leading end-to-end development of sophisticated AI/ML solutions.">
     
-    <!-- [FIX: Added Content Security Policy for security - relaxed for GitHub Pages] -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https:;">
+    <!-- [FIX: Temporarily removed CSP to debug blank page issue] -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https:;"> -->
     
     <!-- [EDIT: Added structured data for SEO] -->
     <script type="application/ld+json">
@@ -1756,18 +1756,10 @@
             let camera;
             let renderer;
             
-            try {
-                // [STYLE: Applied consistent variable declarations]
-                scene = new THREE.Scene();
-                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-                renderer = new THREE.WebGLRenderer({ 
-                    alpha: true, 
-                    antialias: true,
-                    powerPreference: 'high-performance'
-                });
-            } catch (error) {
-                console.warn('Three.js failed to initialize:', error);
-                // [FIX: Enhanced fallback with accessibility considerations]
+            // [DEBUG: Check if Three.js is loaded]
+            if (typeof THREE === 'undefined') {
+                console.warn('Three.js not loaded, skipping 3D effects');
+                // [FIX: Add fallback background without Three.js]
                 const sceneContainer = document.getElementById('scene-container');
                 if (sceneContainer) {
                     sceneContainer.innerHTML = `
@@ -1783,11 +1775,42 @@
                         " aria-hidden="true"></div>
                     `;
                 }
-                return;
+            } else {
+                try {
+                    // [STYLE: Applied consistent variable declarations]
+                    scene = new THREE.Scene();
+                    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                    renderer = new THREE.WebGLRenderer({ 
+                        alpha: true, 
+                        antialias: true,
+                        powerPreference: 'high-performance'
+                    });
+                } catch (error) {
+                    console.warn('Three.js failed to initialize:', error);
+                    // [FIX: Enhanced fallback with accessibility considerations]
+                    const sceneContainer = document.getElementById('scene-container');
+                    if (sceneContainer) {
+                        sceneContainer.innerHTML = `
+                            <div style="
+                                position: fixed; 
+                                top: 0; 
+                                left: 0; 
+                                width: 100%; 
+                                height: 100%; 
+                                background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(10,132,255,0.1)); 
+                                z-index: -1;
+                                pointer-events: none;
+                            " aria-hidden="true"></div>
+                        `;
+                    }
+                    return;
+                }
             }
             
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.getElementById('scene-container').appendChild(renderer.domElement);
+            // [FIX: Only proceed with Three.js if it's available and initialized]
+            if (typeof THREE !== 'undefined' && renderer) {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.getElementById('scene-container').appendChild(renderer.domElement);
 
             // Create particles
             const particlesGeometry = new THREE.BufferGeometry();
@@ -1867,6 +1890,7 @@
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
+            } // [FIX: Close Three.js if block]
 
             // Scroll animations
             const observer = new IntersectionObserver((entries) => {
