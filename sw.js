@@ -13,6 +13,7 @@ const CRITICAL_RESOURCES = [
 
 // Critical images to cache aggressively - [FIX: Updated with correct project-image mappings]
 const CRITICAL_IMAGES = [
+    'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/saralpolicy.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/charactercraft-pro.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/ai-interview-system.jpg',
@@ -22,6 +23,7 @@ const CRITICAL_IMAGES = [
 
 // All project images - [FIX: Updated with correct project-image mappings]
 const ALL_IMAGES = [
+    'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/saralpolicy.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/charactercraft-pro.png',
     'https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/ai-interview-system.jpg',
