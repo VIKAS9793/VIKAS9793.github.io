@@ -132,17 +132,26 @@
         /* [ENHANCE: Apple-inspired gradient backgrounds for sections] */
         .hero {
             background: 
-                /* Reduced overlay to let banner show through clearly */
-                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-                /* Portfolio Banner as primary visual element */
+                /* Dynamic overlay with intelligent opacity */
+                linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
+                /* Portfolio Banner with intelligent scaling */
                 url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png'),
                 /* Subtle gradient layers for depth */
                 radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(10, 132, 255, 0.05) 0%, transparent 50%),
                 linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
-            background-size: cover, cover, auto, auto, auto;
+            /* MAANG-level dynamic scaling */
+            background-size: contain, contain, auto, auto, auto;
             background-position: center center, center center, 20% 50%, 80% 20%, center center;
+            background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
             background-blend-mode: normal, normal, normal, normal, normal;
+            /* Dynamic height based on content */
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem 4rem;
         }
         
         .projects {
@@ -383,6 +392,65 @@
         .hero-content {
             text-align: center;
             max-width: 1200px;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* MAANG-level CTA container */
+        .hero-cta-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* MAANG-level CTA buttons */
+        .maang-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .maang-cta.btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+        }
+
+        .maang-cta.btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .maang-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        .maang-cta:active {
+            transform: translateY(0);
+        }
+
+        .cta-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .maang-cta:hover .cta-icon {
+            transform: translateX(4px);
         }
 
         .hero-tag {
@@ -1060,8 +1128,19 @@
         @media (max-width: 1024px) {
             nav { padding: 1.5rem 2rem; }
             .hero { 
-                min-height: 50vh;
-                padding: 1rem 2rem; 
+                min-height: 70vh;
+                padding: 1.5rem 2rem; 
+            }
+            
+            .hero-cta-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .maang-cta {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
             }
             .nav-menu { display: none; }
             .mobile-nav-toggle { display: block; }
@@ -1081,8 +1160,13 @@
         @media (max-width: 768px) {
             nav { padding: 1rem 1.5rem; }
             .hero { 
-                min-height: 40vh;
+                min-height: 60vh;
                 padding: 1rem 1.5rem; 
+            }
+            
+            .maang-cta {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
             }
             .stats, .projects, .certs, .contact, .simulations { padding: 4rem 1.5rem; }
             footer { padding: 2rem 1.5rem; }
@@ -1094,8 +1178,17 @@
         @media (max-width: 480px) {
             nav { padding: 0.8rem 1rem; }
             .hero { 
-                min-height: 35vh;
-                padding: 0.5rem 1rem; 
+                min-height: 50vh;
+                padding: 0.8rem 1rem; 
+            }
+            
+            .maang-cta {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .cta-icon {
+                font-size: 1rem;
             }
             .stats, .projects, .certs, .contact, .simulations { padding: 3rem 1rem; }
             footer { padding: 1.5rem 1rem; }
@@ -1152,9 +1245,22 @@
 
     <main id="main" role="main">
         <section id="home" class="hero">
-            <!-- [FIX: Minimal hero section - let portfolio banner be the sole visual focus] -->
-            <div class="scroll-indicator" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">
-                Scroll
+            <!-- [MAANG-LEVEL: Dynamic hero content with intelligent CTA placement] -->
+            <div class="hero-content">
+                <!-- Primary CTA following MAANG patterns -->
+                <div class="hero-cta-container">
+                    <a href="#projects" class="btn btn-primary maang-cta" aria-label="Explore my AI projects and case studies">
+                        <span class="cta-text">Explore AI Projects</span>
+                        <span class="cta-icon">→</span>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary maang-cta" aria-label="Connect with me for AI product opportunities">
+                        <span class="cta-text">Let's Connect</span>
+                        <span class="cta-icon">💬</span>
+                    </a>
+                </div>
+            </div>
+            <div class="scroll-indicator" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" aria-label="Scroll to projects section">
+                <span class="scroll-text">Scroll</span>
                 <div class="scroll-line"></div>
             </div>
         </section>
