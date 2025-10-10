@@ -132,17 +132,18 @@
         /* [ENHANCE: Apple-inspired gradient backgrounds for sections] */
         .hero {
             background: 
-                /* Portfolio Banner - Faded Overlay */
-                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+                /* Strong overlay to hide banner text and create clean background */
+                linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
+                /* Portfolio Banner as subtle texture only */
                 url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png'),
-                /* Original Gradient Layers */
+                /* Original Gradient Layers for depth */
                 radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(10, 132, 255, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 80%, rgba(255, 0, 128, 0.05) 0%, transparent 50%),
                 linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
             background-size: cover, cover, auto, auto, auto, auto;
             background-position: center center, center center, 20% 50%, 80% 20%, 40% 80%, center center;
-            background-blend-mode: overlay, normal, normal, normal, normal, normal;
+            background-blend-mode: normal, multiply, normal, normal, normal, normal;
         }
         
         .projects {
@@ -174,15 +175,16 @@
         @media (max-width: 768px) {
             .hero {
                 background: 
-                    /* Portfolio Banner - Faded Overlay for Mobile */
-                    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+                    /* Strong overlay for mobile to completely hide banner text */
+                    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95)),
+                    /* Portfolio Banner as subtle texture only */
                     url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png'),
                     /* Simplified Gradient for Mobile */
                     radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 70%),
                     linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
                 background-size: cover, cover, auto, auto;
                 background-position: center center, center center, 50% 50%, center center;
-                background-blend-mode: overlay, normal, normal, normal;
+                background-blend-mode: normal, multiply, normal, normal;
             }
             
             .project-visual:hover {
