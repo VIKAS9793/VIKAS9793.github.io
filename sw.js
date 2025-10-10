@@ -36,15 +36,12 @@ const ALL_IMAGES = [
 
 // Install event - cache critical resources
 self.addEventListener('install', event => {
-    console.log('Service Worker installing...');
     event.waitUntil(
         Promise.all([
             caches.open(CACHE_NAME).then(cache => {
-                console.log('Caching critical resources...');
                 return cache.addAll(CRITICAL_RESOURCES);
             }),
             caches.open(IMAGE_CACHE_NAME).then(cache => {
-                console.log('Caching critical images...');
                 return cache.addAll(CRITICAL_IMAGES);
             })
         ])
@@ -54,13 +51,11 @@ self.addEventListener('install', event => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
-    console.log('Service Worker activating...');
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
                     if (cacheName !== CACHE_NAME && cacheName !== IMAGE_CACHE_NAME) {
-                        console.log('Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
@@ -81,7 +76,6 @@ self.addEventListener('fetch', event => {
             caches.open(IMAGE_CACHE_NAME).then(cache => {
                 return cache.match(request).then(response => {
                     if (response) {
-                        console.log('Serving image from cache:', request.url);
                         return response;
                     }
                     
@@ -89,7 +83,6 @@ self.addEventListener('fetch', event => {
                     return fetch(request).then(fetchResponse => {
                         if (fetchResponse.ok) {
                             cache.put(request, fetchResponse.clone());
-                            console.log('Cached new image:', request.url);
                         }
                         return fetchResponse;
                     }).catch(() => {
@@ -106,7 +99,6 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(request).then(response => {
             if (response) {
-                console.log('Serving from cache:', request.url);
                 return response;
             }
             
@@ -138,8 +130,8 @@ self.addEventListener('sync', event => {
                             if (response.ok) {
                                 return cache.put(imageUrl, response);
                             }
-                        }).catch(error => {
-                            console.log('Failed to preload image:', imageUrl, error);
+                        }).catch(() => {
+                            // Failed to preload image, continue silently
                         });
                     })
                 );

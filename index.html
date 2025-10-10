@@ -22,8 +22,8 @@
     <meta name="twitter:title" content="Vikas Sahani | AI Product Visionary">
     <meta name="twitter:description" content="Certified AI Product Manager with expertise in leading end-to-end development of sophisticated AI/ML solutions.">
     
-    <!-- [FIX: Temporarily removed CSP to debug blank page issue] -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https:;"> -->
+    <!-- [SECURITY: Content Security Policy enabled] -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://raw.githubusercontent.com https://images.unsplash.com; connect-src 'self' https:; worker-src 'self' blob:;">
     
     <!-- [ENHANCE: Advanced caching headers for persistent visual consistency] -->
     <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
@@ -175,60 +175,7 @@
             background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 30%, rgba(0,0,0,0.95) 100%);
         }
 
-        .hero-name {
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 700;
-            line-height: 1.2;
-            margin: 0 0 0.5rem 0;
-            letter-spacing: -0.02em;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards 0.2s;
-        }
-
-        .name-colorful {
-            background: linear-gradient(
-                90deg,
-                #0066cc 0%,    /* Blue */
-                #ff3333 16%,   /* Red */
-                #ff9900 33%,   /* Orange */
-                #ffcc00 50%,   /* Yellow */
-                #00cc66 66%,   /* Green */
-                #0066cc 83%,   /* Blue */
-                #0066cc 100%   /* Blue */
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% auto;
-            animation: colorShift 8s ease-in-out infinite;
-        }
-
-        @keyframes colorShift {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-        }
-
-        .hero-role {
-            font-size: clamp(18px, 3vw, 28px);
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            margin: 0;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.4s;
-        }
-
-        .hero-mission {
-            font-size: clamp(14px, 2vw, 18px);
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 600px;
-            margin: 0;
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.6s;
-        }
+        /* Removed unused hero text styles - text is in banner image */
 
         .hero-decorations {
             position: absolute;
@@ -521,47 +468,7 @@
 
         /* Remove duplicate hero section styles - keeping only the first definition */
 
-        .hero-badges {
-            display: none; /* Hide badges as they're in the banner image */
-        }
-
-        .badge {
-            height: 56px;
-            padding: 0 24px;
-            border-radius: 28px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-            white-space: nowrap;
-        }
-
-        .badge-primary {
-            background: linear-gradient(135deg, #0066cc, #004499);
-            color: white;
-            border-color: rgba(0, 102, 204, 0.3);
-        }
-
-        .badge-secondary {
-            background: linear-gradient(135deg, #00cc66, #009944);
-            color: white;
-            border-color: rgba(0, 204, 102, 0.3);
-        }
-
-        .badge-accent {
-            background: linear-gradient(135deg, #ffaa00, #ff8800);
-            color: white;
-            border-color: rgba(255, 170, 0, 0.3);
-        }
-
-        .badge:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
+        /* Removed unused badge styles - badges are in the banner image */
 
         .hero-cta-container {
             display: flex;
@@ -2211,11 +2118,11 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('SW registered: ', registration);
+                    .then(() => {
+                        // Service worker registered successfully
                     })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
+                    .catch(() => {
+                        // Service worker registration failed
                     });
             });
         }
@@ -2257,10 +2164,8 @@
                     ensureImageLoad(imageUrl, 3).then(() => {
                         // Image loaded successfully, remove loading class
                         visual.classList.remove('loading');
-                        console.log('Image loaded successfully:', imageUrl);
-                    }).catch(error => {
-                        console.warn('Failed to load image:', imageUrl, error);
-                        // Keep loading state or show fallback
+                    }).catch(() => {
+                        // Failed to load image, remove loading state
                         visual.classList.remove('loading');
                     });
                 } else {
@@ -2285,8 +2190,8 @@
             
             // Warm cache in background
             allImageUrls.forEach(url => {
-                imageCache.preloadImage(url).catch(error => {
-                    console.warn('Cache warming failed for:', url, error);
+                imageCache.preloadImage(url).catch(() => {
+                    // Cache warming failed, continue silently
                 });
             });
         }
@@ -2302,8 +2207,7 @@
             const follower = document.getElementById('cursor-follower');
             
             // [FIX: Disabled cursor functionality completely]
-            console.log('Cursor functionality disabled for performance');
-            // Skip all cursor functionality
+            // Skip all cursor functionality for better performance
             
             let mouseX = 0;
             let mouseY = 0;
@@ -2328,7 +2232,7 @@
                     follower.style.top = `${followerY}px`;
                     requestAnimationFrame(animateFollower);
                 } catch (error) {
-                    console.warn('Error in cursor animation:', error);
+                    // Error in cursor animation, fail silently
                 }
             }
             
@@ -2354,7 +2258,7 @@
             
             // [DEBUG: Check if Three.js is loaded]
             if (typeof THREE === 'undefined') {
-                console.warn('Three.js not loaded, skipping 3D effects');
+                // Three.js not loaded, skipping 3D effects
                 // [FIX: Add fallback background without Three.js]
                 const sceneContainer = document.getElementById('scene-container');
                 if (sceneContainer) {
@@ -2382,7 +2286,7 @@
                         powerPreference: 'high-performance'
                     });
                 } catch (error) {
-                    console.warn('Three.js failed to initialize:', error);
+                    // Three.js failed to initialize
                     // [FIX: Enhanced fallback with accessibility considerations]
                     const sceneContainer = document.getElementById('scene-container');
                     if (sceneContainer) {
@@ -2634,23 +2538,7 @@
                 });
             });
 
-            // Console easter egg
-            console.log('%c█████████████████████████████████████', 'color: #00ff88; font-weight: bold;');
-            console.log('%c█                                     █', 'color: #00ff88;');
-            console.log('%c█  VIKAS SAHANI // AI VISIONARY       █', 'color: #00ff88; font-weight: bold;');
-            console.log('%c█                                     █', 'color: #00ff88;');
-            console.log('%c█  GitHub: VIKAS9793                  █', 'color: #00ff88;');
-            console.log('%c█  Looking to collaborate?            █', 'color: #00ff88;');
-            console.log(`%c█  Let's build something amazing!     █`, 'color: #00ff88;');
-            console.log('%c█                                     █', 'color: #00ff88;');
-            console.log('%c█████████████████████████████████████', 'color: #00ff88; font-weight: bold;');
-
-            // Performance monitoring
-            if (performance.getEntriesByType('navigation')[0]) {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                // [FIX: Removed emoji from console log for accessibility]
-                console.log('%cPage Load Time: ' + Math.round(perfData.loadEventEnd - perfData.fetchStart) + 'ms', 'color: #0a84ff; font-weight: bold;');
-            }
+            // Performance monitoring (silent in production)
         });
     </script>
 </body>
