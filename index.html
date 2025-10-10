@@ -130,28 +130,77 @@
         }
         
         /* [ENHANCE: Apple-inspired gradient backgrounds for sections] */
+        /* [REFACTOR: Clean hero section with proper structure] */
         .hero {
             background: 
-                /* Dynamic overlay with intelligent opacity */
+                /* Portfolio Banner with proper scaling */
                 linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
-                /* Portfolio Banner with intelligent scaling */
                 url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png'),
-                /* Subtle gradient layers for depth */
+                /* Subtle gradient layers */
                 radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(10, 132, 255, 0.05) 0%, transparent 50%),
                 linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
-            /* MAANG-level dynamic scaling with vertical stretch */
             background-size: 100% auto, 100% auto, auto, auto, auto;
             background-position: center center, center center, 20% 50%, 80% 20%, center center;
             background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-            background-blend-mode: normal, normal, normal, normal, normal;
-            /* Dynamic height for stretched banner */
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 2rem 4rem;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Hero container with max-width and proper spacing */
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Decorative elements positioned in margins */
+        .hero-decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .decoration-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .circle-1 {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            top: 10%;
+            right: -60px;
+        }
+
+        .circle-2 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary), #ff6b6b);
+            bottom: 20%;
+            left: -40px;
+        }
+
+        .circle-3 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b6b, var(--primary));
+            top: 60%;
+            right: 10%;
         }
         
         .projects {
@@ -389,25 +438,66 @@
             padding: 2rem 4rem;
         }
 
+        /* Hero content with proper structure */
         .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
             text-align: center;
-            max-width: 1200px;
-            z-index: 10;
-            position: relative;
         }
 
-        /* MAANG-level CTA container */
+        /* 3-column badge grid with 16px gaps */
+        .hero-badges {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .badge {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .badge-primary {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            color: white;
+        }
+
+        .badge-secondary {
+            background: linear-gradient(135deg, #00cc66, #009944);
+            color: white;
+        }
+
+        .badge-accent {
+            background: linear-gradient(135deg, #ff6b6b, #ff4444);
+            color: white;
+        }
+
+        .badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* CTA container with 48px top margin */
         .hero-cta-container {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin-top: 48px;
         }
 
-        /* MAANG-level CTA buttons */
-        .maang-cta {
+        /* CTA buttons with 4.5:1 contrast ratio */
+        .btn {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
@@ -423,33 +513,33 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .maang-cta.btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .btn-primary {
+            background: linear-gradient(135deg, #00cc66, #009944);
             color: white;
-            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 204, 102, 0.3);
         }
 
-        .maang-cta.btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .maang-cta:hover {
+        .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0, 255, 136, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 204, 102, 0.4);
         }
 
-        .maang-cta:active {
+        .btn:active {
             transform: translateY(0);
         }
 
-        .cta-icon {
+        .btn-icon {
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
 
-        .maang-cta:hover .cta-icon {
+        .btn:hover .btn-icon {
             transform: translateX(4px);
         }
 
@@ -1124,36 +1214,86 @@
             color: var(--text-dim);
         }
 
-        /* Mobile */
-        @media (max-width: 1024px) {
-            nav { padding: 1.5rem 2rem; }
-            .hero { 
-                min-height: 80vh;
-                padding: 1.5rem 2rem; 
+        /* Tablet breakpoint (768px) */
+        @media (max-width: 768px) {
+            .hero-container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .hero-badges {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                max-width: 300px;
             }
             
             .hero-cta-container {
                 flex-direction: column;
                 gap: 1rem;
+                margin-top: 32px;
             }
             
-            .maang-cta {
+            .btn {
                 width: 100%;
                 max-width: 280px;
                 justify-content: center;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
             }
-            .nav-menu { display: none; }
-            .mobile-nav-toggle { display: block; }
-            .stats, .projects, .certs, .contact, .simulations { padding: 6rem 2rem; }
-            .project {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            
+            .decoration-circle {
+                opacity: 0.2;
             }
-            .project:nth-child(even) {
-                direction: ltr;
+        }
+
+        /* Desktop breakpoint (1200px+) */
+        @media (min-width: 1200px) {
+            .hero-container {
+                padding: 3rem 2rem;
             }
-            .projects-list { gap: 4rem; }
-            footer { padding: 3rem 2rem; }
+            
+            .hero-badges {
+                max-width: 700px;
+            }
+            
+            .hero-cta-container {
+                margin-top: 56px;
+            }
+        }
+
+        /* Mobile breakpoint (320px) */
+        @media (max-width: 480px) {
+            .hero-container {
+                padding: 1rem 0.5rem;
+            }
+            
+            .hero-badges {
+                max-width: 280px;
+            }
+            
+            .badge {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .btn-icon {
+                font-size: 1rem;
+            }
+        }
+
+        /* Navigation spacing to prevent overlap */
+        nav {
+            z-index: 100;
+            position: relative;
+        }
+
+        /* Ensure navigation doesn't overlap hero content */
+        .hero {
+            margin-top: 0;
         }
 
         /* Small Mobile */
@@ -1245,23 +1385,42 @@
 
     <main id="main" role="main">
         <section id="home" class="hero">
-            <!-- [MAANG-LEVEL: Dynamic hero content with intelligent CTA placement] -->
-            <div class="hero-content">
-                <!-- Primary CTA following MAANG patterns -->
-                <div class="hero-cta-container">
-                    <a href="#projects" class="btn btn-primary maang-cta" aria-label="Explore my AI projects and case studies">
-                        <span class="cta-text">Explore AI Projects</span>
-                        <span class="cta-icon">→</span>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary maang-cta" aria-label="Connect with me for AI product opportunities">
-                        <span class="cta-text">Let's Connect</span>
-                        <span class="cta-icon">💬</span>
-                    </a>
+            <!-- [REFACTOR: Clean semantic hero structure with proper spacing] -->
+            <div class="hero-container">
+                <!-- Decorative background elements -->
+                <div class="hero-decorations">
+                    <div class="decoration-circle circle-1"></div>
+                    <div class="decoration-circle circle-2"></div>
+                    <div class="decoration-circle circle-3"></div>
                 </div>
-            </div>
-            <div class="scroll-indicator" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" aria-label="Scroll to projects section">
-                <span class="scroll-text">Scroll</span>
-                <div class="scroll-line"></div>
+                
+                <!-- Main hero content -->
+                <div class="hero-content">
+                    <!-- Badge grid -->
+                    <div class="hero-badges">
+                        <div class="badge badge-primary">IBM Certified</div>
+                        <div class="badge badge-secondary">Google Certified</div>
+                        <div class="badge badge-accent">RAG Systems</div>
+                    </div>
+                    
+                    <!-- CTA buttons -->
+                    <div class="hero-cta-container">
+                        <a href="#projects" class="btn btn-primary" aria-label="Explore my AI projects and case studies">
+                            <span class="btn-text">Explore AI Projects</span>
+                            <span class="btn-icon">→</span>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary" aria-label="Connect with me for AI product opportunities">
+                            <span class="btn-text">Let's Connect</span>
+                            <span class="btn-icon">💬</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Scroll indicator -->
+                <div class="scroll-indicator" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" aria-label="Scroll to projects section">
+                    <span class="scroll-text">Scroll</span>
+                    <div class="scroll-line"></div>
+                </div>
             </div>
         </section>
 
