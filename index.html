@@ -132,7 +132,7 @@
         /* [ENHANCE: Apple-inspired gradient backgrounds for sections] */
         .hero {
             background: 
-                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
                 url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png'),
                 radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(10, 132, 255, 0.05) 0%, transparent 50%),
@@ -142,7 +142,7 @@
             background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-end; /* Align to bottom to show banner text clearly */
             justify-content: center;
             position: relative;
             padding: 140px 2rem 80px 2rem; /* Add top padding to prevent nav overlap and bottom for scroll */
@@ -162,10 +162,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2.5rem;
+            gap: 2rem;
             text-align: center;
             width: 100%;
             max-width: 1200px;
+            padding-bottom: 2rem;
         }
 
         .hero-name {
@@ -1539,13 +1540,12 @@
                     <div class="decoration-circle circle-3"></div>
                 </div>
                 
-                <!-- Main hero content -->
+                <!-- Main hero content - Keep only interactive elements as text is in banner -->
                 <div class="hero-content">
-                    <h1 class="hero-name">
-                        <span class="name-colorful">VIKAS SAHANI</span>
+                    <!-- Hidden heading for SEO and accessibility -->
+                    <h1 class="hero-name" style="position: absolute; left: -9999px;">
+                        <span class="name-colorful">VIKAS SAHANI - AI Product Manager and Generative AI Architect</span>
                     </h1>
-                    <p class="hero-role">AI Product Manager • Generative AI Architect</p>
-                    <p class="hero-mission">Making AI accessible, ethical, and privacy-first for everyone</p>
                     
                     <!-- Badge grid -->
                     <div class="hero-badges">
