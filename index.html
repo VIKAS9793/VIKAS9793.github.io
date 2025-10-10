@@ -145,7 +145,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 120px 2rem 2rem 2rem; /* Add top padding to prevent nav overlap */
+            padding: 140px 2rem 80px 2rem; /* Add top padding to prevent nav overlap and bottom for scroll */
             overflow: hidden;
         }
 
@@ -162,15 +162,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
+            gap: 2.5rem;
             text-align: center;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .hero-name {
             font-size: clamp(48px, 8vw, 96px);
             font-weight: 700;
-            line-height: 1.1;
-            margin: 0;
+            line-height: 1.2;
+            margin: 0 0 0.5rem 0;
             letter-spacing: -0.02em;
             opacity: 0;
             transform: translateY(30px);
@@ -204,7 +206,7 @@
             font-size: clamp(18px, 3vw, 28px);
             font-weight: 500;
             color: rgba(255, 255, 255, 0.9);
-            margin: 0 0 0.5rem 0;
+            margin: 0;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease forwards 0.4s;
@@ -214,7 +216,7 @@
             font-size: clamp(14px, 2vw, 18px);
             color: rgba(255, 255, 255, 0.7);
             max-width: 600px;
-            margin: 0 0 2rem 0;
+            margin: 0;
             line-height: 1.6;
             opacity: 0;
             transform: translateY(20px);
@@ -510,24 +512,7 @@
         }
 
 
-        /* Hero Section - Constricted for banner focus */
-        .hero {
-            min-height: 60vh;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            position: relative;
-            padding: 2rem 4rem;
-        }
-
-        /* Hero content with proper structure */
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3rem;
-            text-align: center;
-        }
+        /* Remove duplicate hero section styles - keeping only the first definition */
 
         .hero-badges {
             display: grid;
@@ -535,7 +520,7 @@
             gap: 16px;
             width: 100%;
             max-width: 720px;
-            margin: 0 auto;
+            margin: 1rem auto 0;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease forwards 0.8s;
@@ -585,7 +570,7 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            margin-top: 48px;
+            margin-top: 2rem;
             width: 100%;
             max-width: 600px;
             opacity: 0;
@@ -781,7 +766,7 @@
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 4rem;
+            bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'JetBrains Mono', monospace;
@@ -797,6 +782,7 @@
             animation: fadeIn 1s ease forwards 1.5s;
             cursor: pointer;
             transition: all 0.3s ease;
+            z-index: 1;
         }
 
         .scroll-indicator:hover {
@@ -1315,31 +1301,39 @@
         @media (max-width: 768px) {
             .hero {
                 min-height: 100vh;
-                padding: 100px 1rem 2rem 1rem;
+                padding: 120px 1.5rem 60px 1.5rem;
+            }
+            
+            .hero-content {
+                gap: 2rem;
             }
             
             .hero-name {
                 font-size: 48px;
+                margin-bottom: 0.5rem;
             }
             
             .hero-role {
                 font-size: 18px;
+                margin-bottom: 0.5rem;
             }
             
             .hero-mission {
                 font-size: 14px;
+                margin-bottom: 0.5rem;
             }
             
             .hero-badges {
                 grid-template-columns: 1fr;
                 gap: 12px;
                 max-width: 320px;
+                margin-top: 1rem;
             }
             
             .hero-cta-container {
                 flex-direction: column;
                 gap: 16px;
-                margin-top: 32px;
+                margin-top: 1.5rem;
             }
             
             .btn {
@@ -1368,6 +1362,10 @@
                 width: 100px;
                 height: 100px;
             }
+            
+            .scroll-indicator {
+                display: none; /* Hide on mobile to prevent overlap */
+            }
         }
 
         /* Desktop breakpoint (1200px+) */
@@ -1376,35 +1374,48 @@
                 padding: 3rem 2rem;
             }
             
+            .hero-content {
+                gap: 3rem;
+            }
+            
             .hero-badges {
-                max-width: 700px;
+                max-width: 750px;
+                margin-top: 1.5rem;
             }
             
             .hero-cta-container {
-                margin-top: 56px;
+                margin-top: 2.5rem;
             }
         }
 
         /* Mobile breakpoint (480px) */
         @media (max-width: 480px) {
             .hero {
-                padding: 80px 0.75rem 1.5rem 0.75rem;
+                padding: 100px 1rem 50px 1rem;
+            }
+            
+            .hero-content {
+                gap: 1.5rem;
             }
             
             .hero-name {
                 font-size: 36px;
+                margin-bottom: 0.5rem;
             }
             
             .hero-role {
                 font-size: 16px;
+                margin-bottom: 0.5rem;
             }
             
             .hero-mission {
                 font-size: 13px;
+                margin-bottom: 0.5rem;
             }
             
             .hero-badges {
                 max-width: 280px;
+                margin-top: 1rem;
             }
             
             .badge {
@@ -1413,30 +1424,21 @@
                 font-size: 0.85rem;
             }
             
+            .hero-cta-container {
+                margin-top: 1.5rem;
+            }
+            
             .btn {
                 padding: 12px 20px;
                 font-size: 0.9rem;
             }
         }
 
-        /* Navigation spacing to prevent overlap */
-        nav {
-            z-index: 100;
-            position: relative;
-        }
+        /* Navigation spacing to prevent overlap - removed duplicate hero styles */
 
-        /* Ensure navigation doesn't overlap hero content */
-        .hero {
-            margin-top: 0;
-        }
-
-        /* Small Mobile */
+        /* Small Mobile - Additional responsive fixes */
         @media (max-width: 768px) {
             nav { padding: 1rem 1.5rem; }
-            .hero { 
-                min-height: 70vh;
-                padding: 1rem 1.5rem; 
-            }
             
             .maang-cta {
                 padding: 0.8rem 1.5rem;
@@ -1446,15 +1448,24 @@
             footer { padding: 2rem 1.5rem; }
             .section-header { margin-bottom: 4rem; }
             .projects-list { gap: 3rem; }
+            
+            .project {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
         }
 
         /* Extra Small Mobile */
         @media (max-width: 480px) {
             nav { padding: 0.8rem 1rem; }
-            .hero { 
-                min-height: 60vh;
-                padding: 0.8rem 1rem; 
-            }
             
             .maang-cta {
                 padding: 0.7rem 1.2rem;
