@@ -132,18 +132,17 @@
         /* [ENHANCE: Apple-inspired gradient backgrounds for sections] */
         .hero {
             background: 
-                /* Strong overlay to hide banner text and create clean background */
-                linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
-                /* Portfolio Banner as subtle texture only */
+                /* Reduced overlay to let banner show through clearly */
+                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+                /* Portfolio Banner as primary visual element */
                 url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png'),
-                /* Original Gradient Layers for depth */
-                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(10, 132, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(255, 0, 128, 0.05) 0%, transparent 50%),
+                /* Subtle gradient layers for depth */
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(10, 132, 255, 0.05) 0%, transparent 50%),
                 linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
-            background-size: cover, cover, auto, auto, auto, auto;
-            background-position: center center, center center, 20% 50%, 80% 20%, 40% 80%, center center;
-            background-blend-mode: normal, multiply, normal, normal, normal, normal;
+            background-size: cover, cover, auto, auto, auto;
+            background-position: center center, center center, 20% 50%, 80% 20%, center center;
+            background-blend-mode: normal, normal, normal, normal, normal;
         }
         
         .projects {
@@ -175,16 +174,16 @@
         @media (max-width: 768px) {
             .hero {
                 background: 
-                    /* Strong overlay for mobile to completely hide banner text */
-                    linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95)),
-                    /* Portfolio Banner as subtle texture only */
+                    /* Reduced overlay for mobile to let banner show through */
+                    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+                    /* Portfolio Banner as primary visual element */
                     url('https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/images/portfolio banner.png'),
                     /* Simplified Gradient for Mobile */
-                    radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 70%),
+                    radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.03) 0%, transparent 70%),
                     linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
                 background-size: cover, cover, auto, auto;
                 background-position: center center, center center, 50% 50%, center center;
-                background-blend-mode: normal, multiply, normal, normal;
+                background-blend-mode: normal, normal, normal, normal;
             }
             
             .project-visual:hover {
@@ -1145,14 +1144,7 @@
     <main id="main" role="main">
         <section id="home" class="hero">
             <div class="hero-content">
-                <div class="hero-tag">[ AI Product Manager - IBM & Google Certified ]</div>
-                <h1 class="hero-title">
-                    <span class="gradient-text">VIKAS</span><br>
-                    SAHANI
-                </h1>
-                <p class="hero-subtitle">
-                    Certified AI Product Manager with expertise in leading the end-to-end development of sophisticated AI/ML solutions. Adept at defining product roadmaps, managing stakeholders, and creating go-to-market strategies for scalable Generative AI and LLM features. Proven ability to architect and deliver impactful applications from the ground up, translating complex technical concepts into clear business value while transitioning from a successful career in finance.
-                </p>
+                <!-- [FIX: Removed conflicting text elements to let portfolio banner speak for itself] -->
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary"><span>Explore Projects</span></a>
                     <a href="tel:+917715072817" class="btn btn-secondary"><span>+91 7715072817</span></a>
