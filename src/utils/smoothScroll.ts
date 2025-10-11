@@ -28,7 +28,7 @@ export function smoothScrollTo(target: string | number, offset: number = 100) {
  */
 export function enableSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function (this: HTMLElement, e: Event) {
       e.preventDefault();
       const href = this.getAttribute('href');
       if (href && href !== '#') {

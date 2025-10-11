@@ -41,7 +41,7 @@ export default function Card({ children, className, hoverEffects = true, tilt3D 
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
-      {...(hoverEffects ? magneticHover : {})}
+      {...(hoverEffects ? (magneticHover as any) : {})}
       className={cn('card-glass', className)}
     >
       {children}

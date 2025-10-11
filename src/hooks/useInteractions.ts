@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, MouseEvent } from 'react';
+import { useRef, useState, useEffect, type MouseEvent } from 'react';
 import { useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 /**
@@ -174,7 +174,7 @@ export function useHoverScale(scale: number = 1.05) {
 /**
  * Hook for staggered children animation
  */
-export function useStagger(childrenCount: number, delay: number = 0.1) {
+export function useStagger(_childrenCount: number, delay: number = 0.1) {
   return {
     container: {
       hidden: { opacity: 0 },

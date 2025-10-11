@@ -1,4 +1,4 @@
-import { useRef, useState, MouseEvent, useEffect } from 'react';
+import { useRef, useState, type MouseEvent } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { cn } from '@utils';
 

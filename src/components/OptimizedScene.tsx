@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { prefersReducedMotion } from '@utils';
 
 // Lazy load Three.js components only when needed
-const ThreeScene = lazy(() => import('./ThreeScene'));
+const ThreeScene = lazy(() => import('./Scene'));
 
 /**
  * Modern 2025 Optimized Scene Component
