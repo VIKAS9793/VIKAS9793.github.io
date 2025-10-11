@@ -212,9 +212,10 @@ Contributions, issues, and feature requests are welcome!
 ## 📧 Contact
 
 **Vikas Sahani**
-- Email: vikassahani17@gmail.com
-- LinkedIn: [Your LinkedIn](https://linkedin.com)
-- GitHub: [@VIKAS9793](https://github.com/VIKAS9793)
+- 🌐 Portfolio: [https://vikas9793.github.io](https://vikas9793.github.io)
+- 📧 Email: vikassahani17@gmail.com
+- 💼 LinkedIn: [Vikas Sahani](https://www.linkedin.com/in/vikas-sahani-727420358)
+- 🐱 GitHub: [@VIKAS9793](https://github.com/VIKAS9793)
 
 ## 🙏 Acknowledgments
 
