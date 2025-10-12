@@ -287,6 +287,12 @@ export const simulations: Simulation[] = [
 
 export const certifications: Certification[] = [
   {
+    id: "gatech-ux",
+    title: "Introduction to User Experience Design",
+    organization: "Georgia Institute of Technology",
+    icon: "🎨"
+  },
+  {
     id: "ibm-ai-pm",
     title: "AI Product Manager",
     organization: "IBM Professional Certificate",
