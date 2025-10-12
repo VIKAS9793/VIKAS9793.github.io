@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import ModernBackground from '@components/ModernBackground';
 import IntroAnimation from '@components/IntroAnimation';
+import Navigation from '@components/Navigation';
 import Hero from '@components/Hero';
 import ProjectsSection from '@components/ProjectsSection';
+import SkillsSection from '@components/SkillsSection';
 import CertificationsSection from '@components/CertificationsSection';
 import ContactSection from '@components/ContactSection';
 import { personalInfo, projects, certifications, contactInfo, stats } from '@data/portfolio';
@@ -31,20 +33,26 @@ function App() {
   
   return (
     <div 
-      className="relative min-h-screen bg-black text-white" 
+      className="relative min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300" 
       style={{ 
         contain: 'layout style paint',
       }}
     >
+      {/* Navigation */}
+      <Navigation />
+      
       {/* Modern CSS-only animated background */}
       <ModernBackground variant="hero" />
 
-      <main>
+      <main role="main">
         {/* Cinematic Hero */}
         <Hero personalInfo={personalInfo} stats={stats} />
 
         {/* Projects with scroll storytelling */}
         <ProjectsSection projects={projects} />
+
+        {/* Skills */}
+        <SkillsSection />
 
         {/* Certifications */}
         <CertificationsSection certifications={certifications} />

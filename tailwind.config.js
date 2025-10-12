@@ -4,9 +4,19 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
+  darkMode: 'class', // Enable class-based dark mode
   theme: {
     extend: {
+      screens: {
+        'xs': '375px',
+        '3xl': '1600px',
+        'touch': { 'raw': '(hover: none) and (pointer: coarse)' },
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        '128': '32rem',
+      },
       colors: {
         primary: {
           50: '#e6ffef',

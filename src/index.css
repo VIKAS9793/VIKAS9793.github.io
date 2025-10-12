@@ -181,6 +181,7 @@ textarea {
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
+    font-size: 16px;
   }
   
   /* Enhanced smooth scrolling */
@@ -197,6 +198,41 @@ textarea {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  
+  /* Enhanced text contrast and readability */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.75em;
+    letter-spacing: -0.025em;
+  }
+  
+  p, li, span {
+    line-height: 1.75;
+    color: #e5e5e5;
+  }
+  
+  /* Improved text sizes and spacing */
+  .text-body {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #d1d5db;
+  }
+  
+  .text-body-large {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #e5e7eb;
+  }
+  
+  .text-caption {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #9ca3af;
   }
 
   /* Custom scrollbar */
@@ -249,11 +285,61 @@ textarea {
   }
 
   .text-section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
   .text-subsection-title {
-    @apply text-2xl md:text-3xl lg:text-4xl font-semibold;
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4;
+    color: #f9fafb;
+    line-height: 1.3;
+  }
+  
+  /* Enhanced section spacing */
+  .section-spacing {
+    @apply py-20 md:py-24 lg:py-28;
+  }
+  
+  .section-spacing-small {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  
+  /* Improved card hierarchy */
+  .card-primary {
+    @apply card-glass bg-white/5 border border-white/10 hover:border-primary-500/30 transition-all duration-300;
+  }
+  
+  .card-secondary {
+    @apply card-glass bg-primary-500/5 border border-primary-500/20 hover:border-primary-500/40 transition-all duration-300;
+  }
+  
+  /* Enhanced focus states for accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-black;
+  }
+  
+  /* Touch-friendly interactive elements */
+  .touch-target {
+    @apply min-w-[44px] min-h-[44px] flex items-center justify-center;
+  }
+  
+  /* Mobile-optimized text sizes */
+  .text-mobile-hero {
+    @apply text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl;
+  }
+  
+  .text-mobile-title {
+    @apply text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  /* Safe area padding for notched devices */
+  .safe-area-inset {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
 

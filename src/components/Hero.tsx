@@ -209,12 +209,17 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
   }, []);
 
   return (
-    <section ref={containerRef as React.RefObject<HTMLElement>} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section 
+      ref={containerRef as React.RefObject<HTMLElement>} 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      id="hero"
+      aria-label="Hero section introducing Vikas Sahani - AI Product Visionary"
+    >
       {/* Background Image - Modern Tech */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" role="img" aria-hidden="true">
         <img 
           src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=3132&auto=format&fit=crop" 
-          alt="Modern Tech Background"
+          alt="Abstract technology background with flowing digital patterns representing innovation in AI and machine learning"
           className="w-full h-full object-cover opacity-15"
           loading="eager"
         />
@@ -226,35 +231,37 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
       {/* FABs - Floating Action Buttons with clear vertical separation */}
       <FloatingButton 
         href="#projects" 
-        className="bottom-32 bg-gradient-to-r from-primary-500 to-primary-400 text-black" 
+        className="bottom-32 bg-gradient-to-r from-primary-500 to-primary-400 text-black focus-ring" 
         delay={3.5}
-        label="View Projects"
+        label="View Featured Projects"
       >
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
+        <span className="sr-only">Navigate to projects section</span>
       </FloatingButton>
 
       <FloatingButton 
         href="#contact" 
-        className="bottom-12 bg-secondary-500/90 text-white" 
+        className="bottom-12 bg-secondary-500/90 text-white focus-ring" 
         delay={4}
         label="Get in Touch"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
+        <span className="sr-only">Navigate to contact section</span>
       </FloatingButton>
 
       {/* Content */}
       <div className="container mx-auto px-4 text-center relative z-10 max-w-6xl">
         {/* Name - Large and Bold like Apple */}
-        <h1 ref={titleRef} className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight opacity-0 perspective-1000 mb-8">
+        <h1 ref={titleRef} className="text-mobile-hero font-bold tracking-tight opacity-0 perspective-1000 mb-8">
           <span className="text-gradient">{personalInfo.name}</span>
         </h1>
 
         {/* Tagline - Clean and Minimal */}
-        <p ref={subtitleRef} className="text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed opacity-0 font-light">
+        <p ref={subtitleRef} className="text-mobile-title text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed opacity-0 font-light px-4">
           {personalInfo.tagline}
         </p>
         

@@ -4,7 +4,7 @@ import Card from '@components/ui/Card';
 
 export default function CertificationsSection({ certifications, title = 'Certifications', subtitle = 'Professional credentials in AI, product and strategy' }: CertificationsSectionProps) {
   return (
-    <section id="certs" className="section-padding relative">
+    <section id="certifications" className="section-padding relative" aria-labelledby="certifications-heading">
       {/* Background Image - Achievement */}
       <div className="absolute inset-0 -z-10">
         <img 
@@ -15,7 +15,7 @@ export default function CertificationsSection({ certifications, title = 'Certifi
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-black/80 to-black/95" />
       </div>
-      <SectionHeader eyebrow="[ Credentials ]" title={title} subtitle={subtitle} accent="secondary" />
+      <SectionHeader eyebrow="[ Credentials ]" title={title} subtitle={subtitle} accent="secondary" id="certifications-heading" />
 
       <div className="container-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {certifications.map((c) => (
