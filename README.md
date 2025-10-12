@@ -16,12 +16,15 @@
 ## ✨ Features
 
 - 🎬 **Cinematic Intro Animation** - Door-slide reveal with name and role
-- ⚡ **60fps Performance** - GPU-accelerated CSS animations
+- 🧠 **Interactive Neural Network** - Canvas-based particle system with 60 animated nodes
+- 🎯 **Skills Section** - 13 authenticated skills with animated proficiency bars
+- 🎨 **Category Filtering** - AI/ML, Product Management, Technical, Business & Strategy
+- ⚡ **60fps Performance** - GPU-accelerated CSS and Canvas animations
 - 🎨 **Modern Design** - Inspired by Apple, Nike, and premium brands
 - 📱 **Fully Responsive** - Perfect on all devices
 - ♿ **Accessible** - WCAG compliant with `prefers-reduced-motion` support
-- 🌙 **Dark Theme** - Professional dark aesthetic
-- 🖼️ **High-Quality Imagery** - 4K Unsplash backgrounds
+- 🌙 **Dark Theme** - Professional dark aesthetic with smooth transitions
+- 🖼️ **High-Quality Imagery** - Optimized project images
 - 🎯 **Optimized SEO** - Meta tags and structured data
 
 ## 🛠️ Tech Stack
@@ -32,9 +35,10 @@
 - **Vite 7** - Lightning-fast build tool
 - **Tailwind CSS** - Utility-first styling
 
-### Animations
+### Animations & Graphics
 - **Framer Motion 12** - Production-ready animations
 - **GSAP 3** - Professional-grade scroll animations
+- **Canvas API** - Interactive particle system for neural network background
 - **CSS Keyframes** - GPU-accelerated transitions
 
 ### 3D & Graphics
@@ -112,13 +116,22 @@ VIKAS9793.github.io/
 │   ├── components/
 │   │   ├── Hero.tsx           # Hero section with intro
 │   │   ├── IntroAnimation.tsx # Door-slide animation
+│   │   ├── Navigation.tsx     # Sticky navigation with theme toggle
 │   │   ├── ProjectsSection.tsx
+│   │   ├── SkillsSection.tsx  # Skills with proficiency bars
 │   │   ├── CertificationsSection.tsx
 │   │   ├── ContactSection.tsx
 │   │   ├── ModernBackground.tsx
-│   │   └── ui/                # Reusable UI components
+│   │   └── ui/
+│   │       ├── NeuralNetworkBackground.tsx  # Interactive particle system
+│   │       ├── Button.tsx
+│   │       ├── ThemeToggle.tsx
+│   │       └── ...            # More reusable components
+│   ├── contexts/
+│   │   └── ThemeContext.tsx   # Dark mode management
 │   ├── data/
-│   │   └── portfolio.ts       # Your portfolio data
+│   │   ├── portfolio.ts       # Your portfolio data
+│   │   └── skills.ts          # Skills data with proficiency levels
 │   ├── hooks/
 │   │   └── useInteractions.ts # Custom hooks
 │   ├── types/
@@ -165,6 +178,19 @@ Add to the `projects` array in `src/data/portfolio.ts`:
 }
 ```
 
+### Add Skills
+
+Add to the `skills` array in `src/data/skills.ts`:
+
+```typescript
+{
+  name: "Skill Name",
+  category: 'ai-ml' | 'product' | 'technical' | 'business',
+  proficiency: 85, // 0-100
+  description: "Brief description with certifications or projects"
+}
+```
+
 ### Modify Colors
 
 Edit `tailwind.config.js`:
@@ -186,13 +212,15 @@ colors: {
 
 ### Optimizations Applied
 
-- ✅ Code splitting with Vite
+- ✅ Code splitting with Vite (vendor, animations, three.js chunks)
 - ✅ Lazy loading for heavy components
 - ✅ Image optimization
 - ✅ CSS containment
-- ✅ GPU-accelerated animations
+- ✅ GPU-accelerated animations (Canvas & CSS)
+- ✅ RequestAnimationFrame for smooth 60fps
 - ✅ Tree shaking
 - ✅ Minification with Terser
+- ✅ Debounced resize handlers
 
 ## 🌐 Browser Support
 
