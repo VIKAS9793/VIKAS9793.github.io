@@ -13,19 +13,12 @@ export default function IntroAnimation({ name, title, tagline, onComplete }: Int
   const [showDescription, setShowDescription] = useState(false);
 
   useEffect(() => {
-    // Check if user has already seen the intro
-    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
-    
-    if (hasSeenIntro) {
-      onComplete();
-      return;
-    }
+
 
     // Sequence the animations
     const timer1 = setTimeout(() => setShowName(true), 300);
     const timer2 = setTimeout(() => setShowDescription(true), 1500);
     const timer3 = setTimeout(() => {
-      sessionStorage.setItem('hasSeenIntro', 'true');
       onComplete();
     }, 3500);
 
@@ -64,7 +57,7 @@ export default function IntroAnimation({ name, title, tagline, onComplete }: Int
                 transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
                 className="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-600 z-20"
               />
-              
+
               {/* Right door */}
               <motion.div
                 initial={{ x: 0 }}
@@ -102,7 +95,7 @@ export default function IntroAnimation({ name, title, tagline, onComplete }: Int
               <p className="text-lg md:text-xl text-gray-400 font-light max-w-3xl mx-auto px-4">
                 {tagline}
               </p>
-              
+
               {/* Loading indicator */}
               <motion.div
                 initial={{ width: 0 }}
