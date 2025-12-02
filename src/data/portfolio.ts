@@ -1,10 +1,10 @@
-import type { 
-  PersonalInfo, 
-  Project, 
-  Stat, 
-  Certification, 
-  ContactInfo, 
-  Simulation 
+import type {
+  PersonalInfo,
+  Project,
+  Stat,
+  Certification,
+  ContactInfo,
+  Simulation
 } from '../types';
 
 export const personalInfo: PersonalInfo = {
@@ -47,6 +47,36 @@ export const stats: Stat[] = [
 
 export const projects: Project[] = [
   {
+    id: "indiaai-idp",
+    title: "IndiaAI IDP Platform",
+    description: "Enterprise-grade Intelligent Document Processing system for Indian government documents.",
+    longDescription: "Scalable, privacy-first platform featuring modular architecture, DPDP Act compliance, and Human-in-the-Loop verification. Built for high-volume processing of Aadhaar, PAN, and financial documents.",
+    image: "/images/indiaai-idp.png",
+    category: "ai",
+    featured: true,
+    technologies: [
+      "Python & FastAPI",
+      "React + Vite",
+      "PaddleOCR",
+      "Docker & AWS",
+      "PostgreSQL/Redis",
+      "DPDP Compliance"
+    ],
+    metrics: [
+      { label: "Processing Speed", value: "~2s/page" },
+      { label: "Accuracy", value: "95%+" },
+      { label: "Architecture", value: "Modular" },
+      { label: "Compliance", value: "DPDP 2023" }
+    ],
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/VIKAS9793/indiaai-idp-platform",
+        label: "View Project"
+      }
+    ]
+  },
+  {
     id: "saralpolicy",
     title: "SaralPolicy – AI-Powered Insurance Policy Explainer",
     description: "Conceived, designed, and launched SaralPolicy, a local-first AI assistant that simplifies insurance policy documents by explaining clauses, exclusions, and IRDAI rights in plain Hindi and English.",
@@ -86,7 +116,7 @@ export const projects: Project[] = [
     featured: true,
     technologies: [
       "Product Strategy",
-      "Research Methodology", 
+      "Research Methodology",
       "RICE Framework",
       "Data Quality Audit",
       "Educational Resource",
@@ -196,7 +226,7 @@ export const projects: Project[] = [
     category: "ai",
     technologies: [
       "LangGraph",
-      "LLaMA", 
+      "LLaMA",
       "ChromaDB",
       "Privacy-First"
     ],
@@ -246,7 +276,7 @@ export const projects: Project[] = [
     category: "fintech",
     technologies: [
       "Financial Analysis",
-      "Risk Management", 
+      "Risk Management",
       "AI Analytics",
       "Client Retention"
     ],
@@ -272,7 +302,7 @@ export const simulations: Simulation[] = [
     skills: ["Data Analysis", "Product Strategy", "KPI Optimization", "Feature Roadmapping"]
   },
   {
-    id: "jpmorgan-simulation", 
+    id: "jpmorgan-simulation",
     company: "JPMorgan Chase",
     description: "Completed an enterprise software engineering simulation, implementing Kafka streams and debugging Java applications.",
     skills: ["Java", "Kafka Streams", "Enterprise Software", "Debugging"]
@@ -287,6 +317,12 @@ export const simulations: Simulation[] = [
 
 export const certifications: Certification[] = [
   {
+    id: "google-people-mgmt",
+    title: "People Management Essentials",
+    organization: "Google Professional Certificate",
+    icon: "👥"
+  },
+  {
     id: "gatech-ux",
     title: "Introduction to User Experience Design",
     organization: "Georgia Institute of Technology",
@@ -300,14 +336,14 @@ export const certifications: Certification[] = [
   },
   {
     id: "google-pm",
-    title: "Project Management", 
+    title: "Project Management",
     organization: "Google Certificate",
     icon: "🎯"
   },
   {
     id: "pmi-genai",
     title: "Gen AI for PM",
-    organization: "PMI Certificate", 
+    organization: "PMI Certificate",
     icon: "⚡"
   },
   {
@@ -349,7 +385,7 @@ export const certifications: Certification[] = [
   {
     id: "responsible-ai",
     title: "Responsible AI & Ethics",
-    organization: "Rutgers, Google Cloud", 
+    organization: "Rutgers, Google Cloud",
     icon: "⚖️"
   },
   {
@@ -369,7 +405,7 @@ export const contactInfo: ContactInfo[] = [
     icon: "📞"
   },
   {
-    type: "email", 
+    type: "email",
     label: "Email",
     value: "vikassahani17@gmail.com",
     url: "mailto:vikassahani17@gmail.com",
@@ -384,7 +420,7 @@ export const contactInfo: ContactInfo[] = [
   },
   {
     type: "github",
-    label: "GitHub", 
+    label: "GitHub",
     value: "View Code",
     url: "https://github.com/VIKAS9793",
     icon: "🐱"
@@ -393,13 +429,13 @@ export const contactInfo: ContactInfo[] = [
     type: "kaggle",
     label: "Kaggle",
     value: "Data Science",
-    url: "https://www.kaggle.com/vikassahani9793", 
+    url: "https://www.kaggle.com/vikassahani9793",
     icon: "📊"
   },
   {
     type: "google",
     label: "Google Developer",
-    value: "Developer Profile", 
+    value: "Developer Profile",
     url: "https://developers.google.com/profile/u/vikas9793",
     icon: "🌟"
   },
