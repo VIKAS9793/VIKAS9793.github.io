@@ -1,203 +1,137 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { skills, skillCategories, type Skill } from '@/data/skills';
-import SectionHeader from '@components/ui/SectionHeader';
-import NeuralNetworkBackground from '@components/ui/NeuralNetworkBackground';
-
-gsap.registerPlugin(ScrollTrigger);
-
-interface SkillCardProps {
-  skill: Skill;
-  index: number;
-}
+import { useState } from 'react';
+import { skills, skillCategories } from '@data/skills';
+import type { Skill } from '@data/skills';
 
 /**
- * Individual skill card with animated proficiency bar
- * Proficiency levels based on actual certifications and project work
+ * Circular Progress Skill Card - Google DevFest style
  */
-function SkillCard({ skill, index }: SkillCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+function CircularSkillCard({ skill }: { skill: Skill }) {
+  // Circle dimensions
+  const size = 120;
+  const strokeWidth = 8;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = radius * 2 * Math.PI;
+  const offset = circumference - (skill.proficiency / 100) * circumference;
 
-  useEffect(() => {
-    const card = cardRef.current;
-    const progress = progressRef.current;
-    if (!card || !progress) return;
-
-    // Animate card entrance
-    gsap.fromTo(
-      card,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          onEnter: () => setIsVisible(true),
-        },
-      }
-    );
-  }, [index]);
-
-  useEffect(() => {
-    if (!isVisible || !progressRef.current) return;
-
-    // Animate progress bar
-    gsap.fromTo(
-      progressRef.current,
-      { width: '0%' },
-      {
-        width: `${skill.proficiency}%`,
-        duration: 1.5,
-        delay: 0.3,
-        ease: 'power2.out',
-      }
-    );
-  }, [isVisible, skill.proficiency]);
+  // Color based on proficiency
+  const getColor = () => {
+    if (skill.proficiency >= 90) return '#34a853'; // Google Green
+    if (skill.proficiency >= 75) return '#4285f4'; // Google Blue
+    if (skill.proficiency >= 60) return '#fbbc04'; // Google Yellow
+    return '#ea4335'; // Google Red
+  };
 
   return (
-    <motion.div
-      ref={cardRef}
-      className="group relative p-6 rounded-3xl bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 shadow-lg hover:shadow-xl transition-all duration-300"
-      whileHover={{ scale: 1.02, y: -4 }}
-      transition={{ duration: 0.2 }}
-    >
-      {/* Skill name and proficiency */}
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-          {skill.name}
-        </h3>
-        <span className="text-sm font-mono text-primary-600 dark:text-primary-500 font-bold bg-primary-50 dark:bg-primary-500/10 px-3 py-1 rounded-full">
-          {skill.proficiency}%
-        </span>
+    <div className="flex flex-col items-center p-4 hover:scale-105 transition-transform cursor-pointer group">
+      {/* Circular Progress */}
+      <div className="relative">
+        <svg width={size} height={size} className="transform -rotate-90">
+          {/* Background circle */}
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            fill="none"
+            stroke="rgba(255,255,255,0.1)"
+            strokeWidth={strokeWidth}
+          />
+          {/* Progress circle */}
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            fill="none"
+            stroke={getColor()}
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+            className="transition-all duration-700 ease-out"
+          />
+        </svg>
+        {/* Center percentage */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-2xl font-bold text-white">{skill.proficiency}%</span>
+        </div>
       </div>
 
-      {/* Progress bar */}
-      <div className="relative h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-3 shadow-inner">
-        <div
-          ref={progressRef}
-          className="absolute left-0 top-0 h-full bg-gradient-to-r from-primary-600 to-primary-500 dark:from-primary-500 dark:to-primary-400 rounded-full shadow-sm"
-          style={{ width: '0%' }}
-        />
-        {/* Glow effect */}
-        <div
-          className="absolute left-0 top-0 h-full bg-primary-500/20 dark:bg-primary-400/30 rounded-full blur-sm"
-          style={{ width: `${skill.proficiency}%` }}
-        />
+      {/* Skill name */}
+      <h3 className="text-white font-medium mt-3 text-center text-sm">
+        {skill.name}
+      </h3>
+
+      {/* Tooltip on hover */}
+      <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-16 left-1/2 -translate-x-1/2 bg-white text-text-primary text-xs p-2 rounded-lg shadow-card max-w-[200px] z-10 whitespace-normal">
+        {skill.description}
       </div>
-
-      {/* Description */}
-      {skill.description && (
-        <p className="text-sm text-gray-700 dark:text-gray-400 leading-relaxed">
-          {skill.description}
-        </p>
-      )}
-
-      {/* Hover glow effect */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary-500/0 to-secondary-500/0 group-hover:from-primary-500/5 dark:group-hover:from-primary-500/10 group-hover:to-secondary-500/5 dark:group-hover:to-secondary-500/10 transition-all duration-300 pointer-events-none" />
-    </motion.div>
+    </div>
   );
 }
 
-interface SkillsSectionProps {
-  title?: string;
-  subtitle?: string;
-}
-
 /**
- * Skills section displaying technical proficiencies
- * All data based on actual certifications and demonstrated project work
+ * Skills Section with CIRCULAR PROGRESS - Google DevFest style
  */
-export default function SkillsSection({
-  title = 'Technical Expertise',
-  subtitle = 'Skills backed by certifications and real-world project implementation',
-}: SkillsSectionProps) {
-  const sectionRef = useRef<HTMLElement>(null);
+export default function SkillsSection() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
-  const filteredSkills =
-    activeCategory === 'all'
-      ? skills
-      : skills.filter((skill) => skill.category === activeCategory);
+  const filteredSkills = activeCategory === 'all'
+    ? skills
+    : skills.filter(skill => skill.category === activeCategory);
 
   return (
     <section
-      ref={sectionRef}
       id="skills"
-      className="section-spacing relative overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-black dark:to-gray-900"
+      className="section-dark relative overflow-hidden"
       aria-labelledby="skills-heading"
     >
-      {/* Neural Network Background */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        <NeuralNetworkBackground />
-      </div>
-      
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10 opacity-20">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
-      </div>
+      {/* DevFest Decorative Circles */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-google-blue/20 rounded-full blur-2xl" />
+      <div className="absolute bottom-10 right-10 w-40 h-40 bg-google-green/20 rounded-full blur-2xl" />
+      <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-google-yellow/20 rounded-full blur-xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-google-red/20 rounded-full blur-xl" />
 
-      <div className="container-center">
-        <SectionHeader
-          eyebrow="[ Expertise ]"
-          title={title}
-          subtitle={subtitle}
-          accent="primary"
-          id="skills-heading"
-        />
+      <div className="container-google relative z-10">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 id="skills-heading" className="title-section text-white mb-4">
+            Technical{' '}
+            <span className="text-gradient-google">Expertise</span>
+          </h2>
+          <p className="body-large text-white/70 max-w-2xl mx-auto">
+            Hover on circles to see skill details
+          </p>
+        </div>
 
-        {/* Category filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* Category Tabs - DevFest style pills */}
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
           <button
             onClick={() => setActiveCategory('all')}
-            className={`px-6 py-3 rounded-full text-sm font-bold transition-all focus-ring ${
-              activeCategory === 'all'
-                ? 'bg-primary-500 text-black shadow-lg scale-105'
-                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 shadow-md hover:shadow-lg'
-            }`}
+            className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${activeCategory === 'all'
+                ? 'bg-white text-section-dark shadow-lg scale-105'
+                : 'bg-white/10 text-white hover:bg-white/20'
+              }`}
           >
             All Skills
           </button>
-          {skillCategories.map((category) => (
+          {skillCategories.map((cat) => (
             <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-full text-sm font-bold transition-all focus-ring ${
-                activeCategory === category.id
-                  ? 'bg-primary-500 text-black shadow-lg scale-105'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 shadow-md hover:shadow-lg'
-              }`}
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${activeCategory === cat.id
+                  ? 'bg-white text-section-dark shadow-lg scale-105'
+                  : 'bg-white/10 text-white hover:bg-white/20'
+                }`}
             >
-              {category.label}
+              {cat.label}
             </button>
           ))}
         </div>
 
-        {/* Skills grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {filteredSkills.map((skill, index) => (
-            <SkillCard key={skill.name} skill={skill} index={index} />
+        {/* Circular Skill Cards Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 relative">
+          {filteredSkills.map((skill) => (
+            <CircularSkillCard key={skill.name} skill={skill} />
           ))}
-        </motion.div>
-
-        {/* Note about skill levels */}
-        <div className="mt-12 text-center">
-          <p className="text-sm text-gray-700 dark:text-gray-400 max-w-2xl mx-auto bg-white dark:bg-gray-800 p-4 rounded-2xl border-2 border-gray-200 dark:border-gray-700 shadow-md">
-            <span className="font-bold text-primary-600 dark:text-primary-500">Note:</span> Proficiency levels reflect
-            practical experience from completed projects and professional certifications from IBM, Google,
-            Georgia Tech, and DeepLearning.AI.
-          </p>
         </div>
       </div>
     </section>

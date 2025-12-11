@@ -1,72 +1,48 @@
-import { useEffect, useState } from 'react';
 import './index.css';
-import ModernBackground from '@components/ModernBackground';
-import IntroAnimation from '@components/IntroAnimation';
-import Navigation from '@components/Navigation';
 import Hero from '@components/Hero';
 import ProjectsSection from '@components/ProjectsSection';
 import SkillsSection from '@components/SkillsSection';
 import CertificationsSection from '@components/CertificationsSection';
 import ContactSection from '@components/ContactSection';
+import FloatingNav from '@components/ui/FloatingNav';
 import { personalInfo, projects, certifications, contactInfo, stats } from '@data/portfolio';
-import { enableSmoothScroll } from './utils/smoothScroll';
 
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
-
-  // Enable smooth scrolling for all anchor links
-  useEffect(() => {
-    enableSmoothScroll();
-  }, []);
-
-  // Show intro animation on first load
-  if (showIntro) {
-    return (
-      <IntroAnimation 
-        name={personalInfo.name}
-        title={personalInfo.title}
-        tagline={personalInfo.tagline}
-        onComplete={() => setShowIntro(false)} 
-      />
-    );
-  }
-  
   return (
-    <div 
-      className="relative min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300" 
-      style={{ 
-        contain: 'layout style paint',
-      }}
-    >
-      {/* Navigation */}
-      <Navigation />
-      
-      {/* Modern CSS-only animated background */}
-      <ModernBackground variant="hero" />
+    <div className="relative min-h-screen bg-white text-text-primary">
+      {/* Floating Navigation */}
+      <FloatingNav />
 
       <main role="main">
-        {/* Cinematic Hero */}
+        {/* Hero Section - White bg */}
         <Hero personalInfo={personalInfo} stats={stats} />
 
-        {/* Projects with scroll storytelling */}
-        <ProjectsSection projects={projects} />
-
-        {/* Skills */}
+        {/* Skills Section - Dark bg */}
         <SkillsSection />
 
-        {/* Certifications */}
+        {/* Projects Section - Yellow/Cream bg */}
+        <ProjectsSection projects={projects} />
+
+        {/* Certifications Section - Light Blue bg */}
         <CertificationsSection certifications={certifications} />
 
-        {/* Contact */}
+        {/* Contact Section - White bg */}
         <ContactSection contactInfo={contactInfo} personalInfo={personalInfo} />
       </main>
 
-      <footer className="py-10 text-center text-sm text-gray-500">
-        <div>&copy; {new Date().getFullYear()} {personalInfo.name}</div>
-        <div className="opacity-60 mt-1 font-mono">Crafted with precision // Powered by innovation</div>
+      {/* Footer */}
+      <footer className="section-white py-8 text-center border-t border-ui-border">
+        <div className="container-google">
+          <p className="text-text-secondary text-sm">
+            © {new Date().getFullYear()} {personalInfo.name}
+          </p>
+          <p className="text-text-tertiary text-xs mt-1">
+            Crafted with precision • Powered by innovation
+          </p>
+        </div>
       </footer>
     </div>
   );
 }
 
-export default App
+export default App;

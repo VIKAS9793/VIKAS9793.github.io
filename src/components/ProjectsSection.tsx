@@ -1,195 +1,185 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 import type { ProjectsSectionProps, Project } from '@types';
-import SafeLink from './SafeLink';
-import SectionHeader from '@components/ui/SectionHeader';
-import Card from '@components/ui/Card';
+import PillButton from './ui/PillButton';
 
-// Register GSAP plugin
-gsap.registerPlugin(ScrollTrigger);
-
-function ProjectCard({ project }: { project: Project; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 80%',
-          },
-        }
-      );
-    }, el);
-
-    return () => ctx.revert();
-  }, []);
-
-  // image onError fallback
-  const onImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = '/images/fallback.svg';
+/**
+ * Carousel Card for Projects - horizontal scroll with hover lift
+ */
+function ProjectCarouselCard({ project }: { project: Project }) {
+  // Category SVG icons
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'ai':
+        return (
+          <svg className="w-6 h-6 text-google-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        );
+      case 'product':
+        return (
+          <svg className="w-6 h-6 text-google-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        );
+      case 'enterprise':
+        return (
+          <svg className="w-6 h-6 text-google-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        );
+      case 'education':
+        return (
+          <svg className="w-6 h-6 text-google-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+        );
+      case 'fintech':
+        return (
+          <svg className="w-6 h-6 text-google-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        );
+      default:
+        return (
+          <svg className="w-6 h-6 text-google-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        );
+    }
   };
 
   return (
-    <article ref={cardRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center">
-      <div className="order-2 lg:order-1">
-        <Card className="relative aspect-[16/10] overflow-hidden group">
-          <img
-            src={project.image}
-            alt={`Screenshot of ${project.title} - ${project.description.slice(0, 100)}...`}
-            onError={onImgError}
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl" />
-          
-          {/* Project category badge */}
-          <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 text-xs font-semibold bg-primary-500/90 text-black rounded-full backdrop-blur-sm">
-              {project.category.toUpperCase()}
-            </span>
-          </div>
-        </Card>
+    <div className="carousel-card flex flex-col h-full min-h-[320px]">
+      {/* Category icon */}
+      <div className="w-12 h-12 rounded-full bg-section-lightgray flex items-center justify-center mb-4">
+        {getCategoryIcon(project.category)}
       </div>
 
-      <div className="order-1 lg:order-2 space-y-6">
-        <header>
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight">
-            {project.title}
-          </h3>
-          <p className="text-body text-gray-300 leading-relaxed">
-            {project.description}
-          </p>
-          {project.longDescription && (
-            <p className="text-caption text-gray-400 mt-2">
-              {project.longDescription}
-            </p>
-          )}
-        </header>
+      {/* Title */}
+      <h3 className="font-bold text-xl text-text-primary mb-2">{project.title}</h3>
 
-        {/* Key metrics */}
-        {project.metrics.length > 0 && (
-          <div className="grid grid-cols-2 gap-3 p-4 bg-gradient-to-r from-primary-500/10 to-secondary-500/5 border border-primary-500/20 rounded-lg backdrop-blur-sm">
-            {project.metrics.slice(0, 2).map((m) => (
-              <div key={m.label} className="text-center">
-                <div className="text-lg font-bold text-primary-500">{m.value}</div>
-                <div className="text-xs text-gray-400 uppercase tracking-wider">{m.label}</div>
-              </div>
-            ))}
-          </div>
-        )}
+      {/* Description */}
+      <p className="text-text-secondary text-sm mb-4 flex-grow line-clamp-3">
+        {project.description}
+      </p>
 
-        {/* Technology tags */}
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.slice(0, 6).map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 text-sm bg-white/10 text-gray-300 rounded-full border border-white/20 hover:border-primary-500/50 hover:text-primary-500 transition-colors"
+      {/* Tech tags */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {project.technologies.slice(0, 4).map((tech) => (
+          <span
+            key={tech}
+            className="px-2 py-0.5 bg-section-lightgray text-text-secondary text-xs rounded-full"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      {/* Links */}
+      {project.links && project.links.length > 0 && (
+        <div className="flex flex-wrap gap-2 pt-4 border-t border-ui-border">
+          {project.links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-google-blue hover:bg-google-blue/10 rounded-pill transition-colors"
             >
-              {tech}
-            </span>
+              {link.label}
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
           ))}
-          {project.technologies.length > 6 && (
-            <span className="px-3 py-1 text-sm text-gray-500 rounded-full border border-gray-600">
-              +{project.technologies.length - 6} more
-            </span>
-          )}
         </div>
-
-        {/* Project links */}
-        {project.links.length > 0 && (
-          <div className="flex flex-wrap gap-3">
-            {project.links.map((link) => (
-              <SafeLink
-                key={link.url}
-                href={link.url}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/10 hover:bg-primary-500/20 border border-primary-500/30 hover:border-primary-500/50 text-primary-500 font-medium rounded-lg transition-all duration-200 focus-ring"
-                aria-label={`View ${project.title} ${link.type}`}
-              >
-                <span>{link.label}</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </SafeLink>
-            ))}
-          </div>
-        )}
-      </div>
-    </article>
+      )}
+    </div>
   );
 }
 
-export default function ProjectsSection({ projects, title = 'Featured Projects', subtitle = 'Production-ready AI solutions delivering measurable business impact' }: ProjectsSectionProps) {
-  const sectionRef = useRef<HTMLElement>(null);
+/**
+ * Projects Section with CAROUSEL - horizontal scroll with navigation arrows
+ */
+export default function ProjectsSection({ projects }: ProjectsSectionProps) {
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+  };
 
-    const ctx = gsap.context(() => {
-      // Parallax background hint (decorative)
-      const deco = el.querySelector('.deco');
-      if (deco) {
-        gsap.to(deco, {
-          yPercent: -10,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
-    }, el);
-
-    return () => ctx.revert();
-  }, []);
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section 
-      ref={sectionRef}
-      id="projects" 
-      className="section-spacing relative overflow-hidden"
+    <section
+      id="projects"
+      className="section-cream"
       aria-labelledby="projects-heading"
     >
-      {/* Background Image - Code & Innovation */}
-      <div className="absolute inset-0 -z-10" role="img" aria-hidden="true">
-        <img 
-          src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=3270&auto=format&fit=crop" 
-          alt=""
-          className="w-full h-full object-cover opacity-8"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black" />
-      </div>
-      <div className="deco absolute -z-10 inset-0 bg-gradient-to-b from-primary-500/5 to-transparent" />
+      <div className="container-google">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h2 id="projects-heading" className="title-section mb-4">
+            Featured Projects
+          </h2>
+          <p className="body-large max-w-2xl mx-auto">
+            Scroll horizontally to explore • Hover for details
+          </p>
+        </div>
 
-      <div className="container-center">
-        <SectionHeader 
-          eyebrow="[ Portfolio ]" 
-          title={title} 
-          subtitle={subtitle} 
-          accent="primary"
-          id="projects-heading" 
-        />
+        {/* Carousel with Navigation */}
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-card flex items-center justify-center hover:bg-section-lightgray transition-colors -ml-4"
+            aria-label="Scroll left"
+          >
+            <svg className="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
 
-        <div className="flex flex-col gap-16 lg:gap-20 mt-12 lg:mt-16">
-          {projects.map((p, i) => (
-            <ProjectCard key={p.id} project={p} index={i} />
-          ))}
+          {/* Carousel */}
+          <div ref={carouselRef} className="carousel-container px-8">
+            {projects.map((project) => (
+              <ProjectCarouselCard key={project.id} project={project} />
+            ))}
+          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-card flex items-center justify-center hover:bg-section-lightgray transition-colors -mr-4"
+            aria-label="Scroll right"
+          >
+            <svg className="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Progress indicator */}
+        <div className="flex justify-center mt-6 gap-2">
+          <div className="w-24 h-2 bg-google-blue rounded-full" />
+          <div className="w-24 h-2 bg-google-green rounded-full" />
+        </div>
+
+        {/* GitHub CTA */}
+        <div className="text-center mt-8">
+          <PillButton
+            variant="primary"
+            href="https://github.com/VIKAS9793"
+            external
+          >
+            View All on GitHub
+          </PillButton>
         </div>
       </div>
     </section>
