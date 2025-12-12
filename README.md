@@ -15,15 +15,26 @@
 
 ## Features
 
+### Core Design
 - **Google DevFest-Inspired Design** - Clean, vibrant UI with playful elements
 - **Section-Based Layout** - Distinct colored backgrounds (White, Dark, Cream, Blue)
-- **Circular Skill Progress** - SVG-based circular progress indicators
-- **Project Carousel** - Horizontal scroll with navigation arrows
 - **Floating Navigation** - Pill-style tab bar that appears on scroll
-- **Interactive Hover Cards** - Scale and glow effects on hover
 - **Decorative Blurred Blobs** - DevFest-style colorful background elements
 - **Responsive Design** - Perfect on all devices
 - **Accessible** - WCAG compliant with reduced motion support
+
+### Enhanced UX (v2.0)
+- **Metric Tooltips** - Hover on Hero stats to see detailed context
+- **Netflix Case Study** - Full narrative with problem, methodology, insights
+- **Value Proposition Section** - "What I'm Best At" with 4 core strengths
+- **Skills Primary/Secondary** - 8 primary visible, rest expandable with Expert/Advanced/Proficient labels
+- **Certifications Collapse** - Top 6 visible, "View All" expands rest with category tags
+- **Outcome-Focused Tagline** - "Shipping AI products that move metrics"
+
+### Interactive Components
+- **Circular Skill Progress** - SVG-based circular progress indicators
+- **Project Carousel** - Horizontal scroll with navigation arrows
+- **Interactive Hover Cards** - Scale and glow effects on hover
 
 ## Tech Stack
 
@@ -72,10 +83,12 @@ Deployed automatically via GitHub Actions to GitHub Pages.
 ```
 src/
 ├── components/
-│   ├── Hero.tsx               # Hero with banner + stats
-│   ├── SkillsSection.tsx      # Circular progress skills
+│   ├── Hero.tsx               # Hero with banner + stat tooltips
+│   ├── ValueProposition.tsx   # "What I'm Best At" section
+│   ├── SkillsSection.tsx      # Primary/Secondary skills with labels
+│   ├── CaseStudy.tsx          # Netflix PM case study page
 │   ├── ProjectsSection.tsx    # Carousel with nav arrows
-│   ├── CertificationsSection.tsx
+│   ├── CertificationsSection.tsx # Collapsible with category tags
 │   ├── ContactSection.tsx
 │   └── ui/
 │       ├── FloatingNav.tsx    # Floating pill navigation
@@ -94,7 +107,7 @@ Edit `src/data/portfolio.ts` for personal info and `tailwind.config.js` for desi
 ## Performance
 
 - **Lighthouse Score**: 95+
-- **Bundle Size**: ~36KB CSS + ~34KB JS (gzipped)
+- **Bundle Size**: ~50KB JS + ~39KB CSS (gzipped: ~21KB)
 - **No heavy animations** - Performant CSS transitions
 
 ## License
