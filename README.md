@@ -133,7 +133,7 @@ This portfolio is an independent personal project and is **not affiliated with, 
 ## Contact
 
 **Vikas Sahani**
-- Portfolio: [https://vikas9793.github.io](https://vikas9793.github.io)
+- Portfolio: [https://myportfoliohubexpo.netlify.app](https://myportfoliohubexpo.netlify.app)
 - Email: vikassahani17@gmail.com
 - LinkedIn: [Vikas Sahani](https://www.linkedin.com/in/vikas-sahani-727420358)
 - GitHub: [@VIKAS9793](https://github.com/VIKAS9793)
