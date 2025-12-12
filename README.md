@@ -1,4 +1,4 @@
-# Vikas Sahani - AI Product Visionary
+# Vikas Sahani - AI Product Manager
 
 > Clean, modern portfolio inspired by Google Developer Program and DevFest design aesthetics.
 
