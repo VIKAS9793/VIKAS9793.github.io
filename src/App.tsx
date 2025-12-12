@@ -1,8 +1,10 @@
 import './index.css';
 import Hero from '@components/Hero';
+import ValueProposition from '@components/ValueProposition';
 import ProjectsSection from '@components/ProjectsSection';
 import SkillsSection from '@components/SkillsSection';
 import CertificationsSection from '@components/CertificationsSection';
+import CaseStudy from '@components/CaseStudy';
 import ContactSection from '@components/ContactSection';
 import FloatingNav from '@components/ui/FloatingNav';
 import { personalInfo, projects, certifications, contactInfo, stats } from '@data/portfolio';
@@ -14,16 +16,22 @@ function App() {
       <FloatingNav />
 
       <main role="main">
-        {/* Hero Section - White bg */}
+        {/* Hero Section - White bg with tooltips */}
         <Hero personalInfo={personalInfo} stats={stats} />
 
-        {/* Skills Section - Dark bg */}
+        {/* Value Proposition - What I'm Best At */}
+        <ValueProposition />
+
+        {/* Skills Section - Dark bg, Primary/Secondary */}
         <SkillsSection />
+
+        {/* Featured Case Study - Netflix */}
+        <CaseStudy />
 
         {/* Projects Section - Yellow/Cream bg */}
         <ProjectsSection projects={projects} />
 
-        {/* Certifications Section - Light Blue bg */}
+        {/* Certifications Section - Light Blue bg, Collapsible */}
         <CertificationsSection certifications={certifications} />
 
         {/* Contact Section - White bg */}

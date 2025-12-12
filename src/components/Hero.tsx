@@ -1,7 +1,59 @@
-import type { HeroSectionProps } from '@types';
+import { useState } from 'react';
+import type { HeroSectionProps, Stat } from '@types';
 import PillButton from './ui/PillButton';
 
+/**
+ * Tooltip component for stat context - prevents "made-up numbers" perception
+ */
+function StatTooltip({ stat, color, isVisible }: { stat: Stat; color: string; isVisible: boolean }) {
+  return (
+    <div
+      className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 bg-white rounded-2xl shadow-xl border border-ui-border z-20 transition-all duration-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+        }`}
+    >
+      {/* Arrow */}
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-ui-border rotate-45" />
+
+      {/* Content */}
+      <div className={`text-2xl font-bold ${color} mb-1`}>{stat.value}</div>
+      <div className="text-sm font-medium text-text-primary mb-2">{stat.label}</div>
+      <p className="text-xs text-text-secondary leading-relaxed">{stat.description}</p>
+    </div>
+  );
+}
+
+/**
+ * Individual Stat Card with hover tooltip
+ */
+function StatCard({ stat, color }: { stat: Stat; color: string }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="relative text-center group cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Tooltip */}
+      <StatTooltip stat={stat} color={color} isVisible={isHovered} />
+
+      {/* Stat Display */}
+      <div className="hover:scale-105 transition-transform">
+        <div className={`text-2xl md:text-3xl font-bold ${color}`}>{stat.value}</div>
+        <div className="text-text-secondary text-sm flex items-center justify-center gap-1">
+          {stat.label}
+          <svg className="w-3.5 h-3.5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Hero({ personalInfo, stats }: HeroSectionProps) {
+  const colors = ['text-google-blue', 'text-google-green', 'text-google-yellow', 'text-google-red'];
+
   return (
     <section
       id="hero"
@@ -25,18 +77,17 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* Stats Grid with DevFest Colors */}
+        {/* Stats Grid with Tooltips */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-8">
-          {stats.slice(0, 4).map((stat, index) => {
-            const colors = ['text-google-blue', 'text-google-green', 'text-google-yellow', 'text-google-red'];
-            return (
-              <div key={stat.id} className="text-center group hover:scale-105 transition-transform cursor-default">
-                <div className={`text-2xl md:text-3xl font-bold ${colors[index % 4]}`}>{stat.value}</div>
-                <div className="text-text-secondary text-sm">{stat.label}</div>
-              </div>
-            );
-          })}
+          {stats.slice(0, 4).map((stat, index) => (
+            <StatCard key={stat.id} stat={stat} color={colors[index % 4]} />
+          ))}
         </div>
+
+        {/* Tooltip hint */}
+        <p className="text-center text-xs text-text-tertiary mb-6">
+          Hover over metrics for context
+        </p>
 
         {/* CTA Buttons */}
         <div className="flex justify-center gap-4">

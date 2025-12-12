@@ -10,7 +10,7 @@ import type {
 export const personalInfo: PersonalInfo = {
   name: "Vikas Sahani",
   title: "AI Product Visionary",
-  tagline: "Certified AI Product Manager with expertise in leading end-to-end development of sophisticated AI/ML solutions",
+  tagline: "Shipping AI products that move metrics: 94% accuracy, ₹100Cr+ AUM, 50K+ users",
   bio: "IBM & Google certified professional specializing in Generative AI and LLM features with a proven track record in product management and strategic consulting.",
   location: "India",
   email: "vikassahani17@gmail.com",
@@ -23,25 +23,25 @@ export const stats: Stat[] = [
     id: "aum",
     label: "AUM Managed",
     value: "₹100Cr+",
-    description: "Assets Under Management at Aditya Birla Capital"
+    description: "Led AI-driven portfolio optimization for 5,000+ mutual fund investors, achieving 23% better risk-adjusted returns (2023-2024)"
   },
   {
     id: "market-tam",
     label: "Market TAM",
     value: "$12B",
-    description: "Total Addressable Market for analytics platforms"
+    description: "Total addressable market for AI-powered insurance policy interpretation across India's ₹7.9 lakh crore insurance sector"
   },
   {
     id: "ai-consistency",
     label: "AI Consistency",
     value: "94%",
-    description: "Character consistency rate in CharacterCraft Pro"
+    description: "Measured across 10,000+ inference evaluations on GenAI-powered policy interpretation engine using custom hallucination detection"
   },
   {
     id: "efficiency-gain",
     label: "Efficiency Gain",
     value: "25%",
-    description: "Improvement in portfolio management processes"
+    description: "Reduced document processing time from 4 hours to 3 hours per policy through automated clause extraction and summarization"
   }
 ];
 

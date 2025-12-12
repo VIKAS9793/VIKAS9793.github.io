@@ -228,6 +228,13 @@
   animation: fadeIn 0.3s ease-out;
 }
 
+/* Section Divider - subtle gradient line */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+  margin: 0;
+}
+
 /* ========================================
    FLASH CARD STYLES - Hybrid Design
    ======================================== */
