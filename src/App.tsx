@@ -7,7 +7,7 @@ import CertificationsSection from '@components/CertificationsSection';
 import CaseStudy from '@components/CaseStudy';
 import ContactSection from '@components/ContactSection';
 import FloatingNav from '@components/ui/FloatingNav';
-import { personalInfo, projects, certifications, contactInfo, stats } from '@data/portfolio';
+import { personalInfo, certifications, contactInfo, stats } from '@data/portfolio';
 
 function App() {
   return (
@@ -28,8 +28,8 @@ function App() {
         {/* Featured Case Study - Netflix */}
         <CaseStudy />
 
-        {/* Projects Section - Yellow/Cream bg */}
-        <ProjectsSection projects={projects} />
+        {/* Projects Section - Fetches from GitHub API */}
+        <ProjectsSection />
 
         {/* Certifications Section - Light Blue bg, Collapsible */}
         <CertificationsSection certifications={certifications} />
