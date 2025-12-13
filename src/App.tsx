@@ -39,7 +39,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="section-white py-8 text-center border-t border-ui-border">
+      <footer className="section-white py-8 pb-24 text-center border-t border-ui-border">
         <div className="container-google space-y-3">
           <p className="text-text-secondary text-sm">
             © {new Date().getFullYear()} {personalInfo.name}

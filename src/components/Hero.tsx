@@ -73,6 +73,17 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
         <div className="w-52 h-14 bg-dev-red rounded-full shadow-lg" />
       </div>
 
+      {/* Banner Image - Below red pill, in a pill container */}
+      <div className="absolute top-36 right-8 hidden lg:block">
+        <div className="w-64 rounded-2xl overflow-hidden shadow-card-hover border-2 border-white">
+          <img
+            src="/images/hero-banner.jpg"
+            alt={`${personalInfo.name} - Banner`}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+
       {/* Bottom Left - Pink Quote */}
       <div className="absolute bottom-32 left-8 hidden lg:block">
         <QuoteShape className="text-dev-pink w-12 h-20" />
@@ -90,7 +101,7 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
 
       <div className="container-google py-16 relative z-10">
         {/* Social Card Style Container - matches reference */}
-        <div className="max-w-2xl mx-auto mb-12">
+        <div className="max-w-2xl mx-auto lg:ml-16 mb-12">
           <div className="bg-white rounded-3xl border-2 border-ui-border shadow-card-hover p-6 md:p-8">
             {/* Profile Header */}
             <div className="flex items-center gap-3 mb-6">
@@ -123,7 +134,7 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center lg:justify-start lg:ml-16 gap-4">
           <PillButton variant="green" href="#projects">
             View Projects
           </PillButton>
