@@ -177,7 +177,7 @@ export default function CaseStudy() {
                 <div className="flex flex-wrap justify-center gap-4">
                     <PillButton
                         variant="primary"
-                        href="https://github.com/VIKAS9793/netflix-india-casestudy"
+                        href="https://github.com/VIKAS9793/netflix-india-pm-case-study"
                         external
                     >
                         View Full Case Study

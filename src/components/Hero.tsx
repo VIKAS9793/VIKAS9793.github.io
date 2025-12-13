@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { HeroSectionProps, Stat } from '@types';
 import PillButton from './ui/PillButton';
+import { AsteriskShape, PuzzlePiece, QuoteShape, HashShape } from './ui/PlayfulShapes';
 
 /**
  * Tooltip component for stat context - prevents "made-up numbers" perception
@@ -60,6 +61,23 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
       className="section-white relative overflow-hidden"
       aria-label="Hero section"
     >
+      {/* Playful Decorative Shapes - Google Dev style */}
+      <div className="absolute top-8 left-8 hidden md:block">
+        <AsteriskShape className="text-gray-900 opacity-80" />
+      </div>
+      <div className="absolute top-16 right-12 hidden md:block">
+        <div className="w-40 h-12 bg-google-red rounded-full" />
+      </div>
+      <div className="absolute bottom-24 left-16 hidden lg:block">
+        <QuoteShape className="text-pink-500 opacity-90" />
+      </div>
+      <div className="absolute bottom-16 right-8 hidden md:block">
+        <PuzzlePiece className="text-pink-400 opacity-80" />
+      </div>
+      <div className="absolute top-1/3 right-1/4 hidden lg:block">
+        <HashShape className="text-pink-500 opacity-60" />
+      </div>
+
       {/* DevFest Decorative Blobs */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-google-blue/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute top-1/2 right-0 w-48 h-48 bg-google-green/10 rounded-full blur-2xl translate-x-1/2" />
