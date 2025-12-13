@@ -9,7 +9,7 @@ import type {
 
 export const personalInfo: PersonalInfo = {
   name: "Vikas Sahani",
-  title: "AI Product Visionary",
+  title: "AI Product Manager",
   tagline: "Shipping AI products that move metrics: 94% accuracy, ₹100Cr+ AUM, 50K+ users",
   bio: "IBM & Google certified professional specializing in Generative AI and LLM features with a proven track record in product management and strategic consulting.",
   location: "India",

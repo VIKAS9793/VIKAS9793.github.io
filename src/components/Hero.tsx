@@ -85,20 +85,20 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
       </div>
 
       {/* Bottom Left - Pink Quote */}
-      <div className="absolute bottom-48 left-8 hidden lg:block">
+      <div className="absolute bottom-8 left-8 hidden lg:block">
         <QuoteShape className="text-dev-pink w-12 h-20" />
       </div>
 
-      {/* Bottom Right - Pink Puzzle (moved to avoid overlap) */}
-      <div className="absolute bottom-48 right-8 hidden md:block">
+      {/* Bottom Right - Pink Puzzle */}
+      <div className="absolute bottom-8 right-8 hidden md:block">
         <PuzzlePiece className="text-dev-pink w-20 h-20" />
       </div>
 
       <div className="container-google py-16 relative z-10">
         {/* Social Card Style Container */}
-        <div className="max-w-2xl mx-auto lg:ml-16 mb-12">
+        <div className="max-w-2xl mx-auto lg:ml-16 mb-8">
           <div className="bg-white rounded-3xl border-2 border-ui-border shadow-card-hover p-6 md:p-8">
-            {/* Profile Header - Just name, no fake handle */}
+            {/* Profile Header */}
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-full bg-gradient-to-r from-google-blue via-google-green to-google-yellow flex items-center justify-center">
                 <span className="text-white font-bold text-lg">V</span>
@@ -123,7 +123,17 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* CTA Buttons - moved up to avoid overlap with blob */}
+        {/* What I'm Best At - Inline statement */}
+        <div className="max-w-2xl mx-auto lg:ml-16 mb-8">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-ui-border">
+            <p className="text-sm text-text-secondary">
+              <span className="font-semibold text-google-blue">What I'm Best At:</span>{' '}
+              I excel at building AI-as-product systems—aligning LLMs, RAG, and agentic workflows with user needs, regulatory constraints, and business goals to deliver reliable, production-grade AI products.
+            </p>
+          </div>
+        </div>
+
+        {/* CTA Buttons */}
         <div className="flex justify-center lg:justify-start lg:ml-16 gap-4 relative z-20">
           <PillButton variant="green" href="#projects">
             View Projects
@@ -132,11 +142,6 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
             Get in Touch
           </PillButton>
         </div>
-      </div>
-
-      {/* Red Blob - positioned at very bottom, behind content */}
-      <div className="absolute bottom-4 left-1/3 hidden lg:block z-0">
-        <div className="w-24 h-28 bg-dev-red rounded-tl-3xl rounded-tr-3xl rounded-br-[80px] rounded-bl-none shadow-md" />
       </div>
     </section>
   );
