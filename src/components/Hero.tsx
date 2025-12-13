@@ -43,7 +43,7 @@ function StatCard({ stat, color }: { stat: Stat; color: string }) {
         <div className={`text-2xl md:text-3xl font-bold ${color}`}>{stat.value}</div>
         <div className="text-text-secondary text-sm flex items-center justify-center gap-1">
           {stat.label}
-          <svg className="w-3.5 h-3.5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3.5 h-3.5 text-text-tertiary opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
@@ -61,7 +61,7 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
       className="bg-dev-gray relative overflow-hidden"
       aria-label="Hero section"
     >
-      {/* Google Dev Style Playful Shapes - Exact reference match */}
+      {/* Google Dev Style Playful Shapes */}
 
       {/* Top Left - Black Asterisk */}
       <div className="absolute top-12 left-12 hidden md:block">
@@ -73,9 +73,9 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
         <div className="w-52 h-14 bg-dev-red rounded-full shadow-lg" />
       </div>
 
-      {/* Banner Image - Below red pill, in a pill container */}
-      <div className="absolute top-36 right-8 hidden lg:block">
-        <div className="w-64 rounded-2xl overflow-hidden shadow-card-hover border-2 border-white">
+      {/* Banner Image - Below red pill, with hover animation */}
+      <div className="absolute top-36 right-8 hidden lg:block group">
+        <div className="w-64 rounded-2xl overflow-hidden shadow-card border-2 border-white transition-all duration-300 ease-out group-hover:shadow-card-hover group-hover:scale-105 group-hover:-translate-y-1">
           <img
             src="/images/hero-banner.jpg"
             alt={`${personalInfo.name} - Banner`}
@@ -85,32 +85,27 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
       </div>
 
       {/* Bottom Left - Pink Quote */}
-      <div className="absolute bottom-32 left-8 hidden lg:block">
+      <div className="absolute bottom-48 left-8 hidden lg:block">
         <QuoteShape className="text-dev-pink w-12 h-20" />
       </div>
 
-      {/* Bottom Center - Red Blob Shape */}
-      <div className="absolute bottom-16 left-1/3 hidden lg:block">
-        <div className="w-24 h-28 bg-dev-red rounded-tl-3xl rounded-tr-3xl rounded-br-[80px] rounded-bl-none shadow-md" />
-      </div>
-
-      {/* Bottom Right - Pink Puzzle */}
-      <div className="absolute bottom-20 right-8 hidden md:block">
+      {/* Bottom Right - Pink Puzzle (moved to avoid overlap) */}
+      <div className="absolute bottom-48 right-8 hidden md:block">
         <PuzzlePiece className="text-dev-pink w-20 h-20" />
       </div>
 
       <div className="container-google py-16 relative z-10">
-        {/* Social Card Style Container - matches reference */}
+        {/* Social Card Style Container */}
         <div className="max-w-2xl mx-auto lg:ml-16 mb-12">
           <div className="bg-white rounded-3xl border-2 border-ui-border shadow-card-hover p-6 md:p-8">
-            {/* Profile Header */}
+            {/* Profile Header - Just name, no fake handle */}
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-full bg-gradient-to-r from-google-blue via-google-green to-google-yellow flex items-center justify-center">
                 <span className="text-white font-bold text-lg">V</span>
               </div>
               <div>
                 <div className="font-semibold text-text-primary">{personalInfo.name}</div>
-                <div className="text-sm text-text-secondary">@vikas_ai_pm ✓</div>
+                <div className="text-sm text-text-secondary">{personalInfo.title}</div>
               </div>
             </div>
 
@@ -126,15 +121,10 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
               ))}
             </div>
           </div>
-
-          {/* Tooltip hint */}
-          <p className="text-center text-xs text-text-tertiary mt-4">
-            Hover over metrics for context
-          </p>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="flex justify-center lg:justify-start lg:ml-16 gap-4">
+        {/* CTA Buttons - moved up to avoid overlap with blob */}
+        <div className="flex justify-center lg:justify-start lg:ml-16 gap-4 relative z-20">
           <PillButton variant="green" href="#projects">
             View Projects
           </PillButton>
@@ -142,6 +132,11 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
             Get in Touch
           </PillButton>
         </div>
+      </div>
+
+      {/* Red Blob - positioned at very bottom, behind content */}
+      <div className="absolute bottom-4 left-1/3 hidden lg:block z-0">
+        <div className="w-24 h-28 bg-dev-red rounded-tl-3xl rounded-tr-3xl rounded-br-[80px] rounded-bl-none shadow-md" />
       </div>
     </section>
   );
