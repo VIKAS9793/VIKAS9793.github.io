@@ -24,6 +24,13 @@ export default {
           yellow: '#fbbc04',
           green: '#34a853',
         },
+        // Google Dev Accent Colors (from reference images)
+        dev: {
+          red: '#E53935',      // Solid red for pills and shapes
+          pink: '#FF4081',     // Bright pink for quote, puzzle
+          gray: '#F5F5F5',     // Light gray background
+          black: '#1A1A1A',    // For asterisk shape
+        },
         // Section Backgrounds - More vibrant like Google reference
         section: {
           white: '#ffffff',

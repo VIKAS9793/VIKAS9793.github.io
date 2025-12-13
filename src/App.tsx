@@ -40,12 +40,15 @@ function App() {
 
       {/* Footer */}
       <footer className="section-white py-8 text-center border-t border-ui-border">
-        <div className="container-google">
+        <div className="container-google space-y-3">
           <p className="text-text-secondary text-sm">
             © {new Date().getFullYear()} {personalInfo.name}
           </p>
-          <p className="text-text-tertiary text-xs mt-1">
+          <p className="text-text-tertiary text-xs">
             Crafted with precision • Powered by innovation
+          </p>
+          <p className="text-text-tertiary text-[10px] opacity-60">
+            Design inspired by Google Developer Program. Not affiliated with Google LLC.
           </p>
         </div>
       </footer>

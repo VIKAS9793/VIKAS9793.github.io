@@ -8,7 +8,7 @@ interface ShapeProps {
 }
 
 /**
- * Asterisk/Spark shape - 8-pointed star
+ * Asterisk/Spark shape - 8-pointed star (solid, bold lines)
  */
 export function AsteriskShape({ className = '' }: ShapeProps) {
     return (
@@ -17,7 +17,8 @@ export function AsteriskShape({ className = '' }: ShapeProps) {
             className={`w-12 h-12 ${className}`}
             fill="none"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="6"
+            strokeLinecap="round"
         >
             <line x1="50" y1="5" x2="50" y2="95" />
             <line x1="5" y1="50" x2="95" y2="50" />
@@ -28,7 +29,7 @@ export function AsteriskShape({ className = '' }: ShapeProps) {
 }
 
 /**
- * Puzzle piece shape
+ * Puzzle piece shape - pixelated/blocky style like reference
  */
 export function PuzzlePiece({ className = '' }: ShapeProps) {
     return (
@@ -37,13 +38,23 @@ export function PuzzlePiece({ className = '' }: ShapeProps) {
             className={`w-16 h-16 ${className}`}
             fill="currentColor"
         >
-            <path d="M20 10 H50 C50 10 45 20 50 30 C55 20 50 10 50 10 H80 V40 C80 40 70 35 60 40 C70 45 80 40 80 40 V70 H50 C50 70 55 60 50 50 C45 60 50 70 50 70 H20 V40 C20 40 30 45 40 40 C30 35 20 40 20 40 Z" />
+            {/* Blocky puzzle piece */}
+            <rect x="20" y="10" width="20" height="20" rx="2" />
+            <rect x="40" y="10" width="20" height="20" rx="2" />
+            <rect x="60" y="10" width="20" height="20" rx="2" />
+            <rect x="20" y="30" width="20" height="20" rx="2" />
+            <rect x="60" y="30" width="20" height="20" rx="2" />
+            <rect x="20" y="50" width="20" height="20" rx="2" />
+            <rect x="40" y="50" width="20" height="20" rx="2" />
+            <rect x="60" y="50" width="20" height="20" rx="2" />
+            <rect x="40" y="70" width="20" height="20" rx="2" />
+            <rect x="60" y="70" width="20" height="20" rx="2" />
         </svg>
     );
 }
 
 /**
- * Quote/Comma shape
+ * Quote/Comma shape - solid filled like reference
  */
 export function QuoteShape({ className = '' }: ShapeProps) {
     return (
@@ -52,7 +63,8 @@ export function QuoteShape({ className = '' }: ShapeProps) {
             className={`w-10 h-16 ${className}`}
             fill="currentColor"
         >
-            <path d="M25 0 C38 0 50 12 50 25 C50 38 38 50 25 50 C25 50 25 60 20 80 L10 80 C15 60 12 50 5 42 C2 38 0 32 0 25 C0 12 12 0 25 0 Z" />
+            <ellipse cx="25" cy="20" rx="20" ry="20" />
+            <path d="M25 40 C25 40 25 70 15 80 L5 80 C15 70 15 50 15 40 Z" />
         </svg>
     );
 }
@@ -67,7 +79,7 @@ export function PillShape({ className = '' }: ShapeProps) {
 }
 
 /**
- * Hash/Hashtag shape
+ * Hash/Hashtag shape - thick lines like reference
  */
 export function HashShape({ className = '' }: ShapeProps) {
     return (
@@ -76,7 +88,7 @@ export function HashShape({ className = '' }: ShapeProps) {
             className={`w-14 h-14 ${className}`}
             fill="none"
             stroke="currentColor"
-            strokeWidth="10"
+            strokeWidth="12"
             strokeLinecap="round"
         >
             <line x1="30" y1="10" x2="20" y2="90" />

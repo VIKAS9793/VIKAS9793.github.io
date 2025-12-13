@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { HeroSectionProps, Stat } from '@types';
 import PillButton from './ui/PillButton';
-import { AsteriskShape, PuzzlePiece, QuoteShape, HashShape } from './ui/PlayfulShapes';
+import { AsteriskShape, PuzzlePiece, QuoteShape } from './ui/PlayfulShapes';
 
 /**
  * Tooltip component for stat context - prevents "made-up numbers" perception
@@ -58,54 +58,69 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="section-white relative overflow-hidden"
+      className="bg-dev-gray relative overflow-hidden"
       aria-label="Hero section"
     >
-      {/* Playful Decorative Shapes - Google Dev style */}
-      <div className="absolute top-8 left-8 hidden md:block">
-        <AsteriskShape className="text-gray-900 opacity-80" />
-      </div>
-      <div className="absolute top-16 right-12 hidden md:block">
-        <div className="w-40 h-12 bg-google-red rounded-full" />
-      </div>
-      <div className="absolute bottom-24 left-16 hidden lg:block">
-        <QuoteShape className="text-pink-500 opacity-90" />
-      </div>
-      <div className="absolute bottom-16 right-8 hidden md:block">
-        <PuzzlePiece className="text-pink-400 opacity-80" />
-      </div>
-      <div className="absolute top-1/3 right-1/4 hidden lg:block">
-        <HashShape className="text-pink-500 opacity-60" />
+      {/* Google Dev Style Playful Shapes - Exact reference match */}
+
+      {/* Top Left - Black Asterisk */}
+      <div className="absolute top-12 left-12 hidden md:block">
+        <AsteriskShape className="text-dev-black w-16 h-16" />
       </div>
 
-      {/* DevFest Decorative Blobs */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-google-blue/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute top-1/2 right-0 w-48 h-48 bg-google-green/10 rounded-full blur-2xl translate-x-1/2" />
-      <div className="absolute bottom-0 left-1/3 w-40 h-40 bg-google-yellow/10 rounded-full blur-2xl translate-y-1/2" />
+      {/* Top Right - Red Rounded Pill */}
+      <div className="absolute top-16 right-16 hidden md:block">
+        <div className="w-52 h-14 bg-dev-red rounded-full shadow-lg" />
+      </div>
 
-      <div className="container-google py-12 relative z-10">
-        {/* Material 3 Pill Container for Banner */}
-        <div className="max-w-4xl mx-auto mb-10">
-          <div className="rounded-[32px] overflow-hidden shadow-card-hover border-4 border-white">
-            <img
-              src="/images/hero-banner.jpg"
-              alt={`${personalInfo.name} - ${personalInfo.title}`}
-              className="w-full h-auto object-contain"
-            />
+      {/* Bottom Left - Pink Quote */}
+      <div className="absolute bottom-32 left-8 hidden lg:block">
+        <QuoteShape className="text-dev-pink w-12 h-20" />
+      </div>
+
+      {/* Bottom Center - Red Blob Shape */}
+      <div className="absolute bottom-16 left-1/3 hidden lg:block">
+        <div className="w-24 h-28 bg-dev-red rounded-tl-3xl rounded-tr-3xl rounded-br-[80px] rounded-bl-none shadow-md" />
+      </div>
+
+      {/* Bottom Right - Pink Puzzle */}
+      <div className="absolute bottom-20 right-8 hidden md:block">
+        <PuzzlePiece className="text-dev-pink w-20 h-20" />
+      </div>
+
+      <div className="container-google py-16 relative z-10">
+        {/* Social Card Style Container - matches reference */}
+        <div className="max-w-2xl mx-auto mb-12">
+          <div className="bg-white rounded-3xl border-2 border-ui-border shadow-card-hover p-6 md:p-8">
+            {/* Profile Header */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-google-blue via-google-green to-google-yellow flex items-center justify-center">
+                <span className="text-white font-bold text-lg">V</span>
+              </div>
+              <div>
+                <div className="font-semibold text-text-primary">{personalInfo.name}</div>
+                <div className="text-sm text-text-secondary">@vikas_ai_pm ✓</div>
+              </div>
+            </div>
+
+            {/* Tagline */}
+            <p className="text-xl md:text-2xl font-medium text-text-primary mb-8 leading-relaxed">
+              {personalInfo.tagline}
+            </p>
+
+            {/* Stats Row */}
+            <div className="grid grid-cols-4 gap-4 pt-6 border-t border-ui-border">
+              {stats.slice(0, 4).map((stat, index) => (
+                <StatCard key={stat.id} stat={stat} color={colors[index % 4]} />
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Stats Grid with Tooltips */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-8">
-          {stats.slice(0, 4).map((stat, index) => (
-            <StatCard key={stat.id} stat={stat} color={colors[index % 4]} />
-          ))}
+          {/* Tooltip hint */}
+          <p className="text-center text-xs text-text-tertiary mt-4">
+            Hover over metrics for context
+          </p>
         </div>
-
-        {/* Tooltip hint */}
-        <p className="text-center text-xs text-text-tertiary mb-6">
-          Hover over metrics for context
-        </p>
 
         {/* CTA Buttons */}
         <div className="flex justify-center gap-4">
