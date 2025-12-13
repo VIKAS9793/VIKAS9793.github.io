@@ -1,3 +1,6 @@
+import { SparkleShape } from './ui/PlayfulShapes';
+
+
 /**
  * Value Proposition - "What I'm Best At" section
  * Crystallizes positioning for busy recruiters
@@ -47,45 +50,78 @@ export default function ValueProposition() {
     ];
 
     return (
-        <section id="value-prop" className="section-white py-16 relative overflow-hidden">
+        <section id="value-prop" className="section-white py-20 relative overflow-hidden">
             {/* Subtle background */}
             <div className="absolute inset-0 bg-gradient-to-b from-section-lightgray/50 to-white" />
 
             <div className="container-google relative z-10">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <h2 className="title-section mb-4">
-                        What I'm Best At
-                    </h2>
-                    <p className="body-large max-w-2xl mx-auto">
+                {/* Header with Playful Design Pill */}
+                <div className="text-center mb-16 relative">
+                    {/* Playful Pill Badge */}
+                    <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-google-blue to-google-blue/80 text-white shadow-lg mb-6 transform -rotate-2 hover:rotate-0 transition-transform duration-300">
+                        <SparkleShape className="w-4 h-4 text-google-yellow" />
+                        <span className="font-display font-bold tracking-wide text-sm uppercase">My Expertise</span>
+                    </div>
+
+                    {/* Main Title - Playful Font Style */}
+                    <div className="relative inline-block">
+                        <h2 className="text-5xl md:text-6xl font-display font-extrabold tracking-tight text-text-primary relative z-10">
+                            What I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-google-blue via-google-red to-google-yellow">Best At</span>
+                        </h2>
+
+                        {/* Decorative Sparkle */}
+                        <div className="absolute -top-6 -right-8 animate-pulse hidden md:block">
+                            <SparkleShape className="w-10 h-10 text-google-yellow" />
+                        </div>
+                    </div>
+
+                    <p className="body-large max-w-2xl mx-auto mt-6 text-lg text-text-secondary leading-relaxed">
                         I excel at building AI-as-product systems—aligning LLMs, RAG, and agentic workflows with user needs, regulatory constraints, and business goals to deliver reliable, production-grade AI products.
                     </p>
                 </div>
 
                 {/* Strengths Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-16">
                     {strengths.map((item) => (
                         <div
                             key={item.title}
-                            className="p-6 bg-white rounded-2xl border border-ui-border hover:shadow-card-hover transition-all group"
+                            className="p-6 bg-white rounded-2xl border border-ui-border hover:shadow-card-hover transition-all duration-300 group hover:-translate-y-1"
                         >
-                            <div className={`w-12 h-12 ${item.color} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+                            <div className={`w-14 h-14 ${item.color} rounded-2xl flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform shadow-sm`}>
                                 {item.icon}
                             </div>
-                            <h3 className="font-bold text-text-primary mb-2">{item.title}</h3>
-                            <p className="text-text-secondary text-sm">{item.description}</p>
+                            <h3 className="text-xl font-bold text-text-primary mb-3 font-display">{item.title}</h3>
+                            <p className="text-text-secondary text-sm leading-relaxed">{item.description}</p>
                         </div>
                     ))}
                 </div>
 
-                {/* Proof Statement */}
-                <div className="text-center p-6 bg-section-dark rounded-2xl max-w-3xl mx-auto">
-                    <p className="text-white text-lg">
-                        I've deployed AI systems processing{' '}
-                        <span className="text-google-blue font-bold">₹100Cr+</span> in assets,
-                        serving <span className="text-google-green font-bold">50K+ users</span>,
-                        with <span className="text-google-yellow font-bold">94%+ accuracy</span> in production.
-                    </p>
+                {/* Proof Statement - Enhanced Design */}
+                <div className="relative text-center max-w-4xl mx-auto">
+                    <div className="absolute inset-0 bg-gradient-to-r from-google-blue/5 via-google-red/5 to-google-yellow/5 rounded-3xl transform -rotate-1 skew-y-1 scale-105" />
+                    <div className="relative p-8 bg-section-dark rounded-2xl shadow-xl overflow-hidden group">
+                        {/* Background glow effect */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-google-blue via-google-red to-google-yellow opacity-50" />
+
+                        <p className="text-white text-xl md:text-2xl font-medium leading-relaxed">
+                            I've deployed AI systems processing{' '}
+                            <span className="text-google-blue font-bold px-1 relative inline-block">
+                                ₹100Cr+
+                                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-blue/50" />
+                            </span>{' '}
+                            in assets, serving{' '}
+                            <span className="text-google-green font-bold px-1 relative inline-block">
+                                50K+ users
+                                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-green/50" />
+                            </span>,{' '}
+                            with{' '}
+                            <span className="text-google-yellow font-bold px-1 relative inline-block">
+                                94%+ accuracy
+                                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-yellow/50" />
+                            </span>{' '}
+                            in production.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

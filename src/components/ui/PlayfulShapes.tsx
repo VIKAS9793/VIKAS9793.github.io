@@ -99,4 +99,19 @@ export function HashShape({ className = '' }: ShapeProps) {
     );
 }
 
-export default { AsteriskShape, PuzzlePiece, QuoteShape, PillShape, HashShape };
+/**
+ * Sparkle/Star shape - 4-pointed star like the Google Gemini logo style
+ */
+export function SparkleShape({ className = '' }: ShapeProps) {
+    return (
+        <svg
+            viewBox="0 0 100 100"
+            className={`w-10 h-10 ${className}`}
+            fill="currentColor"
+        >
+            <path d="M50 0 C50 0 55 25 75 40 C75 40 100 50 100 50 C100 50 75 60 75 60 C55 75 50 100 50 100 C50 100 45 75 25 60 C25 60 0 50 0 50 C0 50 25 40 25 40 C45 25 50 0 50 0 Z" />
+        </svg>
+    );
+}
+
+export default { AsteriskShape, PuzzlePiece, QuoteShape, PillShape, HashShape, SparkleShape };
