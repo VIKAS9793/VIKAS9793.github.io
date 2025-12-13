@@ -96,7 +96,7 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
 
       <div className="container-google py-16 relative z-10">
         {/* Social Card Style Container */}
-        <div className="max-w-2xl mx-auto lg:ml-16 mb-8">
+        <div className="max-w-2xl mx-auto lg:ml-16 mb-10">
           <div className="bg-white rounded-3xl border-2 border-ui-border shadow-card-hover p-6 md:p-8">
             {/* Profile Header */}
             <div className="flex items-center gap-3 mb-6">
@@ -120,16 +120,6 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
                 <StatCard key={stat.id} stat={stat} color={colors[index % 4]} />
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* What I'm Best At - Inline statement */}
-        <div className="max-w-2xl mx-auto lg:ml-16 mb-8">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-ui-border">
-            <p className="text-sm text-text-secondary">
-              <span className="font-semibold text-google-blue">What I'm Best At:</span>{' '}
-              I excel at building AI-as-product systems—aligning LLMs, RAG, and agentic workflows with user needs, regulatory constraints, and business goals to deliver reliable, production-grade AI products.
-            </p>
           </div>
         </div>
 

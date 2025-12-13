@@ -58,8 +58,7 @@ export default function ValueProposition() {
                         What I'm Best At
                     </h2>
                     <p className="body-large max-w-2xl mx-auto">
-                        I specialize in bridging the gap between cutting-edge AI research
-                        and production-grade products that users trust.
+                        I excel at building AI-as-product systems—aligning LLMs, RAG, and agentic workflows with user needs, regulatory constraints, and business goals to deliver reliable, production-grade AI products.
                     </p>
                 </div>
 
