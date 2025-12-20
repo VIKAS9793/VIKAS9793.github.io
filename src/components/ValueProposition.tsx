@@ -65,7 +65,7 @@ export default function ValueProposition() {
 
                     {/* Main Title - Playful Font Style */}
                     <div className="relative inline-block">
-                        <h2 className="text-5xl md:text-6xl font-display font-extrabold tracking-tight text-text-primary relative z-10">
+                        <h2 className="heading-playful text-5xl md:text-6xl font-display font-extrabold tracking-tight text-text-primary relative z-10">
                             What I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-google-blue via-google-red to-google-yellow">Best At</span>
                         </h2>
 
@@ -104,22 +104,21 @@ export default function ValueProposition() {
                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-google-blue via-google-red to-google-yellow opacity-50" />
 
                         <p className="text-white text-xl md:text-2xl font-medium leading-relaxed">
-                            I've deployed AI systems processing{' '}
+                            I thrive in the{' '}
                             <span className="text-google-blue font-bold px-1 relative inline-block">
-                                ₹100Cr+
+                                0 → 1 phase
                                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-blue/50" />
-                            </span>{' '}
-                            in assets, serving{' '}
+                            </span>
+                            —where ambiguity is high, the right questions matter most, and{' '}
                             <span className="text-google-green font-bold px-1 relative inline-block">
-                                50K+ users
+                                disciplined scope decisions
                                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-green/50" />
-                            </span>,{' '}
-                            with{' '}
-                            <span className="text-google-yellow font-bold px-1 relative inline-block">
-                                94%+ accuracy
-                                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-yellow/50" />
                             </span>{' '}
-                            in production.
+                            determine success. I care less about deploying AI for novelty, and more about whether it{' '}
+                            <span className="text-google-yellow font-bold px-1 relative inline-block">
+                                meaningfully improves outcomes
+                                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-yellow/50" />
+                            </span>.
                         </p>
                     </div>
                 </div>
