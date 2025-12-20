@@ -47,7 +47,10 @@
 
 ### Design System
 - **Google Brand Colors** - Blue (#4285f4), Green (#34a853), Yellow (#fbbc04), Red (#ea4335)
-- **Inter Font** - Clean, modern typography
+- **[Google Sans Flex](https://fonts.google.com/specimen/Google+Sans+Flex)** - Variable font for expressive typography
+  - Weight (100-900), Width (75-125), Optical Size, Slant, Grade, **Roundedness (0-100)**
+  - Per [Google Design guidelines](https://design.google/library/google-sans-flex-font)
+- **Inter Font** - Clean, readable body text
 - **Material 3 Pill Containers** - Rounded corners with soft shadows
 - **Circular Progress Indicators** - SVG-based skill visualization
 
@@ -121,8 +124,9 @@ This project is open source under the [MIT License](LICENSE).
 
 This portfolio uses design patterns and visual elements inspired by publicly available Google design guidelines. The following trademarks and copyrights are acknowledged:
 
-- **Google**, **Google Developer Program**, **Google DevFest**, **Material Design**, and the Google "G" logo are trademarks of **Google LLC**.
-- The design inspiration is based on publicly available Google design resources and does not imply endorsement, sponsorship, or affiliation with Google LLC.
+- **Google**, **Google Sans Flex**, **Google Developer Program**, **Google DevFest**, **Material Design**, and the Google "G" logo are trademarks of **Google LLC**.
+- **[Google Sans Flex](https://fonts.google.com/specimen/Google+Sans+Flex)** variable font is used under the [SIL Open Font License](https://openfontlicense.org/).
+- Design inspiration is based on [Google Design](https://design.google/library/google-sans-flex-font) and does not imply endorsement, sponsorship, or affiliation with Google LLC.
 - **Google Brand Colors** (Blue #4285f4, Green #34a853, Yellow #fbbc04, Red #ea4335) are used for educational and personal portfolio purposes in accordance with [Google's Brand Guidelines](https://about.google/brand-resource-center/).
 - All other product names, logos, and brands are property of their respective owners.
 

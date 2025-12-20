@@ -48,7 +48,24 @@ function App() {
             Crafted with precision • Powered by innovation
           </p>
           <p className="text-text-tertiary text-[10px] opacity-60">
-            Design inspired by Google Developer Program. Not affiliated with Google LLC.
+            Typography:{' '}
+            <a
+              href="https://fonts.google.com/specimen/Google+Sans+Flex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-google-blue transition-colors"
+            >
+              Google Sans Flex
+            </a>
+            {' '}• Design inspired by{' '}
+            <a
+              href="https://design.google/library/google-sans-flex-font"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-google-blue transition-colors"
+            >
+              Google Design
+            </a>
           </p>
         </div>
       </footer>

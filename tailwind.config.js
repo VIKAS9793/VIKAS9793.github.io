@@ -54,8 +54,11 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'Google Sans', 'Roboto', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'Google Sans', 'sans-serif'],
+        // Google Sans Flex for display/headings (playful variable font)
+        // Per: https://design.google/library/google-sans-flex-font
+        display: ['"Google Sans Flex"', 'Inter', 'system-ui', 'sans-serif'],
+        // Inter for body text (high readability)
+        sans: ['Inter', '"Google Sans Flex"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         // Google-style typography scale

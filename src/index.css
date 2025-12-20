@@ -1,4 +1,18 @@
+/**
+ * Typography: Google Sans Flex Variable Font
+ * Per Google Design guidelines: https://design.google/library/google-sans-flex-font
+ * 
+ * Variable Axes:
+ * - wght: Weight (100-900)
+ * - wdth: Width (75-125)  
+ * - opsz: Optical Size (auto-adjusts based on font-size)
+ * - slnt: Slant (0 to -12)
+ * - GRAD: Grade (stroke thickness without changing width)
+ * - ROND: Roundedness (0=sharp, 100=soft/playful) - KEY for playful design
+ */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,GRAD,ROND@8..144,-12..0,75..125,100..900,-50..150,0..100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,18 +41,33 @@
     line-height: 1.6;
   }
 
-  /* Google-style typography */
+  /* Google Sans Flex typography for headings
+   * Using ROND (roundedness) axis for playful-yet-professional feel
+   * Per: https://design.google/library/google-sans-flex-font
+   */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Google Sans Flex', 'Inter', sans-serif;
     font-weight: 600;
     color: #202124;
     letter-spacing: -0.02em;
     line-height: 1.2;
+    /* Variable font settings: moderate roundedness for playful feel */
+    font-variation-settings: 'ROND' 40, 'wght' 600;
+  }
+
+  /* Extra playful headings - higher roundedness */
+  .heading-playful {
+    font-variation-settings: 'ROND' 80, 'wght' 700;
+  }
+
+  /* Sharp/professional headings - minimal roundedness */
+  .heading-sharp {
+    font-variation-settings: 'ROND' 0, 'wght' 600;
   }
 
   p {
