@@ -2,14 +2,35 @@
 
 A modern, responsive portfolio website built with **Google Developer Program (GDG) design language** — featuring neo-brutalist aesthetics, thick black borders, vibrant section backgrounds, and massive typography.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://vikas9793.github.io/)
-[![Built with React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+<div align="center">
+  
+## 🚀 [View Live Portfolio](https://myportfoliohubexpo.netlify.app)
+
+[![Netlify Live](https://img.shields.io/badge/Netlify-Live-00C7B7?style=for-the-badge&logo=netlify)](https://myportfoliohubexpo.netlify.app)
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-181717?style=for-the-badge&logo=github)](https://vikas9793.github.io/)
+
+</div>
 
 ---
 
-## 🎨 Design Language
+---
+
+## 🛠️ Tech Stack
+
+[![Built with React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+
+| Category | Technologies |
+|----------|-------------|
+| **Framework** | React 18 + TypeScript |
+| **Build Tool** | Vite 7 |
+| **Styling** | Tailwind CSS 4.0 |
+| **Fonts** | Google Sans Flex (variable), Inter |
+| **Deployment** | Netlify + GitHub Pages |
+
+---
 
 This portfolio implements the **Google Developer Program (GDG) design system** with:
 
