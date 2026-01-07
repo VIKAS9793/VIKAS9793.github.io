@@ -56,8 +56,8 @@
     color: #202124;
     letter-spacing: -0.02em;
     line-height: 1.2;
-    /* Variable font settings: moderate roundedness for playful feel */
-    font-variation-settings: 'ROND' 40, 'wght' 600;
+    /* Variable font settings: sharp professional (Google Developer standard) */
+    font-variation-settings: 'ROND' 0, 'wght' 600;
   }
 
   /* Extra playful headings - higher roundedness */
@@ -98,6 +98,21 @@
 /* ===== COMPONENT STYLES ===== */
 @layer components {
 
+  /* Google Developer Dark Theme - Halo Glow Effect */
+  .glow-halo {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glow-halo::before {
+    content: '';
+    position: absolute;
+    inset: -80px;
+    background: radial-gradient(circle, rgba(66, 133, 244, 0.15), transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
   /* Google-style pill button - Primary */
   .btn-pill {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-pill font-medium text-sm transition-all duration-200;
@@ -110,16 +125,41 @@
     @apply border-2 border-google-blue text-google-blue bg-transparent hover:bg-google-blue/5;
   }
 
-  /* Pill button - Green CTA */
-  .btn-pill-green {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-pill font-medium text-sm transition-all duration-200;
-    @apply bg-google-green text-white hover:shadow-card-hover active:scale-95;
+  /* GDG Primary Button - Pill style */
+  .btn-pill-primary {
+    @apply inline-flex items-center justify-center rounded-pill font-medium transition-all duration-200;
+    background: #1a73e8;
+    color: #ffffff;
+    padding: 12px 24px;
+    font-size: 20px;
+    font-weight: 500;
   }
 
-  /* Google-style feature card */
+  .btn-pill-primary:hover {
+    box-shadow: 0 4px 20px rgba(26, 115, 232, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* GDG Secondary Button - For dark sections */
+  .btn-pill-secondary {
+    @apply inline-flex items-center justify-center rounded-pill font-medium transition-all duration-200;
+    background: transparent;
+    color: #ffffff;
+    border: 1.6px solid #ffffff;
+    padding: 12px 24px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  /* GDG Feature card - Neo-brutalist style */
   .card-feature {
-    @apply bg-white rounded-card-lg p-6 transition-all duration-200;
-    @apply border border-ui-border hover:shadow-card-hover;
+    @apply bg-white rounded-card p-6 transition-all duration-200;
+    border: 2px solid #000000;
+  }
+
+  .card-feature:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
   }
 
   /* Section containers with colored backgrounds */
@@ -129,14 +169,6 @@
 
   .section-dark {
     @apply bg-section-dark py-16 md:py-24;
-  }
-
-  .section-cream {
-    @apply bg-section-cream py-16 md:py-24;
-  }
-
-  .section-blue {
-    @apply bg-section-blue py-16 md:py-24;
   }
 
   /* Container */
@@ -392,12 +424,29 @@
 }
 
 /* Staggered animation delays for cards */
-.stagger-1 { transition-delay: 0.1s; }
-.stagger-2 { transition-delay: 0.2s; }
-.stagger-3 { transition-delay: 0.3s; }
-.stagger-4 { transition-delay: 0.4s; }
-.stagger-5 { transition-delay: 0.5s; }
-.stagger-6 { transition-delay: 0.6s; }
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+
+.stagger-3 {
+  transition-delay: 0.3s;
+}
+
+.stagger-4 {
+  transition-delay: 0.4s;
+}
+
+.stagger-5 {
+  transition-delay: 0.5s;
+}
+
+.stagger-6 {
+  transition-delay: 0.6s;
+}
 
 /* FadeInUp keyframe animation */
 @keyframes fadeInUp {
@@ -405,6 +454,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -417,9 +467,19 @@
 
 /* Floating gradient orb animation */
 @keyframes float {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(30px, -30px) rotate(120deg); }
-  66% { transform: translate(-20px, 20px) rotate(240deg); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(30px, -30px) rotate(120deg);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg);
+  }
 }
 
 .animate-float {
@@ -428,15 +488,15 @@
 
 /* M3 Elevation shadows */
 .elevation-1 {
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
 .elevation-2 {
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3), 0 2px 6px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
 }
 
 .elevation-3 {
-  box-shadow: 0 4px 8px 3px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Skill category card accents */
@@ -470,16 +530,27 @@
   font-weight: 500;
   color: white;
   border-radius: 16px;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3), 0 2px 6px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .color-block:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.color-block-blue { background-color: #4285f4; }
-.color-block-green { background-color: #34a853; }
-.color-block-yellow { background-color: #fbbc04; }
-.color-block-red { background-color: #ea4335; }
+.color-block-blue {
+  background-color: #4285f4;
+}
+
+.color-block-green {
+  background-color: #34a853;
+}
+
+.color-block-yellow {
+  background-color: #fbbc04;
+}
+
+.color-block-red {
+  background-color: #ea4335;
+}

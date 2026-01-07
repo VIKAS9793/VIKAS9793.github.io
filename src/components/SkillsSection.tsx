@@ -1,18 +1,16 @@
-import { useScrollReveal } from '@hooks/useScrollAnimation';
-
 /**
- * M3-style Skills Section with Categorized Cards
- * - 3 category cards with left-border accents
- * - Simple tag chips without proficiency levels
+ * Skills Section - GDG Design Language
+ * - Yellow background (#f9e6a9)
+ * - White cards with 1.6px black borders  
+ * - 32px border-radius
+ * - Neo-brutalist style
  */
 
-// Skill categories data - clean, consistent Title Case
+// Skill categories data
 const skillCategories = [
   {
     id: 'product',
     title: 'Product Strategy',
-    icon: '🎯',
-    accentClass: 'skill-card-blue',
     skills: [
       'Product Discovery',
       'PRD & Spec Writing',
@@ -27,8 +25,6 @@ const skillCategories = [
   {
     id: 'ai-ml',
     title: 'AI/ML Systems',
-    icon: '🤖',
-    accentClass: 'skill-card-green',
     skills: [
       'RAG Architecture',
       'Local LLMs',
@@ -43,8 +39,6 @@ const skillCategories = [
   {
     id: 'domain',
     title: 'Domain Expertise',
-    icon: '🏦',
-    accentClass: 'skill-card-yellow',
     skills: [
       'Banking Operations',
       'KYC & AML Compliance',
@@ -62,69 +56,46 @@ const skillCategories = [
  * Skill Category Card Component
  */
 function SkillCategoryCard({
-  category,
-  index
+  category
 }: {
   category: typeof skillCategories[0];
-  index: number;
 }) {
-  const cardRef = useScrollReveal({ once: true });
-
   return (
-    <div
-      ref={cardRef as React.RefObject<HTMLDivElement>}
-      className={`bg-white p-6 rounded-card-lg shadow-lg border border-gray-200 ${category.accentClass} animate-on-scroll stagger-${index + 1}`}
-    >
-      <h3 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
-        <span className="text-2xl">{category.icon}</span>
+    <div className="card-feature">
+      <h3 className="text-display-lg text-text-primary mb-4">
         {category.title}
       </h3>
 
-      <div className="flex flex-wrap gap-2">
-        {category.skills.map((skill) => (
-          <span
-            key={skill}
-            className="skill-tag px-3 py-1.5 bg-section-lightgray rounded-pill text-sm text-text-primary cursor-default"
-          >
+      <ul className="space-y-2">
+        {category.skills.map((skill, i) => (
+          <li key={i} className="text-body-md text-text-secondary">
             {skill}
-          </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
-/**
- * Skills Section - M3 Style with Categorized Cards
- */
 export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="section-white relative"
-      aria-labelledby="skills-heading"
+      className="bg-section-yellow py-section"
+      aria-label="Skills and Expertise"
     >
       <div className="container-google">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <p className="text-sm font-mono text-google-blue uppercase tracking-wider mb-2">
-            Core Skills
-          </p>
-          <h2 id="skills-heading" className="title-section mb-4">
-            Product × Technology × Domain
-          </h2>
-          <p className="body-large max-w-2xl mx-auto">
-            A balanced mix of product strategy, technical understanding, and domain expertise
-          </p>
-        </div>
+        {/* Section Heading - GDG 72px */}
+        <h2 className="text-display-xl text-text-primary mb-12">
+          Expertise
+        </h2>
 
-        {/* Skills Grid - 3 Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => (
+        {/* Skill Cards Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {skillCategories.map((category) => (
             <SkillCategoryCard
               key={category.id}
               category={category}
-              index={index}
             />
           ))}
         </div>

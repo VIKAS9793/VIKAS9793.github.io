@@ -76,7 +76,7 @@ export default function ValueProposition() {
                     </div>
 
                     <p className="body-large max-w-2xl mx-auto mt-6 text-lg text-text-secondary leading-relaxed">
-                        I excel at building AI-as-product systems—aligning LLMs, RAG, and agentic workflows with user needs, regulatory constraints, and business goals to deliver reliable, production-grade AI products.
+                        I excel at building AI-as-product systems, aligning LLMs, RAG, and agentic workflows with user needs, regulatory constraints, and business goals to deliver reliable, production-grade AI products.
                     </p>
                 </div>
 
@@ -109,7 +109,7 @@ export default function ValueProposition() {
                                 0 → 1 phase
                                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-blue/50" />
                             </span>
-                            —where ambiguity is high, the right questions matter most, and{' '}
+                            where ambiguity is high, the right questions matter most, and{' '}
                             <span className="text-google-green font-bold px-1 relative inline-block">
                                 disciplined scope decisions
                                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-google-green/50" />

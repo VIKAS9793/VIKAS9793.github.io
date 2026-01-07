@@ -10,7 +10,7 @@ import type {
 export const personalInfo: PersonalInfo = {
   name: "Vikas Sahani",
   title: "Product Manager",
-  tagline: "Building regulated fintech products with AI at the core. From banking operations to sovereign AI platforms—I bridge customer needs, compliance constraints, and cutting-edge technology.",
+  tagline: "Building regulated fintech products with AI at the core. From banking operations to sovereign AI platforms, I bridge customer needs, compliance constraints, and cutting-edge technology.",
   bio: "IBM & Google certified professional specializing in Generative AI and LLM features with a proven track record in product management and strategic consulting.",
   location: "India",
   email: "vikassahani17@gmail.com",

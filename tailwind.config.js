@@ -15,28 +15,23 @@ export default {
         '18': '4.5rem',
         '88': '22rem',
         '128': '32rem',
+        'section': '80px',      // GDG section padding
+        'section-lg': '96px',   // GDG large section padding
       },
       colors: {
         // Google Brand Colors
         google: {
-          blue: '#4285f4',
+          blue: '#1a73e8',      // Primary CTA (exact GDG)
           red: '#ea4335',
           yellow: '#fbbc04',
           green: '#34a853',
         },
-        // Google Dev Accent Colors (from reference images)
-        dev: {
-          red: '#E53935',      // Solid red for pills and shapes
-          pink: '#FF4081',     // Bright pink for quote, puzzle
-          gray: '#F5F5F5',     // Light gray background
-          black: '#1A1A1A',    // For asterisk shape
-        },
-        // Section Backgrounds - More vibrant like Google reference
+        // Section Backgrounds - GDG exact colors
         section: {
+          yellow: '#f9e6a9',    // Feature cards background
+          blue: '#d2e3fc',      // Community cards background
           white: '#ffffff',
-          dark: '#1a1a2e',        // Deeper dark for contrast
-          cream: '#fef3cd',       // More saturated yellow/cream
-          blue: '#cce5ff',        // More vibrant light blue
+          dark: '#202124',      // Dark section background
           lightgray: '#f8f9fa',
         },
         // Text Colors
@@ -54,31 +49,37 @@ export default {
         },
       },
       fontFamily: {
-        // Google Sans Flex for display/headings (playful variable font)
-        // Per: https://design.google/library/google-sans-flex-font
+        // Google Sans Flex for display/headings
         display: ['"Google Sans Flex"', 'Inter', 'system-ui', 'sans-serif'],
-        // Inter for body text (high readability)
+        // Inter for body text
         sans: ['Inter', '"Google Sans Flex"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        // Google-style typography scale
-        'display-xl': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '600' }],
-        'display-lg': ['3rem', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '600' }],
+        // GDG Typography Scale (exact measurements)
+        'display-hero': ['100px', { lineHeight: '100px', letterSpacing: '-0.02em', fontWeight: '500' }],
+        'display-xl': ['72px', { lineHeight: '80px', letterSpacing: '-0.02em', fontWeight: '500' }],
+        'display-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.01em', fontWeight: '500' }],
         'display-md': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
         'display-sm': ['1.875rem', { lineHeight: '1.25', letterSpacing: '-0.01em', fontWeight: '500' }],
+        'body-xl': ['20px', { lineHeight: '32px', fontWeight: '400' }],
         'body-lg': ['1.125rem', { lineHeight: '1.75', fontWeight: '400' }],
-        'body-md': ['1rem', { lineHeight: '1.625', fontWeight: '400' }],
-        'body-sm': ['0.875rem', { lineHeight: '1.5', fontWeight: '400' }],
+        'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }],
         'label': ['0.875rem', { lineHeight: '1.25', fontWeight: '500' }],
       },
+      borderWidth: {
+        'thick': '4.8px',       // Hero media (GDG signature)
+        'card': '2px',          // Standard cards (increased from 1.6px)
+        'card-em': '3px',       // Emphasized cards (increased from 2px)
+      },
       borderRadius: {
-        'pill': '9999px',
-        'card': '1rem',
-        'card-lg': '1.5rem',
+        'pill': '100px',        // Buttons (GDG standard)
+        'card': '32px',         // ALL cards (GDG standard)
+        'card-inner': '16px',   // Inner elements within cards
       },
       boxShadow: {
         'card': '0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)',
-        'card-hover': '0 8px 24px rgba(0,0,0,0.12)',
+        'card-hover': '0 4px 20px rgba(0,0,0,0.1)',
         'nav': '0 2px 8px rgba(0,0,0,0.12)',
         'pill': '0 1px 3px rgba(0,0,0,0.1)',
       },
