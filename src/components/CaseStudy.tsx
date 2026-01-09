@@ -14,6 +14,13 @@ export default function CaseStudy() {
                     videoUrl="https://youtu.be/eSpfY1qSvQc"
                     figmaUrl="https://grill-menus-27764549.figma.site/"
                     label="Case Study Walkthrough"
+                    roleScope={{
+                        title: "Role & Scope (PM-led Design)",
+                        role: "Product Manager",
+                        scope: "Product discovery, UX direction, and low-to-mid fidelity visual mockups",
+                        tools: "Figma (for rapid visualization and stakeholder alignment)",
+                        note: "These designs are intentionally lightweight and exploratory. They are meant to communicate product intent, flows, and edge cases—not final visual design."
+                    }}
                 />
 
                 <CaseStudyVideoCard

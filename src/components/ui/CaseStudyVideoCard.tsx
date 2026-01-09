@@ -1,11 +1,20 @@
 import React from 'react';
 
+interface RoleScopeContent {
+    title: string;
+    role: string;
+    scope: string;
+    tools: string;
+    note?: string;
+}
+
 interface CaseStudyVideoCardProps {
     title: string;
     description: string;
     videoUrl: string;
     figmaUrl?: string;
     label?: string;
+    roleScope?: RoleScopeContent;
 }
 
 /**
@@ -15,8 +24,8 @@ interface CaseStudyVideoCardProps {
  * - Horizontal split layout (Text Left, Video Right)
  * - Gradient text label
  * - 28px rounded container
- * - Role/Scope context box
- * - Figma prototype link
+ * - Optional Role/Scope context box
+ * - Figma/GitHub prototype link
  */
 export const CaseStudyVideoCard: React.FC<CaseStudyVideoCardProps> = ({
     title,
@@ -24,6 +33,7 @@ export const CaseStudyVideoCard: React.FC<CaseStudyVideoCardProps> = ({
     videoUrl,
     figmaUrl,
     label = 'Case Study',
+    roleScope,
 }) => {
     // Extract YouTube video ID from URL
     const getYouTubeId = (url: string) => {
@@ -56,32 +66,35 @@ export const CaseStudyVideoCard: React.FC<CaseStudyVideoCardProps> = ({
                                 {description}
                             </p>
 
-                            {/* Role & Scope Box */}
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3">
-                                <h3 className="text-sm font-semibold text-white uppercase tracking-wide">
-                                    Role & Scope (PM-led Design)
-                                </h3>
+                            {/* Role & Scope Box - Optional */}
+                            {roleScope && (
+                                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3">
+                                    <h3 className="text-sm font-semibold text-white uppercase tracking-wide">
+                                        {roleScope.title}
+                                    </h3>
 
-                                <div className="space-y-2 text-sm text-gray-300">
-                                    <div className="flex gap-2">
-                                        <span className="text-google-blue font-medium">Role:</span>
-                                        <span>Product Manager</span>
+                                    <div className="space-y-2 text-sm text-gray-300">
+                                        <div className="flex gap-2">
+                                            <span className="text-google-blue font-medium">Role:</span>
+                                            <span>{roleScope.role}</span>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <span className="text-google-blue font-medium">Scope:</span>
+                                            <span>{roleScope.scope}</span>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <span className="text-google-blue font-medium">Tools:</span>
+                                            <span>{roleScope.tools}</span>
+                                        </div>
                                     </div>
-                                    <div className="flex gap-2">
-                                        <span className="text-google-blue font-medium">Scope:</span>
-                                        <span>Product discovery, UX direction, and low-to-mid fidelity visual mockups</span>
-                                    </div>
-                                    <div className="flex gap-2">
-                                        <span className="text-google-blue font-medium">Tools:</span>
-                                        <span>Figma (for rapid visualization and stakeholder alignment)</span>
-                                    </div>
+
+                                    {roleScope.note && (
+                                        <p className="text-xs text-gray-400 italic pt-2 border-t border-white/10">
+                                            {roleScope.note}
+                                        </p>
+                                    )}
                                 </div>
-
-                                <p className="text-xs text-gray-400 italic pt-2 border-t border-white/10">
-                                    These designs are intentionally lightweight and exploratory.
-                                    They are meant to communicate product intent, flows, and edge cases—not final visual design.
-                                </p>
-                            </div>
+                            )}
 
                             {/* Figma Link */}
                             {figmaUrl && (
