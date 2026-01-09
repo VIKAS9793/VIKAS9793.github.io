@@ -27,7 +27,6 @@ export default function CaseStudy() {
                     title="HDFC Bank Mobile App – Friction Reduction"
                     description="Evidence-based analysis of 413K+ app store votes to identify critical friction points. Features RICE prioritization and competitive benchmarking without internal data."
                     videoUrl="https://youtu.be/DJDhdzbFQlQ"
-                    figmaUrl="https://github.com/VIKAS9793/hdfc-mobile-app-pm-case-study"
                     label="Watch Walkthrough"
                 />
             </div>
