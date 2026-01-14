@@ -3,6 +3,7 @@ import Hero from '@components/Hero';
 import SkillsSection from '@components/SkillsSection';
 import CaseStudy from '@components/CaseStudy';
 import ProjectsSection from '@components/ProjectsSection';
+import AchievementsSection from '@components/AchievementsSection';
 import ContactSection from '@components/ContactSection';
 import FloatingNav from '@components/ui/FloatingNav';
 import ScrollButton from '@components/ui/ScrollButton';
@@ -33,6 +34,9 @@ function App() {
 
         {/* Projects - Cards with GitHub links */}
         <ProjectsSection />
+
+        {/* Achievements - Product Titans & Certifications */}
+        <AchievementsSection />
 
         {/* About - Inline, grounded */}
         <AboutSection />

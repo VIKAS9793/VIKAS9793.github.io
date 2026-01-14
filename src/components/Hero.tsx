@@ -19,22 +19,60 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
 
           {/* Left: Text content */}
           <div>
-            {/* Name - GDG 100px typography */}
-            <h1 className="text-display-hero text-text-primary mb-4 leading-none">
+            {/* Name - Premium 72-84px typography */}
+            <h1 className="text-7xl lg:text-8xl font-bold text-text-primary mb-4 leading-none">
               {personalInfo.name}
             </h1>
 
-            {/* Title */}
-            <p className="text-body-xl text-text-secondary mb-8">
-              {personalInfo.title}
+            {/* Subtitle - Modern signal chips */}
+            <p className="text-lg font-medium text-text-secondary mb-6">
+              Product case studies • Metrics • Experimentation • Responsible AI
             </p>
 
-            {/* Value proposition */}
-            <p className="text-body-md text-text-secondary leading-relaxed mb-10 max-w-xl">
-              Building regulated fintech products with AI at the core. From banking
-              operations to sovereign AI platforms, I bridge customer needs,
-              compliance constraints, and cutting-edge technology.
+            {/* Value proposition - Premium, execution-focused */}
+            <p className="text-lg text-text-secondary leading-relaxed mb-4 max-w-xl">
+              I build structured product case studies that focus on real user friction,
+              measurable outcomes, and execution-ready decisions. My work includes problem
+              framing, personas, journey mapping, prioritization (RICE), North Star metrics,
+              and experiment design - built with trust, compliance, and responsible AI thinking
+              where required.
             </p>
+
+            {/* Focus areas - Domain flexibility */}
+            <p className="text-base text-text-tertiary mb-6 max-w-xl">
+              <span className="font-medium">Focused on:</span> Consumer journeys • Trust systems • AI-enabled workflows
+            </p>
+
+            {/* Achievement Proof Card - Premium styling */}
+            <div className="mb-6 p-4 bg-google-blue/5 border border-google-blue/30 rounded-card max-w-xl">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="px-3 py-1.5 bg-google-blue text-white text-sm font-medium rounded-pill">
+                  🏆 Runner-up (Rank 2)
+                </span>
+                <span className="text-text-primary font-semibold text-sm">
+                  Product Titans PM Challenge
+                </span>
+                <span className="text-text-secondary text-sm">
+                  Score: 6.4 • Solo Team: North Star Hunter
+                </span>
+              </div>
+              <div className="mt-2 flex gap-3">
+                <a
+                  href="https://youtu.be/M_D3dxxZiqI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-google-blue text-sm hover:underline font-medium"
+                >
+                  Watch Walkthrough →
+                </a>
+                <a
+                  href="#achievements"
+                  className="text-google-blue text-sm hover:underline font-medium"
+                >
+                  View Certificate →
+                </a>
+              </div>
+            </div>
 
             {/* CTAs - GDG pill buttons */}
             <div className="flex flex-wrap gap-4">

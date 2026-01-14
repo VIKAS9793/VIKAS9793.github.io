@@ -79,7 +79,7 @@ export const CaseStudyVideoCard: React.FC<CaseStudyVideoCardProps> = ({
 
                                 <p className="text-xs text-gray-400 italic pt-2 border-t border-white/10">
                                     These designs are intentionally lightweight and exploratory.
-                                    They are meant to communicate product intent, flows, and edge cases—not final visual design.
+                                    They are meant to communicate product intent, flows, and edge cases - not final visual design.
                                 </p>
                             </div>
 

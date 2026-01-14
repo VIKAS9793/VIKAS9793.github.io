@@ -11,7 +11,14 @@ export const personalInfo: PersonalInfo = {
   name: "Vikas Sahani",
   title: "Product Manager",
   tagline: "Building regulated fintech products with AI at the core. From banking operations to sovereign AI platforms, I bridge customer needs, compliance constraints, and cutting-edge technology.",
-  bio: "IBM & Google certified professional specializing in Generative AI and LLM features with a proven track record in product management and strategic consulting.",
+  bio: `
+    <p>
+      I transitioned into product management after 4+ years in banking operations.
+      I understand regulated environments, compliance constraints, and the operational
+      friction that comes with them.
+    </p>
+    IBM & Google certified professional specializing in Generative AI and LLM features with a proven track record in product management and strategic consulting.
+  `,
   location: "India",
   email: "vikassahani17@gmail.com",
   phone: "+91 7715072817",
@@ -46,6 +53,36 @@ export const stats: Stat[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    id: "product-titans-case-study",
+    title: "Product Titans Case Study",
+    description: "Runner-up (Rank 2) • Score 6.4 | National Product Management Challenge. India-first agentic AI learning platform concept with end-to-end PM deliverables.",
+    longDescription: "Independent PM case study created for a national-level live project challenge hosted on Unstop and organized by Book My Mentor. Built an India-first agentic AI learning platform concept with problem framing, personas, journey mapping, RICE prioritization, North Star metrics, experimentation plan, and responsible AI governance (trust, explainability, privacy).",
+    image: "/images/product-titans.png",
+    category: "product",
+    featured: true,
+    technologies: [
+      "Personas",
+      "RICE Prioritization",
+      "North Star Metrics",
+      "GTM Strategy",
+      "Experimentation",
+      "Responsible AI"
+    ],
+    metrics: [
+      { label: "Achievement", value: "Rank 2" },
+      { label: "Score", value: "6.4" },
+      { label: "Team", value: "North Star Hunter (Solo)" },
+      { label: "Certification", value: "Excellence" }
+    ],
+    links: [
+      {
+        type: "demo",
+        url: "https://youtu.be/M_D3dxxZiqI",
+        label: "Watch Case Study"
+      }
+    ]
+  },
   {
     id: "indiaai-idp",
     title: "IndiaAI IDP Platform",
@@ -199,7 +236,7 @@ export const projects: Project[] = [
     longDescription: "Designed for learners with disabilities and areas with limited internet connectivity, featuring multilingual voice interaction, government curriculum integration, and complete accessibility compliance.",
     image: "/images/eduvault.png",
     category: "education",
-    featured: true,
+    featured: false,
     technologies: [
       "React + TypeScript",
       "Progressive Web App",
