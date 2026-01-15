@@ -30,7 +30,8 @@
       "@types": ["./src/types/index.ts"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils": ["./src/utils/index.ts"],
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@config": ["./src/config/index.ts"]
     }
   },
   "include": ["src"],

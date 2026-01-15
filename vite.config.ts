@@ -15,6 +15,7 @@ export default defineConfig({
       '@hooks': resolve(__dirname, 'src/hooks'),
       '@utils': resolve(__dirname, 'src/utils'),
       '@assets': resolve(__dirname, 'src/assets'),
+      '@config': resolve(__dirname, 'src/config'),
     },
   },
   build: {

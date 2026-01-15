@@ -3,6 +3,8 @@
  * Fetches badges for display in Certifications section
  */
 
+import { config } from '@config';
+
 export interface CredlyBadge {
     id: string;
     issued_at: string;
@@ -31,8 +33,6 @@ export interface PortfolioCertification {
     imageUrl: string;
 }
 
-const CREDLY_USERNAME = 'vikas-sahani.e0a347d7';
-
 /**
  * Fetch all Credly badges
  */
@@ -41,7 +41,7 @@ export async function fetchCredlyBadges(): Promise<CredlyBadge[]> {
         // Note: Credly's public API may have CORS restrictions
         // Using a proxy or build-time fetch is recommended for production
         const response = await fetch(
-            `https://www.credly.com/users/${CREDLY_USERNAME}/badges.json`,
+            `https://www.credly.com/users/${config.credly.username}/badges.json`,
             {
                 headers: {
                     'Accept': 'application/json',
