@@ -53,10 +53,10 @@ function App() {
             © {new Date().getFullYear()} {personalInfo.name}
           </p>
           <p className="text-text-secondary text-sm mt-2 font-semibold">
-            Built with vibrant design & constraint-first thinking
+            Built with constraint-first thinking
           </p>
           <p className="text-text-tertiary text-sm mt-1 font-medium">
-            Transformed from Google Design Language to Social Media Aesthetic
+            Design inspired by Google's Design Language
           </p>
         </div>
       </footer>
