@@ -1,16 +1,17 @@
+import SpeechBubble from '@components/ui/SpeechBubble';
+import { StarIcon, PuzzlePieceIcon, ThumbsUpIcon } from '@components/ui/SocialIcons';
+
 /**
- * Skills Section - GDG Design Language
- * - Yellow background (#f9e6a9)
- * - White cards with 1.6px black borders  
- * - 32px border-radius
- * - Neo-brutalist style
+ * Skills Section - Vibrant Design
  */
 
-// Skill categories data
+// Skill categories data with colors
 const skillCategories = [
   {
     id: 'product',
     title: 'Product Strategy',
+    color: 'pink' as const,
+    icon: 'thumbs',
     skills: [
       'Product Discovery',
       'PRD & Spec Writing',
@@ -25,6 +26,8 @@ const skillCategories = [
   {
     id: 'ai-ml',
     title: 'AI/ML Systems',
+    color: 'cyan' as const,
+    icon: 'star',
     skills: [
       'RAG Architecture',
       'Local LLMs',
@@ -39,6 +42,8 @@ const skillCategories = [
   {
     id: 'domain',
     title: 'Domain Expertise',
+    color: 'orange' as const,
+    icon: 'puzzle',
     skills: [
       'Banking Operations',
       'KYC & AML Compliance',
@@ -53,7 +58,7 @@ const skillCategories = [
 ];
 
 /**
- * Skill Category Card Component
+ * Skill Category Card Component - Vibrant Design
  */
 function SkillCategoryCard({
   category
@@ -61,14 +66,29 @@ function SkillCategoryCard({
   category: typeof skillCategories[0];
 }) {
   return (
-    <div className="card-feature">
-      <h3 className="text-display-lg text-text-primary mb-4">
-        {category.title}
-      </h3>
+    <div className="bg-white border-punchy-lg border-black rounded-card p-6 hover:shadow-xl hover:scale-105 transition-all relative">
+      {/* Decorative icon */}
+      <div className="absolute -top-3 -right-3 z-10">
+        {category.icon === 'thumbs' && <ThumbsUpIcon color="#FFD700" size={32} />}
+        {category.icon === 'star' && <StarIcon color="#00D4FF" size={32} />}
+        {category.icon === 'puzzle' && <PuzzlePieceIcon color="#FFA500" size={32} />}
+      </div>
 
-      <ul className="space-y-2">
+      {/* Title in Speech Bubble */}
+      <div className="mb-6 -mx-2">
+        <SpeechBubble color={category.color} size="md" tailDirection="none">
+          <span className="text-punchy-sm">{category.title}</span>
+        </SpeechBubble>
+      </div>
+
+      {/* Skills list */}
+      <ul className="space-y-3">
         {category.skills.map((skill, i) => (
-          <li key={i} className="text-body-md text-text-secondary">
+          <li
+            key={i}
+            className="text-base text-text-primary font-semibold flex items-center gap-2"
+          >
+            <span className="w-2 h-2 bg-black rounded-full flex-shrink-0"></span>
             {skill}
           </li>
         ))}
@@ -81,17 +101,22 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="bg-section-yellow py-section"
+      className="bg-vibrant-yellow/30 py-section relative"
       aria-label="Skills and Expertise"
     >
       <div className="container-google">
-        {/* Section Heading - GDG 72px */}
-        <h2 className="text-display-xl text-text-primary mb-12">
-          Expertise
-        </h2>
+        {/* Section Heading with decorative elements */}
+        <div className="flex items-center gap-4 mb-12">
+          <h2 className="text-display-xl text-text-primary font-black">
+            Expertise
+          </h2>
+          <div className="hidden md:block">
+            <StarIcon color="#FF69B4" size={45} />
+          </div>
+        </div>
 
         {/* Skill Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category) => (
             <SkillCategoryCard
               key={category.id}

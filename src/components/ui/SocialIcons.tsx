@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Social Icons Component Set - Vibrant Design
  * 

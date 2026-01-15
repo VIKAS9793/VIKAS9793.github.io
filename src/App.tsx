@@ -7,6 +7,7 @@ import AchievementsSection from '@components/AchievementsSection';
 import ContactSection from '@components/ContactSection';
 import FloatingNav from '@components/ui/FloatingNav';
 import ScrollButton from '@components/ui/ScrollButton';
+import { StarIcon } from '@components/ui/SocialIcons';
 import { personalInfo, contactInfo, stats } from '@data/portfolio';
 
 /**
@@ -45,17 +46,17 @@ function App() {
         <ContactSection contactInfo={contactInfo} personalInfo={personalInfo} />
       </main>
 
-      {/* Clean Footer */}
-      <footer className="py-8 pb-24 text-center border-t border-ui-border">
+      {/* Vibrant Footer */}
+      <footer className="py-8 pb-24 text-center border-t-punchy-lg border-black bg-vibrant-pink/10">
         <div className="container-google">
-          <p className="text-text-secondary text-sm">
+          <p className="text-text-primary text-base font-bold">
             © {new Date().getFullYear()} {personalInfo.name}
           </p>
-          <p className="text-text-tertiary text-xs mt-2">
-            Built with constraint-first thinking
+          <p className="text-text-secondary text-sm mt-2 font-semibold">
+            Built with vibrant design & constraint-first thinking
           </p>
-          <p className="text-text-tertiary text-xs mt-1">
-            Inspired by Google's Design Language
+          <p className="text-text-tertiary text-sm mt-1 font-medium">
+            Transformed from Google Design Language to Social Media Aesthetic
           </p>
         </div>
       </footer>
@@ -64,37 +65,47 @@ function App() {
 }
 
 /**
- * About Section - GDG Style
+ * About Section - Vibrant Design
  */
 function AboutSection() {
   return (
-    <section id="about" className="bg-white py-section">
+    <section id="about" className="bg-vibrant-pink/10 py-section relative">
       <div className="container-google max-w-4xl">
-        <h2 className="text-display-xl text-text-primary mb-8">About</h2>
-        <div className="text-body-md text-text-secondary leading-relaxed space-y-6">
-          <p>
+        {/* Header with decorative elements */}
+        <div className="flex items-center gap-4 mb-8">
+          <h2 className="text-display-xl text-text-primary font-black">About</h2>
+          <div className="hidden md:block">
+            <StarIcon color="#00D4FF" size={40} />
+          </div>
+        </div>
+
+        <div className="space-y-8">
+          {/* Story paragraphs with enhanced styling */}
+          <p className="text-lg text-text-primary leading-relaxed font-medium">
             I transitioned into product management after 4+ years in banking operations
             at HDFC Bank and IndusInd Bank. I understand regulated environments,
             compliance constraints, and the operational friction that comes with them.
           </p>
-          <p>
+          <p className="text-lg text-text-primary leading-relaxed font-medium">
             I'm drawn to problems where clarity matters more than speed. Insurance,
             lending, identity verification, government systems. In these domains,
             getting it wrong has consequences.
           </p>
-          <p>
+          <p className="text-lg text-text-primary leading-relaxed font-medium">
             I care about constraint documentation, explicit non-goals, and
-            understanding why things <em>can't</em> be done before proposing
-            what <em>should</em> be done.
+            understanding why things <em className="font-bold text-vibrant-pink">can't</em> be done before proposing
+            what <em className="font-bold text-vibrant-cyan">should</em> be done.
           </p>
-          <div className="flex flex-wrap gap-3 pt-6">
-            <span className="px-4 py-2 bg-google-blue/10 text-google-blue border border-google-blue/30 rounded-pill text-sm font-medium">
+
+          {/* Certifications with vibrant badges */}
+          <div className="flex flex-wrap gap-4 pt-6">
+            <span className="px-5 py-3 bg-vibrant-cyan text-black border-punchy-md border-black rounded-pill text-sm font-bold hover:scale-105 transition-transform">
               IBM AI PM Certified
             </span>
-            <span className="px-4 py-2 bg-google-green/10 text-google-green border border-google-green/30 rounded-pill text-sm font-medium">
+            <span className="px-5 py-3 bg-vibrant-green text-black border-punchy-md border-black rounded-pill text-sm font-bold hover:scale-105 transition-transform">
               Google Project Mgmt
             </span>
-            <span className="px-4 py-2 bg-google-yellow/10 text-google-yellow border border-google-yellow/30 rounded-pill text-sm font-medium">
+            <span className="px-5 py-3 bg-vibrant-yellow text-black border-punchy-md border-black rounded-pill text-sm font-bold hover:scale-105 transition-transform">
               DeepLearning.AI LLMs
             </span>
           </div>

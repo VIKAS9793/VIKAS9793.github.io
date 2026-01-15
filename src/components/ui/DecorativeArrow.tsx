@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Decorative Arrow Component - Vibrant Design
  * 
