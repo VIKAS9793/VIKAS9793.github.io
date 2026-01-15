@@ -3,6 +3,8 @@
  * Fetches repos with 'portfolio' topic for display
  */
 
+import { config } from '@config';
+
 export interface GitHubRepo {
     id: number;
     name: string;
@@ -31,16 +33,13 @@ export interface PortfolioProject {
     image: string;
 }
 
-const GITHUB_USERNAME = 'VIKAS9793';
-const PORTFOLIO_TOPIC = 'portfolio';
-
 /**
  * Fetch all repos with 'portfolio' topic
  */
 export async function fetchPortfolioRepos(): Promise<GitHubRepo[]> {
     try {
         const response = await fetch(
-            `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
+            `https://api.github.com/users/${config.github.username}/repos?per_page=${config.github.perPage}&sort=updated`,
             {
                 headers: {
                     'Accept': 'application/vnd.github.v3+json',
@@ -56,7 +55,7 @@ export async function fetchPortfolioRepos(): Promise<GitHubRepo[]> {
 
         // Filter repos with 'portfolio' topic
         return repos.filter(repo =>
-            repo.topics?.includes(PORTFOLIO_TOPIC) && !repo.name.includes('.github.io')
+            repo.topics?.includes(config.github.portfolioTopic) && !repo.name.includes('.github.io')
         );
     } catch (error) {
         console.error('Failed to fetch GitHub repos:', error);
@@ -98,7 +97,7 @@ export function repoToProject(repo: GitHubRepo): PortfolioProject {
         featured: repo.stargazers_count > 0 || repo.topics.includes('featured'),
         technologies: [
             repo.language || 'Various',
-            ...repo.topics.filter(t => t !== PORTFOLIO_TOPIC && t !== 'featured').slice(0, 5)
+            ...repo.topics.filter(t => t !== config.github.portfolioTopic && t !== 'featured').slice(0, 5)
         ],
         metrics: [
             { label: 'Stars', value: String(repo.stargazers_count) },

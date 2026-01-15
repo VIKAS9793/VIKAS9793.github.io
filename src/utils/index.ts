@@ -104,7 +104,7 @@ export function getNormalizedMousePosition(clientX: number, clientY: number) {
  * Generate a unique ID
  */
 export function generateId(): string {
-  return Math.random().toString(36).substr(2, 9);
+  return Math.random().toString(36).substring(2, 11);
 }
 
 /**
@@ -135,15 +135,21 @@ export function delay(ms: number): Promise<void> {
 export function getContrastColor(hexColor: string): string {
   // Remove # if present
   hexColor = hexColor.replace('#', '');
-  
+
+  // Validate hex color length
+  if (hexColor.length !== 6) {
+    console.warn(`Invalid hex color: ${hexColor}, defaulting to white`);
+    return '#ffffff';
+  }
+
   // Convert to RGB
-  const r = parseInt(hexColor.substr(0, 2), 16);
-  const g = parseInt(hexColor.substr(2, 2), 16);
-  const b = parseInt(hexColor.substr(4, 2), 16);
-  
+  const r = parseInt(hexColor.substring(0, 2), 16);
+  const g = parseInt(hexColor.substring(2, 4), 16);
+  const b = parseInt(hexColor.substring(4, 6), 16);
+
   // Calculate luminance
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  
+
   return luminance > 0.5 ? '#000000' : '#ffffff';
 }
 

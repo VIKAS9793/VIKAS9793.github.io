@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '@components/ui/Button';
+import { FORM } from '../constants';
 
 /**
  * Zod schema for contact form validation
@@ -11,20 +12,20 @@ import Button from '@components/ui/Button';
 const contactFormSchema = z.object({
   name: z
     .string()
-    .min(2, 'Name must be at least 2 characters')
-    .max(50, 'Name must be less than 50 characters'),
+    .min(FORM.VALIDATION.NAME_MIN_LENGTH, `Name must be at least ${FORM.VALIDATION.NAME_MIN_LENGTH} characters`)
+    .max(FORM.VALIDATION.NAME_MAX_LENGTH, `Name must be less than ${FORM.VALIDATION.NAME_MAX_LENGTH} characters`),
   email: z
     .string()
     .email('Please enter a valid email address')
     .min(1, 'Email is required'),
   subject: z
     .string()
-    .min(3, 'Subject must be at least 3 characters')
-    .max(100, 'Subject must be less than 100 characters'),
+    .min(FORM.VALIDATION.SUBJECT_MIN_LENGTH, `Subject must be at least ${FORM.VALIDATION.SUBJECT_MIN_LENGTH} characters`)
+    .max(FORM.VALIDATION.SUBJECT_MAX_LENGTH, `Subject must be less than ${FORM.VALIDATION.SUBJECT_MAX_LENGTH} characters`),
   message: z
     .string()
-    .min(10, 'Message must be at least 10 characters')
-    .max(1000, 'Message must be less than 1000 characters'),
+    .min(FORM.VALIDATION.MESSAGE_MIN_LENGTH, `Message must be at least ${FORM.VALIDATION.MESSAGE_MIN_LENGTH} characters`)
+    .max(FORM.VALIDATION.MESSAGE_MAX_LENGTH, `Message must be less than ${FORM.VALIDATION.MESSAGE_MAX_LENGTH} characters`),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -65,7 +66,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
 
     try {
       // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, FORM.SUBMISSION_TIMEOUT));
 
       // Option 1: mailto: link (Client-side, no backend needed)
       const mailtoLink = `mailto:vikassahani17@gmail.com?subject=${encodeURIComponent(
@@ -87,10 +88,10 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
       setSubmitStatus('success');
       reset();
 
-      // Reset success message after 5 seconds
+      // Reset success message after configured duration
       setTimeout(() => {
         setSubmitStatus('idle');
-      }, 5000);
+      }, FORM.SUCCESS_MESSAGE_DURATION);
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');

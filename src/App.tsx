@@ -1,18 +1,34 @@
 import './index.css';
+import { lazy, Suspense } from 'react';
 import Hero from '@components/Hero';
-import SkillsSection from '@components/SkillsSection';
-import CaseStudy from '@components/CaseStudy';
-import ProjectsSection from '@components/ProjectsSection';
-import AchievementsSection from '@components/AchievementsSection';
-import ContactSection from '@components/ContactSection';
 import FloatingNav from '@components/ui/FloatingNav';
 import ScrollButton from '@components/ui/ScrollButton';
-import { StarIcon } from '@components/ui/SocialIcons';
+import LoadingSpinner from '@components/ui/LoadingSpinner';
 import { personalInfo, contactInfo, stats } from '@data/portfolio';
+
+// Lazy load heavy components for better initial page load
+const SkillsSection = lazy(() => import('@components/SkillsSection'));
+const CaseStudy = lazy(() => import('@components/CaseStudy'));
+const ProjectsSection = lazy(() => import('@components/ProjectsSection'));
+const AchievementsSection = lazy(() => import('@components/AchievementsSection'));
+const AboutSection = lazy(() => import('@components/AboutSection'));
+const ContactSection = lazy(() => import('@components/ContactSection'));
+
+/**
+ * Loading fallback for lazy-loaded sections
+ */
+function SectionLoader() {
+  return (
+    <div className="flex items-center justify-center py-20">
+      <LoadingSpinner size="lg" />
+    </div>
+  );
+}
 
 /**
  * Balanced Portfolio App
  * Sweet spot: Visual polish + Constraint-first content
+ * Performance: Lazy loading for below-the-fold content
  */
 function App() {
   return (
@@ -24,26 +40,29 @@ function App() {
       <ScrollButton />
 
       <main role="main">
-        {/* Hero - Clean text + subtle visuals */}
+        {/* Hero - Clean text + subtle visuals (loaded immediately) */}
         <Hero personalInfo={personalInfo} stats={stats} />
 
-        {/* Skills - Categorized cards (visual polish) */}
-        <SkillsSection />
+        {/* Lazy load below-the-fold sections for better performance */}
+        <Suspense fallback={<SectionLoader />}>
+          {/* Skills - Categorized cards (visual polish) */}
+          <SkillsSection />
 
-        {/* Case Study - THE CORE (constraint-first structure) */}
-        <CaseStudy />
+          {/* Case Study - THE CORE (constraint-first structure) */}
+          <CaseStudy />
 
-        {/* Projects - Cards with GitHub links */}
-        <ProjectsSection />
+          {/* Projects - Cards with GitHub links */}
+          <ProjectsSection />
 
-        {/* Achievements - Product Titans & Certifications */}
-        <AchievementsSection />
+          {/* Achievements - Product Titans & Certifications */}
+          <AchievementsSection />
 
-        {/* About - Inline, grounded */}
-        <AboutSection />
+          {/* About - Inline, grounded */}
+          <AboutSection />
 
-        {/* Contact */}
-        <ContactSection contactInfo={contactInfo} personalInfo={personalInfo} />
+          {/* Contact */}
+          <ContactSection contactInfo={contactInfo} personalInfo={personalInfo} />
+        </Suspense>
       </main>
 
       {/* Vibrant Footer */}
@@ -61,57 +80,6 @@ function App() {
         </div>
       </footer>
     </div>
-  );
-}
-
-/**
- * About Section - Vibrant Design
- */
-function AboutSection() {
-  return (
-    <section id="about" className="bg-vibrant-pink/10 py-section relative">
-      <div className="container-google max-w-4xl">
-        {/* Header with decorative elements */}
-        <div className="flex items-center gap-4 mb-8">
-          <h2 className="text-display-xl text-text-primary font-black">About</h2>
-          <div className="hidden md:block">
-            <StarIcon color="#00D4FF" size={40} />
-          </div>
-        </div>
-
-        <div className="space-y-8">
-          {/* Story paragraphs with enhanced styling */}
-          <p className="text-lg text-text-primary leading-relaxed font-medium">
-            I transitioned into product management after 4+ years in banking operations
-            at HDFC Bank and IndusInd Bank. I understand regulated environments,
-            compliance constraints, and the operational friction that comes with them.
-          </p>
-          <p className="text-lg text-text-primary leading-relaxed font-medium">
-            I'm drawn to problems where clarity matters more than speed. Insurance,
-            lending, identity verification, government systems. In these domains,
-            getting it wrong has consequences.
-          </p>
-          <p className="text-lg text-text-primary leading-relaxed font-medium">
-            I care about constraint documentation, explicit non-goals, and
-            understanding why things <em className="font-bold text-vibrant-pink">can't</em> be done before proposing
-            what <em className="font-bold text-vibrant-cyan">should</em> be done.
-          </p>
-
-          {/* Certifications with vibrant badges */}
-          <div className="flex flex-wrap gap-4 pt-6">
-            <span className="px-5 py-3 bg-vibrant-cyan text-black border-punchy-md border-black rounded-pill text-sm font-bold hover:scale-105 transition-transform">
-              IBM AI PM Certified
-            </span>
-            <span className="px-5 py-3 bg-vibrant-green text-black border-punchy-md border-black rounded-pill text-sm font-bold hover:scale-105 transition-transform">
-              Google Project Mgmt
-            </span>
-            <span className="px-5 py-3 bg-vibrant-yellow text-black border-punchy-md border-black rounded-pill text-sm font-bold hover:scale-105 transition-transform">
-              DeepLearning.AI LLMs
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 
