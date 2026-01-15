@@ -26,6 +26,27 @@ export default {
           yellow: '#fbbc04',
           green: '#34a853',
         },
+        // NEW: Vibrant/Punchy colors for social media aesthetic
+        vibrant: {
+          // Primary punchy colors (high saturation)
+          red: '#FF5757',
+          pink: '#FF69B4',
+          blue: '#1E90FF',
+          cyan: '#00D4FF',
+          green: '#7FFF00',
+          yellow: '#FFD700',
+          orange: '#FFA500',
+
+          // Supporting colors
+          'dark-charcoal': '#1A1D23',
+          'light-beige': '#FFF8DC',
+
+          // Pastel accents for decorative elements
+          'pastel-pink': '#FFB3D9',
+          'mint-green': '#98FB98',
+          'light-blue': '#87CEEB',
+          purple: '#9370DB',
+        },
         // Section Backgrounds - GDG exact colors
         section: {
           yellow: '#f9e6a9',    // Feature cards background
@@ -71,6 +92,11 @@ export default {
         'thick': '4.8px',       // Hero media (GDG signature)
         'card': '2px',          // Standard cards (increased from 1.6px)
         'card-em': '3px',       // Emphasized cards (increased from 2px)
+        // NEW: Punchy borders for vibrant design
+        'punchy-sm': '2px',
+        'punchy-md': '3px',
+        'punchy-lg': '5px',
+        'punchy-xl': '6px',
       },
       borderRadius: {
         'pill': '100px',        // Buttons (GDG standard)
