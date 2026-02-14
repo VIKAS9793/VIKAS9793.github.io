@@ -15,19 +15,19 @@ const PRIORITY_CERT_IDS = [
 function getCertCategory(title: string): { tag: string; color: string } {
   const lower = title.toLowerCase();
   if (lower.includes('mba') || lower.includes('project management')) {
-    return { tag: '🎓 Academic', color: 'bg-google-blue/10 text-google-blue' };
+    return { tag: '🎓 Academic', color: 'bg-vibrant-blue/10 text-vibrant-blue' };
   }
   if (lower.includes('pm') || lower.includes('product') || lower.includes('ux')) {
-    return { tag: '💼 Product', color: 'bg-google-green/10 text-google-green' };
+    return { tag: '💼 Product', color: 'bg-vibrant-green/10 text-vibrant-green' };
   }
-  return { tag: '🤖 AI/ML', color: 'bg-google-yellow/10 text-google-yellow' };
+  return { tag: '🤖 AI/ML', color: 'bg-vibrant-yellow/10 text-vibrant-yellow' };
 }
 
 /**
  * Certification Card with category tag
  */
 function CertCard({ cert, index }: { cert: Certification; index: number }) {
-  const googleColors = ['bg-google-blue', 'bg-google-green', 'bg-google-yellow', 'bg-google-red'];
+  const vibrantColors = ['bg-vibrant-blue', 'bg-vibrant-green', 'bg-vibrant-yellow', 'bg-vibrant-red'];
   const { tag, color } = getCertCategory(cert.title);
 
   return (
@@ -38,16 +38,16 @@ function CertCard({ cert, index }: { cert: Certification; index: number }) {
       </span>
 
       {/* Circular icon */}
-      <div className={`hover-icon w-12 h-12 rounded-full ${googleColors[index % 4]} flex items-center justify-center mx-auto mb-3 shadow-md`}>
+      <div className={`hover-icon w-12 h-12 rounded-full ${vibrantColors[index % 4]} flex items-center justify-center mx-auto mb-3 shadow-elevation-1`}>
         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
         </svg>
       </div>
 
-      <h3 className="font-semibold text-text-primary mb-1 text-xs leading-tight group-hover:text-google-blue transition-colors">
+      <h3 className="font-semibold text-on-surface mb-1 text-xs leading-tight group-hover:text-primary transition-colors">
         {cert.title}
       </h3>
-      <p className="text-xs text-text-secondary">{cert.organization}</p>
+      <p className="text-xs text-on-surface-variant">{cert.organization}</p>
     </div>
   );
 }
@@ -74,12 +74,12 @@ export default function CertificationsSection({ certifications }: Certifications
   return (
     <section
       id="certifications"
-      className="section-blue relative overflow-hidden"
+      className="bg-surface-container relative overflow-hidden py-16"
       aria-labelledby="certifications-heading"
     >
       {/* DevFest Decorative */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-google-green/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-google-yellow/30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-vibrant-green/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-vibrant-yellow/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="container-google relative z-10">
         {/* Header */}
@@ -93,9 +93,9 @@ export default function CertificationsSection({ certifications }: Certifications
 
           {/* Category Legend */}
           <div className="flex flex-wrap justify-center gap-3 text-xs">
-            <span className="px-3 py-1 bg-google-blue/10 text-google-blue rounded-full">🎓 Academic</span>
-            <span className="px-3 py-1 bg-google-yellow/10 text-google-yellow rounded-full">🤖 AI/ML</span>
-            <span className="px-3 py-1 bg-google-green/10 text-google-green rounded-full">💼 Product</span>
+            <span className="px-3 py-1 bg-vibrant-blue/10 text-vibrant-blue rounded-full">🎓 Academic</span>
+            <span className="px-3 py-1 bg-vibrant-yellow/10 text-vibrant-yellow rounded-full">🤖 AI/ML</span>
+            <span className="px-3 py-1 bg-vibrant-green/10 text-vibrant-green rounded-full">💼 Product</span>
           </div>
         </div>
 
@@ -111,7 +111,7 @@ export default function CertificationsSection({ certifications }: Certifications
           <div className="text-center mt-8">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 bg-white rounded-full text-text-primary font-medium shadow-card hover:shadow-card-hover transition-all inline-flex items-center gap-2"
+              className="px-6 py-3 bg-surface rounded-full text-on-surface font-medium shadow-elevation-1 hover:shadow-elevation-2 transition-all inline-flex items-center gap-2"
             >
               {showAll ? 'Show Less' : `View All ${sortedCerts.length} Certifications`}
               <svg
@@ -132,7 +132,7 @@ export default function CertificationsSection({ certifications }: Certifications
             href="https://www.credly.com/users/vikas-sahani.e0a347d7/badges#credly"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-google-blue hover:underline text-sm font-medium"
+            className="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

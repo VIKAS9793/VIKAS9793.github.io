@@ -1,11 +1,13 @@
+// Production Hardening: Ensure proper package is loaded after strict mode fixes
 import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 /**
  * Utility function to combine and conditionally apply CSS classes
  * Similar to the popular `cn` utility from shadcn/ui
  */
 export function cn(...inputs: ClassValue[]) {
-  return clsx(inputs);
+  return twMerge(clsx(inputs));
 }
 
 /**
@@ -171,9 +173,12 @@ export function preloadImage(src: string): Promise<HTMLImageElement> {
 export function isInViewport(element: Element, rootMargin: string = '0px'): Promise<boolean> {
   return new Promise((resolve) => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        resolve(entry.isIntersecting);
-        observer.disconnect();
+      (entries) => {
+        const entry = entries[0];
+        if (entry) {
+          resolve(entry.isIntersecting);
+          observer.disconnect();
+        }
       },
       { rootMargin }
     );
@@ -189,10 +194,10 @@ export function getScrollProgress(element: Element): number {
   const windowHeight = window.innerHeight;
   const elementTop = rect.top;
   const elementHeight = rect.height;
-  
+
   if (elementTop > windowHeight) return 0;
   if (elementTop + elementHeight < 0) return 1;
-  
+
   const visibleHeight = Math.min(windowHeight - elementTop, elementHeight);
   return visibleHeight / elementHeight;
 }
@@ -202,12 +207,12 @@ export function getScrollProgress(element: Element): number {
  */
 export function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
+  return result && result[1] && result[2] && result[3]
     ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16),
+    }
     : null;
 }
 
@@ -222,7 +227,8 @@ export function getRandomBetween(min: number, max: number): number {
  * Get random element from array
  */
 export function getRandomFromArray<T>(array: T[]): T {
-  return array[Math.floor(Math.random() * array.length)];
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return array[Math.floor(Math.random() * array.length)]!;
 }
 
 /**
@@ -246,26 +252,26 @@ export function supportsWebGL(): boolean {
  */
 export function getGPUTier(): 'high' | 'medium' | 'low' {
   if (!supportsWebGL()) return 'low';
-  
+
   try {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl') as WebGLRenderingContext | null;
     if (!gl) return 'low';
-    
+
     const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
     if (!debugInfo) return 'medium';
-    
+
     const renderer = (gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) as string).toLowerCase();
-    
+
     // High-end GPUs
     if (
-      renderer.includes('nvidia') && 
+      renderer.includes('nvidia') &&
       (renderer.includes('rtx') || renderer.includes('gtx'))
     ) return 'high';
-    
+
     if (renderer.includes('amd') && renderer.includes('radeon')) return 'high';
     if (renderer.includes('intel') && renderer.includes('iris')) return 'medium';
-    
+
     // Default to medium for unknown GPUs
     return 'medium';
   } catch (e) {

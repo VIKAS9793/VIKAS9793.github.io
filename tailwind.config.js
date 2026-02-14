@@ -19,103 +19,109 @@ export default {
         'section-lg': '96px',   // GDG large section padding
       },
       colors: {
-        // Google Brand Colors
-        google: {
-          blue: '#1a73e8',      // Primary CTA (exact GDG)
-          red: '#ea4335',
-          yellow: '#fbbc04',
-          green: '#34a853',
-        },
-        // NEW: Vibrant/Punchy colors for social media aesthetic
+        // M3 Semantic Roles (mapped to CSS variables for dynamic theme support)
+        primary: 'var(--md-sys-color-primary)',
+        'on-primary': 'var(--md-sys-color-on-primary)',
+        'primary-container': 'var(--md-sys-color-primary-container)',
+        'on-primary-container': 'var(--md-sys-color-on-primary-container)',
+
+        secondary: 'var(--md-sys-color-secondary)',
+        'on-secondary': 'var(--md-sys-color-on-secondary)',
+        'secondary-container': 'var(--md-sys-color-secondary-container)',
+        'on-secondary-container': 'var(--md-sys-color-on-secondary-container)',
+
+        tertiary: 'var(--md-sys-color-tertiary)',
+        'on-tertiary': 'var(--md-sys-color-on-tertiary)',
+        'tertiary-container': 'var(--md-sys-color-tertiary-container)',
+        'on-tertiary-container': 'var(--md-sys-color-on-tertiary-container)',
+
+        surface: 'var(--md-sys-color-surface)',
+        'on-surface': 'var(--md-sys-color-on-surface)',
+        'surface-container-low': 'var(--md-sys-color-surface-container-low)',
+        'surface-container': 'var(--md-sys-color-surface-container)',
+        'surface-container-high': 'var(--md-sys-color-surface-container-high)',
+        'surface-container-highest': 'var(--md-sys-color-surface-container-highest)',
+        'surface-variant': 'var(--md-sys-color-surface-variant)',
+        'on-surface-variant': 'var(--md-sys-color-on-surface-variant)',
+
+        outline: 'var(--md-sys-color-outline)',
+        'outline-variant': 'var(--md-sys-color-outline-variant)',
+
+        error: 'var(--md-sys-color-error)',
+        'on-error': 'var(--md-sys-color-on-error)',
+        'error-container': 'var(--md-sys-color-error-container)',
+
+        // Vibrant Palette for Portfolio
         vibrant: {
-          // Primary punchy colors (high saturation)
-          red: '#FF5757',
-          pink: '#FF69B4',
-          blue: '#1E90FF',
-          cyan: '#00D4FF',
-          green: '#7FFF00',
-          yellow: '#FFD700',
-          orange: '#FFA500',
+          'cyan': '#00D4FF',
+          'pink': '#FF69B4',
+          'orange': '#FF8C00',
+          'yellow': '#FFD700',
+          'green': '#00E676',
+          'light-beige': '#FFFBF0',
+          'purple': '#9D00FF',
+        },
 
-          // Supporting colors
-          'dark-charcoal': '#1A1D23',
-          'light-beige': '#FFF8DC',
-
-          // Pastel accents for decorative elements
-          'pastel-pink': '#FFB3D9',
-          'mint-green': '#98FB98',
-          'light-blue': '#87CEEB',
-          purple: '#9370DB',
-        },
-        // Section Backgrounds - GDG exact colors
-        section: {
-          yellow: '#f9e6a9',    // Feature cards background
-          blue: '#d2e3fc',      // Community cards background
-          white: '#ffffff',
-          dark: '#202124',      // Dark section background
-          lightgray: '#f8f9fa',
-        },
-        // Text Colors
-        text: {
-          primary: '#202124',
-          secondary: '#5f6368',
-          tertiary: '#80868b',
-          inverse: '#ffffff',
-        },
-        // UI Colors
-        ui: {
-          border: '#dadce0',
-          hover: '#f1f3f4',
-          active: '#e8f0fe',
-        },
-      },
-      fontFamily: {
-        // Google Sans Flex for display/headings
-        display: ['"Google Sans Flex"', 'Inter', 'system-ui', 'sans-serif'],
-        // Inter for body text
-        sans: ['Inter', '"Google Sans Flex"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        // GDG Typography Scale (exact measurements)
-        'display-hero': ['100px', { lineHeight: '100px', letterSpacing: '-0.02em', fontWeight: '500' }],
-        'display-xl': ['72px', { lineHeight: '80px', letterSpacing: '-0.02em', fontWeight: '500' }],
-        'display-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.01em', fontWeight: '500' }],
-        'display-md': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
-        'display-sm': ['1.875rem', { lineHeight: '1.25', letterSpacing: '-0.01em', fontWeight: '500' }],
-        'body-xl': ['20px', { lineHeight: '32px', fontWeight: '400' }],
-        'body-lg': ['1.125rem', { lineHeight: '1.75', fontWeight: '400' }],
-        'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
-        'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }],
-        'label': ['0.875rem', { lineHeight: '1.25', fontWeight: '500' }],
-      },
-      borderWidth: {
-        'thick': '4.8px',       // Hero media (GDG signature)
-        'card': '2px',          // Standard cards (increased from 1.6px)
-        'card-em': '3px',       // Emphasized cards (increased from 2px)
-        // NEW: Punchy borders for vibrant design
-        'punchy-sm': '2px',
-        'punchy-md': '3px',
-        'punchy-lg': '5px',
-        'punchy-xl': '6px',
+        // M3 Type Scale (Exact)
+        'display-lg': ['57px', { lineHeight: '64px', letterSpacing: '-0.25px' }],
+        'display-md': ['45px', { lineHeight: '52px', letterSpacing: '0px' }],
+        'display-sm': ['36px', { lineHeight: '44px', letterSpacing: '0px' }],
+
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '0px' }],
+        'headline-md': ['28px', { lineHeight: '36px', letterSpacing: '0px' }],
+        'headline-sm': ['24px', { lineHeight: '32px', letterSpacing: '0px' }],
+
+        'title-lg': ['22px', { lineHeight: '28px', letterSpacing: '0px' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0.15px' }],
+        'title-sm': ['14px', { lineHeight: '20px', letterSpacing: '0.1px' }],
+
+        'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '0.5px' }],
+        'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0.25px' }],
+        'body-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.4px' }],
+
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.1px' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.5px' }],
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.5px' }],
       },
       borderRadius: {
-        'pill': '100px',        // Buttons (GDG standard)
-        'card': '32px',         // ALL cards (GDG standard)
-        'card-inner': '16px',   // Inner elements within cards
+        'none': '0',
+        'xs': 'var(--md-sys-shape-corner-xs)', // 4px
+        'sm': 'var(--md-sys-shape-corner-sm)', // 8px
+        'md': 'var(--md-sys-shape-corner-md)', // 12px (Cards)
+        'lg': 'var(--md-sys-shape-corner-lg)', // 16px
+        'xl': 'var(--md-sys-shape-corner-xl)', // 28px
+        'full': 'var(--md-sys-shape-corner-full)', // Pill
+        'card': 'var(--md-sys-shape-corner-md)', // 12px (M3 Standard)
       },
       boxShadow: {
-        'card': '0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)',
-        'card-hover': '0 4px 20px rgba(0,0,0,0.1)',
-        'nav': '0 2px 8px rgba(0,0,0,0.12)',
-        'pill': '0 1px 3px rgba(0,0,0,0.1)',
+        'elevation-0': '0 0 0 0 transparent',
+        'elevation-1': '0 1px 2px 0 rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.15)', // M3 Level 1
+        'elevation-2': '0 1px 2px 0 rgba(0,0,0,0.3), 0 2px 6px 2px rgba(0,0,0,0.15)', // M3 Level 2
+        'elevation-3': '0 4px 8px 3px rgba(0,0,0,0.15), 0 1px 3px 0 rgba(0,0,0,0.3)', // M3 Level 3
+        'elevation-4': '0 6px 10px 4px rgba(0,0,0,0.15), 0 2px 3px 0 rgba(0,0,0,0.3)', // M3 Level 4
+        'elevation-5': '0 8px 12px 6px rgba(0,0,0,0.15), 0 4px 4px 0 rgba(0,0,0,0.3)', // M3 Level 5
+        'nav': '0 4px 20px rgba(0, 0, 0, 0.08)', // Floating Nav Shadow
       },
       animation: {
-        'fade-in': 'fadeIn 0.3s ease-out',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
         },
       },
     },

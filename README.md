@@ -4,13 +4,14 @@ A modern, responsive portfolio website featuring a **vibrant social media aesthe
 
 <div align="center">
   
-## 🚀 [View Live Portfolio](https://myportfoliohubexpo.netlify.app)
+## 🚀 [View Live Portfolio](https://vikas9793.github.io/)
 
-[![Netlify Live](https://img.shields.io/badge/Netlify-Live-00C7B7?style=for-the-badge&logo=netlify)](https://myportfoliohubexpo.netlify.app)
-[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-181717?style=for-the-badge&logo=github)](https://vikas9793.github.io/)
-[![Inspired by Google](https://img.shields.io/badge/Inspired_by-Google_Design-4285F4?style=for-the-badge&logo=google)](https://developers.google.com/)
+[![GitHub Pages](https://img.shields.io/badge/Status-Deployed-success?style=for-the-badge&logo=github)](https://vikas9793.github.io/)
+[![Material 3](https://img.shields.io/badge/Design-Material_3-7C4DFF?style=for-the-badge&logo=material-design)](https://m3.material.io/)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-100-00C853?style=for-the-badge&logo=lighthouse)](https://vikas9793.github.io/)
-[![Performance](https://img.shields.io/badge/Performance-100-00C853?style=for-the-badge)](https://vikas9793.github.io/)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)](https://github.com/VIKAS9793/VIKAS9793.github.io/releases)
+
+![Featured Work Section Polished](file:///C:/Users/vikas/.gemini/antigravity/brain/74f0318f-2bdb-4fc3-9fda-95fdd843e180/featured_work_images_check_1771074292406.png)
 
 </div>
 

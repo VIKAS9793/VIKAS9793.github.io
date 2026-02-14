@@ -27,6 +27,8 @@ interface CaseStudyVideoCardProps {
  * - Optional Role/Scope context box
  * - Figma/GitHub prototype link
  */
+import StateLayer from './StateLayer';
+
 export const CaseStudyVideoCard: React.FC<CaseStudyVideoCardProps> = ({
     title,
     description,
@@ -39,57 +41,58 @@ export const CaseStudyVideoCard: React.FC<CaseStudyVideoCardProps> = ({
     const getYouTubeId = (url: string) => {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url.match(regExp);
-        return match && match[2].length === 11 ? match[2] : null;
+        return match && match[2] && match[2].length === 11 ? match[2] : null;
     };
 
     const videoId = getYouTubeId(videoUrl);
 
     return (
         <div className="glow-halo">
-            <div className="bg-section-dark rounded-[28px] p-8 md:p-12 lg:p-16">
-                <div className="container-google">
+            <div className="group relative overflow-hidden bg-surface-container-high rounded-[28px] p-8 md:p-12 lg:p-16 shadow-elevation-1 transition-all duration-300 hover:shadow-elevation-2">
+                <StateLayer />
+                <div className="container-google relative z-10">
                     <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                         {/* Content - Left Side */}
                         <div className="space-y-6">
                             {/* Label with Gradient */}
-                            <p className="text-gradient-blue text-sm font-medium uppercase tracking-wider">
+                            <p className="text-primary text-sm font-medium uppercase tracking-wider">
                                 {label}
                             </p>
 
                             {/* Title */}
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-text-inverse font-medium leading-tight">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-on-surface-variant font-medium leading-tight">
                                 {title}
                             </h2>
 
                             {/* Description */}
-                            <p className="text-lg text-gray-300 leading-relaxed">
+                            <p className="text-lg text-on-surface-variant/80 leading-relaxed">
                                 {description}
                             </p>
 
                             {/* Role & Scope Box - Optional */}
                             {roleScope && (
-                                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-3">
-                                    <h3 className="text-sm font-semibold text-white uppercase tracking-wide">
+                                <div className="bg-surface-container-highest/50 border border-outline-variant rounded-2xl p-5 space-y-3">
+                                    <h3 className="text-sm font-semibold text-on-surface uppercase tracking-wide">
                                         {roleScope.title}
                                     </h3>
 
-                                    <div className="space-y-2 text-sm text-gray-300">
+                                    <div className="space-y-2 text-sm text-on-surface-variant">
                                         <div className="flex gap-2">
-                                            <span className="text-google-blue font-medium">Role:</span>
+                                            <span className="text-primary font-medium">Role:</span>
                                             <span>{roleScope.role}</span>
                                         </div>
                                         <div className="flex gap-2">
-                                            <span className="text-google-blue font-medium">Scope:</span>
+                                            <span className="text-primary font-medium">Scope:</span>
                                             <span>{roleScope.scope}</span>
                                         </div>
                                         <div className="flex gap-2">
-                                            <span className="text-google-blue font-medium">Tools:</span>
+                                            <span className="text-primary font-medium">Tools:</span>
                                             <span>{roleScope.tools}</span>
                                         </div>
                                     </div>
 
                                     {roleScope.note && (
-                                        <p className="text-xs text-gray-400 italic pt-2 border-t border-white/10">
+                                        <p className="text-xs text-on-surface-variant/60 italic pt-2 border-t border-outline-variant">
                                             {roleScope.note}
                                         </p>
                                     )}

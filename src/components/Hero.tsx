@@ -14,7 +14,7 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="bg-white py-section-lg relative overflow-hidden"
+      className="bg-surface py-24 relative overflow-hidden"
       aria-label="Introduction"
     >
       <div className="container-google">
@@ -24,7 +24,7 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
           <div className="relative z-10">
             {/* Name - Punchy typography */}
             <div className="relative">
-              <h1 className="text-7xl lg:text-8xl font-black text-text-primary mb-4 leading-none">
+              <h1 className="text-display-lg lg:text-display-xl font-black text-on-surface mb-4 leading-none">
                 {personalInfo.name}
               </h1>
 
@@ -40,7 +40,7 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
             {/* Speech Bubble - Product Manager */}
             <div className="mb-6 relative">
               <SpeechBubble color="pink" size="md" tailDirection="none">
-                <span className="text-punchy-md">Product Manager</span>
+                <span className="text-title-lg font-bold">Product Manager</span>
               </SpeechBubble>
 
               {/* Decorative plus sign */}
@@ -52,12 +52,12 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
             {/* Speech Bubble - AI & ML Focus */}
             <div className="mb-6 relative">
               <SpeechBubble color="cyan" size="md" tailDirection="none">
-                <span className="text-punchy-sm">AI & ML Focus • Responsible AI</span>
+                <span className="text-title-md font-bold">AI & ML Focus • Responsible AI</span>
               </SpeechBubble>
             </div>
 
             {/* Value proposition */}
-            <p className="text-lg text-text-secondary leading-relaxed mb-4 max-w-xl">
+            <p className="text-body-lg text-on-surface-variant leading-relaxed mb-4 max-w-xl">
               I build structured product case studies that focus on real user friction,
               measurable outcomes, and execution-ready decisions. My work includes problem
               framing, personas, journey mapping, prioritization (RICE), North Star metrics,
@@ -66,8 +66,8 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
             </p>
 
             {/* Focus areas */}
-            <p className="text-base text-text-tertiary mb-6 max-w-xl">
-              <span className="font-medium">Focused on:</span> Consumer journeys • Trust systems • AI-enabled workflows
+            <p className="text-body-md text-on-surface-variant/80 mb-6 max-w-xl">
+              <span className="font-medium text-on-surface">Focused on:</span> Consumer journeys • Trust systems • AI-enabled workflows
             </p>
 
             {/* Achievement Proof Card - Vibrant styling */}
@@ -76,10 +76,10 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
                 <span className="px-3 py-1.5 bg-vibrant-orange text-black text-sm font-bold rounded-pill border-2 border-black">
                   🏆 Runner-up (Rank 2)
                 </span>
-                <span className="text-text-primary font-bold text-sm">
+                <span className="text-on-surface font-bold text-sm">
                   Product Titans PM Challenge
                 </span>
-                <span className="text-text-secondary text-sm font-semibold">
+                <span className="text-on-surface-variant text-sm font-semibold">
                   Score: 6.4 • Solo Team: North Star Hunter
                 </span>
               </div>
@@ -111,7 +111,7 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
               </a>
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-pill font-bold transition-all duration-200 border-punchy-md border-black px-6 py-3 text-text-primary bg-white hover:bg-gray-50"
+                className="inline-flex items-center justify-center rounded-full font-bold transition-all duration-200 border-2 border-outline px-6 py-3 text-on-surface bg-surface hover:bg-surface-container-high"
               >
                 Projects
               </a>
@@ -127,8 +127,8 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
           <div className="flex justify-center lg:justify-end relative">
             <div className="relative">
               <img
-                src="/images/profile.jpg"
-                alt={personalInfo.name}
+                src="/images/profile-avatar.png"
+                alt={`${personalInfo.name} - AI Product Manager`}
                 className="w-72 h-72 lg:w-80 lg:h-80 object-cover rounded-card border-punchy-lg border-black"
               />
 

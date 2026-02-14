@@ -6,7 +6,7 @@ import { CaseStudyVideoCard } from './ui/CaseStudyVideoCard';
  */
 export default function CaseStudy() {
     return (
-        <section id="case-study" className="section-white py-section">
+        <section id="case-study" className="bg-surface py-section">
             <div className="space-y-16">
                 <CaseStudyVideoCard
                     title="Fintech Onboarding Clarity"

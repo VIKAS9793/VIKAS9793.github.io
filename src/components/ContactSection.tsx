@@ -80,13 +80,21 @@ export default function ContactSection({ contactInfo, personalInfo }: ContactSec
             </div>
           </div>
 
-          {/* Right - CTA */}
-          <div className="flex flex-col justify-center">
+          {/* Right - CTA & Visual */}
+          <div className="flex flex-col justify-center relative">
+            {/* Decorative Illustration */}
+            <div className="mb-8 hidden lg:block">
+              <img
+                src="/images/contact-connect.png"
+                alt="Global connection illustration"
+                className="w-full max-w-sm mx-auto"
+              />
+            </div>
             <h3 className="text-display-lg text-text-primary mb-4 font-black">
               Let's Build Something Great
             </h3>
             <p className="text-lg text-text-primary mb-8 font-medium leading-relaxed">
-              Open to opportunities in AI Product Management and strategic consulting.
+              Open to opportunities in AI Product Management and AI Product Strategy.
               Let's build something extraordinary together.
             </p>
 

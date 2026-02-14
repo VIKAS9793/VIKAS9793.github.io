@@ -60,14 +60,90 @@
     font-variation-settings: 'ROND' 0, 'wght' 600;
   }
 
-  /* Extra playful headings - higher roundedness */
-  .heading-playful {
-    font-variation-settings: 'ROND' 80, 'wght' 700;
+  /* ===== M3 DESIGN SYSTEM TOKENS ===== */
+  /* Source: m3_visual_cue_report.md */
+  :root {
+    /* 1. M3 Color System (Dynamic Roles) */
+    /* Primary (Deep Blue) */
+    --md-sys-color-primary: #0b57d0;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #d3e3fd;
+    --md-sys-color-on-primary-container: #041e49;
+
+    /* Secondary (Teal/Green for Fintech/AI) */
+    --md-sys-color-secondary: #00639b;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #cce5ff;
+    --md-sys-color-on-secondary-container: #001d32;
+
+    /* Tertiary (Vibrant Purple for "Lively" feel) */
+    --md-sys-color-tertiary: #7c4e7e;
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #ffd7f5;
+    --md-sys-color-on-tertiary-container: #300b34;
+
+    /* Surface (Tinted) */
+    --md-sys-color-surface: #f8f9fa;
+    /* Surface Dim/Container Low */
+    --md-sys-color-on-surface: #191c20;
+    --md-sys-color-surface-container-low: #f3f5f7;
+    --md-sys-color-surface-container: #eeeff1;
+    --md-sys-color-surface-container-high: #e9ebed;
+    --md-sys-color-surface-container-highest: #e0e2e5;
+    --md-sys-color-surface-variant: #e0e2e5;
+    --md-sys-color-on-surface-variant: #444746;
+
+    /* Outline */
+    --md-sys-color-outline: #747775;
+    --md-sys-color-outline-variant: #c4c7c5;
+
+    /* Error */
+    --md-sys-color-error: #ba1a1a;
+    --md-sys-color-on-error: #ffffff;
+    --md-sys-color-error-container: #ffdad6;
+
+    /* 2. Shape Tokens */
+    --md-sys-shape-corner-xs: 4px;
+    --md-sys-shape-corner-sm: 8px;
+    --md-sys-shape-corner-md: 12px;
+    --md-sys-shape-corner-lg: 16px;
+    --md-sys-shape-corner-xl: 28px;
+    --md-sys-shape-corner-full: 9999px;
+
+    /* 3. Animation Timing (Standard) */
+    --md-sys-motion-easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+    --md-sys-motion-duration-short: 200ms;
+    --md-sys-motion-duration-medium: 400ms;
+    --md-sys-motion-duration-long: 600ms;
   }
 
-  /* Sharp/professional headings - minimal roundedness */
-  .heading-sharp {
-    font-variation-settings: 'ROND' 0, 'wght' 600;
+  /* Dark Mode Overrides */
+  .dark {
+    --md-sys-color-primary: #a8c7fa;
+    --md-sys-color-on-primary: #002f6a;
+    --md-sys-color-primary-container: #0b57d0;
+    --md-sys-color-on-primary-container: #d3e3fd;
+
+    --md-sys-color-secondary: #97cbff;
+    --md-sys-color-on-secondary: #003353;
+    --md-sys-color-secondary-container: #004a76;
+    --md-sys-color-on-secondary-container: #cce5ff;
+
+    --md-sys-color-tertiary: #ebbdec;
+    --md-sys-color-on-tertiary: #4a214d;
+    --md-sys-color-tertiary-container: #633765;
+    --md-sys-color-on-tertiary-container: #ffd7f5;
+
+    --md-sys-color-surface: #111318;
+    --md-sys-color-on-surface: #e2e2e6;
+    --md-sys-color-surface-container-low: #191c20;
+    --md-sys-color-surface-container: #1d2024;
+    --md-sys-color-surface-container-high: #272a2e;
+    --md-sys-color-surface-variant: #444746;
+    --md-sys-color-on-surface-variant: #c4c7c5;
+
+    --md-sys-color-outline: #8e918f;
+    --md-sys-color-outline-variant: #444746;
   }
 
   /* NEW: Punchy typography for vibrant social media aesthetic */
@@ -147,60 +223,63 @@
 
   /* Google-style pill button - Primary */
   .btn-pill {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-pill font-medium text-sm transition-all duration-200;
-    @apply bg-google-blue text-white hover:shadow-card-hover active:scale-95;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-sm transition-all duration-200;
+    @apply bg-primary text-on-primary hover:shadow-elevation-1 active:scale-95;
   }
 
   /* Pill button - Secondary (outline) */
   .btn-pill-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-pill font-medium text-sm transition-all duration-200;
-    @apply border-2 border-google-blue text-google-blue bg-transparent hover:bg-google-blue/5;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-sm transition-all duration-200;
+    @apply border border-outline text-primary bg-transparent hover:bg-primary-container transition-colors;
   }
 
   /* GDG Primary Button - Pill style */
   .btn-pill-primary {
-    @apply inline-flex items-center justify-center rounded-pill font-medium transition-all duration-200;
-    background: #1a73e8;
-    color: #ffffff;
+    @apply inline-flex items-center justify-center rounded-full font-medium transition-all duration-200;
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
     padding: 12px 24px;
     font-size: 20px;
     font-weight: 500;
   }
 
   .btn-pill-primary:hover {
-    box-shadow: 0 4px 20px rgba(26, 115, 232, 0.3);
+    box-shadow: var(--md-sys-elevation-2);
+    /* You might need to define this var or use class */
+    @apply shadow-elevation-2;
     transform: translateY(-2px);
   }
 
   /* GDG Secondary Button - For dark sections */
   .btn-pill-secondary {
-    @apply inline-flex items-center justify-center rounded-pill font-medium transition-all duration-200;
+    @apply inline-flex items-center justify-center rounded-full font-medium transition-all duration-200;
     background: transparent;
-    color: #ffffff;
-    border: 1.6px solid #ffffff;
+    color: var(--md-sys-color-on-surface);
+    border: 1px solid var(--md-sys-color-outline);
     padding: 12px 24px;
     font-size: 20px;
     font-weight: 500;
   }
 
-  /* GDG Feature card - Neo-brutalist style */
+  /* GDG Feature card - M3 Elevated Card */
   .card-feature {
-    @apply bg-white rounded-card p-6 transition-all duration-200;
-    border: 2px solid #000000;
+    @apply bg-surface-container-low rounded-md p-6 transition-all duration-200;
+    /* M3 cards don't usually have borders unless outlined, but elevated ones do not */
+    @apply shadow-elevation-1;
   }
 
   .card-feature:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    @apply shadow-elevation-2;
     transform: translateY(-2px);
   }
 
   /* Section containers with colored backgrounds */
   .section-white {
-    @apply bg-section-white py-16 md:py-24;
+    @apply bg-surface py-16 md:py-24;
   }
 
   .section-dark {
-    @apply bg-section-dark py-16 md:py-24;
+    @apply bg-surface-container-high py-16 md:py-24;
   }
 
   /* Container */
@@ -210,54 +289,54 @@
 
   /* Section title - Google style */
   .title-display {
-    @apply text-display-lg md:text-display-xl text-text-primary;
+    @apply text-display-lg md:text-display-xl text-on-surface;
   }
 
   .title-section {
-    @apply text-display-md md:text-display-lg text-text-primary;
+    @apply text-display-md md:text-display-lg text-on-surface;
   }
 
   .title-subsection {
-    @apply text-display-sm text-text-primary;
+    @apply text-display-sm text-on-surface;
   }
 
   /* Body text */
   .body-large {
-    @apply text-body-lg text-text-secondary;
+    @apply text-body-lg text-on-surface-variant;
   }
 
   .body-default {
-    @apply text-body-md text-text-secondary;
+    @apply text-body-md text-on-surface-variant;
   }
 
   /* Icon containers */
   .icon-circle {
-    @apply w-12 h-12 rounded-full bg-section-lightgray flex items-center justify-center;
+    @apply w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center;
   }
 
   .icon-circle-lg {
-    @apply w-20 h-20 rounded-full bg-section-lightgray flex items-center justify-center;
+    @apply w-20 h-20 rounded-full bg-surface-container-highest flex items-center justify-center;
   }
 
   /* Floating navigation pill */
   .nav-floating {
     @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50;
-    @apply glass-nav rounded-pill px-2 py-2 shadow-nav;
+    @apply glass-nav rounded-full px-2 py-2 shadow-nav;
   }
 
   .nav-item {
-    @apply px-4 py-2 rounded-pill text-sm font-medium text-text-secondary transition-all duration-200;
-    @apply hover:bg-ui-hover hover:text-text-primary;
+    @apply px-4 py-2 rounded-full text-sm font-medium text-on-surface-variant transition-all duration-200;
+    @apply hover:bg-surface-variant hover:text-on-surface;
   }
 
   .nav-item-active {
-    @apply px-4 py-2 rounded-pill text-sm font-medium transition-all duration-200;
-    @apply bg-section-dark text-white;
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200;
+    @apply bg-secondary-container text-on-secondary-container;
   }
 
   /* Tab interface (for skills section) */
   .tab-container {
-    @apply flex gap-2 p-1 bg-white/10 rounded-pill;
+    @apply flex gap-2 p-1 bg-white/10 rounded-full;
   }
 
   .tab-item {
@@ -272,8 +351,8 @@
 
   /* Badge */
   .badge {
-    @apply inline-flex items-center px-3 py-1 rounded-pill text-xs font-medium;
-    @apply bg-google-blue/10 text-google-blue;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+    @apply bg-secondary-container text-on-secondary-container;
   }
 }
 
@@ -369,9 +448,9 @@
 }
 
 .flip-card-back {
-  background: linear-gradient(135deg, #4285f4, #34a853);
+  background: linear-gradient(135deg, var(--md-sys-color-primary), var(--md-sys-color-secondary));
   transform: rotateY(180deg);
-  color: white;
+  color: var(--md-sys-color-on-primary);
 }
 
 /* Carousel/Slider - for Projects */

@@ -17,12 +17,12 @@ export const personalInfo: PersonalInfo = {
       I understand regulated environments, compliance constraints, and the operational
       friction that comes with them.
     </p>
-    IBM & Google certified professional specializing in Generative AI and LLM features with a proven track record in product management and strategic consulting.
+    IBM & Google certified professional specializing in Generative AI and LLM features with a proven track record in product management and AI strategy.
   `,
   location: "India",
   email: "vikassahani17@gmail.com",
   phone: "+91 7715072817",
-  avatar: "/images/portfolio banner.png"
+  avatar: "/images/profile-avatar.png"
 };
 
 export const stats: Stat[] = [

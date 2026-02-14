@@ -1,4 +1,5 @@
 import SpeechBubble from '@components/ui/SpeechBubble';
+import { Marquee } from '@components/ui/Marquee';
 import { StarIcon, PuzzlePieceIcon, ThumbsUpIcon } from '@components/ui/SocialIcons';
 
 /**
@@ -124,6 +125,20 @@ export default function SkillsSection() {
             />
           ))}
         </div>
+      </div>
+      <div className="mt-16 overflow-hidden">
+        <Marquee direction="left" speed="normal" className="py-8">
+          {[
+            "Python", "TensorFlow", "PyTorch", "React", "TypeScript",
+            "Figma", "Jira", "SQL", "Tableau", "AWS", "GCP", "Docker"
+          ].map((skill, i) => (
+            <div key={i} className="mx-8 flex items-center gap-2">
+              <span className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-vibrant-pink to-vibrant-orange opacity-80">
+                {skill}
+              </span>
+            </div>
+          ))}
+        </Marquee>
       </div>
     </section>
   );

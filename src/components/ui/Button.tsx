@@ -1,9 +1,9 @@
-import { forwardRef, type ButtonHTMLAttributes } from 'react';
-import { motion, type MotionProps } from 'framer-motion';
+import { forwardRef } from 'react';
+import { motion, type MotionProps, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '@utils';
 import LoadingSpinner from './LoadingSpinner';
 
-interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onAnimationStart' | 'onDrag' | 'onDragEnd' | 'onDragStart'> {
+interface ButtonProps extends Omit<HTMLMotionProps<"button">, 'ref' | 'onAnimationStart' | 'onDrag' | 'onDragEnd' | 'onDragStart'> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'outline' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
@@ -56,10 +56,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 
   const content = (
     <>
-      {loading && <LoadingSpinner size="sm" variant="white" />}
-      {!loading && leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
-      <span className={cn(loading && 'opacity-0')}>{children}</span>
-      {!loading && rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
+      {loading ? <LoadingSpinner size="sm" variant="white" /> : null}
+      {!loading && leftIcon ? <span className="flex-shrink-0">{leftIcon}</span> : null}
+      <motion.span className={cn(loading && 'opacity-0')}>{children}</motion.span>
+      {!loading && rightIcon ? <span className="flex-shrink-0">{rightIcon}</span> : null}
     </>
   );
 
@@ -83,10 +83,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       >
         {content}
         {external && (
-          <svg 
-            className="w-4 h-4 ml-1" 
-            fill="none" 
-            stroke="currentColor" 
+          <svg
+            className="w-4 h-4 ml-1"
+            fill="none"
+            stroke="currentColor"
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
@@ -128,7 +128,7 @@ export const IconButton = forwardRef<HTMLButtonElement, Omit<ButtonProps, 'leftI
 }, ref) => {
   const iconSizes = {
     sm: 'w-8 h-8',
-    md: 'w-10 h-10', 
+    md: 'w-10 h-10',
     lg: 'w-12 h-12'
   };
 
