@@ -64,7 +64,7 @@ function App() {
           {/* Projects - Cards with GitHub links */}
           <ProjectsSection />
 
-          {/* Certifications (renamed content in file) */}
+          {/* Certifications & Achievements */}
           <AchievementsSection />
 
           {/* Product Measurement & Distribution */}

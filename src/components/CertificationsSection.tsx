@@ -3,12 +3,12 @@ import type { CertificationsSectionProps, Certification } from '@types';
 
 // Priority order for certifications (top 6 always visible)
 const PRIORITY_CERT_IDS = [
-  'ai-pm-ibm',
-  'genai-pm-pmi',
-  'mba-essentials',
-  'genai-sw-vanderbilt',
-  'llm-pretraining',
-  'ai-agents-crewai'
+  'google-ai-professional',
+  'ibm-ai-pm',
+  'pmi-genai',
+  'vanderbilt-genai',
+  'crewai-agents',
+  'google-pm'
 ];
 
 // Category tags for certifications

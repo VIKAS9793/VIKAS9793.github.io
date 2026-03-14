@@ -131,24 +131,21 @@ export default function AchievementsSection() {
                     </div>
                 </div>
 
-                {/* Other Certifications - Vibrant Grid */}
+                {/* Featured Certifications - Vibrant Grid */}
                 <div className="mt-12">
-                    <h3 className="text-display-md text-text-primary mb-6 font-black">Certifications</h3>
+                    <h3 className="text-display-md text-text-primary mb-6 font-black">Professional Certifications</h3>
                     <div className="grid md:grid-cols-3 gap-6">
-                        <div className="bg-vibrant-cyan border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform">
-                            {/* Icons removed as requested for product positioning */}
-                            <h4 className="font-black text-text-primary text-base mb-2">IBM AI Product Manager Professional Certificate</h4>
+                        <div className="bg-vibrant-cyan border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform flex flex-col justify-center min-h-[140px]">
+                            <h4 className="font-black text-text-primary text-base mb-2 leading-tight">IBM – AI Product Manager Professional Certificate</h4>
                             <p className="text-sm text-text-secondary font-semibold">IBM Professional Certificate</p>
                         </div>
-                        <div className="bg-vibrant-green border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform">
-                            {/* Icons removed as requested for product positioning */}
-                            <h4 className="font-black text-text-primary text-base mb-2">Google Project Management Professional Certificate</h4>
-                            <p className="text-sm text-text-secondary font-semibold">Google Certificate</p>
+                        <div className="bg-vibrant-green border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform flex flex-col justify-center min-h-[140px]">
+                            <h4 className="font-black text-text-primary text-base mb-2 leading-tight">Google – AI Professional Certificate & Project Management</h4>
+                            <p className="text-sm text-text-secondary font-semibold">Google Career Certificates</p>
                         </div>
-                        <div className="bg-vibrant-yellow border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform">
-                            {/* Icons removed as requested for product positioning */}
-                            <h4 className="font-black text-text-primary text-base mb-2">AI Agents & LLMs – DeepLearning.AI</h4>
-                            <p className="text-sm text-text-secondary font-semibold">DeepLearning.AI</p>
+                        <div className="bg-vibrant-yellow border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform flex flex-col justify-center min-h-[140px]">
+                            <h4 className="font-black text-text-primary text-base mb-2 leading-tight">Meta – Principles of UX/UI Design</h4>
+                            <p className="text-sm text-text-secondary font-semibold">Meta Professional Certificate</p>
                         </div>
                     </div>
                 </div>

@@ -385,94 +385,22 @@ export const simulations: Simulation[] = [
 
 export const certifications: Certification[] = [
   {
-    id: "google-ai-essentials",
-    title: "Google AI Essentials Specialization",
-    organization: "Google (Coursera)",
-    icon: "✨"
-  },
-  {
-    id: "google-ai-professional",
-    title: "Google AI Professional",
-    organization: "Google Career Certificates",
-    icon: "✨"
-  },
-  {
-    id: "google-people-mgmt",
-    title: "People Management Essentials",
-    organization: "Google Professional Certificate",
-    icon: "👥"
-  },
-  {
-    id: "gatech-ux",
-    title: "Introduction to User Experience Design",
-    organization: "Georgia Institute of Technology",
-    icon: "🎨"
-  },
-  {
     id: "ibm-ai-pm",
     title: "IBM AI Product Manager Professional Certificate",
     organization: "IBM Professional Certificate",
     icon: "🏆"
   },
   {
-    id: "google-pm",
-    title: "Google Project Management Professional Certificate",
-    organization: "Google Certificate",
-    icon: "🎯"
+    id: "google-ai-professional",
+    title: "Google AI Professional Certificate & Project Management",
+    organization: "Google Career Certificates",
+    icon: "✨"
   },
   {
-    id: "pmi-genai",
-    title: "PMI Generative AI for PMs",
-    organization: "PMI Certificate",
-    icon: "⚡"
-  },
-  {
-    id: "glasgow-mba",
-    title: "MBA Essentials",
-    organization: "University of Glasgow",
-    icon: "🧠"
-  },
-  {
-    id: "vanderbilt-genai",
-    title: "Gen AI Software Engineering",
-    organization: "Vanderbilt University",
-    icon: "🤖"
-  },
-  {
-    id: "crewai-agents",
-    title: "AI Agents & Agentic AI",
-    organization: "CrewAI, DeepLearning.AI",
-    icon: "🔮"
-  },
-  {
-    id: "google-genai",
-    title: "Gen AI Essentials",
-    organization: "Google Cloud",
-    icon: "☁️"
-  },
-  {
-    id: "langchain-apps",
-    title: "LangChain Applications",
-    organization: "DeepLearning.AI",
-    icon: "🔗"
-  },
-  {
-    id: "llm-pretraining",
-    title: "AI Agents & LLMs – DeepLearning.AI",
-    organization: "DeepLearning.AI",
-    icon: "🎓"
-  },
-  {
-    id: "responsible-ai",
-    title: "Responsible AI & Ethics",
-    organization: "Rutgers, Google Cloud",
-    icon: "⚖️"
-  },
-  {
-    id: "machine-learning",
-    title: "Machine Learning",
-    organization: "O.P. Jindal Global",
-    icon: "🔬"
+    id: "meta-ux",
+    title: "Meta – Principles of UX/UI Design",
+    organization: "Meta Professional Certificate",
+    icon: "🎨"
   }
 ];
 
