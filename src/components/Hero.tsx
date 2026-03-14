@@ -27,6 +27,9 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
               <h1 className="text-display-lg lg:text-display-xl font-black text-on-surface mb-4 leading-none">
                 {personalInfo.name}
               </h1>
+              <p className="text-body-sm font-bold text-vibrant-blue mb-6">
+                Shipped AI products with product analytics and early adoption tracking.
+              </p>
 
               {/* Decorative star icons around name */}
               <div className="absolute -top-4 -right-4 hidden lg:block">
@@ -40,7 +43,7 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
             {/* Speech Bubble - Product Manager */}
             <div className="mb-6 relative">
               <SpeechBubble color="pink" size="md" tailDirection="none">
-                <span className="text-title-lg font-bold">Product Manager</span>
+                <span className="text-title-sm lg:text-title-md font-bold">AI Product Manager | 0→1 Products | Product Analytics | GenAI Systems</span>
               </SpeechBubble>
 
               {/* Decorative plus sign */}
@@ -49,20 +52,13 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
               </div>
             </div>
 
-            {/* Speech Bubble - AI & ML Focus */}
-            <div className="mb-6 relative">
-              <SpeechBubble color="cyan" size="md" tailDirection="none">
-                <span className="text-title-md font-bold">AI & ML Focus • Responsible AI</span>
-              </SpeechBubble>
-            </div>
+            {/* Removed redundant bubble for cleaner positioning as requested */}
 
             {/* Value proposition */}
             <p className="text-body-lg text-on-surface-variant leading-relaxed mb-4 max-w-xl">
-              I build structured product case studies that focus on real user friction,
-              measurable outcomes, and execution-ready decisions. My work includes problem
-              framing, personas, journey mapping, prioritization (RICE), North Star metrics,
-              and experiment design - built with trust, compliance, and responsible AI thinking
-              where required.
+              I build and measure AI products from problem discovery to early adoption.
+              My work focuses on MVP definition, product instrumentation, adoption tracking,
+              and data-driven product decisions.
             </p>
 
             {/* Focus areas */}

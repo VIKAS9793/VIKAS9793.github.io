@@ -9,20 +9,20 @@ import type {
 
 export const personalInfo: PersonalInfo = {
   name: "Vikas Sahani",
-  title: "Product Manager",
-  tagline: "Building regulated fintech products with AI at the core. From banking operations to sovereign AI platforms, I bridge customer needs, compliance constraints, and cutting-edge technology.",
+  title: "AI Product Manager | 0→1 Products | Product Analytics | GenAI Systems",
+  tagline: "I build and measure AI products from problem discovery to early adoption. My work focuses on MVP definition, product instrumentation, adoption tracking, and data-driven product decisions.",
   bio: `
     <p>
-      I transitioned into product management after 4+ years in banking operations.
-      I understand regulated environments, compliance constraints, and the operational
-      friction that comes with them.
+      I work on AI products where reliability, measurement, and responsible deployment matter.
+      My experience combines product execution, analytics instrumentation, and domain knowledge from
+      regulated financial environments. I focus on building products that move from problem discovery
+      to measurable adoption.
     </p>
-    IBM & Google certified professional specializing in Generative AI and LLM features with a proven track record in product management and AI strategy.
   `,
   location: "India",
   email: "vikassahani17@gmail.com",
   phone: "+91 7715072817",
-  avatar: "/images/profile-avatar.png"
+  avatar: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/profile-avatar.png"
 };
 
 export const stats: Stat[] = [
@@ -54,11 +54,37 @@ export const stats: Stat[] = [
 
 export const projects: Project[] = [
   {
+    id: "androjack-mcp",
+    title: "AndroJack MCP",
+    tagline: "AI product improving reliability in AI-assisted Android development through documentation-grounded validation.",
+    description: "Product focused on reducing hallucinations in AI-assisted Android development by grounding outputs in official documentation sources.",
+    pmSections: {
+      problem: "AI coding tools often generate outdated or unverifiable Android solutions, reducing developer trust.",
+      solution: "Built a Model Context Protocol (MCP) server that validates AI outputs against official Android documentation.",
+      execution: "Distributed via npm and VS Code Marketplace to enable developer adoption.",
+      measurement: "Instrumented GA4 tracking to understand discovery behaviour and install intent.",
+      impact: "Established early adoption signals and product measurement framework."
+    },
+    isFlagship: true,
+    category: "ai",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/androjack-banner.png",
+    featured: true,
+    technologies: ["MCP", "Node.js", "Android SDK", "GA4 Analytics"],
+    metrics: [],
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/VIKAS9793/androjack-mcp",
+        label: "GitHub"
+      }
+    ]
+  },
+  {
     id: "product-titans-case-study",
-    title: "Product Titans Case Study",
-    description: "Runner-up (Rank 2) • Score 6.4 | National Product Management Challenge. India-first agentic AI learning platform concept with end-to-end PM deliverables.",
+    title: "Product Titans",
+    description: "Runner-up (Rank 2) • Score 6.4 | National Product Management Challenge. Product Skills Applied: User Research, RICE Prioritization, North Star Mapping, GTM Strategy, Responsible AI.",
     longDescription: "Independent PM case study created for a national-level live project challenge hosted on Unstop and organized by Book My Mentor. Built an India-first agentic AI learning platform concept with problem framing, personas, journey mapping, RICE prioritization, North Star metrics, experimentation plan, and responsible AI governance (trust, explainability, privacy).",
-    image: "/images/product-titans.png",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/product-titans.png",
     category: "product",
     featured: true,
     technologies: [
@@ -88,7 +114,7 @@ export const projects: Project[] = [
     title: "IndiaAI IDP Platform",
     description: "Enterprise-grade Intelligent Document Processing system for Indian government documents.",
     longDescription: "Scalable, privacy-first platform featuring modular architecture, DPDP Act compliance, and Human-in-the-Loop verification. Built for high-volume processing of Aadhaar, PAN, and financial documents.",
-    image: "/images/indiaai-idp.png",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/indiaai-idp.png",
     category: "ai",
     featured: true,
     technologies: [
@@ -118,7 +144,7 @@ export const projects: Project[] = [
     title: "SaralPolicy – AI-Powered Insurance Policy Explainer",
     description: "Conceived, designed, and launched SaralPolicy, a local-first AI assistant that simplifies insurance policy documents by explaining clauses, exclusions, and IRDAI rights in plain Hindi and English.",
     longDescription: "Validated user problem through 50+ customer interviews, uncovering key pain points around unreadable policy wording, hidden exclusions, and lack of privacy in existing tools.",
-    image: "/images/saralpolicy.png",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/saralpolicy.png",
     category: "ai",
     featured: true,
     technologies: [
@@ -148,7 +174,7 @@ export const projects: Project[] = [
     title: "Fintech Onboarding Clarity",
     description: "Exploratory PM case study on reducing user uncertainty in regulated fintech KYC flows.",
     longDescription: "Demonstrates constraint-first product thinking and AI boundary definition. Features 10+ PM artifacts covering problem framing, regulatory constraints, AI decision boundaries, and validation planning.",
-    image: "/images/fintech-onboarding.png",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/fintech-onboarding.png",
     category: "product",
     featured: true,
     technologies: [
@@ -183,7 +209,7 @@ export const projects: Project[] = [
     title: "MoatMetrics",
     description: "Enterprise analytics platform for MSPs addressing $12B market opportunity.",
     longDescription: "Privacy-first architecture with production-ready MVP targeting $1M ARR in Year 1.",
-    image: "/images/moatmetrics.png",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/moatmetrics.png",
     category: "enterprise",
     featured: true,
     technologies: [
@@ -208,7 +234,7 @@ export const projects: Project[] = [
     id: "charactercraft-pro",
     title: "CharacterCraft Pro",
     description: "Revolutionary AI platform solving character consistency in generated images using Google Gemini 2.5 Flash with deterministic Prompt Protocol Engine.",
-    image: "/images/charactercraft-pro.png",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/charactercraft-pro.png",
     category: "ai",
     featured: true,
     technologies: [
@@ -234,7 +260,7 @@ export const projects: Project[] = [
     title: "EduVault",
     description: "Offline-first educational platform bringing quality education to every corner of rural India.",
     longDescription: "Designed for learners with disabilities and areas with limited internet connectivity, featuring multilingual voice interaction, government curriculum integration, and complete accessibility compliance.",
-    image: "/images/eduvault.png",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/eduvault.png",
     category: "education",
     featured: false,
     technologies: [
@@ -264,7 +290,7 @@ export const projects: Project[] = [
     title: "AI Interview Simulation System",
     description: "AI-driven conversational agent for interview preparation with privacy-first, offline architecture.",
     longDescription: "Secured 3-month enterprise pilot program with positive feedback on core features using LangGraph, LLaMA, and ChromaDB for complete user data confidentiality.",
-    image: "/images/ai-interview-system.jpg",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/ai-interview-system.jpg",
     category: "ai",
     technologies: [
       "LangGraph",
@@ -359,6 +385,18 @@ export const simulations: Simulation[] = [
 
 export const certifications: Certification[] = [
   {
+    id: "google-ai-essentials",
+    title: "Google AI Essentials Specialization",
+    organization: "Google (Coursera)",
+    icon: "✨"
+  },
+  {
+    id: "google-ai-professional",
+    title: "Google AI Professional",
+    organization: "Google Career Certificates",
+    icon: "✨"
+  },
+  {
     id: "google-people-mgmt",
     title: "People Management Essentials",
     organization: "Google Professional Certificate",
@@ -372,19 +410,19 @@ export const certifications: Certification[] = [
   },
   {
     id: "ibm-ai-pm",
-    title: "AI Product Manager",
+    title: "IBM AI Product Manager Professional Certificate",
     organization: "IBM Professional Certificate",
     icon: "🏆"
   },
   {
     id: "google-pm",
-    title: "Project Management",
+    title: "Google Project Management Professional Certificate",
     organization: "Google Certificate",
     icon: "🎯"
   },
   {
     id: "pmi-genai",
-    title: "Gen AI for PM",
+    title: "PMI Generative AI for PMs",
     organization: "PMI Certificate",
     icon: "⚡"
   },
@@ -420,7 +458,7 @@ export const certifications: Certification[] = [
   },
   {
     id: "llm-pretraining",
-    title: "LLM Pretraining & Fine-Tuning",
+    title: "AI Agents & LLMs – DeepLearning.AI",
     organization: "DeepLearning.AI",
     icon: "🎓"
   },

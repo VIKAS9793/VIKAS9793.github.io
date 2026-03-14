@@ -1,6 +1,6 @@
 import SpeechBubble from '@components/ui/SpeechBubble';
 import { Marquee } from '@components/ui/Marquee';
-import { StarIcon, PuzzlePieceIcon, ThumbsUpIcon } from '@components/ui/SocialIcons';
+import { StarIcon, PuzzlePieceIcon, ThumbsUpIcon, CircleIcon } from '@components/ui/SocialIcons';
 
 /**
  * Skills Section - Vibrant Design
@@ -10,23 +10,36 @@ import { StarIcon, PuzzlePieceIcon, ThumbsUpIcon } from '@components/ui/SocialIc
 const skillCategories = [
   {
     id: 'product',
-    title: 'Product Strategy',
+    title: 'Product Management',
     color: 'pink' as const,
     icon: 'thumbs',
     skills: [
       'Product Discovery',
-      'PRD & Spec Writing',
+      'MVP Scoping',
+      'KPI Definition',
       'Roadmap Planning',
       'User Research',
-      'MVP Scoping',
-      'Metrics & KPIs',
       'Problem Framing',
       'Rapid Prototyping'
     ]
   },
   {
+    id: 'analytics',
+    title: 'Product Analytics',
+    color: 'yellow' as const,
+    icon: 'circle',
+    skills: [
+      'GA4 Instrumentation',
+      'Product Funnel Analysis',
+      'Adoption Metrics',
+      'KPI Definition',
+      'Behaviour Tracking',
+      'Product Measurement'
+    ]
+  },
+  {
     id: 'ai-ml',
-    title: 'AI/ML Systems',
+    title: 'AI Systems',
     color: 'cyan' as const,
     icon: 'star',
     skills: [
@@ -73,6 +86,7 @@ function SkillCategoryCard({
         {category.icon === 'thumbs' && <ThumbsUpIcon color="#FFD700" size={32} />}
         {category.icon === 'star' && <StarIcon color="#00D4FF" size={32} />}
         {category.icon === 'puzzle' && <PuzzlePieceIcon color="#FFA500" size={32} />}
+        {category.icon === 'circle' && <CircleIcon color="#FF69B4" size={32} />}
       </div>
 
       {/* Title in Speech Bubble */}
@@ -117,7 +131,7 @@ export default function SkillsSection() {
         </div>
 
         {/* Skill Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category) => (
             <SkillCategoryCard
               key={category.id}

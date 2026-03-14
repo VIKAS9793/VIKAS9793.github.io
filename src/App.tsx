@@ -11,6 +11,13 @@ const SkillsSection = lazy(() => import('@components/SkillsSection'));
 const CaseStudy = lazy(() => import('@components/CaseStudy'));
 const ProjectsSection = lazy(() => import('@components/ProjectsSection'));
 const AchievementsSection = lazy(() => import('@components/AchievementsSection'));
+const ProductLifecycle = lazy(() => import('@components/ProductLifecycle'));
+const ProductSupplementary = lazy(() => import('@components/ProductSupplementary').then(m => ({ default: () => (
+    <>
+      <m.MeasurementSection />
+      <m.DistributionSection />
+    </>
+  )})));
 const AboutSection = lazy(() => import('@components/AboutSection'));
 const ContactSection = lazy(() => import('@components/ContactSection'));
 
@@ -45,6 +52,9 @@ function App() {
 
         {/* Lazy load below-the-fold sections for better performance */}
         <Suspense fallback={<SectionLoader />}>
+          {/* Product Lifecycle Approach */}
+          <ProductLifecycle />
+
           {/* Skills - Categorized cards (visual polish) */}
           <SkillsSection />
 
@@ -54,8 +64,11 @@ function App() {
           {/* Projects - Cards with GitHub links */}
           <ProjectsSection />
 
-          {/* Achievements - Product Titans & Certifications */}
+          {/* Certifications (renamed content in file) */}
           <AchievementsSection />
+
+          {/* Product Measurement & Distribution */}
+          <ProductSupplementary />
 
           {/* About - Inline, grounded */}
           <AboutSection />

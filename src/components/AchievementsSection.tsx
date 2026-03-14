@@ -18,7 +18,7 @@ export default function AchievementsSection() {
                 <div className="mb-12">
                     <div className="flex items-center gap-4 mb-4">
                         <h2 id="achievements-heading" className="text-display-xl text-text-primary font-black">
-                            Achievements & Certifications
+                            Certifications
                         </h2>
                         <div className="hidden md:block">
                             <ThumbsUpIcon color="#FFD700" size={45} />
@@ -50,7 +50,7 @@ export default function AchievementsSection() {
                             </div>
 
                             <h3 className="text-display-lg text-text-primary mb-3 font-black">
-                                Product Titans – National Product Management Challenge
+                                Product Titans
                             </h3>
 
                             <p className="text-base text-text-primary leading-relaxed mb-6 font-medium">
@@ -83,9 +83,9 @@ export default function AchievementsSection() {
 
                             {/* Deliverables - Vibrant tags */}
                             <div className="mb-6">
-                                <h4 className="text-lg font-black text-text-primary mb-3">Deliverables</h4>
+                                <h4 className="text-lg font-black text-text-primary mb-3">Product Skills Applied</h4>
                                 <div className="flex flex-wrap gap-2">
-                                    {['Personas', 'Journey Mapping', 'RICE Prioritization', 'North Star Metrics', 'GTM Strategy', 'Experimentation Plan', 'Responsible AI Governance'].map((deliverable, idx) => (
+                                    {['User Research', 'RICE Prioritization', 'North Star Mapping', 'GTM Strategy', 'Responsible AI'].map((deliverable, idx) => (
                                         <span
                                             key={deliverable}
                                             className={`
@@ -133,21 +133,21 @@ export default function AchievementsSection() {
 
                 {/* Other Certifications - Vibrant Grid */}
                 <div className="mt-12">
-                    <h3 className="text-display-md text-text-primary mb-6 font-black">Professional Certifications</h3>
+                    <h3 className="text-display-md text-text-primary mb-6 font-black">Certifications</h3>
                     <div className="grid md:grid-cols-3 gap-6">
                         <div className="bg-vibrant-cyan border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform">
-                            <div className="text-3xl mb-3">🏆</div>
-                            <h4 className="font-black text-text-primary text-base mb-2">IBM AI Product Manager</h4>
+                            {/* Icons removed as requested for product positioning */}
+                            <h4 className="font-black text-text-primary text-base mb-2">IBM AI Product Manager Professional Certificate</h4>
                             <p className="text-sm text-text-secondary font-semibold">IBM Professional Certificate</p>
                         </div>
                         <div className="bg-vibrant-green border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform">
-                            <div className="text-3xl mb-3">🎯</div>
-                            <h4 className="font-black text-text-primary text-base mb-2">Google Project Management</h4>
+                            {/* Icons removed as requested for product positioning */}
+                            <h4 className="font-black text-text-primary text-base mb-2">Google Project Management Professional Certificate</h4>
                             <p className="text-sm text-text-secondary font-semibold">Google Certificate</p>
                         </div>
                         <div className="bg-vibrant-yellow border-punchy-md border-black rounded-card p-6 hover:scale-105 transition-transform">
-                            <div className="text-3xl mb-3">🤖</div>
-                            <h4 className="font-black text-text-primary text-base mb-2">AI Agents & LLMs</h4>
+                            {/* Icons removed as requested for product positioning */}
+                            <h4 className="font-black text-text-primary text-base mb-2">AI Agents & LLMs – DeepLearning.AI</h4>
                             <p className="text-sm text-text-secondary font-semibold">DeepLearning.AI</p>
                         </div>
                     </div>

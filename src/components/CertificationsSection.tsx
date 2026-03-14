@@ -26,8 +26,7 @@ function getCertCategory(title: string): { tag: string; color: string } {
 /**
  * Certification Card with category tag
  */
-function CertCard({ cert, index }: { cert: Certification; index: number }) {
-  const vibrantColors = ['bg-vibrant-blue', 'bg-vibrant-green', 'bg-vibrant-yellow', 'bg-vibrant-red'];
+function CertCard({ cert }: { cert: Certification }) {
   const { tag, color } = getCertCategory(cert.title);
 
   return (
@@ -38,11 +37,7 @@ function CertCard({ cert, index }: { cert: Certification; index: number }) {
       </span>
 
       {/* Circular icon */}
-      <div className={`hover-icon w-12 h-12 rounded-full ${vibrantColors[index % 4]} flex items-center justify-center mx-auto mb-3 shadow-elevation-1`}>
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-        </svg>
-      </div>
+      {/* Icons removed as requested */}
 
       <h3 className="font-semibold text-on-surface mb-1 text-xs leading-tight group-hover:text-primary transition-colors">
         {cert.title}
@@ -85,7 +80,7 @@ export default function CertificationsSection({ certifications }: Certifications
         {/* Header */}
         <div className="text-center mb-10">
           <h2 id="certifications-heading" className="title-section mb-4">
-            Professional Certifications
+            Certifications
           </h2>
           <p className="body-large max-w-2xl mx-auto mb-4">
             Credentials from IBM, Google, DeepLearning.AI and more
@@ -101,8 +96,8 @@ export default function CertificationsSection({ certifications }: Certifications
 
         {/* Certifications Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-          {visibleCerts.map((cert, index) => (
-            <CertCard key={cert.id} cert={cert} index={index} />
+          {visibleCerts.map((cert) => (
+            <CertCard key={cert.id} cert={cert} />
           ))}
         </div>
 

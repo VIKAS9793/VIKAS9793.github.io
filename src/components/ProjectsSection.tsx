@@ -2,6 +2,7 @@ import { projects as staticProjects } from '@data/portfolio';
 import SpeechBubble from '@components/ui/SpeechBubble';
 import { StarIcon } from '@components/ui/SocialIcons';
 import { BentoGrid, BentoGridItem } from '@components/ui/BentoGrid';
+import { cn } from '@utils';
 
 /**
  * Get vibrant color by project category
@@ -32,14 +33,14 @@ export default function ProjectsSection() {
         <div className="mb-12 relative">
           <div className="flex items-center gap-4 mb-4">
             <h2 id="projects-heading" className="text-display-xl text-text-primary font-black">
-              Featured Work
+              Products I Have Built and Measured
             </h2>
             <div className="hidden md:block">
               <StarIcon color="#FF69B4" size={40} />
             </div>
           </div>
           <p className="text-body-lg text-text-secondary max-w-2xl font-semibold">
-            Selected projects showcasing product management, AI systems, and domain expertise
+            AI-driven solutions built with product analytics and early adoption tracking.
           </p>
         </div>
 
@@ -52,11 +53,17 @@ export default function ProjectsSection() {
                 key={project.id}
                 title={project.title}
                 description={project.description}
+                tagline={project.tagline}
+                isFlagship={project.isFlagship}
+                pmSections={project.pmSections}
                 header={
                   <div className="space-y-3">
                     {/* Project Image */}
                     {project.image && (
-                      <div className="w-full h-40 rounded-lg overflow-hidden border border-outline-variant/20 relative group-hover:shadow-md transition-all">
+                      <div className={cn(
+                        "w-full rounded-lg overflow-hidden border border-outline-variant/20 relative group-hover:shadow-md transition-all",
+                        project.isFlagship ? "h-56" : "h-40"
+                      )}>
                         <img
                           src={project.image}
                           alt={project.title}
@@ -66,7 +73,7 @@ export default function ProjectsSection() {
                     )}
                     {/* Tech Stack Tags */}
                     <div className="flex flex-wrap gap-2 mb-2">
-                      {project.technologies.slice(0, 3).map((tech, idx) => (
+                      {project.technologies.slice(0, project.isFlagship ? 5 : 3).map((tech, idx) => (
                         <span
                           key={tech}
                           className={`
@@ -86,11 +93,13 @@ export default function ProjectsSection() {
                 icon={
                   <div className="mb-2">
                     <SpeechBubble color={color} size="sm" tailDirection="none">
-                      <span className="text-title-sm font-bold uppercase">{project.category}</span>
+                      <span className="text-title-sm font-bold uppercase">
+                        {project.category === 'ai' ? 'AI Product' : project.category}
+                      </span>
                     </SpeechBubble>
                   </div>
                 }
-                className={index === 0 || index === 3 ? "md:col-span-2" : ""}
+                className={project.isFlagship || index === 3 ? "md:col-span-2" : ""}
                 onClick={() => window.open(project.links?.[0]?.url, "_blank")}
               />
             );

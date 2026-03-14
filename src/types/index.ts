@@ -7,6 +7,15 @@ export interface Project {
   technologies: string[];
   metrics: Metric[];
   links: ProjectLink[];
+  tagline?: string;
+  isFlagship?: boolean;
+  pmSections?: {
+    problem: string;
+    solution: string;
+    execution: string;
+    measurement: string;
+    impact: string;
+  };
   featured?: boolean;
   category: 'ai' | 'product' | 'enterprise' | 'education' | 'fintech';
 }

@@ -19,19 +19,10 @@ export default function AboutSection() {
         <div className="space-y-8">
           {/* Story paragraphs with enhanced styling */}
           <p className="text-lg text-text-primary leading-relaxed font-medium">
-            I transitioned into product management after 4+ years in banking operations
-            at HDFC Bank and IndusInd Bank. I understand regulated environments,
-            compliance constraints, and the operational friction that comes with them.
-          </p>
-          <p className="text-lg text-text-primary leading-relaxed font-medium">
-            I'm drawn to problems where clarity matters more than speed. Insurance,
-            lending, identity verification, government systems. In these domains,
-            getting it wrong has consequences.
-          </p>
-          <p className="text-lg text-text-primary leading-relaxed font-medium">
-            I care about constraint documentation, explicit non-goals, and
-            understanding why things <em className="font-bold text-vibrant-pink">can't</em> be done before proposing
-            what <em className="font-bold text-vibrant-cyan">should</em> be done.
+            I work on AI products where reliability, measurement, and responsible deployment matter.
+            My experience combines product execution, analytics instrumentation, and domain knowledge from
+            regulated financial environments. I focus on building products that move from problem discovery
+            to measurable adoption.
           </p>
 
           {/* Certifications with vibrant badges */}
