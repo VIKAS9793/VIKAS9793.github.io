@@ -12,6 +12,7 @@ interface CacheEntry<T> {
 }
 
 class Cache {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private store: Map<string, CacheEntry<any>>;
 
   constructor() {

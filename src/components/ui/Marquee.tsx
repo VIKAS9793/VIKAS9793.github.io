@@ -9,6 +9,7 @@ export const Marquee = ({
     className,
     children,
 }: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     items?: any[]; // legacy support if passing raw items
     direction?: "left" | "right";
     speed?: "fast" | "normal" | "slow";
@@ -21,6 +22,7 @@ export const Marquee = ({
 
     useEffect(() => {
         addAnimation();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [start, setStart] = useState(false);
@@ -86,6 +88,7 @@ export const Marquee = ({
                     pauseOnHover && "hover:[animation-play-state:paused]"
                 )}
             >
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {children || items?.map((item: any, idx) => (
                     <li
                         className="w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"

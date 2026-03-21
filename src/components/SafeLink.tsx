@@ -17,6 +17,7 @@ const SafeLink: React.FC<SafeLinkProps> = ({ href, children, target = '_blank', 
       whileHover={{ scale: 1.02, x: 2 }}
       whileTap={{ scale: 0.98 }}
       className={`interactive-element ${className ?? ''}`}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       {...(rest as any)}
     >
       {children}

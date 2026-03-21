@@ -13,6 +13,7 @@ export function cn(...inputs: ClassValue[]) {
 /**
  * Debounce function for performance optimization
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number
@@ -27,6 +28,7 @@ export function debounce<T extends (...args: any[]) => any>(
 /**
  * Throttle function for performance optimization
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function throttle<T extends (...args: any[]) => any>(
   func: T,
   limit: number
@@ -227,7 +229,6 @@ export function getRandomBetween(min: number, max: number): number {
  * Get random element from array
  */
 export function getRandomFromArray<T>(array: T[]): T {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return array[Math.floor(Math.random() * array.length)]!;
 }
 
@@ -241,7 +242,7 @@ export function supportsWebGL(): boolean {
       window.WebGLRenderingContext &&
       (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
     );
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -274,7 +275,7 @@ export function getGPUTier(): 'high' | 'medium' | 'low' {
 
     // Default to medium for unknown GPUs
     return 'medium';
-  } catch (e) {
+  } catch {
     return 'low';
   }
 }

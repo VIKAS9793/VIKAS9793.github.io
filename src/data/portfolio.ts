@@ -9,14 +9,19 @@ import type {
 
 export const personalInfo: PersonalInfo = {
   name: "Vikas Sahani",
-  title: "AI Product Manager | 0→1 Products | Product Analytics | GenAI Systems",
-  tagline: "I build and measure AI products from problem discovery to early adoption. My work focuses on MVP definition, product instrumentation, adoption tracking, and data-driven product decisions.",
+  title: "AI Product Manager | AI Products | Developer Tools | FinTech",
+  tagline: "Product professional with 4+ years in customer-facing financial environments and hands-on experience owning a developer tool across the full product lifecycle — from ideation to early growth. I define product scope, instrument analytics funnels, and iterate on activation signals. Open to relocation. Open to visa sponsorship.",
   bio: `
     <p>
-      I work on AI products where reliability, measurement, and responsible deployment matter.
-      My experience combines product execution, analytics instrumentation, and domain knowledge from
-      regulated financial environments. I focus on building products that move from problem discovery
-      to measurable adoption.
+      Product professional with 4+ years in customer-facing financial environments.
+      I have owned a developer tool across the full product lifecycle — from problem definition
+      to multiplatform launch and iterative growth — achieving measurable traction within two weeks
+      with zero paid acquisition. My work sits at the intersection of product execution, analytics
+      instrumentation, and domain expertise from regulated financial environments.
+    </p>
+    <p>
+      I focus on the 0→1 phase: defining MVP scope, instrumenting funnels, reading activation signals,
+      and making scope decisions grounded in data rather than feature instinct.
     </p>
   `,
   location: "India",
@@ -27,28 +32,28 @@ export const personalInfo: PersonalInfo = {
 
 export const stats: Stat[] = [
   {
-    id: "aum",
-    label: "AUM Managed",
-    value: "₹100Cr+",
-    description: "Led AI-driven portfolio optimization for 5,000+ mutual fund investors, achieving 23% better risk-adjusted returns (2023-2024)"
+    id: "weekly-active-installs",
+    label: "Weekly Active Installs",
+    value: "299",
+    description: "North Star metric for AndroJack MCP. 660 GitHub clones from 251 unique cloners in 14 days — cloners exceed repo visitors, validating terminal-first organic growth."
   },
   {
-    id: "market-tam",
-    label: "Market TAM",
-    value: "$12B",
-    description: "Total addressable market for AI-powered insurance policy interpretation across India's ₹7.9 lakh crore insurance sector"
+    id: "npm-downloads",
+    label: "Weekly npm Downloads",
+    value: "240",
+    description: "Weekly npm downloads alongside 59 VS Code Marketplace installs and 82% session engagement rate (GA4). All within the first two weeks post-launch, zero paid acquisition."
   },
   {
-    id: "ai-consistency",
-    label: "AI Consistency",
-    value: "94%",
-    description: "Measured across 10,000+ inference evaluations on GenAI-powered policy interpretation engine using custom hallucination detection"
+    id: "security-score",
+    label: "Security Score",
+    value: "10 / 10",
+    description: "MCP Marketplace security score with zero CVEs. PageSpeed: SEO 100, Accessibility 100, Performance 97. Verified in Official MCP Registry."
   },
   {
-    id: "efficiency-gain",
-    label: "Efficiency Gain",
-    value: "25%",
-    description: "Reduced document processing time from 4 hours to 3 hours per policy through automated clause extraction and summarization"
+    id: "pm-competition",
+    label: "National PM Rank",
+    value: "Rank 2",
+    description: "Runner-up nationally at Product Titans PM Strategy Competition — solo submission, team North Star Hunter. Score: 6.4."
   }
 ];
 
@@ -56,21 +61,37 @@ export const projects: Project[] = [
   {
     id: "androjack-mcp",
     title: "AndroJack MCP",
-    tagline: "AI product improving reliability in AI-assisted Android development through documentation-grounded validation.",
-    description: "Product focused on reducing hallucinations in AI-assisted Android development by grounding outputs in official documentation sources.",
+    tagline: "Developer tool addressing reliability gaps in AI-assisted Android development. Owned end-to-end from problem definition to multiplatform launch and iterative growth.",
+    description: "Identified a reliability gap in AI code generation tools that reference stale training data. Defined MVP scope, led multiplatform launch, instrumented the analytics funnel, and iterated on activation and engagement signals. Shipped v1.6.4 across 7 AI coding environments in under 4 weeks — solo.",
     pmSections: {
-      problem: "AI coding tools often generate outdated or unverifiable Android solutions, reducing developer trust.",
-      solution: "Built a Model Context Protocol (MCP) server that validates AI outputs against official Android documentation.",
-      execution: "Distributed via npm and VS Code Marketplace to enable developer adoption.",
-      measurement: "Instrumented GA4 tracking to understand discovery behaviour and install intent.",
-      impact: "Established early adoption signals and product measurement framework."
+      problem: "AI coding tools generate Android solutions grounded in stale training data, not live documentation. Developers cannot trust outputs, creating a measurable reliability and trust gap in AI-assisted Android workflows.",
+      solution: "Defined a Model Context Protocol (MCP) server that enforces live documentation verification at inference time — a first-mover category position over prompt engineering or RAG alternatives.",
+      execution: "Orchestrated build using Claude AI for spec, Antigravity IDE for code generation, compressing solo lifecycle from discovery to v1.0 in under 4 weeks. Shipped CLI installer and VS Code extension for one-command setup across any AI coding environment. Prioritised PulseMCP registry listing on day 1 as primary distribution channel.",
+      measurement: "Instrumented GA4 funnel with a behavioural event taxonomy mapping discovery, evaluation, and activation stages. KPIs: weekly download velocity, install conversion, engagement rate, channel attribution. Terminal-first growth validated: cloners (251) exceed repo visitors (179), confirming external discovery via npx direct install. Used Reddit (74 unique referrals, primary acquisition engine) and acquisition data to prioritise documentation as highest-ROI content channel.",
+      impact: "299 weekly active installs (North Star). 660 GitHub clones, 251 unique cloners in 14 days. 240 weekly npm downloads. 59 VS Code Marketplace installs. 82% session engagement rate. 10/10 security score, zero CVEs. PageSpeed: SEO 100, Accessibility 100, Performance 97. Organic search position 4.5. Top-40 global weekly ranking on PulseMCP. Verified in Official MCP Registry. All organic — zero paid acquisition."
     },
     isFlagship: true,
     category: "ai",
     image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/androjack-banner.png",
     featured: true,
-    technologies: ["MCP", "Node.js", "Android SDK", "GA4 Analytics"],
-    metrics: [],
+    technologies: ["MCP", "Node.js", "Android SDK", "GA4 Analytics", "npm", "VS Code Marketplace"],
+    metrics: [
+      { label: "Weekly Active Installs (North Star)", value: "299" },
+      { label: "GitHub Clones (14 days)", value: "660" },
+      { label: "Unique Cloners", value: "251" },
+      { label: "Repo Visitors", value: "179" },
+      { label: "npm Weekly Downloads", value: "240" },
+      { label: "VS Code Installs", value: "59" },
+      { label: "Session Engagement Rate", value: "82%" },
+      { label: "Security Score", value: "10 / 10" },
+      { label: "CVEs", value: "0" },
+      { label: "AI Environments Supported", value: "7" },
+      { label: "Iteration Cycles (2 weeks)", value: "4" },
+      { label: "PageSpeed SEO", value: "100" },
+      { label: "PageSpeed Accessibility", value: "100" },
+      { label: "PageSpeed Performance", value: "97" },
+      { label: "Organic Search Position", value: "4.5" }
+    ],
     links: [
       {
         type: "github",
@@ -208,7 +229,7 @@ export const projects: Project[] = [
     id: "moatmetrics",
     title: "MoatMetrics",
     description: "Enterprise analytics platform for MSPs addressing $12B market opportunity.",
-    longDescription: "Privacy-first architecture with production-ready MVP targeting $1M ARR in Year 1.",
+    longDescription: "Privacy-first architecture with production-ready MVP.",
     image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/moatmetrics.png",
     category: "enterprise",
     featured: true,
@@ -220,7 +241,7 @@ export const projects: Project[] = [
     ],
     metrics: [
       { label: "Market TAM", value: "$12B" },
-      { label: "ARR Target Y1", value: "$1M" }
+      { label: "Architecture", value: "Privacy-first" }
     ],
     links: [
       {
@@ -233,7 +254,7 @@ export const projects: Project[] = [
   {
     id: "charactercraft-pro",
     title: "CharacterCraft Pro",
-    description: "Revolutionary AI platform solving character consistency in generated images using Google Gemini 2.5 Flash with deterministic Prompt Protocol Engine.",
+    description: "AI platform solving character consistency in generated images using Google Gemini 2.5 Flash with a deterministic Prompt Protocol Engine.",
     image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/charactercraft-pro.png",
     category: "ai",
     featured: true,
@@ -337,26 +358,28 @@ export const projects: Project[] = [
   },
   {
     id: "portfolio-management",
-    title: "Portfolio Management",
-    description: "Applied AI-driven analytics at Aditya Birla Capital managing high-net-worth clients.",
-    longDescription: "Achieved 10% increase in diversification recommendations and 25% efficiency improvement.",
+    title: "Aditya Birla Capital — Virtual Relationship Manager",
+    description: "Current role (Nov 2024 – Present). Managing 50–60 daily customer interactions in a regulated financial environment, developing applied understanding of user trust signals, adoption friction, and lifecycle engagement patterns.",
+    longDescription: "Identifying friction in financial product selection across customer cohorts and translating behavioural observations into actionable product and onboarding insights. 4+ years across HDFC Bank, ICICI Bank, IndusInd Bank, and Aditya Birla Capital — building domain knowledge in customer acquisition, retention behaviour, and trust-driven positioning.",
     image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     category: "fintech",
     technologies: [
-      "Financial Analysis",
-      "Risk Management",
-      "AI Analytics",
-      "Client Retention"
+      "Customer Lifecycle Management",
+      "Regulated Financial Products",
+      "Trust Signal Analysis",
+      "Onboarding Friction Identification",
+      "KYC & Compliance"
     ],
     metrics: [
-      { label: "Current AUM", value: "₹100Cr" },
-      { label: "Efficiency Gain", value: "+25%" }
+      { label: "Daily Customer Interactions", value: "50–60" },
+      { label: "Domain Experience", value: "4+ yrs" },
+      { label: "Institutions", value: "4" }
     ],
     links: [
       {
         type: "linkedin",
         url: "https://www.linkedin.com/in/vikas-sahani-727420358",
-        label: "Learn More"
+        label: "LinkedIn"
       }
     ]
   }
@@ -366,20 +389,8 @@ export const simulations: Simulation[] = [
   {
     id: "ea-simulation",
     company: "Electronic Arts (EA)",
-    description: "Analyzed KPIs for a mobile gaming product, creating a data-driven presentation to propose a new feature roadmap to increase user engagement.",
-    skills: ["Data Analysis", "Product Strategy", "KPI Optimization", "Feature Roadmapping"]
-  },
-  {
-    id: "jpmorgan-simulation",
-    company: "JPMorgan Chase",
-    description: "Completed an enterprise software engineering simulation, implementing Kafka streams and debugging Java applications.",
-    skills: ["Java", "Kafka Streams", "Enterprise Software", "Debugging"]
-  },
-  {
-    id: "aws-simulation",
-    company: "Amazon Web Services (AWS)",
-    description: "Designed a scalable, cost-optimized hosting architecture for a new web application in a solutions architecture simulation.",
-    skills: ["Cloud Architecture", "AWS Services", "Cost Optimization", "Scalability Design"]
+    description: "Analyzed KPIs for a mobile gaming product and produced a data-driven feature roadmap proposal to improve user engagement. Product skills applied: KPI analysis, roadmap prioritization, stakeholder presentation.",
+    skills: ["KPI Analysis", "Roadmap Prioritization", "Product Strategy", "Stakeholder Presentation"]
   }
 ];
 
@@ -432,20 +443,6 @@ export const contactInfo: ContactInfo[] = [
     value: "View Code",
     url: "https://github.com/VIKAS9793",
     icon: "🐱"
-  },
-  {
-    type: "kaggle",
-    label: "Kaggle",
-    value: "Data Science",
-    url: "https://www.kaggle.com/vikassahani9793",
-    icon: "📊"
-  },
-  {
-    type: "google",
-    label: "Google Developer",
-    value: "Developer Profile",
-    url: "https://developers.google.com/profile/u/vikas9793",
-    icon: "🌟"
   },
   {
     type: "credly",

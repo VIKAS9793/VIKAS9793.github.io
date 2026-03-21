@@ -95,7 +95,7 @@ export const skills: Skill[] = [
     name: 'Financial Analysis',
     category: 'business',
     proficiency: 85,
-    description: '₹100Cr+ AUM managed at Aditya Birla Capital, MBA Essentials certified'
+    description: 'Domain experience at Aditya Birla Capital, MBA Essentials certified'
   },
   {
     name: 'Business Strategy',

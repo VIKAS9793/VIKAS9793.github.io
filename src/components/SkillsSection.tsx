@@ -1,5 +1,4 @@
 import SpeechBubble from '@components/ui/SpeechBubble';
-import { Marquee } from '@components/ui/Marquee';
 import { StarIcon, PuzzlePieceIcon, ThumbsUpIcon, CircleIcon } from '@components/ui/SocialIcons';
 
 /**
@@ -14,13 +13,15 @@ const skillCategories = [
     color: 'pink' as const,
     icon: 'thumbs',
     skills: [
-      'Product Discovery',
+      'GTM Strategy',
       'MVP Scoping',
-      'KPI Definition',
-      'Roadmap Planning',
+      'Roadmap Prioritization',
+      'Product Lifecycle Ownership',
       'User Research',
-      'Problem Framing',
-      'Rapid Prototyping'
+      'A/B Experimentation',
+      'OKR Definition',
+      'Agile Execution',
+      'Stakeholder Management'
     ]
   },
   {
@@ -30,43 +31,44 @@ const skillCategories = [
     icon: 'circle',
     skills: [
       'GA4 Instrumentation',
-      'Product Funnel Analysis',
-      'Adoption Metrics',
+      'Funnel Instrumentation',
       'KPI Definition',
-      'Behaviour Tracking',
-      'Product Measurement'
+      'Activation & Retention Metrics',
+      'Channel Attribution',
+      'Data-Driven Prioritization',
+      'Behavioural Event Taxonomy'
     ]
   },
   {
-    id: 'ai-ml',
-    title: 'AI Systems',
+    id: 'ai-tools',
+    title: 'AI & Developer Tools',
     color: 'cyan' as const,
     icon: 'star',
     skills: [
-      'RAG Architecture',
-      'Local LLMs',
-      'Vector Databases',
-      'AI Guardrails',
-      'Model Evaluation',
+      'Claude AI',
+      'MCP Protocol',
       'Prompt Engineering',
-      'Human-in-the-Loop',
-      'Explainable AI'
+      'AI Workflow Orchestration',
+      'Agentic Development',
+      'Human-in-the-Loop Design',
+      'AI Output Boundary Definition',
+      'Responsible AI'
     ]
   },
   {
-    id: 'domain',
-    title: 'Domain Expertise',
+    id: 'distribution',
+    title: 'Distribution & GTM',
     color: 'orange' as const,
     icon: 'puzzle',
     skills: [
-      'Banking Operations',
-      'KYC & AML Compliance',
-      'Insurance Regulations',
-      'Data Privacy (DPDP)',
-      'Portfolio Management',
-      'Risk Frameworks',
-      'Financial Products',
-      'Regulated Systems'
+      'Multiplatform Distribution',
+      'Developer GTM',
+      'CLI Installer Design',
+      'Marketplace Strategy',
+      'Product-Led Growth',
+      'Onboarding Optimization',
+      'npm Registry',
+      'VS Code Marketplace'
     ]
   }
 ];
@@ -139,20 +141,6 @@ export default function SkillsSection() {
             />
           ))}
         </div>
-      </div>
-      <div className="mt-16 overflow-hidden">
-        <Marquee direction="left" speed="normal" className="py-8">
-          {[
-            "Python", "TensorFlow", "PyTorch", "React", "TypeScript",
-            "Figma", "Jira", "SQL", "Tableau", "AWS", "GCP", "Docker"
-          ].map((skill, i) => (
-            <div key={i} className="mx-8 flex items-center gap-2">
-              <span className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-vibrant-pink to-vibrant-orange opacity-80">
-                {skill}
-              </span>
-            </div>
-          ))}
-        </Marquee>
       </div>
     </section>
   );

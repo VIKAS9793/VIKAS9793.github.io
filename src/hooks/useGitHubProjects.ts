@@ -63,7 +63,7 @@ export function useGitHubProjects(): UseGitHubProjectsResult {
                             } else {
                                 console.log('✓ GitHub data unchanged');
                             }
-                        } catch (e) {
+                        } catch {
                             console.log('⚠️  Background validation failed, keeping cached data');
                         }
                     }, 0);

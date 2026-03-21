@@ -41,6 +41,7 @@ export default function Card({ children, className, hoverEffects = true, tilt3D 
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       {...(hoverEffects ? (magneticHover as any) : {})}
       className={cn('card-glass', className)}
     >

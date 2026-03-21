@@ -28,7 +28,7 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
                 {personalInfo.name}
               </h1>
               <p className="text-body-sm font-bold text-vibrant-blue mb-6">
-                Shipped AI products with product analytics and early adoption tracking.
+                Owned a developer tool from 0→1. Measurable traction in 15 days. Zero paid spend.
               </p>
 
               {/* Decorative star icons around name */}
@@ -56,14 +56,15 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
 
             {/* Value proposition */}
             <p className="text-body-lg text-on-surface-variant leading-relaxed mb-4 max-w-xl">
-              I build and measure AI products from problem discovery to early adoption.
-              My work focuses on MVP definition, product instrumentation, adoption tracking,
-              and data-driven product decisions.
+              Product professional with 4+ years in regulated financial environments.
+              I define scope, instrument analytics funnels, and iterate on activation signals.
+              Seeking APM, AI Product, or FinTech roles where experimentation,
+              data-driven prioritization, and stakeholder-focused execution are valued.
             </p>
 
             {/* Focus areas */}
             <p className="text-body-md text-on-surface-variant/80 mb-6 max-w-xl">
-              <span className="font-medium text-on-surface">Focused on:</span> Consumer journeys • Trust systems • AI-enabled workflows
+              <span className="font-medium text-on-surface">Focused on:</span> User trust in AI outputs • Constraint-first product decisions • Regulated AI deployment
             </p>
 
             {/* Achievement Proof Card - Vibrant styling */}

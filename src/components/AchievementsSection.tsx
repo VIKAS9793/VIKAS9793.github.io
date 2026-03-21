@@ -18,14 +18,14 @@ export default function AchievementsSection() {
                 <div className="mb-12">
                     <div className="flex items-center gap-4 mb-4">
                         <h2 id="achievements-heading" className="text-display-xl text-text-primary font-black">
-                            Certifications
+                            Recognition
                         </h2>
                         <div className="hidden md:block">
                             <ThumbsUpIcon color="#FFD700" size={45} />
                         </div>
                     </div>
                     <p className="text-lg text-text-secondary max-w-2xl font-semibold">
-                        Recognition for product management excellence and professional certifications
+                        National PM competition recognition and professional certifications
                     </p>
                 </div>
 

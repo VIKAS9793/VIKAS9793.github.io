@@ -76,6 +76,7 @@ export default function MagneticButton({
 
   return (
     <Component
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={buttonRef as any}
       {...props}
       onMouseMove={handleMouseMove}
