@@ -6,14 +6,14 @@
 export interface Skill {
   name: string;
   category: 'ai-ml' | 'product' | 'technical' | 'business';
-  proficiency: number; // 0-100, based on certifications and real projects
+  level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
   description?: string;
 }
 
 /**
  * Skills derived from actual certifications and completed projects
  * Proficiency levels based on:
- * - Certifications (IBM, Google, DeepLearning.AI)
+ * - Certifications (IBM, Google, Meta)
  * - Real projects (SaralPolicy, CharacterCraft Pro, etc.)
  * - Work experience (Aditya Birla Capital)
  */
@@ -22,31 +22,31 @@ export const skills: Skill[] = [
   {
     name: 'Generative AI',
     category: 'ai-ml',
-    proficiency: 90,
+    level: 'expert',
     description: 'Google Cloud & Vanderbilt certified, applied in CharacterCraft Pro and SaralPolicy'
   },
   {
     name: 'LLM Development',
     category: 'ai-ml',
-    proficiency: 85,
-    description: 'DeepLearning.AI certified, implemented in AI Interview System with LLaMA'
+    level: 'advanced',
+    description: 'Google AI Professional, implemented in AI Interview System with LLaMA'
   },
   {
     name: 'AI Product Management',
     category: 'product',
-    proficiency: 90,
+    level: 'expert',
     description: 'IBM Professional Certificate, PMI Gen AI certified'
   },
   {
     name: 'LangChain & Agentic AI',
     category: 'ai-ml',
-    proficiency: 80,
-    description: 'DeepLearning.AI & CrewAI certified, used in interview system'
+    level: 'advanced',
+    description: 'Meta & CrewAI certified, used in interview system'
   },
   {
     name: 'Computer Vision',
     category: 'ai-ml',
-    proficiency: 75,
+    level: 'intermediate',
     description: 'Applied in CharacterCraft Pro for character consistency'
   },
 
@@ -54,19 +54,19 @@ export const skills: Skill[] = [
   {
     name: 'Product Strategy',
     category: 'product',
-    proficiency: 85,
+    level: 'expert',
     description: 'Google PM certified, demonstrated in Fintech Onboarding case study with constraint-first approach'
   },
   {
     name: 'UX Design',
     category: 'product',
-    proficiency: 80,
-    description: 'Georgia Tech certified, applied in SaralPolicy bilingual UX'
+    level: 'advanced',
+    description: 'Meta Fundamentals of UI/UX, applied in SaralPolicy bilingual UX'
   },
   {
     name: 'Research Methodology',
     category: 'product',
-    proficiency: 85,
+    level: 'expert',
     description: '50+ customer interviews for SaralPolicy, comprehensive case studies'
   },
 
@@ -74,19 +74,19 @@ export const skills: Skill[] = [
   {
     name: 'Python',
     category: 'technical',
-    proficiency: 80,
+    level: 'advanced',
     description: 'Used in MoatMetrics backend, AI systems'
   },
   {
     name: 'React & TypeScript',
     category: 'technical',
-    proficiency: 85,
+    level: 'advanced',
     description: 'EduVault PWA, current portfolio implementation'
   },
   {
     name: 'FastAPI',
     category: 'technical',
-    proficiency: 75,
+    level: 'intermediate',
     description: 'Enterprise SaaS backend for MoatMetrics'
   },
 
@@ -94,19 +94,19 @@ export const skills: Skill[] = [
   {
     name: 'Financial Analysis',
     category: 'business',
-    proficiency: 85,
+    level: 'expert',
     description: 'Domain experience at Aditya Birla Capital, MBA Essentials certified'
   },
   {
     name: 'Business Strategy',
     category: 'business',
-    proficiency: 80,
+    level: 'advanced',
     description: 'MoatMetrics $12B TAM analysis, enterprise SaaS planning'
   },
   {
     name: 'Stakeholder Management',
     category: 'business',
-    proficiency: 80,
+    level: 'advanced',
     description: '25% efficiency gain in portfolio management, enterprise pilot secured'
   },
 ];

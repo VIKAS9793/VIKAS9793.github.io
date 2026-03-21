@@ -1,8 +1,9 @@
 import './index.css';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import Hero from '@components/Hero';
 import FloatingNav from '@components/ui/FloatingNav';
 import ScrollButton from '@components/ui/ScrollButton';
+import AudioReader from '@components/ui/AudioReader';
 import LoadingSpinner from '@components/ui/LoadingSpinner';
 import { personalInfo, contactInfo, stats } from '@data/portfolio';
 
@@ -38,13 +39,52 @@ function SectionLoader() {
  * Performance: Lazy loading for below-the-fold content
  */
 function App() {
+  useEffect(() => {
+    // Reveal sections on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Since many sections are lazy-loaded via <Suspense>, they don't exist in the DOM on mount.
+    // We use a MutationObserver to detect when they are injected and then observe them.
+    const handleMutations = () => {
+      const elements = document.querySelectorAll('.animate-on-scroll:not(.is-observed), .section-reveal:not(.is-observed), .stat-entrance:not(.is-observed)');
+      elements.forEach((el) => {
+        el.classList.add('is-observed');
+        observer.observe(el);
+      });
+    };
+
+    const mutationObserver = new MutationObserver(() => {
+      handleMutations();
+    });
+
+    // Start observing the document body for injected nodes
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    
+    // Initial check for elements already in the DOM (like Hero)
+    handleMutations();
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="relative min-h-screen bg-white text-text-primary">
+    <div className="relative min-h-screen bg-surface text-on-surface">
       {/* Floating Navigation */}
       <FloatingNav />
 
       {/* Scroll Button */}
       <ScrollButton />
+
+      {/* Accessible Page Reader */}
+      <AudioReader />
 
       <main role="main">
         {/* Hero - Clean text + subtle visuals (loaded immediately) */}
@@ -79,15 +119,15 @@ function App() {
       </main>
 
       {/* Vibrant Footer */}
-      <footer className="py-8 pb-24 text-center border-t-punchy-lg border-black bg-vibrant-pink/10">
+      <footer className="py-8 pb-24 text-center border-t border-outline-variant bg-surface-container">
         <div className="container-google">
-          <p className="text-text-primary text-base font-bold">
+          <p className="text-on-surface text-base font-medium">
             © {new Date().getFullYear()} {personalInfo.name}
           </p>
-          <p className="text-text-secondary text-sm mt-2 font-semibold">
+          <p className="text-on-surface-variant text-sm mt-2 font-medium">
             Built with constraint-first thinking
           </p>
-          <p className="text-text-tertiary text-sm mt-1 font-medium">
+          <p className="text-on-surface-variant/80 text-sm mt-1 font-medium">
             Design inspired by Google's Design Language
           </p>
         </div>

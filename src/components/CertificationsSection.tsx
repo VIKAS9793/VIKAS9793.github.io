@@ -15,12 +15,12 @@ const PRIORITY_CERT_IDS = [
 function getCertCategory(title: string): { tag: string; color: string } {
   const lower = title.toLowerCase();
   if (lower.includes('mba') || lower.includes('project management')) {
-    return { tag: '🎓 Academic', color: 'bg-vibrant-blue/10 text-vibrant-blue' };
+    return { tag: '🎓 Academic', color: 'bg-primary-container text-primary' };
   }
   if (lower.includes('pm') || lower.includes('product') || lower.includes('ux')) {
-    return { tag: '💼 Product', color: 'bg-vibrant-green/10 text-vibrant-green' };
+    return { tag: '💼 Product', color: 'bg-primary-container text-primary' };
   }
-  return { tag: '🤖 AI/ML', color: 'bg-vibrant-yellow/10 text-vibrant-yellow' };
+  return { tag: '🤖 AI/ML', color: 'bg-primary-container text-primary' };
 }
 
 /**
@@ -73,8 +73,8 @@ export default function CertificationsSection({ certifications }: Certifications
       aria-labelledby="certifications-heading"
     >
       {/* DevFest Decorative */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-vibrant-green/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-vibrant-yellow/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary-container rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary-container rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="container-google relative z-10">
         {/* Header */}
@@ -83,14 +83,14 @@ export default function CertificationsSection({ certifications }: Certifications
             Certifications
           </h2>
           <p className="body-large max-w-2xl mx-auto mb-4">
-            Credentials from IBM, Google, DeepLearning.AI and more
+            Credentials from IBM, Google, Meta and more
           </p>
 
           {/* Category Legend */}
           <div className="flex flex-wrap justify-center gap-3 text-xs">
-            <span className="px-3 py-1 bg-vibrant-blue/10 text-vibrant-blue rounded-full">🎓 Academic</span>
-            <span className="px-3 py-1 bg-vibrant-yellow/10 text-vibrant-yellow rounded-full">🤖 AI/ML</span>
-            <span className="px-3 py-1 bg-vibrant-green/10 text-vibrant-green rounded-full">💼 Product</span>
+            <span className="px-3 py-1 bg-primary-container text-primary rounded-full">🎓 Academic</span>
+            <span className="px-3 py-1 bg-primary-container text-primary rounded-full">🤖 AI/ML</span>
+            <span className="px-3 py-1 bg-primary-container text-primary rounded-full">💼 Product</span>
           </div>
         </div>
 

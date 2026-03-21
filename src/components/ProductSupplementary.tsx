@@ -1,19 +1,18 @@
-import { StarIcon } from '@components/ui/SocialIcons';
+
 
 export function MeasurementSection() {
   return (
-    <section id="measurement" className="bg-white py-section relative border-t-punchy-md border-black">
+    <section id="measurement" className="bg-surface-container py-section relative border-t border-outline-variant section-reveal">
       <div className="container-google">
-        <div className="flex items-center gap-4 mb-8">
-          <h2 className="text-display-lg text-text-primary font-black">
+        <div className="mb-8">
+          <h2 className="text-display-lg text-primary font-medium">
             Product Measurement & Analytics
           </h2>
-          <StarIcon color="#FF69B4" size={35} />
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['Install intent events', 'User onboarding funnels', 'Feature adoption tracks', 'Decision-ready dashboards'].map((item, i) => (
-            <div key={i} className="bg-vibrant-cyan/5 border-punchy-sm border-black rounded-card p-6 hover:shadow-md transition-shadow">
-              <p className="text-body-lg font-black text-black">{item}</p>
+          {['GA4 Behavioural Event Taxonomy', 'Discovery to Activation Funnel', 'Channel Attribution: Reddit, npm, and direct', 'Weekly Download Velocity KPI'].map((item, i) => (
+            <div key={i} className="bg-primary-container rounded-2xl shadow-elevation-1 p-6 hover:shadow-elevation-2 transition-shadow">
+              <p className="text-body-lg font-medium text-on-primary-container">{item}</p>
             </div>
           ))}
         </div>
@@ -24,29 +23,40 @@ export function MeasurementSection() {
 
 export function DistributionSection() {
   return (
-    <section id="distribution" className="bg-vibrant-light-beige py-section relative border-t-punchy-md border-black">
+    <section id="distribution" className="bg-surface-container-low py-section relative border-t border-outline-variant section-reveal">
       <div className="container-google">
         <div className="mb-8 relative">
-          <div className="flex items-center gap-4 mb-2">
-            <h2 className="text-display-lg text-text-primary font-black">
+          <div className="mb-2">
+            <h2 className="text-display-lg text-primary font-medium">
               Product Distribution
             </h2>
-            <StarIcon color="#00D4FF" size={35} />
           </div>
-          <p className="text-body-lg text-text-secondary font-bold">
+          <p className="text-body-lg text-on-surface-variant font-medium">
             Distribution strategy focused on developer discovery channels.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { title: 'VS Code Marketplace', desc: 'Primary install channel for developer adoption.' },
-            { title: 'npm Registry Distribution', desc: 'CLI distribution channel.' },
-            { title: 'GitHub Repository', desc: 'Source access and documentation distribution.' },
-            { title: 'Product Measurement', desc: 'GA4 tracking for discovery and install signals.' }
+            {
+              title: 'PulseMCP Registry',
+              desc: 'Day-1 listing as primary distribution channel. Top-40 global weekly ranking achieved within 15 days of launch.'
+            },
+            {
+              title: 'npm Registry',
+              desc: '240 weekly downloads. CLI installer enables one-command setup across 7 AI coding environments.'
+            },
+            {
+              title: 'VS Code Marketplace',
+              desc: '59 installs. Extension enables direct activation from within the IDE.'
+            },
+            {
+              title: 'Reddit Community',
+              desc: 'Primary organic acquisition engine. 74 unique referrals. Terminal-first growth pattern validated.'
+            }
           ].map((card, i) => (
-            <div key={i} className="bg-vibrant-orange/5 border-punchy-sm border-black rounded-card p-6 hover:shadow-md transition-shadow">
-              <h4 className="text-lg font-black text-black mb-2">{card.title}</h4>
-              <p className="text-sm font-bold text-text-secondary leading-tight">{card.desc}</p>
+            <div key={i} className="bg-primary-container rounded-2xl shadow-elevation-1 p-6 hover:shadow-elevation-2 transition-shadow">
+              <h4 className="text-lg font-medium text-on-primary-container mb-2">{card.title}</h4>
+              <p className="text-sm font-medium text-on-primary-container/80 leading-tight">{card.desc}</p>
             </div>
           ))}
         </div>

@@ -59,3 +59,10 @@ SUMMARY.md
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
+
+# Additional Build & Cache
+.eslintcache
+tsconfig.tsbuildinfo
+tsconfig.node.tsbuildinfo
+.vite/
+agents.md

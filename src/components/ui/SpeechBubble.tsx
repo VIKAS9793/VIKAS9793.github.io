@@ -21,13 +21,13 @@ export interface SpeechBubbleProps {
 }
 
 const colorClasses = {
-    red: 'bg-vibrant-red',
-    pink: 'bg-vibrant-pink',
-    blue: 'bg-vibrant-blue',
-    cyan: 'bg-vibrant-cyan',
-    green: 'bg-vibrant-green',
-    yellow: 'bg-vibrant-yellow',
-    orange: 'bg-vibrant-orange',
+    red: 'bg-primary-container',
+    pink: 'bg-primary-container',
+    blue: 'bg-primary-container',
+    cyan: 'bg-primary-container',
+    green: 'bg-primary-container',
+    yellow: 'bg-primary-container',
+    orange: 'bg-primary-container',
 };
 
 const sizeClasses = {
@@ -56,7 +56,7 @@ export default function SpeechBubble({
           rounded-2xl
           border-punchy-lg
           border-black
-          font-bold
+          font-medium
           text-black
           shadow-md
           relative

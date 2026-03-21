@@ -1,6 +1,4 @@
 import type { ContactSectionProps } from '@types';
-import SpeechBubble from '@components/ui/SpeechBubble';
-import { StarIcon } from '@components/ui/SocialIcons';
 
 // Contact icons with vibrant styling
 const getContactIcon = (type: string) => {
@@ -35,45 +33,36 @@ export default function ContactSection({ contactInfo, personalInfo }: ContactSec
   return (
     <section
       id="contact"
-      className="bg-vibrant-green/20 py-section relative"
+      className="bg-surface-container-low py-section relative"
       aria-labelledby="contact-heading"
     >
       <div className="container-google">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left - Contact Info Card */}
-          <div className="bg-white border-punchy-lg border-black rounded-card p-8 hover:shadow-xl transition-all relative">
-            {/* Decorative star */}
-            <div className="absolute -top-3 -right-3 z-10">
-              <StarIcon color="#FF69B4" size={35} />
-            </div>
-
+          <div className="bg-surface-container rounded-2xl shadow-elevation-2 p-8 hover:shadow-elevation-3 transition-all relative border border-outline-variant/30">
             <div className="mb-6">
-              <SpeechBubble color="green" size="md" tailDirection="none">
-                <span className="text-punchy-md">Get in Touch</span>
-              </SpeechBubble>
+              <span className="text-title-md font-medium text-primary">Get in Touch</span>
             </div>
 
             {/* Contact Methods - Vibrant cards */}
             <div className="space-y-4">
-              {contactInfo.slice(0, 3).map((contact, idx) => (
+              {contactInfo.slice(0, 3).map((contact) => (
                 <a
                   key={contact.type}
                   href={contact.url}
                   target={contact.url.startsWith('http') ? '_blank' : undefined}
                   rel={contact.url.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className={`
-                    flex items-center gap-4 p-4 rounded-lg transition-all border-punchy-md hover:scale-105
-                    ${idx === 0 ? 'bg-vibrant-cyan/20 border-vibrant-cyan' : ''}
-                    ${idx === 1 ? 'bg-vibrant-pink/20 border-vibrant-pink' : ''}
-                    ${idx === 2 ? 'bg-vibrant-yellow/20 border-vibrant-yellow' : ''}
+                    flex items-center gap-4 p-4 rounded-lg transition-all border outline-outline-variant hover:border-primary
+                    bg-primary-container
                   `}
                 >
-                  <div className="text-black">
+                  <div className="text-on-primary-container">
                     {getContactIcon(contact.type)}
                   </div>
                   <div>
-                    <div className="font-bold text-text-primary text-sm">{contact.label}</div>
-                    <div className="text-sm text-text-secondary font-semibold">{contact.value}</div>
+                    <div className="font-medium text-on-primary-container text-sm">{contact.label}</div>
+                    <div className="text-sm text-on-primary-container/80 font-medium">{contact.value}</div>
                   </div>
                 </a>
               ))}
@@ -90,10 +79,10 @@ export default function ContactSection({ contactInfo, personalInfo }: ContactSec
                 className="w-full max-w-sm mx-auto"
               />
             </div>
-            <h3 className="text-display-lg text-text-primary mb-4 font-black">
+            <h3 className="text-display-lg text-on-surface mb-4 font-medium">
               Let's Build Something Great
             </h3>
-            <p className="text-lg text-text-primary mb-8 font-medium leading-relaxed">
+            <p className="text-lg text-on-surface-variant mb-8 font-medium leading-relaxed">
               Open to opportunities in AI Product Management and AI Product Strategy.
               Let's build something extraordinary together.
             </p>
@@ -102,7 +91,7 @@ export default function ContactSection({ contactInfo, personalInfo }: ContactSec
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center justify-center rounded-pill font-bold transition-all duration-200 bg-vibrant-cyan text-black border-punchy-lg border-black px-8 py-4 text-lg hover:scale-105 hover:bg-vibrant-pink text-center"
+                className="inline-flex items-center justify-center rounded-pill font-medium transition-all duration-200 bg-primary text-on-primary shadow-elevation-1 px-8 py-4 text-lg hover:shadow-elevation-2 text-center"
               >
                 Send Email →
               </a>
@@ -110,7 +99,7 @@ export default function ContactSection({ contactInfo, personalInfo }: ContactSec
                 href="https://www.linkedin.com/in/vikas-sahani-727420358"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-pill font-bold transition-all duration-200 border-punchy-md border-black px-6 py-3 text-text-primary bg-white hover:bg-vibrant-yellow"
+                className="inline-flex items-center justify-center rounded-pill font-medium transition-all duration-200 border-2 border-outline px-6 py-3 text-on-surface bg-transparent hover:bg-surface-container-high"
               >
                 LinkedIn
               </a>

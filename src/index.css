@@ -1,667 +1,78 @@
 /**
  * Typography: Google Sans Flex Variable Font
- * Per Google Design guidelines: https://design.google/library/google-sans-flex-font
- * 
- * Variable Axes:
- * - wght: Weight (100-900)
- * - wdth: Width (75-125)  
- * - opsz: Optical Size (auto-adjusts based on font-size)
- * - slnt: Slant (0 to -12)
- * - GRAD: Grade (stroke thickness without changing width)
- * - ROND: Roundedness (0=sharp, 100=soft/playful) - KEY for playful design
  */
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,GRAD,ROND@8..144,-12..0,75..125,100..900,-50..150,0..100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ===== BASE STYLES ===== */
 @layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 2rem;
-    font-size: 16px;
-  }
-
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #ffffff;
-    color: #202124;
-    overflow-x: hidden;
+    font-family: 'Google Sans Flex', system-ui, sans-serif;
+    @apply bg-[#FDFCFF] text-[#191C1E];
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    line-height: 1.6;
   }
 
-  /* Google Sans Flex typography for headings
-   * Using ROND (roundedness) axis for playful-yet-professional feel
-   * Per: https://design.google/library/google-sans-flex-font
-   */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Google Sans Flex', 'Inter', sans-serif;
-    font-weight: 600;
-    color: #202124;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    /* Variable font settings: sharp professional (Google Developer standard) */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[#191C1E] font-medium;
     font-variation-settings: 'ROND' 0, 'wght' 600;
   }
 
-  /* ===== M3 DESIGN SYSTEM TOKENS ===== */
-  /* Source: m3_visual_cue_report.md */
-  :root {
-    /* 1. M3 Color System (Dynamic Roles) */
-    /* Primary (Deep Blue) */
-    --md-sys-color-primary: #0b57d0;
-    --md-sys-color-on-primary: #ffffff;
-    --md-sys-color-primary-container: #d3e3fd;
-    --md-sys-color-on-primary-container: #041e49;
-
-    /* Secondary (Teal/Green for Fintech/AI) */
-    --md-sys-color-secondary: #00639b;
-    --md-sys-color-on-secondary: #ffffff;
-    --md-sys-color-secondary-container: #cce5ff;
-    --md-sys-color-on-secondary-container: #001d32;
-
-    /* Tertiary (Vibrant Purple for "Lively" feel) */
-    --md-sys-color-tertiary: #7c4e7e;
-    --md-sys-color-on-tertiary: #ffffff;
-    --md-sys-color-tertiary-container: #ffd7f5;
-    --md-sys-color-on-tertiary-container: #300b34;
-
-    /* Surface (Tinted) */
-    --md-sys-color-surface: #f8f9fa;
-    /* Surface Dim/Container Low */
-    --md-sys-color-on-surface: #191c20;
-    --md-sys-color-surface-container-low: #f3f5f7;
-    --md-sys-color-surface-container: #eeeff1;
-    --md-sys-color-surface-container-high: #e9ebed;
-    --md-sys-color-surface-container-highest: #e0e2e5;
-    --md-sys-color-surface-variant: #e0e2e5;
-    --md-sys-color-on-surface-variant: #444746;
-
-    /* Outline */
-    --md-sys-color-outline: #747775;
-    --md-sys-color-outline-variant: #c4c7c5;
-
-    /* Error */
-    --md-sys-color-error: #ba1a1a;
-    --md-sys-color-on-error: #ffffff;
-    --md-sys-color-error-container: #ffdad6;
-
-    /* 2. Shape Tokens */
-    --md-sys-shape-corner-xs: 4px;
-    --md-sys-shape-corner-sm: 8px;
-    --md-sys-shape-corner-md: 12px;
-    --md-sys-shape-corner-lg: 16px;
-    --md-sys-shape-corner-xl: 28px;
-    --md-sys-shape-corner-full: 9999px;
-
-    /* 3. Animation Timing (Standard) */
-    --md-sys-motion-easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
-    --md-sys-motion-duration-short: 200ms;
-    --md-sys-motion-duration-medium: 400ms;
-    --md-sys-motion-duration-long: 600ms;
-  }
-
-  /* Dark Mode Overrides */
-  .dark {
-    --md-sys-color-primary: #a8c7fa;
-    --md-sys-color-on-primary: #002f6a;
-    --md-sys-color-primary-container: #0b57d0;
-    --md-sys-color-on-primary-container: #d3e3fd;
-
-    --md-sys-color-secondary: #97cbff;
-    --md-sys-color-on-secondary: #003353;
-    --md-sys-color-secondary-container: #004a76;
-    --md-sys-color-on-secondary-container: #cce5ff;
-
-    --md-sys-color-tertiary: #ebbdec;
-    --md-sys-color-on-tertiary: #4a214d;
-    --md-sys-color-tertiary-container: #633765;
-    --md-sys-color-on-tertiary-container: #ffd7f5;
-
-    --md-sys-color-surface: #111318;
-    --md-sys-color-on-surface: #e2e2e6;
-    --md-sys-color-surface-container-low: #191c20;
-    --md-sys-color-surface-container: #1d2024;
-    --md-sys-color-surface-container-high: #272a2e;
-    --md-sys-color-surface-variant: #444746;
-    --md-sys-color-on-surface-variant: #c4c7c5;
-
-    --md-sys-color-outline: #8e918f;
-    --md-sys-color-outline-variant: #444746;
-  }
-
-  /* NEW: Punchy typography for vibrant social media aesthetic */
-  .text-punchy-xl {
-    font-family: 'Arial Black', 'Google Sans Flex', 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: 48px;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  .text-punchy-lg {
-    font-family: 'Arial Black', 'Google Sans Flex', 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: 32px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  .text-punchy-md {
-    font-family: 'Arial Black', 'Google Sans Flex', 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-  }
-
-  .text-punchy-sm {
-    font-family: 'Arial Black', 'Google Sans Flex', 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.4;
-  }
-
   p {
-    color: #5f6368;
+    @apply text-[#44474E];
     line-height: 1.75;
   }
 
-  /* Minimal scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #f1f3f4;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #dadce0;
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #bdc1c6;
+  :root {
+    --md-sys-color-primary: #0B57D0;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-primary-container: #D3E3FD;
+    --md-sys-color-surface: #FDFCFF;
+    --md-sys-color-on-surface: #191C1E;
+    --md-sys-color-outline: #74777F;
   }
 }
 
-/* ===== COMPONENT STYLES ===== */
 @layer components {
-
-  /* Google Developer Dark Theme - Halo Glow Effect */
-  .glow-halo {
-    position: relative;
-    z-index: 1;
+  .hero-gradient {
+    background: linear-gradient(135deg, #F8F9FF 0%, #EEF2FB 60%, #F3F8FF 100%);
   }
 
-  .glow-halo::before {
-    content: '';
-    position: absolute;
-    inset: -80px;
-    background: radial-gradient(circle, rgba(66, 133, 244, 0.15), transparent 70%);
-    z-index: -1;
-    pointer-events: none;
-  }
-
-  /* Google-style pill button - Primary */
-  .btn-pill {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-sm transition-all duration-200;
-    @apply bg-primary text-on-primary hover:shadow-elevation-1 active:scale-95;
-  }
-
-  /* Pill button - Secondary (outline) */
-  .btn-pill-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium text-sm transition-all duration-200;
-    @apply border border-outline text-primary bg-transparent hover:bg-primary-container transition-colors;
-  }
-
-  /* GDG Primary Button - Pill style */
-  .btn-pill-primary {
-    @apply inline-flex items-center justify-center rounded-full font-medium transition-all duration-200;
-    background-color: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
-    padding: 12px 24px;
-    font-size: 20px;
-    font-weight: 500;
-  }
-
-  .btn-pill-primary:hover {
-    box-shadow: var(--md-sys-elevation-2);
-    /* You might need to define this var or use class */
-    @apply shadow-elevation-2;
-    transform: translateY(-2px);
-  }
-
-  /* GDG Secondary Button - For dark sections */
-  .btn-pill-secondary {
-    @apply inline-flex items-center justify-center rounded-full font-medium transition-all duration-200;
-    background: transparent;
-    color: var(--md-sys-color-on-surface);
-    border: 1px solid var(--md-sys-color-outline);
-    padding: 12px 24px;
-    font-size: 20px;
-    font-weight: 500;
-  }
-
-  /* GDG Feature card - M3 Elevated Card */
-  .card-feature {
-    @apply bg-surface-container-low rounded-md p-6 transition-all duration-200;
-    /* M3 cards don't usually have borders unless outlined, but elevated ones do not */
-    @apply shadow-elevation-1;
-  }
-
-  .card-feature:hover {
-    @apply shadow-elevation-2;
-    transform: translateY(-2px);
-  }
-
-  /* Section containers with colored backgrounds */
-  .section-white {
-    @apply bg-surface py-16 md:py-24;
-  }
-
-  .section-dark {
-    @apply bg-surface-container-high py-16 md:py-24;
-  }
-
-  /* Container */
   .container-google {
-    @apply max-w-6xl mx-auto px-4 md:px-8;
-  }
-
-  /* Section title - Google style */
-  .title-display {
-    @apply text-display-lg md:text-display-xl text-on-surface;
-  }
-
-  .title-section {
-    @apply text-display-md md:text-display-lg text-on-surface;
-  }
-
-  .title-subsection {
-    @apply text-display-sm text-on-surface;
-  }
-
-  /* Body text */
-  .body-large {
-    @apply text-body-lg text-on-surface-variant;
-  }
-
-  .body-default {
-    @apply text-body-md text-on-surface-variant;
-  }
-
-  /* Icon containers */
-  .icon-circle {
-    @apply w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center;
-  }
-
-  .icon-circle-lg {
-    @apply w-20 h-20 rounded-full bg-surface-container-highest flex items-center justify-center;
-  }
-
-  /* Floating navigation pill */
-  .nav-floating {
-    @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50;
-    @apply glass-nav rounded-full px-2 py-2 shadow-nav;
-  }
-
-  .nav-item {
-    @apply px-4 py-2 rounded-full text-sm font-medium text-on-surface-variant transition-all duration-200;
-    @apply hover:bg-surface-variant hover:text-on-surface;
-  }
-
-  .nav-item-active {
-    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200;
-    @apply bg-secondary-container text-on-secondary-container;
-  }
-
-  /* Tab interface (for skills section) */
-  .tab-container {
-    @apply flex gap-2 p-1 bg-white/10 rounded-full;
-  }
-
-  .tab-item {
-    @apply px-4 py-2 rounded-pill text-sm font-medium text-white/70 transition-all duration-200;
-    @apply hover:text-white hover:bg-white/10;
-  }
-
-  .tab-item-active {
-    @apply px-4 py-2 rounded-pill text-sm font-medium;
-    @apply bg-white text-section-dark;
-  }
-
-  /* Badge */
-  .badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
-    @apply bg-secondary-container text-on-secondary-container;
+    @apply max-w-7xl mx-auto px-6 lg:px-12;
   }
 }
 
-/* ===== UTILITIES ===== */
 @layer utilities {
+  .hero-entrance {
+    animation: heroFadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero-entrance-delay-1 { animation-delay: 0.1s; }
+  .hero-entrance-delay-2 { animation-delay: 0.25s; }
+  .hero-entrance-delay-3 { animation-delay: 0.4s; }
+  .hero-entrance-delay-4 { animation-delay: 0.6s; }
 
-  /* Accessibility - reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Focus states for accessibility */
-  .focus-visible-ring:focus-visible {
-    @apply outline-none ring-2 ring-google-blue ring-offset-2;
-  }
-
-  /* Safe area padding for notched devices */
-  .safe-area-inset {
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
-}
-
-/* Simple fade animation */
-@keyframes fadeIn {
-  from {
+  .section-reveal {
     opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
-}
-
-/* Section Divider - subtle gradient line */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, #e2e8f0, transparent);
-  margin: 0;
-}
-
-/* ========================================
-   FLASH CARD STYLES - Hybrid Design
-   ======================================== */
-
-/* Flip Card - for Skills */
-.flip-card {
-  perspective: 1000px;
-  height: 180px;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 16px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.flip-card-front {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.flip-card-back {
-  background: linear-gradient(135deg, var(--md-sys-color-primary), var(--md-sys-color-secondary));
-  transform: rotateY(180deg);
-  color: var(--md-sys-color-on-primary);
-}
-
-/* Carousel/Slider - for Projects */
-.carousel-container {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  padding: 1rem 0 1.5rem;
-}
-
-.carousel-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.carousel-container::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-}
-
-.carousel-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #4285f4, #34a853);
-  border-radius: 4px;
-}
-
-.carousel-card {
-  flex: 0 0 380px;
-  scroll-snap-align: start;
-  background: white;
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.carousel-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-}
-
-/* Interactive Hover Cards - for Certifications */
-.hover-card {
-  background: white;
-  border-radius: 16px;
-  padding: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid transparent;
-  cursor: pointer;
-}
-
-.hover-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 20px 40px rgba(66, 133, 244, 0.25);
-  border-color: #4285f4;
-}
-
-.hover-card:hover .hover-icon {
-  transform: scale(1.2) rotate(5deg);
-  background: linear-gradient(135deg, #4285f4, #34a853);
-}
-
-.hover-icon {
-  transition: all 0.3s ease;
-}
-
-/* ========================================
-   M3 SCROLL ANIMATIONS - Premium Polish
-   ======================================== */
-
-/* Base state for scroll-triggered animations */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.animate-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Staggered animation delays for cards */
-.stagger-1 {
-  transition-delay: 0.1s;
-}
-
-.stagger-2 {
-  transition-delay: 0.2s;
-}
-
-.stagger-3 {
-  transition-delay: 0.3s;
-}
-
-.stagger-4 {
-  transition-delay: 0.4s;
-}
-
-.stagger-5 {
-  transition-delay: 0.5s;
-}
-
-.stagger-6 {
-  transition-delay: 0.6s;
-}
-
-/* FadeInUp keyframe animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
+  .section-reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Floating gradient orb animation */
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
+  .stat-entrance {
+    animation: statPulse 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
-
-  33% {
-    transform: translate(30px, -30px) rotate(120deg);
+  @keyframes statPulse {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
   }
-
-  66% {
-    transform: translate(-20px, 20px) rotate(240deg);
-  }
-}
-
-.animate-float {
-  animation: float 20s infinite ease-in-out;
-}
-
-/* M3 Elevation shadows */
-.elevation-1 {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
-}
-
-.elevation-2 {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
-}
-
-.elevation-3 {
-  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-/* Skill category card accents */
-.skill-card-blue {
-  border-left: 4px solid #4285f4;
-}
-
-.skill-card-green {
-  border-left: 4px solid #34a853;
-}
-
-.skill-card-yellow {
-  border-left: 4px solid #fbbc04;
-}
-
-/* Skill tag hover effect */
-.skill-tag {
-  transition: all 0.2s ease;
-}
-
-.skill-tag:hover {
-  background-color: #e8f0fe;
-  transform: translateY(-2px);
-}
-
-/* Hero color blocks */
-.color-block {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  color: white;
-  border-radius: 16px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.color-block:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.color-block-blue {
-  background-color: #4285f4;
-}
-
-.color-block-green {
-  background-color: #34a853;
-}
-
-.color-block-yellow {
-  background-color: #fbbc04;
-}
-
-.color-block-red {
-  background-color: #ea4335;
 }

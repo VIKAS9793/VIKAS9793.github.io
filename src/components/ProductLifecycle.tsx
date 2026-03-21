@@ -1,47 +1,46 @@
-import { StarIcon } from '@components/ui/SocialIcons';
+
 
 const lifecycleSteps = [
   {
     title: 'Discovery',
-    description: 'User problem understanding and friction mapping'
+    description: 'Identified reliability gap in AI Android tooling through developer trust signal analysis'
   },
   {
     title: 'Strategy',
-    description: 'MVP definition and KPI selection'
+    description: 'Defined MCP as category position over RAG or prompt engineering alternatives and set Weekly Active Installs as the North Star metric'
   },
   {
     title: 'Execution',
-    description: 'Product shipping and onboarding design'
+    description: 'Shipped v1.0 to v1.6.4 across 7 AI environments with CLI installer and VS Code extension across 4 iteration cycles in 2 weeks'
   },
   {
     title: 'Measurement',
-    description: 'Analytics instrumentation and adoption tracking'
+    description: 'Instrumented GA4 funnel with behavioural event taxonomy across discovery, evaluation, and activation stages'
   },
   {
     title: 'Iteration',
-    description: 'Product decisions based on usage signals'
+    description: 'Deprioritised feature expansion in v1.4 to v1.6 in favour of onboarding reliability based on cross-platform drop-off signals'
   }
 ];
 
 export default function ProductLifecycle() {
   return (
-    <section id="lifecycle" className="bg-white py-section relative border-t-punchy-lg border-black">
+    <section id="lifecycle" className="bg-surface-container-low py-section relative border-t border-outline-variant section-reveal">
       <div className="container-google">
-        <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-display-lg text-text-primary font-black">
+        <div className="mb-12">
+          <h2 className="text-display-lg text-primary font-medium">
             Product Lifecycle Approach
           </h2>
-          <StarIcon color="#FFD700" size={35} />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lifecycleSteps.map((step, i) => (
             <div 
               key={i}
-              className="bg-vibrant-pink/5 border-punchy-md border-black rounded-card p-6 h-full hover:scale-102 transition-transform"
+              className="bg-primary-container rounded-2xl shadow-elevation-1 p-6 h-full hover:shadow-elevation-2 transition-shadow"
             >
-              <h3 className="text-title-md font-black mb-3 flex items-center gap-2">
-                <span className="w-8 h-8 flex items-center justify-center bg-vibrant-pink text-black rounded-full text-sm border-2 border-black">
+              <h3 className="text-title-md font-medium mb-3 flex items-center gap-2">
+                <span className="w-8 h-8 flex items-center justify-center bg-primary-container text-black rounded-full text-sm font-medium">
                   {i + 1}
                 </span>
                 {step.title}

@@ -146,8 +146,8 @@ export default {
         // Glass effect for floating nav
         '.glass-nav': {
           'backdrop-filter': 'blur(12px) saturate(180%)',
-          'background-color': 'rgba(255, 255, 255, 0.85)',
-          'border': '1px solid rgba(0, 0, 0, 0.08)',
+          'background-color': 'color-mix(in srgb, var(--md-sys-color-surface) 85%, transparent)',
+          'border': '1px solid var(--md-sys-color-outline-variant)',
         },
       }
       addUtilities(newUtilities)

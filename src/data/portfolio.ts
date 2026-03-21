@@ -9,21 +9,22 @@ import type {
 
 export const personalInfo: PersonalInfo = {
   name: "Vikas Sahani",
-  title: "AI Product Manager | AI Products | Developer Tools | FinTech",
-  tagline: "Product professional with 4+ years in customer-facing financial environments and hands-on experience owning a developer tool across the full product lifecycle — from ideation to early growth. I define product scope, instrument analytics funnels, and iterate on activation signals. Open to relocation. Open to visa sponsorship.",
+  title: "Associate Product Manager | AI Products | Developer Tools | FinTech",
+  tagline: "Product professional with 4+ years in customer-facing financial environments and hands-on experience owning a developer tool across the full product lifecycle from ideation to early growth. I define product scope, instrument analytics funnels, and iterate on activation signals. Open to relocation. Open to visa sponsorship.",
   bio: `
-    <p>
-      Product professional with 4+ years in customer-facing financial environments.
-      I have owned a developer tool across the full product lifecycle — from problem definition
-      to multiplatform launch and iterative growth — achieving measurable traction within two weeks
-      with zero paid acquisition. My work sits at the intersection of product execution, analytics
-      instrumentation, and domain expertise from regulated financial environments.
-    </p>
-    <p>
-      I focus on the 0→1 phase: defining MVP scope, instrumenting funnels, reading activation signals,
-      and making scope decisions grounded in data rather than feature instinct.
-    </p>
-  `,
+  <p>
+    Product professional with 4+ years in customer-facing financial environments
+    across HDFC Bank, ICICI Bank, IndusInd Bank, and Aditya Birla Capital.
+    I have owned a developer tool across the full product lifecycle from problem definition
+    to multiplatform launch and iterative growth, achieving measurable traction within two weeks
+    with zero paid acquisition. My work sits at the intersection of product execution, analytics
+    instrumentation, and domain expertise from regulated financial environments.
+  </p>
+  <p>
+    I focus on the 0 to 1 phase: defining MVP scope, instrumenting funnels, reading activation signals,
+    and making scope decisions grounded in data rather than feature instinct.
+  </p>
+`,
   location: "India",
   email: "vikassahani17@gmail.com",
   phone: "+91 7715072817",
@@ -35,25 +36,25 @@ export const stats: Stat[] = [
     id: "weekly-active-installs",
     label: "Weekly Active Installs",
     value: "299",
-    description: "North Star metric for AndroJack MCP. 660 GitHub clones from 251 unique cloners in 14 days — cloners exceed repo visitors, validating terminal-first organic growth."
+    description: "North Star metric for AndroJack MCP. 660 GitHub clones from 251 unique cloners in 14 days. Cloners exceed repo visitors, validating terminal-first organic growth."
   },
   {
     id: "npm-downloads",
     label: "Weekly npm Downloads",
     value: "240",
-    description: "Weekly npm downloads alongside 59 VS Code Marketplace installs and 82% session engagement rate (GA4). All within the first two weeks post-launch, zero paid acquisition."
+    description: "Weekly npm downloads alongside 59 VS Code Marketplace installs and 82% session engagement rate on GA4. All within the first two weeks post-launch with zero paid acquisition."
   },
   {
     id: "security-score",
     label: "Security Score",
     value: "10 / 10",
-    description: "MCP Marketplace security score with zero CVEs. PageSpeed: SEO 100, Accessibility 100, Performance 97. Verified in Official MCP Registry."
+    description: "MCP Marketplace security score with zero CVEs. PageSpeed scores: SEO 100, Accessibility 100, Performance 97. Verified in the Official MCP Registry."
   },
   {
     id: "pm-competition",
     label: "National PM Rank",
     value: "Rank 2",
-    description: "Runner-up nationally at Product Titans PM Strategy Competition — solo submission, team North Star Hunter. Score: 6.4."
+    description: "Runner-up nationally at the Product Titans PM Strategy Competition. Solo submission under team name North Star Hunter. Score: 6.4."
   }
 ];
 
@@ -62,13 +63,13 @@ export const projects: Project[] = [
     id: "androjack-mcp",
     title: "AndroJack MCP",
     tagline: "Developer tool addressing reliability gaps in AI-assisted Android development. Owned end-to-end from problem definition to multiplatform launch and iterative growth.",
-    description: "Identified a reliability gap in AI code generation tools that reference stale training data. Defined MVP scope, led multiplatform launch, instrumented the analytics funnel, and iterated on activation and engagement signals. Shipped v1.6.4 across 7 AI coding environments in under 4 weeks — solo.",
+    description: "Identified a reliability gap in AI code generation tools that reference stale training data. Defined MVP scope, led multiplatform launch, instrumented the analytics funnel, and iterated on activation and engagement signals. Shipped v1.6.4 across 7 AI coding environments in under 4 weeks as a solo build.",
     pmSections: {
-      problem: "AI coding tools generate Android solutions grounded in stale training data, not live documentation. Developers cannot trust outputs, creating a measurable reliability and trust gap in AI-assisted Android workflows.",
-      solution: "Defined a Model Context Protocol (MCP) server that enforces live documentation verification at inference time — a first-mover category position over prompt engineering or RAG alternatives.",
-      execution: "Orchestrated build using Claude AI for spec, Antigravity IDE for code generation, compressing solo lifecycle from discovery to v1.0 in under 4 weeks. Shipped CLI installer and VS Code extension for one-command setup across any AI coding environment. Prioritised PulseMCP registry listing on day 1 as primary distribution channel.",
-      measurement: "Instrumented GA4 funnel with a behavioural event taxonomy mapping discovery, evaluation, and activation stages. KPIs: weekly download velocity, install conversion, engagement rate, channel attribution. Terminal-first growth validated: cloners (251) exceed repo visitors (179), confirming external discovery via npx direct install. Used Reddit (74 unique referrals, primary acquisition engine) and acquisition data to prioritise documentation as highest-ROI content channel.",
-      impact: "299 weekly active installs (North Star). 660 GitHub clones, 251 unique cloners in 14 days. 240 weekly npm downloads. 59 VS Code Marketplace installs. 82% session engagement rate. 10/10 security score, zero CVEs. PageSpeed: SEO 100, Accessibility 100, Performance 97. Organic search position 4.5. Top-40 global weekly ranking on PulseMCP. Verified in Official MCP Registry. All organic — zero paid acquisition."
+      problem: "AI coding tools generate Android solutions grounded in stale training data rather than live documentation. Developers cannot trust outputs, creating a measurable reliability and trust gap in AI-assisted Android workflows.",
+      solution: "Defined a Model Context Protocol server that enforces live documentation verification at inference time. This established a first-mover category position over prompt engineering or RAG alternatives.",
+      execution: "Orchestrated the build using Claude AI for spec definition and Antigravity IDE for code generation, compressing the solo product lifecycle from discovery to v1.0 in under 4 weeks. Shipped a CLI installer and VS Code extension for one-command setup across any AI coding environment. Prioritised PulseMCP registry listing on day 1 as the primary distribution channel.",
+      measurement: "Instrumented a GA4 funnel with a behavioural event taxonomy covering discovery, evaluation, and activation stages. KPIs tracked: weekly download velocity, install conversion, engagement rate, and channel attribution. Terminal-first growth was validated when cloners (251) exceeded repo visitors (179), confirming external discovery via npx direct install. Reddit generated 74 unique referrals and was identified as the primary acquisition engine. Documentation was prioritised as the highest-ROI content channel based on this data.",
+      impact: "299 weekly active installs as North Star metric. 660 GitHub clones from 251 unique cloners in 14 days. 240 weekly npm downloads. 59 VS Code Marketplace installs. 82% session engagement rate. 10/10 security score with zero CVEs. PageSpeed scores: SEO 100, Accessibility 100, Performance 97. Organic search average position 4.5. Top-40 global weekly ranking on PulseMCP. Verified in the Official MCP Registry. All growth was organic with zero paid acquisition."
     },
     isFlagship: true,
     category: "ai",
@@ -358,20 +359,20 @@ export const projects: Project[] = [
   },
   {
     id: "portfolio-management",
-    title: "Aditya Birla Capital — Virtual Relationship Manager",
-    description: "Current role (Nov 2024 – Present). Managing 50–60 daily customer interactions in a regulated financial environment, developing applied understanding of user trust signals, adoption friction, and lifecycle engagement patterns.",
-    longDescription: "Identifying friction in financial product selection across customer cohorts and translating behavioural observations into actionable product and onboarding insights. 4+ years across HDFC Bank, ICICI Bank, IndusInd Bank, and Aditya Birla Capital — building domain knowledge in customer acquisition, retention behaviour, and trust-driven positioning.",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    title: "Aditya Birla Capital - Virtual Relationship Manager",
+    description: "Current role from Nov 2024 to present. Managing 50 to 60 daily customer interactions in a regulated financial environment and developing applied understanding of user trust signals, adoption friction, and lifecycle engagement patterns.",
+    longDescription: "Identifying friction in financial product selection across customer cohorts and translating behavioural observations into actionable product and onboarding insights. 4+ years across HDFC Bank, ICICI Bank, IndusInd Bank, and Aditya Birla Capital, building domain knowledge in customer acquisition, retention behaviour, and trust-driven product positioning.",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     category: "fintech",
     technologies: [
       "Customer Lifecycle Management",
       "Regulated Financial Products",
       "Trust Signal Analysis",
       "Onboarding Friction Identification",
-      "KYC & Compliance"
+      "KYC and Compliance"
     ],
     metrics: [
-      { label: "Daily Customer Interactions", value: "50–60" },
+      { label: "Daily Customer Interactions", value: "50 to 60" },
       { label: "Domain Experience", value: "4+ yrs" },
       { label: "Institutions", value: "4" }
     ],
@@ -389,7 +390,7 @@ export const simulations: Simulation[] = [
   {
     id: "ea-simulation",
     company: "Electronic Arts (EA)",
-    description: "Analyzed KPIs for a mobile gaming product and produced a data-driven feature roadmap proposal to improve user engagement. Product skills applied: KPI analysis, roadmap prioritization, stakeholder presentation.",
+    description: "Analyzed KPIs for a mobile gaming product and produced a data-driven feature roadmap proposal to improve user engagement. Product skills applied: KPI analysis, roadmap prioritization, and stakeholder presentation.",
     skills: ["KPI Analysis", "Roadmap Prioritization", "Product Strategy", "Stakeholder Presentation"]
   }
 ];

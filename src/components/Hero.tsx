@@ -1,20 +1,14 @@
 import type { HeroSectionProps } from '@types';
-import SpeechBubble from '@components/ui/SpeechBubble';
-import DecorativeArrow from '@components/ui/DecorativeArrow';
-import { ThumbsUpIcon, StarIcon, PlusSignIcon } from '@components/ui/SocialIcons';
 
 /**
- * Hero Section - Vibrant Social Media Design
- * - Speech bubbles for key messages
- * - Decorative arrows and icons
- * - Punchy colors and bold typography
- * - Thick black borders (5px)
+ * Hero Section - Material 3 Expressive Design
+ * Clean light-blue gradient with high-contrast text.
  */
-export default function Hero({ personalInfo }: HeroSectionProps) {
+export default function Hero({ personalInfo, stats }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="bg-surface py-24 relative overflow-hidden"
+      className="py-24 relative overflow-hidden hero-gradient"
       aria-label="Introduction"
     >
       <div className="container-google">
@@ -22,122 +16,71 @@ export default function Hero({ personalInfo }: HeroSectionProps) {
 
           {/* Left: Text content */}
           <div className="relative z-10">
-            {/* Name - Punchy typography */}
-            <div className="relative">
-              <h1 className="text-display-lg lg:text-display-xl font-black text-on-surface mb-4 leading-none">
+            {/* Name */}
+            <div className="relative mb-6">
+              <h1 className="text-display-lg lg:text-display-xl font-bold text-[#191C1E] mb-2 leading-tight hero-entrance">
                 {personalInfo.name}
               </h1>
-              <p className="text-body-sm font-bold text-vibrant-blue mb-6">
-                Owned a developer tool from 0→1. Measurable traction in 15 days. Zero paid spend.
+              <p className="text-title-md font-medium text-[#005CB9] hero-entrance hero-entrance-delay-1">
+                Owned a developer tool from 0 to 1. Measurable traction in 15 days. Zero paid spend.
               </p>
-
-              {/* Decorative star icons around name */}
-              <div className="absolute -top-4 -right-4 hidden lg:block">
-                <StarIcon color="#FFD700" size={30} />
-              </div>
-              <div className="absolute -bottom-2 left-0 hidden lg:block">
-                <StarIcon color="#FF69B4" size={24} />
-              </div>
             </div>
 
-            {/* Speech Bubble - Product Manager */}
-            <div className="mb-6 relative">
-              <SpeechBubble color="pink" size="md" tailDirection="none">
-                <span className="text-title-sm lg:text-title-md font-bold">AI Product Manager | 0→1 Products | Product Analytics | GenAI Systems</span>
-              </SpeechBubble>
-
-              {/* Decorative plus sign */}
-              <div className="absolute -right-8 top-1/2 -translate-y-1/2 hidden lg:block">
-                <PlusSignIcon color="#00D4FF" size={24} />
-              </div>
-            </div>
-
-            {/* Removed redundant bubble for cleaner positioning as requested */}
-
+            {/* Professional Title */}
+            <p className="text-display-sm font-semibold text-[#191C1E] mb-6 hero-entrance hero-entrance-delay-2">
+              Associate Product Manager | AI Products | Developer Tools | FinTech
+            </p>
+            
             {/* Value proposition */}
-            <p className="text-body-lg text-on-surface-variant leading-relaxed mb-4 max-w-xl">
-              Product professional with 4+ years in regulated financial environments.
-              I define scope, instrument analytics funnels, and iterate on activation signals.
-              Seeking APM, AI Product, or FinTech roles where experimentation,
-              data-driven prioritization, and stakeholder-focused execution are valued.
+            <p className="text-body-lg text-[#44474E] max-w-xl mb-8 hero-entrance hero-entrance-delay-3 leading-relaxed">
+              Product professional with 4+ years in regulated financial environments. I define scope, instrument analytics funnels, and iterate on activation signals. Seeking APM, AI Product, or FinTech roles where experimentation, data-driven prioritization, and stakeholder-focused execution are valued.
             </p>
 
             {/* Focus areas */}
-            <p className="text-body-md text-on-surface-variant/80 mb-6 max-w-xl">
-              <span className="font-medium text-on-surface">Focused on:</span> User trust in AI outputs • Constraint-first product decisions • Regulated AI deployment
-            </p>
-
-            {/* Achievement Proof Card - Vibrant styling */}
-            <div className="mb-6 p-4 bg-vibrant-yellow/20 border-punchy-md border-black rounded-card max-w-xl">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="px-3 py-1.5 bg-vibrant-orange text-black text-sm font-bold rounded-pill border-2 border-black">
-                  🏆 Runner-up (Rank 2)
-                </span>
-                <span className="text-on-surface font-bold text-sm">
-                  Product Titans PM Challenge
-                </span>
-                <span className="text-on-surface-variant text-sm font-semibold">
-                  Score: 6.4 • Solo Team: North Star Hunter
-                </span>
-              </div>
-              <div className="mt-2 flex gap-3">
-                <a
-                  href="https://youtu.be/M_D3dxxZiqI"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-vibrant-blue text-sm hover:underline font-bold"
-                >
-                  Watch Walkthrough →
-                </a>
-                <a
-                  href="#achievements"
-                  className="text-vibrant-blue text-sm hover:underline font-bold"
-                >
-                  View Certificate →
-                </a>
-              </div>
+            <div className="mb-10 hero-entrance hero-entrance-delay-3">
+              <p className="text-body-md text-[#44474E] font-medium">
+                <span className="text-[#0B57D0] font-bold">Focused on:</span> User trust in AI outputs | Constraint-first product decisions | Regulated AI deployment
+              </p>
             </div>
 
-            {/* CTAs - Vibrant pill buttons with arrow */}
-            <div className="flex flex-wrap gap-4 items-center">
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4 items-center hero-entrance hero-entrance-delay-4">
               <a
                 href="#case-study"
-                className="inline-flex items-center justify-center rounded-pill font-bold transition-all duration-200 bg-vibrant-cyan text-black border-punchy-lg border-black px-8 py-4 text-lg hover:scale-105"
+                className="bg-[#0B57D0] text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all active:scale-95"
               >
-                View Case Study →
+                View Case Study
               </a>
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-full font-bold transition-all duration-200 border-2 border-outline px-6 py-3 text-on-surface bg-surface hover:bg-surface-container-high"
+                className="border-2 border-[#74777F] text-[#0B57D0] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#D3E3FD]/20 transition-all active:scale-95"
               >
                 Projects
               </a>
+            </div>
 
-              {/* Decorative arrow pointing to CTA */}
-              <div className="hidden lg:block">
-                <DecorativeArrow color="yellow" direction="left" size="md" />
-              </div>
+            {/* Stats grid */}
+            <div className="grid grid-cols-2 gap-4 mt-12 max-w-xl">
+              {stats?.map((stat, i) => (
+                <div
+                  key={stat.id}
+                  className={`bg-[#D3E3FD]/30 border border-[#0B57D0]/10 rounded-2xl p-5 section-reveal stat-entrance stat-entrance-delay-${i + 1}`}
+                >
+                  <p className="text-display-sm font-bold text-[#0B57D0] leading-none">{stat.value}</p>
+                  <p className="text-label-lg text-[#44474E] mt-2 font-medium uppercase tracking-wider">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right: Profile Photo - Vibrant border */}
+          {/* Right: Profile Photo */}
           <div className="flex justify-center lg:justify-end relative">
             <div className="relative">
               <img
                 src="/images/profile-avatar.png"
                 alt={`${personalInfo.name} - AI Product Manager`}
-                className="w-72 h-72 lg:w-80 lg:h-80 object-cover rounded-card border-punchy-lg border-black"
+                className="w-72 h-72 lg:w-96 lg:h-96 object-cover rounded-3xl shadow-xl border-4 border-white"
               />
-
-              {/* Decorative thumbs up */}
-              <div className="absolute -bottom-4 -right-4">
-                <ThumbsUpIcon color="#FFD700" size={50} />
-              </div>
-
-              {/* Decorative stars */}
-              <div className="absolute -top-4 -left-4 hidden lg:block">
-                <StarIcon color="#00D4FF" size={35} />
-              </div>
             </div>
           </div>
 

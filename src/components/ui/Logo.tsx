@@ -74,7 +74,7 @@ export default function Logo({
       <div className="relative">
         <motion.div
           className={cn(
-            'relative flex items-center justify-center rounded-xl font-bold text-black overflow-hidden',
+            'relative flex items-center justify-center rounded-xl font-medium text-black overflow-hidden',
             'bg-gradient-to-br from-primary-500 via-primary-400 to-secondary-500',
             'shadow-lg shadow-primary-500/25',
             sizeClasses[size].container
@@ -90,7 +90,7 @@ export default function Logo({
           
           {/* Letter V */}
           <motion.span
-            className={cn('font-black tracking-tighter z-10', sizeClasses[size].text)}
+            className={cn('font-medium tracking-tighter z-10', sizeClasses[size].text)}
             variants={letterVariants}
             style={{ transformStyle: 'preserve-3d' }}
           >
@@ -100,7 +100,7 @@ export default function Logo({
           {/* Letter S - appears on hover */}
           <motion.span
             className={cn(
-              'absolute font-black tracking-tighter z-10 text-white',
+              'absolute font-medium tracking-tighter z-10 text-white',
               sizeClasses[size].text
             )}
             initial={{ rotateY: -180, opacity: 0 }}
@@ -130,7 +130,7 @@ export default function Logo({
           transition={{ delay: 0.3, duration: 0.5 }}
         >
           <div className="flex flex-col leading-tight">
-            <span className={cn('font-bold text-white', sizeClasses[size].text)}>
+            <span className={cn('font-medium text-white', sizeClasses[size].text)}>
               Vikas Sahani
             </span>
             <span className="text-xs text-primary-500 font-medium tracking-wider">
@@ -147,7 +147,7 @@ export default function Logo({
 export function LogoMark({ size = 'sm', className }: Pick<LogoProps, 'size' | 'className'>) {
   return (
     <div className={cn(
-      'flex items-center justify-center rounded-lg font-bold text-black',
+      'flex items-center justify-center rounded-lg font-medium text-black',
       'bg-gradient-to-br from-primary-500 to-secondary-500',
       sizeClasses[size].container,
       className

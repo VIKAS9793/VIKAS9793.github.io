@@ -1,5 +1,4 @@
-import SpeechBubble from '@components/ui/SpeechBubble';
-import { StarIcon, PuzzlePieceIcon, ThumbsUpIcon, CircleIcon } from '@components/ui/SocialIcons';
+
 
 /**
  * Skills Section - Vibrant Design
@@ -82,20 +81,10 @@ function SkillCategoryCard({
   category: typeof skillCategories[0];
 }) {
   return (
-    <div className="bg-white border-punchy-lg border-black rounded-card p-6 hover:shadow-xl hover:scale-105 transition-all relative">
-      {/* Decorative icon */}
-      <div className="absolute -top-3 -right-3 z-10">
-        {category.icon === 'thumbs' && <ThumbsUpIcon color="#FFD700" size={32} />}
-        {category.icon === 'star' && <StarIcon color="#00D4FF" size={32} />}
-        {category.icon === 'puzzle' && <PuzzlePieceIcon color="#FFA500" size={32} />}
-        {category.icon === 'circle' && <CircleIcon color="#FF69B4" size={32} />}
-      </div>
-
-      {/* Title in Speech Bubble */}
-      <div className="mb-6 -mx-2">
-        <SpeechBubble color={category.color} size="md" tailDirection="none">
-          <span className="text-punchy-sm">{category.title}</span>
-        </SpeechBubble>
+    <div className="bg-surface-container rounded-2xl shadow-elevation-1 p-6 hover:shadow-elevation-2 transition-shadow relative border border-outline-variant/30">
+      {/* Clean Title */}
+      <div className="mb-6 -mx-2 px-2">
+        <span className="text-title-md font-medium text-primary">{category.title}</span>
       </div>
 
       {/* Skills list */}
@@ -103,9 +92,9 @@ function SkillCategoryCard({
         {category.skills.map((skill, i) => (
           <li
             key={i}
-            className="text-base text-text-primary font-semibold flex items-center gap-2"
+            className="text-base text-on-surface font-medium flex items-center gap-2"
           >
-            <span className="w-2 h-2 bg-black rounded-full flex-shrink-0"></span>
+            <span className="w-2 h-2 bg-on-surface-variant rounded-full flex-shrink-0"></span>
             {skill}
           </li>
         ))}
@@ -118,18 +107,15 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="bg-vibrant-yellow/30 py-section relative"
+      className="bg-surface-container-low py-section relative section-reveal"
       aria-label="Skills and Expertise"
     >
       <div className="container-google">
-        {/* Section Heading with decorative elements */}
-        <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-display-xl text-text-primary font-black">
+        {/* Clean Section Heading */}
+        <div className="mb-12">
+          <h2 className="text-display-xl text-text-primary font-medium">
             Expertise
           </h2>
-          <div className="hidden md:block">
-            <StarIcon color="#FF69B4" size={45} />
-          </div>
         </div>
 
         {/* Skill Cards Grid */}
