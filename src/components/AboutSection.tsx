@@ -35,13 +35,16 @@ export default function AboutSection() {
           {/* Certifications with clean badges */}
           <div className="flex flex-wrap gap-4 pt-6">
             <span className="px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-sm font-medium">
-              IBM AI PM Certified
+              IBM Product Manager Certified
             </span>
             <span className="px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-sm font-medium">
               Google AI Professional
             </span>
             <span className="px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-sm font-medium">
-              Meta Fundamentals of UI/UX
+              NISM Series V-A Certified
+            </span>
+            <span className="px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-sm font-medium">
+              IRDAI Composite Certified
             </span>
           </div>
         </div>

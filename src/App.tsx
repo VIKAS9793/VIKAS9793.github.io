@@ -5,13 +5,12 @@ import FloatingNav from '@components/ui/FloatingNav';
 import ScrollButton from '@components/ui/ScrollButton';
 import AudioReader from '@components/ui/AudioReader';
 import LoadingSpinner from '@components/ui/LoadingSpinner';
-import { personalInfo, contactInfo, stats } from '@data/portfolio';
+import { personalInfo, contactInfo, stats, certifications } from '@data/portfolio';
 
 // Lazy load heavy components for better initial page load
 const SkillsSection = lazy(() => import('@components/SkillsSection'));
-const CaseStudy = lazy(() => import('@components/CaseStudy'));
 const ProjectsSection = lazy(() => import('@components/ProjectsSection'));
-const AchievementsSection = lazy(() => import('@components/AchievementsSection'));
+const CertificationsSection = lazy(() => import('@components/CertificationsSection'));
 const ProductLifecycle = lazy(() => import('@components/ProductLifecycle'));
 const ProductSupplementary = lazy(() => import('@components/ProductSupplementary').then(m => ({ default: () => (
     <>
@@ -98,14 +97,11 @@ function App() {
           {/* Skills - Categorized cards (visual polish) */}
           <SkillsSection />
 
-          {/* Case Study - THE CORE (constraint-first structure) */}
-          <CaseStudy />
-
           {/* Projects - Cards with GitHub links */}
           <ProjectsSection />
 
-          {/* Certifications & Achievements */}
-          <AchievementsSection />
+          {/* Verified certifications */}
+          <CertificationsSection certifications={certifications} />
 
           {/* Product Measurement & Distribution */}
           <ProductSupplementary />

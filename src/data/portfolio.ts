@@ -9,8 +9,8 @@ import type {
 
 export const personalInfo: PersonalInfo = {
   name: "Vikas Sahani",
-  title: "Associate Product Manager | AI Products | Developer Tools | FinTech",
-  tagline: "Product professional with 4+ years in customer-facing financial environments and hands-on experience owning a developer tool across the full product lifecycle from ideation to early growth. I define product scope, instrument analytics funnels, and iterate on activation signals. Open to relocation. Open to visa sponsorship.",
+  title: "Virtual Relationship Manager, BFSI | Independent AI Product Builder",
+  tagline: "4+ years in customer-facing financial environments (HDFC, ICICI, IndusInd, Aditya Birla Capital), building AI developer tools independently outside work hours. I define product scope, instrument analytics funnels, and iterate on activation signals. Open to relocation. Open to visa sponsorship.",
   bio: `
   <p>
     Product professional with 4+ years in customer-facing financial environments
@@ -33,335 +33,185 @@ export const personalInfo: PersonalInfo = {
 
 export const stats: Stat[] = [
   {
-    id: "weekly-active-installs",
-    label: "Weekly Active Installs",
-    value: "299",
-    description: "North Star metric for AndroJack MCP. 660 GitHub clones from 251 unique cloners in 14 days. Cloners exceed repo visitors, validating terminal-first organic growth."
-  },
-  {
     id: "npm-downloads",
     label: "Weekly npm Downloads",
-    value: "240",
-    description: "Weekly npm downloads alongside 59 VS Code Marketplace installs and 82% session engagement rate on GA4. All within the first two weeks post-launch with zero paid acquisition."
+    value: "110",
+    description: "AndroJack MCP, live npm registry data. 813 downloads in the trailing month. Verified via registry.npmjs.org, not a static launch-week snapshot."
+  },
+  {
+    id: "launch-traction",
+    label: "Launch-Window Traction",
+    value: "660 clones",
+    description: "251 unique cloners and 179 repo visitors in AndroJack's first 14 days post-launch — cloners exceeding visitors validated terminal-first (npx direct install) organic growth with zero paid acquisition."
   },
   {
     id: "security-score",
     label: "Security Score",
     value: "10 / 10",
-    description: "MCP Marketplace security score with zero CVEs. PageSpeed scores: SEO 100, Accessibility 100, Performance 97. Verified in the Official MCP Registry."
-  },
-  {
-    id: "pm-competition",
-    label: "National PM Rank",
-    value: "Rank 2",
-    description: "Runner-up nationally at the Product Titans PM Strategy Competition. Solo submission under team name North Star Hunter. Score: 6.4."
+    description: "MCP Marketplace security score, 0 known vulnerabilities in the shipped dependency tree as of v2.0.0. Verified in the Official MCP Registry."
   }
 ];
 
 export const projects: Project[] = [
   {
-    id: "androjack-mcp",
-    title: "AndroJack MCP",
-    tagline: "Developer tool addressing reliability gaps in AI-assisted Android development. Owned end-to-end from problem definition to multiplatform launch and iterative growth.",
-    description: "Identified a reliability gap in AI code generation tools that reference stale training data. Defined MVP scope, led multiplatform launch, instrumented the analytics funnel, and iterated on activation and engagement signals. Shipped v1.6.4 across 7 AI coding environments in under 4 weeks as a solo build.",
-    pmSections: {
-      problem: "AI coding tools generate Android solutions grounded in stale training data rather than live documentation. Developers cannot trust outputs, creating a measurable reliability and trust gap in AI-assisted Android workflows.",
-      solution: "Defined a Model Context Protocol server that enforces live documentation verification at inference time. This established a first-mover category position over prompt engineering or RAG alternatives.",
-      execution: "Orchestrated the build using Claude AI for spec definition and Antigravity IDE for code generation, compressing the solo product lifecycle from discovery to v1.0 in under 4 weeks. Shipped a CLI installer and VS Code extension for one-command setup across any AI coding environment. Prioritised PulseMCP registry listing on day 1 as the primary distribution channel.",
-      measurement: "Instrumented a GA4 funnel with a behavioural event taxonomy covering discovery, evaluation, and activation stages. KPIs tracked: weekly download velocity, install conversion, engagement rate, and channel attribution. Terminal-first growth was validated when cloners (251) exceeded repo visitors (179), confirming external discovery via npx direct install. Reddit generated 74 unique referrals and was identified as the primary acquisition engine. Documentation was prioritised as the highest-ROI content channel based on this data.",
-      impact: "299 weekly active installs as North Star metric. 660 GitHub clones from 251 unique cloners in 14 days. 240 weekly npm downloads. 59 VS Code Marketplace installs. 82% session engagement rate. 10/10 security score with zero CVEs. PageSpeed scores: SEO 100, Accessibility 100, Performance 97. Organic search average position 4.5. Top-40 global weekly ranking on PulseMCP. Verified in the Official MCP Registry. All growth was organic with zero paid acquisition."
-    },
-    isFlagship: true,
-    category: "ai",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/androjack-banner.png",
+    id: "pramiti-os",
+    title: "Pramiti OS",
+    tagline: "Multi-agent architecture PoC for wealth-management Relationship Managers, unifying fragmented banking systems into one copilot while enforcing DPDP privacy and RBI human-in-the-loop rules.",
+    description: "Proof-of-concept exploring whether a LangGraph + MCP agentic architecture can securely bridge internal banking APIs (CRM, Core Banking, market terminals) for RMs, without violating DPDP data-minimization rules or RBI's prohibition on unsupervised algorithmic execution. Codebase is at Beta maturity; not a deployed or production application.",
+    longDescription: "Architecture separates reasoning (LLM), integration (MCP), and orchestration (LangGraph). Four MCP servers (cbs_server, portfolio_server, sip_server, data) expose specific Supabase queries and Qdrant document retrieval while masking PII (PAN, mobile, name) before it reaches the model. High-risk state changes — e.g. a portfolio reallocation proposal — trigger a LangGraph NodeInterrupt that pauses execution until a human RM explicitly approves it. The PoC runs on Groq's hosted llama-3.3-70b as a stand-in for the intended production target of on-premise, air-gapped Sarvam-30B/105B open-weight models, since cloud inference would itself violate the DPDP data-localization rule the project is designed around. 35 backend tests across unit and integration suites (PII masking, security config, SIP server, end-to-end graph execution) plus 12 documentation files spanning strategy, PRD, architecture, and an ADR on RBI MRMF kill-switch policy.",
+    image: "https://raw.githubusercontent.com/VIKAS9793/pramiti-os/main/assets/images/project_banner.png",
+    category: "fintech",
     featured: true,
-    technologies: ["MCP", "Node.js", "Android SDK", "GA4 Analytics", "npm", "VS Code Marketplace"],
+    technologies: ["Next.js 16.2.11", "React 19.2.4", "LangGraph", "MCP", "FastAPI", "Supabase", "Qdrant", "Groq (Llama 3.3 70B)"],
     metrics: [
-      { label: "Weekly Active Installs (North Star)", value: "299" },
-      { label: "GitHub Clones (14 days)", value: "660" },
-      { label: "Unique Cloners", value: "251" },
-      { label: "Repo Visitors", value: "179" },
-      { label: "npm Weekly Downloads", value: "240" },
-      { label: "VS Code Installs", value: "59" },
-      { label: "Session Engagement Rate", value: "82%" },
-      { label: "Security Score", value: "10 / 10" },
-      { label: "CVEs", value: "0" },
-      { label: "AI Environments Supported", value: "7" },
-      { label: "Iteration Cycles (2 weeks)", value: "4" },
-      { label: "PageSpeed SEO", value: "100" },
-      { label: "PageSpeed Accessibility", value: "100" },
-      { label: "PageSpeed Performance", value: "97" },
-      { label: "Organic Search Position", value: "4.5" }
+      { label: "Status", value: "Beta (code), PoC (not deployed)" },
+      { label: "Backend Tests (unit + integration)", value: "35" },
+      { label: "MCP Servers", value: "4 (cbs, portfolio, sip, data)" },
+      { label: "Docs in /docs", value: "12" },
+      { label: "Compliance Frameworks Addressed", value: "DPDP Act, RBI MRMF" },
+      { label: "GitHub Stars", value: "0" },
+      { label: "GitHub Forks", value: "0" }
     ],
     links: [
       {
         type: "github",
-        url: "https://github.com/VIKAS9793/androjack-mcp",
+        url: "https://github.com/VIKAS9793/pramiti-os",
         label: "GitHub"
       }
     ]
   },
   {
-    id: "product-titans-case-study",
-    title: "Product Titans",
-    description: "Runner-up (Rank 2) • Score 6.4 | National Product Management Challenge. Product Skills Applied: User Research, RICE Prioritization, North Star Mapping, GTM Strategy, Responsible AI.",
-    longDescription: "Independent PM case study created for a national-level live project challenge hosted on Unstop and organized by Book My Mentor. Built an India-first agentic AI learning platform concept with problem framing, personas, journey mapping, RICE prioritization, North Star metrics, experimentation plan, and responsible AI governance (trust, explainability, privacy).",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/product-titans.png",
-    category: "product",
+    id: "androjack-mcp",
+    title: "AndroJack MCP",
+    tagline: "Developer tool addressing reliability gaps in AI-assisted Android development. Owned end-to-end from problem definition through multiplatform launch to current v2.0.0.",
+    description: "Identified a reliability gap in AI code generation tools that reference stale training data. Defined MVP scope, led multiplatform launch, instrumented the analytics funnel, and iterated on activation and engagement signals. Launched v1.0 in under 4 weeks as a solo build; current release is v2.0.0 with 23 tools, 28 validator rules, and a content-sanitizer layer added against indirect prompt injection.",
+    pmSections: {
+      problem: "AI coding tools generate Android solutions grounded in stale training data rather than live documentation. Developers cannot trust outputs, creating a measurable reliability and trust gap in AI-assisted Android workflows.",
+      solution: "Defined a Model Context Protocol server that enforces live documentation verification at inference time. This established a first-mover category position over prompt engineering or RAG alternatives.",
+      execution: "Orchestrated the build using Claude AI for spec definition and Antigravity IDE for code generation, compressing the solo product lifecycle from discovery to v1.0 in under 4 weeks. Shipped a CLI installer and VS Code extension for one-command setup across any AI coding environment. Prioritised PulseMCP registry listing on day 1 as the primary distribution channel. Since launch: expanded from 22 to 23 tools and 26 to 28 validator rules, patched 7 dependency vulnerabilities (3 high) to zero, and added a content-sanitizer layer defending against indirect prompt injection from externally-fetched documentation.",
+      measurement: "Instrumented a GA4 funnel with a behavioural event taxonomy covering discovery, evaluation, and activation stages. Terminal-first growth was validated at launch when cloners (251) exceeded repo visitors (179) in the first 14 days, confirming external discovery via npx direct install. Reddit generated 74 unique referrals and was identified as the primary acquisition engine. Current traction is tracked live via the public npm registry rather than a static snapshot.",
+      impact: "Live as of today: 110 weekly / 813 monthly npm downloads (registry.npmjs.org). At launch: 660 GitHub clones from 251 unique cloners in 14 days, organic search average position 4.5, top-40 global weekly ranking on PulseMCP — all with zero paid acquisition. Current release v2.0.0: 23 tools, 28 validator rules, 0 known vulnerabilities in the shipped dependency tree. Verified in the Official MCP Registry."
+    },
+    isFlagship: true,
+    category: "ai",
+    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/androjack-banner.png",
     featured: true,
-    technologies: [
-      "Personas",
-      "RICE Prioritization",
-      "North Star Metrics",
-      "GTM Strategy",
-      "Experimentation",
-      "Responsible AI"
-    ],
+    technologies: ["MCP", "Node.js", "TypeScript", "Android SDK", "npm", "VS Code Marketplace"],
     metrics: [
-      { label: "Achievement", value: "Rank 2" },
-      { label: "Score", value: "6.4" },
-      { label: "Team", value: "North Star Hunter (Solo)" },
-      { label: "Certification", value: "Excellence" }
+      { label: "npm/week", value: "110" },
+      { label: "npm/month", value: "813" },
+      { label: "Current Version", value: "v2.0.0" },
+      { label: "Tools", value: "23" },
+      { label: "Validator Rules", value: "28" },
+      { label: "Known Vulnerabilities", value: "0" },
+      { label: "GitHub Clones (launch, 14 days)", value: "660" },
+      { label: "Unique Cloners (launch)", value: "251" },
+      { label: "Repo Visitors (launch)", value: "179" },
+      { label: "GitHub Stars", value: "21" },
+      { label: "GitHub Forks", value: "1" }
     ],
     links: [
       {
-        type: "demo",
-        url: "https://youtu.be/M_D3dxxZiqI",
-        label: "Watch Case Study"
+        type: "github",
+        url: "https://github.com/VIKAS9793/AndroJack-mcp",
+        label: "GitHub"
       }
     ]
   },
   {
-    id: "indiaai-idp",
-    title: "IndiaAI IDP Platform",
-    description: "Enterprise-grade Intelligent Document Processing system for Indian government documents.",
-    longDescription: "Scalable, privacy-first platform featuring modular architecture, DPDP Act compliance, and Human-in-the-Loop verification. Built for high-volume processing of Aadhaar, PAN, and financial documents.",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/indiaai-idp.png",
+    id: "context-fabric",
+    title: "Context Fabric (CADRE)",
+    tagline: "MCP server built on a five-engine CADRE architecture for durable AI agent context.",
+    description: "Model Context Protocol server that automatically captures project state on every git commit, detects when stored context has drifted from codebase reality, and delivers structured, token-budgeted briefings to AI coding agents.",
+    longDescription: "Built the CADRE (Context-Aware Drift Resolution Engine) five-engine architecture: WATCHER captures state on commit, ANCHOR scores context drift 0-100, ROUTER ranks relevant components via SQLite FTS5 BM25, GOVERNOR caps output to a token budget, WEAVER composes the final briefing. Live product analytics dashboard tracks npm and GitHub metrics daily via automated GitHub Actions.",
+    image: "https://raw.githubusercontent.com/VIKAS9793/context-fabric/main/assets/banner.png",
     category: "ai",
     featured: true,
-    technologies: [
-      "Python & FastAPI",
-      "React + Vite",
-      "PaddleOCR",
-      "Docker & AWS",
-      "PostgreSQL/Redis",
-      "DPDP Compliance"
-    ],
+    technologies: ["MCP", "Node.js", "Context Engineering", "Agent Orchestration"],
     metrics: [
-      { label: "Processing Speed", value: "~2s/page" },
-      { label: "Accuracy", value: "95%+" },
-      { label: "Architecture", value: "Modular" },
-      { label: "Compliance", value: "DPDP 2023" }
+      { label: "Architecture", value: "CADRE (5-engine)" },
+      { label: "Lifetime npm downloads", value: "2,356" },
+      { label: "npm/week", value: "604" },
+      { label: "Current Version", value: "v1.2.2" },
+      { label: "GitHub Stars", value: "2" },
+      { label: "GitHub Forks", value: "0" }
     ],
     links: [
       {
         type: "github",
-        url: "https://github.com/VIKAS9793/indiaai-idp-platform",
-        label: "View Project"
-      }
-    ]
-  },
-  {
-    id: "saralpolicy",
-    title: "SaralPolicy – AI-Powered Insurance Policy Explainer",
-    description: "Conceived, designed, and launched SaralPolicy, a local-first AI assistant that simplifies insurance policy documents by explaining clauses, exclusions, and IRDAI rights in plain Hindi and English.",
-    longDescription: "Validated user problem through 50+ customer interviews, uncovering key pain points around unreadable policy wording, hidden exclusions, and lack of privacy in existing tools.",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/saralpolicy.png",
-    category: "ai",
-    featured: true,
-    technologies: [
-      "AI Product Leadership",
-      "Privacy-First Architecture",
-      "IRDAI Compliance",
-      "Bilingual UX",
-      "Material Design 3",
-      "Financial Literacy"
-    ],
-    metrics: [
-      { label: "Exclusion Detection", value: "90%" },
-      { label: "Customer Interviews", value: "50+" },
-      { label: "Usability Satisfaction", value: "98%" },
-      { label: "Privacy Compliance", value: "100%" }
-    ],
-    links: [
-      {
-        type: "github",
-        url: "https://github.com/VIKAS9793/SaralPolicy.git",
-        label: "View Project"
-      }
-    ]
-  },
-  {
-    id: "fintech-onboarding-clarity",
-    title: "Fintech Onboarding Clarity",
-    description: "Exploratory PM case study on reducing user uncertainty in regulated fintech KYC flows.",
-    longDescription: "Demonstrates constraint-first product thinking and AI boundary definition. Features 10+ PM artifacts covering problem framing, regulatory constraints, AI decision boundaries, and validation planning.",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/fintech-onboarding.png",
-    category: "product",
-    featured: true,
-    technologies: [
-      "Product Discovery",
-      "Constraint-First Design",
-      "AI Boundaries",
-      "HITL Validation",
-      "Regulatory Compliance",
-      "KYC/Onboarding"
-    ],
-    metrics: [
-      { label: "PM Artifacts", value: "10+" },
-      { label: "Compliance", value: "100%" },
-      { label: "AI Role", value: "HITL" },
-      { label: "Video Pitch", value: "YouTube" }
-    ],
-    links: [
-      {
-        type: "github",
-        url: "https://github.com/VIKAS9793/Fintech-Onboarding-Clarity",
-        label: "View Case Study"
+        url: "https://github.com/VIKAS9793/context-fabric",
+        label: "GitHub"
       },
       {
-        type: "demo",
-        url: "https://youtu.be/eSpfY1qSvQc",
-        label: "Video Pitch"
+        type: "live",
+        url: "https://vikas9793.github.io/context-fabric/",
+        label: "Live Analytics Dashboard"
       }
     ]
   },
   {
-    id: "moatmetrics",
-    title: "MoatMetrics",
-    description: "Enterprise analytics platform for MSPs addressing $12B market opportunity.",
-    longDescription: "Privacy-first architecture with production-ready MVP.",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/moatmetrics.png",
-    category: "enterprise",
-    featured: true,
-    technologies: [
-      "Business Strategy",
-      "Python",
-      "FastAPI",
-      "Enterprise SaaS"
-    ],
-    metrics: [
-      { label: "Market TAM", value: "$12B" },
-      { label: "Architecture", value: "Privacy-first" }
-    ],
-    links: [
-      {
-        type: "github",
-        url: "https://github.com/VIKAS9793/moatmetrics.git",
-        label: "View Project"
-      }
-    ]
-  },
-  {
-    id: "charactercraft-pro",
-    title: "CharacterCraft Pro",
-    description: "AI platform solving character consistency in generated images using Google Gemini 2.5 Flash with a deterministic Prompt Protocol Engine.",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/charactercraft-pro.png",
+    id: "dharitri",
+    title: "Dharitri",
+    tagline: "Offline-first, on-device AI agricultural assistant for rural Indian farmers on low-end Android devices.",
+    description: "On-device AI assistant delivering instant crop diagnostics and voice-first vernacular guidance with zero data cost, running Google's Gemma 4 locally via AICore/ML Kit GenAI and LiteRT-LM. Pre-launch: no deployed user base yet — current work is deep reliability engineering across a 291-file Kotlin codebase.",
+    longDescription: "Resolved a native SIGSEGV crash tied to Android 15 page-size alignment, fixed a silent JSON parsing failure and a search debounce race condition, audited a third-party ONNX speech integration (found and documented six bugs), and defined the integration contract for on-device Gemma 4 inference with a tiered fallback system. 14 production-grade architecture documents cover on-device AI, security, observability, and AI explainability/governance grounded in Google's PAIR framework. Building a live mandi (market) price data pipeline via a Cloudflare Worker relay.",
+    image: "https://raw.githubusercontent.com/VIKAS9793/dharitri-agri-ai/main/images/banner.png",
     category: "ai",
     featured: true,
-    technologies: [
-      "Generative AI",
-      "Gemini 2.5",
-      "Computer Vision",
-      "Product Architecture"
-    ],
+    technologies: ["Kotlin", "Jetpack Compose", "On-Device Gemma 4", "AICore / LiteRT-LM", "Hilt", "Room", "Cloudflare Workers"],
     metrics: [
-      { label: "Consistency Rate", value: "94%" },
-      { label: "Avg Speed", value: "1.2s" }
+      { label: "Stage", value: "Pre-launch / active dev" },
+      { label: "Kotlin Files", value: "291" },
+      { label: "Architecture Docs", value: "14" },
+      { label: "SIGSEGV Crash", value: "1 (Fixed)" },
+      { label: "Audited Integration Bugs", value: "6" },
+      { label: "Min Android Version", value: "API 24" },
+      { label: "GitHub Stars", value: "0" },
+      { label: "GitHub Forks", value: "0" }
     ],
     links: [
       {
         type: "github",
-        url: "https://github.com/VIKAS9793/charactercraft-pro.git",
-        label: "View Project"
+        url: "https://github.com/VIKAS9793/dharitri-agri-ai",
+        label: "GitHub"
       }
     ]
   },
   {
-    id: "eduvault",
-    title: "EduVault",
-    description: "Offline-first educational platform bringing quality education to every corner of rural India.",
-    longDescription: "Designed for learners with disabilities and areas with limited internet connectivity, featuring multilingual voice interaction, government curriculum integration, and complete accessibility compliance.",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/eduvault.png",
-    category: "education",
-    featured: false,
-    technologies: [
-      "React + TypeScript",
-      "Progressive Web App",
-      "Offline-First",
-      "Voice Interaction",
-      "NCERT/DIKSHA",
-      "Accessibility"
-    ],
+    id: "northstar-wealth-ai",
+    title: "NorthStar Wealth Companion",
+    tagline: "Deterministic 7-layer compliance governance framework for AI-assisted wealth advisory, built for a national hackathon.",
+    description: "Hackathon proof-of-concept (IDBI Innovate 2026, Wealth Advisory Challenge) with a working live demo — not a deployed banking product. Combines goal-based planning, behavioral coaching, and explainable AI on a deterministic 7-layer Constitutional AI governance framework enforcing SEBI IA Regulation 15 disclosure rules.",
+    longDescription: "Built to show that AI-assisted financial advice can be made auditable and regulation-compliant by construction rather than by review: threat isolation, domain classification, financial-twin validation, constitutional AI critique, deterministic engine routing, tool-output schema enforcement, and a post-generation SEBI compliance filter with cryptographic (SHA-256) audit trail. All 158 automated tests across 6 suites pass. Designed to augment, not replace, human Relationship Managers.",
+    image: "https://raw.githubusercontent.com/VIKAS9793/northstar-wealth-ai/main/docs/assets/project_banner.png",
+    category: "fintech",
+    featured: true,
+    technologies: ["Next.js 15", "React 19", "Tailwind CSS v4", "Groq LPU (Llama 3.3 70B)", "Vitest"],
     metrics: [
-      { label: "Target Users", value: "Rural" },
-      { label: "Languages", value: "EN/HI" },
-      { label: "Works Offline", value: "100%" },
-      { label: "Accessibility", value: "WCAG AA" }
+      { label: "Status", value: "Hackathon PoC, live demo" },
+      { label: "Governance Framework", value: "7-layer" },
+      { label: "Tests (6 suites)", value: "158/158" },
+      { label: "GitHub Stars", value: "0" },
+      { label: "GitHub Forks", value: "0" }
     ],
     links: [
       {
         type: "github",
-        url: "https://github.com/VIKAS9793/EduVault.git",
-        label: "View Project"
-      }
-    ]
-  },
-  {
-    id: "ai-interview-system",
-    title: "AI Interview Simulation System",
-    description: "AI-driven conversational agent for interview preparation with privacy-first, offline architecture.",
-    longDescription: "Secured 3-month enterprise pilot program with positive feedback on core features using LangGraph, LLaMA, and ChromaDB for complete user data confidentiality.",
-    image: "https://raw.githubusercontent.com/VIKAS9793/VIKAS9793.github.io/main/public/images/ai-interview-system.jpg",
-    category: "ai",
-    technologies: [
-      "LangGraph",
-      "LLaMA",
-      "ChromaDB",
-      "Privacy-First"
-    ],
-    metrics: [
-      { label: "Pilot Program", value: "3 Mo" },
-      { label: "Privacy", value: "Offline" }
-    ],
-    links: [
+        url: "https://github.com/VIKAS9793/northstar-wealth-ai",
+        label: "GitHub"
+      },
       {
-        type: "github",
-        url: "https://github.com/VIKAS9793/ai-interviewer-langchain.git",
-        label: "View Project"
-      }
-    ]
-  },
-  {
-    id: "krishisahayak",
-    title: "KrishiSahayak+Gemma",
-    description: "Offline AI advisory system for rural agriculture focused on improving crop yield and sustainability.",
-    longDescription: "Built local RAG pipeline with peer-to-peer knowledge-sharing for low-connectivity environments.",
-    image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    category: "ai",
-    technologies: [
-      "Agriculture",
-      "RAG Pipeline",
-      "Offline AI",
-      "Low Connectivity"
-    ],
-    metrics: [
-      { label: "Target", value: "Rural" },
-      { label: "Mode", value: "P2P" }
-    ],
-    links: [
-      {
-        type: "github",
-        url: "https://github.com/VIKAS9793/KrishiSahayak_Gemma.git",
-        label: "View Project"
+        type: "live",
+        url: "https://northstar-wealth-ai.netlify.app/",
+        label: "Live Demo"
       }
     ]
   },
   {
     id: "portfolio-management",
     title: "Aditya Birla Capital - Virtual Relationship Manager",
-    description: "Current role from Nov 2024 to present. Managing 50 to 60 daily customer interactions in a regulated financial environment and developing applied understanding of user trust signals, adoption friction, and lifecycle engagement patterns.",
-    longDescription: "Identifying friction in financial product selection across customer cohorts and translating behavioural observations into actionable product and onboarding insights. 4+ years across HDFC Bank, ICICI Bank, IndusInd Bank, and Aditya Birla Capital, building domain knowledge in customer acquisition, retention behaviour, and trust-driven product positioning.",
+    description: "Current role from Nov 2024 to present. Manage a ₹150 Cr investment portfolio (90% retail, 10% HNI), executing 100 daily targeted calls that generate 50-60 substantive customer interactions and 5-6 daily SIP conversions through needs-based financial advisory.",
+    longDescription: "Scaled monthly SIP mobilization from approximately ₹50K to over ₹1L by refining customer engagement approaches and addressing investment adoption barriers. Conduct regular portfolio reviews to identify SIP top-up opportunities and promote multi-product adoption. 4+ years across ICICI Bank, IndusInd Bank, HDFC Bank, and Aditya Birla Capital, building domain knowledge in customer acquisition, retention behaviour, and trust-driven product positioning. NISM Series V-A and IRDAI Corporate Agent (Composite) certified.",
     image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     category: "fintech",
     technologies: [
@@ -372,7 +222,10 @@ export const projects: Project[] = [
       "KYC and Compliance"
     ],
     metrics: [
-      { label: "Daily Customer Interactions", value: "50 to 60" },
+      { label: "Investment Portfolio Managed", value: "₹150 Cr" },
+      { label: "Monthly SIP Mobilization Growth", value: "₹50K → ₹1L+" },
+      { label: "Daily Calls / Interactions", value: "100 / 50-60" },
+      { label: "Daily SIP Conversions", value: "5-6" },
       { label: "Domain Experience", value: "4+ yrs" },
       { label: "Institutions", value: "4" }
     ],
@@ -390,29 +243,88 @@ export const simulations: Simulation[] = [
   {
     id: "ea-simulation",
     company: "Electronic Arts (EA)",
-    description: "Analyzed KPIs for a mobile gaming product and produced a data-driven feature roadmap proposal to improve user engagement. Product skills applied: KPI analysis, roadmap prioritization, and stakeholder presentation.",
+    description: "[Unverified] Analyzed KPIs for a mobile gaming product and produced a data-driven feature roadmap proposal to improve user engagement. Product skills applied: KPI analysis, roadmap prioritization, and stakeholder presentation.",
     skills: ["KPI Analysis", "Roadmap Prioritization", "Product Strategy", "Stakeholder Presentation"]
   }
 ];
 
 export const certifications: Certification[] = [
   {
+    id: "nism-va",
+    title: "NISM Series V-A: Mutual Fund Distributor Certification",
+    organization: "National Institute of Securities Markets (NISM)",
+    description: "Valid until Oct 2027",
+    skills: [
+      "Mutual Fund Distribution",
+      "Mutual Funds",
+      "Investment Products",
+      "Financial Markets"
+    ],
+    icon: "📜"
+  },
+  {
+    id: "irdai-composite",
+    title: "IRDAI Corporate Agent (Composite) Certification",
+    organization: "Insurance Regulatory and Development Authority of India",
+    description: "Valid until Feb 2028",
+    skills: [
+      "Insurance",
+      "Corporate Agency",
+      "Life Insurance",
+      "General Insurance",
+      "Insurance Regulation"
+    ],
+    icon: "📜"
+  },
+  {
     id: "ibm-ai-pm",
-    title: "IBM AI Product Manager Professional Certificate",
-    organization: "IBM Professional Certificate",
-    icon: "🏆"
+    title: "IBM Product Manager Professional Certificate",
+    organization: "IBM, via Coursera",
+    icon: "🏆",
+    skills: [
+      "Agile Development",
+      "Agile Product Development",
+      "ProdBOK",
+      "Product Concept",
+      "Product Delivery",
+      "Product Management",
+      "Product Management Lifecycle",
+      "Product Owner",
+      "Product Strategy",
+      "Project Charter",
+      "Sprint Planning",
+      "Stakeholder Management",
+      "Value Proposition"
+    ]
   },
   {
     id: "google-ai-professional",
-    title: "Google AI Professional Certificate & Project Management",
-    organization: "Google Career Certificates",
-    icon: "✨"
+    title: "Google AI Professional Certificate",
+    organization: "Google, via Coursera",
+    icon: "✨",
+    skills: [
+      "AI Acumen",
+      "AI for Data Analysis",
+      "AI for brainstorming and planning",
+      "AI for content creation",
+      "AI for research and insights",
+      "AI for writing and communicating",
+      "Artificial Intelligence (AI)",
+      "Prompt Engineering",
+      "Responsible AI"
+    ]
   },
   {
-    id: "meta-ux",
-    title: "Meta – Principles of UX/UI Design",
-    organization: "Meta Professional Certificate",
-    icon: "🎨"
+    id: "google-pm",
+    title: "Google Project Management Professional Certificate",
+    organization: "Google, via Coursera",
+    icon: "✨",
+    skills: [
+      "Agile Project Management",
+      "Career Development",
+      "Introduction To Project Management",
+      "Project Management"
+    ]
   }
 ];
 

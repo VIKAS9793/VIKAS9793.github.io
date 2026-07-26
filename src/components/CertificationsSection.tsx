@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import type { CertificationsSectionProps, Certification } from '@types';
 
-// Priority order for certifications (top 6 always visible)
+// Priority order for certifications (top ones always visible)
+// Note: only lists ids that exist in the data. If you add PMI GenAI, Vanderbilt GenAI,
+// or CrewAI Agents certifications later, add their real ids here.
 const PRIORITY_CERT_IDS = [
-  'google-ai-professional',
   'ibm-ai-pm',
-  'pmi-genai',
-  'vanderbilt-genai',
-  'crewai-agents',
-  'google-pm'
+  'google-ai-professional',
+  'google-pm',
+  'nism-va',
+  'irdai-composite'
 ];
 
 // Category tags for certifications
 function getCertCategory(title: string): { tag: string; color: string } {
   const lower = title.toLowerCase();
+  if (lower.includes('nism') || lower.includes('irdai') || lower.includes('mutual fund') || lower.includes('insurance')) {
+    return { tag: '📊 Regulatory/BFSI', color: 'bg-primary-container text-primary' };
+  }
   if (lower.includes('mba') || lower.includes('project management')) {
     return { tag: '🎓 Academic', color: 'bg-primary-container text-primary' };
   }
@@ -28,6 +32,9 @@ function getCertCategory(title: string): { tag: string; color: string } {
  */
 function CertCard({ cert }: { cert: Certification }) {
   const { tag, color } = getCertCategory(cert.title);
+  const skills = cert.skills ?? [];
+  const visibleSkills = skills.slice(0, 3);
+  const remaining = skills.length - visibleSkills.length;
 
   return (
     <div className="hover-card text-center group">
@@ -43,6 +50,27 @@ function CertCard({ cert }: { cert: Certification }) {
         {cert.title}
       </h3>
       <p className="text-xs text-on-surface-variant">{cert.organization}</p>
+      {cert.description && (
+        <p className="text-[10px] text-on-surface-variant mt-1">{cert.description}</p>
+      )}
+
+      {skills.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-1 mt-2">
+          {visibleSkills.map((skill) => (
+            <span
+              key={skill}
+              className="px-1.5 py-0.5 rounded-full text-[9px] leading-tight bg-surface-variant text-on-surface-variant"
+            >
+              {skill}
+            </span>
+          ))}
+          {remaining > 0 && (
+            <span className="px-1.5 py-0.5 rounded-full text-[9px] leading-tight bg-surface-variant text-on-surface-variant">
+              +{remaining} more
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -83,7 +111,7 @@ export default function CertificationsSection({ certifications }: Certifications
             Certifications
           </h2>
           <p className="body-large max-w-2xl mx-auto mb-4">
-            Credentials from IBM, Google, Meta and more
+            Credentials from IBM, Google, NISM, and IRDAI
           </p>
 
           {/* Category Legend */}
@@ -91,6 +119,7 @@ export default function CertificationsSection({ certifications }: Certifications
             <span className="px-3 py-1 bg-primary-container text-primary rounded-full">🎓 Academic</span>
             <span className="px-3 py-1 bg-primary-container text-primary rounded-full">🤖 AI/ML</span>
             <span className="px-3 py-1 bg-primary-container text-primary rounded-full">💼 Product</span>
+            <span className="px-3 py-1 bg-primary-container text-primary rounded-full">📊 Regulatory/BFSI</span>
           </div>
         </div>
 

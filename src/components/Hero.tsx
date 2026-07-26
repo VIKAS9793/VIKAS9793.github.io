@@ -28,12 +28,12 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
 
             {/* Professional Title */}
             <p className="text-display-sm font-semibold text-[#191C1E] mb-6 hero-entrance hero-entrance-delay-2">
-              Associate Product Manager | AI Products | Developer Tools | FinTech
+              {personalInfo.title}
             </p>
             
             {/* Value proposition */}
             <p className="text-body-lg text-[#44474E] max-w-xl mb-8 hero-entrance hero-entrance-delay-3 leading-relaxed">
-              Product professional with 4+ years in regulated financial environments. I define scope, instrument analytics funnels, and iterate on activation signals. Seeking APM, AI Product, or FinTech roles where experimentation, data-driven prioritization, and stakeholder-focused execution are valued.
+              Product professional with 4+ years in regulated financial environments. I define scope, instrument analytics funnels, and iterate on activation signals. Seeking AI product, developer-tools, or FinTech roles where experimentation, data-driven prioritization, and stakeholder-focused execution are valued.
             </p>
 
             {/* Focus areas */}
@@ -78,7 +78,7 @@ export default function Hero({ personalInfo, stats }: HeroSectionProps) {
             <div className="relative">
               <img
                 src="/images/profile-avatar.png"
-                alt={`${personalInfo.name} - AI Product Manager`}
+                alt={`${personalInfo.name} - independent AI product builder`}
                 className="w-72 h-72 lg:w-96 lg:h-96 object-cover rounded-3xl shadow-xl border-4 border-white"
               />
             </div>

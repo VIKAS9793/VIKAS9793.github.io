@@ -3,23 +3,23 @@
 const lifecycleSteps = [
   {
     title: 'Discovery',
-    description: 'Identified reliability gap in AI Android tooling through developer trust signal analysis'
+    description: 'Identified a reliability gap in AI-generated Android code grounded in stale training data.'
   },
   {
     title: 'Strategy',
-    description: 'Defined MCP as category position over RAG or prompt engineering alternatives and set Weekly Active Installs as the North Star metric'
+    description: 'Defined an MCP server that verifies Android guidance against live official documentation.'
   },
   {
     title: 'Execution',
-    description: 'Shipped v1.0 to v1.6.4 across 7 AI environments with CLI installer and VS Code extension across 4 iteration cycles in 2 weeks'
+    description: 'Shipped a CLI installer and VS Code extension, then expanded the release to 23 tools and 28 validator rules.'
   },
   {
     title: 'Measurement',
-    description: 'Instrumented GA4 funnel with behavioural event taxonomy across discovery, evaluation, and activation stages'
+    description: 'Instrumented discovery, evaluation, and activation events while tracking public npm usage.'
   },
   {
     title: 'Iteration',
-    description: 'Deprioritised feature expansion in v1.4 to v1.6 in favour of onboarding reliability based on cross-platform drop-off signals'
+    description: 'Added content sanitization against indirect prompt injection and reduced shipped dependency vulnerabilities to zero.'
   }
 ];
 

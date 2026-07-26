@@ -8,7 +8,7 @@ import { cn } from '@utils';
 function getProjectColor(title: string): 'primary' | 'secondary' | 'tertiary' | 'surface' {
   const lowerTitle = title.toLowerCase();
   if (lowerTitle.includes('ai') || lowerTitle.includes('ml') || lowerTitle.includes('scholar')) return 'primary';
-  if (lowerTitle.includes('product') || lowerTitle.includes('saral') || lowerTitle.includes('policy')) return 'secondary';
+  if (lowerTitle.includes('product')) return 'secondary';
   if (lowerTitle.includes('enterprise') || lowerTitle.includes('ucp')) return 'tertiary';
   return 'surface'; // Education/other
 }

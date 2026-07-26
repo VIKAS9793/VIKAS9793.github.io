@@ -10,7 +10,7 @@ export function MeasurementSection() {
           </h2>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {['GA4 Behavioural Event Taxonomy', 'Discovery to Activation Funnel', 'Channel Attribution: Reddit, npm, and direct', 'Weekly Download Velocity KPI'].map((item, i) => (
+          {['GA4 behavioural event taxonomy', 'Discovery to activation funnel', 'Public npm usage tracking', 'Launch-window acquisition analysis'].map((item, i) => (
             <div key={i} className="bg-primary-container rounded-2xl shadow-elevation-1 p-6 hover:shadow-elevation-2 transition-shadow">
               <p className="text-body-lg font-medium text-on-primary-container">{item}</p>
             </div>
@@ -38,20 +38,20 @@ export function DistributionSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
-              title: 'PulseMCP Registry',
-              desc: 'Day-1 listing as primary distribution channel. Top-40 global weekly ranking achieved within 15 days of launch.'
+              title: 'MCP Registry',
+              desc: 'Published distribution channel for the AndroJack MCP server.'
             },
             {
               title: 'npm Registry',
-              desc: '240 weekly downloads. CLI installer enables one-command setup across 7 AI coding environments.'
+              desc: '110 weekly and 813 monthly downloads in the current verified snapshot.'
             },
             {
-              title: 'VS Code Marketplace',
-              desc: '59 installs. Extension enables direct activation from within the IDE.'
+              title: 'Launch Window',
+              desc: '660 GitHub clones, 251 unique cloners, and 179 visitors in the first 14 days.'
             },
             {
-              title: 'Reddit Community',
-              desc: 'Primary organic acquisition engine. 74 unique referrals. Terminal-first growth pattern validated.'
+              title: 'Release Quality',
+              desc: 'Current release v2.0.0 has 23 tools, 28 validator rules, and zero known vulnerabilities.'
             }
           ].map((card, i) => (
             <div key={i} className="bg-primary-container rounded-2xl shadow-elevation-1 p-6 hover:shadow-elevation-2 transition-shadow">

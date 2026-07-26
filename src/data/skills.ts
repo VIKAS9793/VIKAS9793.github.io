@@ -13,41 +13,35 @@ export interface Skill {
 /**
  * Skills derived from actual certifications and completed projects
  * Proficiency levels based on:
- * - Certifications (IBM, Google, Meta)
- * - Real projects (SaralPolicy, CharacterCraft Pro, etc.)
+ * - Certifications (IBM, Google, NISM, IRDAI)
+ * - Verified projects in the portfolio data
  * - Work experience (Aditya Birla Capital)
  */
 export const skills: Skill[] = [
-  // AI/ML Skills (from certifications and projects)
+  // AI/ML Skills
   {
     name: 'Generative AI',
     category: 'ai-ml',
     level: 'expert',
-    description: 'Google Cloud & Vanderbilt certified, applied in CharacterCraft Pro and SaralPolicy'
+    description: 'Google AI Professional certified, applied in Pramiti OS and Dharitri'
   },
   {
     name: 'LLM Development',
     category: 'ai-ml',
     level: 'advanced',
-    description: 'Google AI Professional, implemented in AI Interview System with LLaMA'
+    description: 'Google AI Professional certified, implemented in NorthStar Wealth Companion'
   },
   {
     name: 'AI Product Management',
     category: 'product',
     level: 'expert',
-    description: 'IBM Professional Certificate, PMI Gen AI certified'
+    description: 'IBM Product Manager Professional Certificate'
   },
   {
     name: 'LangChain & Agentic AI',
     category: 'ai-ml',
     level: 'advanced',
-    description: 'Meta & CrewAI certified, used in interview system'
-  },
-  {
-    name: 'Computer Vision',
-    category: 'ai-ml',
-    level: 'intermediate',
-    description: 'Applied in CharacterCraft Pro for character consistency'
+    description: 'Applied in Pramiti OS multi-agent architecture'
   },
 
   // Product Management Skills
@@ -55,19 +49,13 @@ export const skills: Skill[] = [
     name: 'Product Strategy',
     category: 'product',
     level: 'expert',
-    description: 'Google PM certified, demonstrated in Fintech Onboarding case study with constraint-first approach'
-  },
-  {
-    name: 'UX Design',
-    category: 'product',
-    level: 'advanced',
-    description: 'Meta Fundamentals of UI/UX, applied in SaralPolicy bilingual UX'
+    description: 'Google PM certified, demonstrated in AndroJack MCP discovery phase'
   },
   {
     name: 'Research Methodology',
     category: 'product',
     level: 'expert',
-    description: '50+ customer interviews for SaralPolicy, comprehensive case studies'
+    description: 'Applied in analytics funnel instrumentation and activation signaling'
   },
 
   // Technical Skills
@@ -75,19 +63,19 @@ export const skills: Skill[] = [
     name: 'Python',
     category: 'technical',
     level: 'advanced',
-    description: 'Used in MoatMetrics backend, AI systems'
+    description: 'Used in AI systems and backend architectures'
   },
   {
     name: 'React & TypeScript',
     category: 'technical',
     level: 'advanced',
-    description: 'EduVault PWA, current portfolio implementation'
+    description: 'Used in Pramiti OS, NorthStar Wealth Companion, and current portfolio'
   },
   {
     name: 'FastAPI',
     category: 'technical',
     level: 'intermediate',
-    description: 'Enterprise SaaS backend for MoatMetrics'
+    description: 'Used for Pramiti OS agentic backend routing'
   },
 
   // Business Skills
@@ -95,19 +83,19 @@ export const skills: Skill[] = [
     name: 'Financial Analysis',
     category: 'business',
     level: 'expert',
-    description: 'Domain experience at Aditya Birla Capital, MBA Essentials certified'
+    description: 'Domain experience across Aditya Birla Capital, HDFC, ICICI, and IndusInd Bank'
   },
   {
     name: 'Business Strategy',
     category: 'business',
     level: 'advanced',
-    description: 'MoatMetrics $12B TAM analysis, enterprise SaaS planning'
+    description: 'Applied in financial product positioning and acquisition strategy'
   },
   {
     name: 'Stakeholder Management',
     category: 'business',
     level: 'advanced',
-    description: '25% efficiency gain in portfolio management, enterprise pilot secured'
+    description: 'Managing customer interactions and trust-driven positioning in regulated environments'
   },
 ];
 

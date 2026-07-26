@@ -48,6 +48,7 @@ export interface Certification {
   year?: string;
   credentialUrl?: string;
   icon?: string;
+  skills?: string[];
 }
 
 export interface Simulation {
