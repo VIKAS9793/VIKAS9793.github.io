@@ -1,0 +1,17 @@
+# Vikas Sahani
+
+> Product builder in Mumbai, India. Uses AI-assisted development to turn business problems into working products: developer tools, Android apps and mixed reality games. Four and a half years in customer-facing wealth and banking roles.
+
+## Projects
+
+- [AndroJack MCP](https://github.com/VIKAS9793/AndroJack-mcp): open-source MCP server that checks AI-written Android code against Google's official documentation. Version 2.0.0.
+- [Context Fabric](https://github.com/VIKAS9793/context-fabric): open-source MCP server that keeps AI assistants' project context in step with the code. Version 1.2.2.
+- [SubscribCHEK](https://subscribchek.netlify.app): Android app that shows what subscriptions cost per year. In closed testing on Google Play.
+- [AsanaPals](https://asanapals.space): offline Android wellness app with animal companions. In testing.
+- [NorthStar Studioz](https://northstarstudioz.space): one-person studio making hands-first mixed reality games for Meta Quest. First game in development.
+
+## Contact
+
+- Email: vikassahani17@gmail.com
+- GitHub: https://github.com/VIKAS9793
+- LinkedIn: https://www.linkedin.com/in/vikas-sahani-727420358

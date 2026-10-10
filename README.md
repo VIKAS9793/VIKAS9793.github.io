@@ -1,143 +1,45 @@
-# Vikas Sahani - Portfolio
+# Vikas Sahani, portfolio
 
-Associate Product Manager | AI Products | Developer Tools | FinTech
+Source for [vikas9793.github.io](https://vikas9793.github.io): the portfolio of a product builder from Mumbai who uses AI-assisted development to turn business problems into working products.
 
-Live: https://myportfoliohubexpo.netlify.app
-GitHub: https://github.com/VIKAS9793/VIKAS9793.github.io
+## Design
 
----
+The site follows the **TONAL 2D** design system: warm cream surfaces, forest green emphasis, a terracotta accent, Inter for content, JetBrains Mono for technical annotations, and restrained drafting marks (a dotted grid and a double-line frame reserved for the hero portrait and the two featured projects).
 
-## Stack
+- Tokens live in `src/styles/tokens.css` in three layers: primitive, semantic, component. Components never use raw hex values.
+- Contrast is verified two ways: `src/test/contrast.test.ts` pins the token pairs (including text on a grid dot), and `npm run audit:contrast` measures every rendered text element and control boundary in a real browser (`CHROME_PATH=/path/to/chrome`, with `npm run preview` running). The audit has caught issues the token test could not.
+- One deliberate deviation: muted text is `#5a5e55` instead of `#696d64`, and terracotta text uses a darker ink (`#8a4a30`), because the originals fall below the WCAG AA 4.5:1 ratio on some surfaces. `src/test/contrast.test.ts` pins every text pair.
+- Fonts are self-hosted through `@fontsource-variable`; nothing loads from a third-party CDN.
 
-| Layer | Technology |
-|-------|------------|
-| Framework | React 18 + TypeScript |
-| Build | Vite |
-| Styling | Tailwind CSS with Material Design 3 tokens |
-| Fonts | Google Sans Flex |
-| Deployment | Netlify |
+## Content rules
 
----
+All page content lives in `src/content/` and is separate from presentation.
 
-## Getting Started
+- Only claims that can be traced to the projects themselves (versions, tool counts, statuses). Volatile numbers such as downloads and stars are left out.
+- Only public repositories are linked. Private projects link to their public websites.
+- No verification badges, QR codes or phone number. `src/test/content.test.ts` enforces these.
+
+## Develop
 
 ```bash
-git clone https://github.com/VIKAS9793/VIKAS9793.github.io.git
-cd VIKAS9793.github.io
 npm install
-npm run dev
+npm run dev        # local server
+npm run lint
+npm run test:run   # content, contrast and page-structure tests
+npm run build      # type-check, build, then prerender the page into dist/index.html
 ```
 
-```bash
-npm run build      # production build
-npm run preview    # preview production build locally
-npm run test       # run tests
-```
+The build prerenders the React page into static HTML (for search engines and no-JS visitors) and hydrates it in the browser. Motion is CSS only and switches off for reduced-motion users.
 
----
+Pushing to `main` runs lint, tests and build, then deploys `dist/` to GitHub Pages (`.github/workflows/deploy.yml`).
 
-## Project Structure
+## Structure
 
 ```
 src/
-├── App.tsx
-├── data/
-│   ├── portfolio.ts       # all content, projects, stats, contact
-│   └── skills.ts          # skill categories
-├── types/
-│   └── index.ts           # TypeScript interfaces
-├── components/
-│   ├── Hero.tsx
-│   ├── ProductLifecycle.tsx
-│   ├── SkillsSection.tsx
-│   ├── CaseStudy.tsx
-│   ├── ProjectsSection.tsx
-│   ├── AchievementsSection.tsx
-│   ├── ProductSupplementary.tsx
-│   ├── AboutSection.tsx
-│   ├── ContactSection.tsx
-│   └── ValueProposition.tsx
-├── hooks/
-│   └── useScrollAnimation.ts
-└── index.css
+  content/      site.ts, projects.ts (all words and links)
+  components/   one file per section or card
+  styles/       tokens.css, base.css, components.css
+  test/         contrast, content integrity, page structure
+public/images/  portrait (640 and 1200 px WebP) and social preview
 ```
-
----
-
-## Content Updates
-
-All portfolio content is sourced from `src/data/portfolio.ts`. To update projects, stats, certifications, or contact information, edit that file only. No component changes are required for content edits.
-
----
-
-## AudioReader: Page Narration Feature
-## Component: src/components/AudioReader.tsx
-
----
-
-## What This Feature Does
-
-Adds a floating play button that reads the visible text content of the page aloud using the browser's built-in text-to-speech engine. No external API. No data sent to any server. All processing happens locally in the browser.
-
----
-
-## Release Notes
-
-### v1.1.0 — Screen Reading Fix
-
-**Bug fixes:**
-
-- Fixed primary silence bug: Chrome was garbage-collecting the utterance object mid-speech. The utterance is now held in a ref for the full duration of playback.
-- Fixed lazy-loaded content being missed: sections below the hero are loaded asynchronously. The DOM scrape is now deferred one tick to allow all sections to render before reading begins.
-- Fixed Chrome 15-second freeze bug: an interval-based keep-alive now pauses and resumes the engine every 10 seconds to prevent the known Chrome TTS hang.
-- Fixed visibility detection: replaced `offsetParent` check with `getComputedStyle` to correctly handle elements inside `overflow-hidden` and fixed-position ancestors.
-- Fixed long-page truncation: Chrome silently drops utterances above approximately 2,000 characters. Content is now split at sentence boundaries and chained sequentially.
-- Fixed double-click race condition: playing state is set optimistically before `speak()` is called, not after `onstart` fires.
-- Fixed stale closure on `handleStart`: wrapped in `useCallback` with correct dependencies.
-- Removed debug `console.log` from `onstart` and `onend` callbacks.
-- Silenced the `interrupted` error that Chrome fires on intentional cancel, which was logging a false error to the console.
-
-### v1.0.0 — Initial Release
-
-- Play and stop button with accessible `aria-label`
-- Attempts to select an Indian English voice when available
-- Gracefully hides when the Web Speech API is not supported
-
----
-
-## Known Limitations and Disclaimers
-
-### Voice quality and availability depend entirely on the user's device
-
-This feature uses the Web Speech API, which is built into the browser. It does not ship a voice. It does not call any external service. The voice you hear is the one installed on your operating system or provided by your browser.
-
-**What this means in practice:**
-
-- If you are on Chrome with Google TTS installed and an English voice pack, it will work well.
-- If you are on a device with no TTS voices installed, it will produce no audio. The button will appear to do nothing.
-- If you are on Firefox, the voice quality depends entirely on your OS. It may sound robotic or speak in an unexpected language depending on your system locale.
-- Safari on iOS and macOS uses Apple's on-device voices. These work reliably but the available languages depend on what the user has installed in Settings.
-- Brave and some hardened browsers disable the Speech API entirely as an anti-fingerprinting measure. The feature will not appear at all on these browsers because the API is not detected.
-
-### Indian English voice is not guaranteed
-
-The component attempts to find an `en-IN` or `hi-IN` voice. This voice is only available if the user has installed an Indian English language pack in their browser or OS settings. If no such voice is found, the feature falls back to the default system voice, which may be American, British, or generic depending on the device.
-
----
-
-## Performance
-
-| Category | Score |
-|----------|-------|
-| Performance | 97 |
-| Accessibility | 100 |
-| Best Practices | 100 |
-| SEO | 100 |
-
----
-
-## Contact
-
-Vikas Sahani
-vikassahani17@gmail.com
-https://www.linkedin.com/in/vikas-sahani-727420358

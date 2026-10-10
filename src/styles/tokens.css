@@ -1,0 +1,120 @@
+/*
+  TONAL 2D design tokens.
+  Layer 1: primitives (raw values). Layer 2: semantic (purpose). Layer 3: component.
+  Components consume semantic or component tokens, never primitives or raw hex.
+*/
+:root {
+  /* ---- Primitive colour ---- */
+  --p-warm-cream: #f6f4ed;
+  --p-cream-surface: #efebe0;
+  --p-white: #ffffff;
+  --p-forest-green: #183d30;
+  --p-deep-forest: #123126;
+  --p-charcoal: #252923;
+  --p-secondary-charcoal: #454940;
+  --p-muted-charcoal: #5a5e55;
+  --p-terracotta: #c78c70;
+  --p-terracotta-ink: #8a4a30;
+  --p-sand: #e9e3d6;
+  --p-sage-gray: #b7b9aa;
+  --p-border-neutral: #d8d5ca;
+  --p-strong-border: #888b7e;
+
+  /* ---- Primitive type ---- */
+  --p-font-sans: 'Inter Variable', Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --p-font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', 'Roboto Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ---- Primitive spacing (4px base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ---- Primitive geometry ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-pill: 999px;
+  --border-thin: 1px;
+  --border-emphasis: 2px;
+
+  /* ---- Primitive elevation ---- */
+  --shadow-card: 0 2px 8px rgb(37 41 35 / 5%);
+  --shadow-elevated: 0 8px 24px rgb(37 41 35 / 8%);
+
+  /* ---- Primitive motion ---- */
+  --duration-fast: 120ms;
+  --duration-standard: 200ms;
+  --duration-slow: 300ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---- Primitive type scale ---- */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+
+  /* ---- Semantic colour ---- */
+  --color-bg-page: var(--p-warm-cream);
+  --color-bg-surface: var(--p-white);
+  --color-bg-subtle: var(--p-cream-surface);
+  --color-bg-inverse: var(--p-forest-green);
+  --color-text-primary: var(--p-charcoal);
+  --color-text-secondary: var(--p-secondary-charcoal);
+  --color-text-muted: var(--p-muted-charcoal);
+  --color-text-inverse: var(--p-white);
+  --color-text-accent: var(--p-terracotta-ink);
+  --color-brand: var(--p-forest-green);
+  --color-brand-hover: var(--p-deep-forest);
+  --color-accent: var(--p-terracotta);
+  --color-neutral-chip: var(--p-sand);
+  --color-border: var(--p-border-neutral);
+  --color-border-strong: var(--p-strong-border);
+  --color-border-focus: var(--p-forest-green);
+  --color-frame: var(--p-secondary-charcoal);
+  --color-grid: var(--p-sage-gray);
+
+  /* ---- Semantic layout ---- */
+  --container-max: 1216px;
+  --reading-max: 68ch;
+  --gutter: var(--space-5);
+  --section-space: var(--space-16);
+  --grid-size: 24px;
+  --grid-opacity: 0.45;
+
+  /* ---- Component tokens ---- */
+  --button-radius: var(--radius-lg);
+  --button-min-size: 44px;
+  --card-radius: var(--radius-2xl);
+  --card-padding: var(--space-6);
+  --card-gap: var(--space-5);
+  --frame-radius: var(--radius-2xl);
+  --frame-line: 1.5px;
+  --frame-gap: 6px;
+  --nav-height: 64px;
+  --badge-radius: var(--radius-pill);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: var(--space-8);
+    --section-space: var(--space-24);
+    --card-padding: var(--space-8);
+  }
+}
