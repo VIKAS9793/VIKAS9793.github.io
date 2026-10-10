@@ -6,7 +6,7 @@ export default function About() {
     <section className="section" id="about" aria-labelledby="about-title">
       <div className="container about">
         <div className="about__main">
-          <SectionHeading id="about-title" label="03 / About" title="Finance first, then product" />
+          <SectionHeading id="about-title" label="04 / About" title="Finance first, then product" />
           <div className="prose">
             {about.paragraphs.map((p) => (
               <p key={p}>{p}</p>
@@ -16,7 +16,7 @@ export default function About() {
           <h3 className="label about__subhead">Experience</h3>
           <ol className="timeline">
             {experience.map((role) => (
-              <li key={`${role.org}-${role.period}`} className="timeline__item">
+              <li key={`${role.org}-${role.period}`} className="timeline__item reveal">
                 <p className="timeline__period">{role.period}</p>
                 <h4 className="timeline__role">{role.title}</h4>
                 <p className="timeline__org">{role.org}</p>
@@ -43,7 +43,7 @@ export default function About() {
           <h3 className="label about__subhead">Certifications</h3>
           <ul className="creds">
             {credentials.map((c) => (
-              <li key={c.name} className="card cred">
+              <li key={c.name} className="card cred reveal">
                 <p className="cred__name">{c.name}</p>
                 <p className="cred__issuer">{c.issuer}</p>
                 <ul className="tag-list" aria-label={`${c.name} topics`}>

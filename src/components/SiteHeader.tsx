@@ -36,6 +36,7 @@ export default function SiteHeader() {
 
   return (
     <header className="site-header">
+      <div className="scroll-progress" aria-hidden="true" />
       <div className="container site-header__inner">
         <a className="wordmark" href="#top" aria-label={`${site.name}, back to top`}>
           <span className="wordmark__mark" aria-hidden="true">

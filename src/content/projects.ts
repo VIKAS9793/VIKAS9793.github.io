@@ -1,4 +1,5 @@
 export type ProjectKind = 'Studio' | 'Open source' | 'Android app';
+export type ProjectGroup = 'products' | 'games';
 
 export interface ProjectLink {
   label: string;
@@ -10,6 +11,9 @@ export interface Project {
   index: string;
   name: string;
   kind: ProjectKind;
+  group: ProjectGroup;
+  /** Gets the double-line frame: the system's mark for the one thing to look at first. */
+  featured?: boolean;
   status: string;
   summary: string;
   problem: string;
@@ -25,6 +29,8 @@ export interface Project {
 export const projects: readonly Project[] = [
   {
     id: 'androjack-mcp',
+    group: 'products',
+    featured: true,
     index: '01',
     name: 'AndroJack MCP',
     kind: 'Open source',
@@ -48,6 +54,7 @@ export const projects: readonly Project[] = [
   },
   {
     id: 'context-fabric',
+    group: 'products',
     index: '02',
     name: 'Context Fabric',
     kind: 'Open source',
@@ -66,6 +73,7 @@ export const projects: readonly Project[] = [
   },
   {
     id: 'subscribchek',
+    group: 'products',
     index: '03',
     name: 'SubscribCHEK',
     kind: 'Android app',
@@ -82,6 +90,7 @@ export const projects: readonly Project[] = [
   },
   {
     id: 'asanapals',
+    group: 'products',
     index: '04',
     name: 'AsanaPals',
     kind: 'Android app',
@@ -98,13 +107,15 @@ export const projects: readonly Project[] = [
   },
   {
     id: 'northstar-studioz',
+    group: 'games',
+    featured: true,
     index: '05',
     name: 'NorthStar Studioz',
     kind: 'Studio',
     status: 'First game in development',
-    summary: 'An independent studio making hands-first mixed reality games for Meta Quest 3 and 3S.',
+    summary: 'My one-person studio for hands-first mixed reality games on Meta Quest 3 and 3S, started out of a passion for games.',
     problem:
-      'The studio\u2019s bet is that many people would rather play seated, at the table they already have, than clear a room and stand up.',
+      'I love games, and I wanted to learn how they are made, not only play them. The studio\u2019s bet is that many people would rather play seated, at the table they already have, than clear a room and stand up.',
     approach:
       'A one-person studio, founded in October 2026. The first game is designed to be played seated, with bare hands, on a real table. Details stay confidential until it is announced.',
     evidence: ['Studio website is live', 'Targets Meta Quest 3 and 3S, played with bare hands'],

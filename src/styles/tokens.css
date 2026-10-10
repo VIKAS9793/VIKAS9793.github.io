@@ -96,7 +96,7 @@
   --gutter: var(--space-5);
   --section-space: var(--space-16);
   --grid-size: 24px;
-  --grid-opacity: 0.55;
+  --grid-opacity: 0.45;
 
   /* ---- Component tokens ---- */
   --button-radius: var(--radius-lg);

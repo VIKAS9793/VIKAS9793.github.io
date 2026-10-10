@@ -51,4 +51,22 @@ describe('TONAL 2D colour pairs meet WCAG AA (4.5:1) for text', () => {
   it('focus ring (forest green) is a 3:1 non-text contrast against the page', () => {
     expect(ratio(token('p-forest-green'), token('p-warm-cream'))).toBeGreaterThanOrEqual(3);
   });
+
+  it('secondary text stays AA when it sits directly on a grid dot (worst case)', () => {
+    const opacity = Number(css.match(/--grid-opacity:\s*([0-9.]+)/)![1]);
+    const mix = (fg: string, bg: string) => {
+      const c = (hex: string, i: number) => parseInt(hex.slice(i, i + 2), 16);
+      const ch = (i: number) => Math.round(c(fg, i) * opacity + c(bg, i) * (1 - opacity));
+      return `#${[1, 3, 5].map((i) => ch(i).toString(16).padStart(2, '0')).join('')}`;
+    };
+    for (const surface of ['p-warm-cream', 'p-cream-surface']) {
+      const dot = mix(token('p-sage-gray'), token(surface));
+      expect(ratio(token('p-secondary-charcoal'), dot)).toBeGreaterThanOrEqual(4.5);
+    }
+  });
+
+  it('control boundaries meet the 3:1 non-text contrast', () => {
+    expect(ratio(token('p-strong-border'), token('p-warm-cream'))).toBeGreaterThanOrEqual(3);
+    expect(ratio(token('p-secondary-charcoal'), token('p-white'))).toBeGreaterThanOrEqual(3);
+  });
 });

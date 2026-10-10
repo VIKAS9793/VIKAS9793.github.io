@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { highlights } from '../content/highlights';
 import { projects } from '../content/projects';
 import { about, approach, contacts, credentials, education, experience, nav, site, skills } from '../content/site';
 
@@ -55,7 +56,7 @@ describe('content integrity', () => {
   });
 
   it('every nav target exists as a section id in the app', () => {
-    const sources = ['Hero', 'Work', 'Approach', 'About', 'Contact']
+    const sources = ['Hero', 'Work', 'Games', 'Approach', 'About', 'Contact']
       .map((f) => readFileSync(resolve(__dirname, `../components/${f}.tsx`), 'utf8'))
       .join('\n');
     for (const item of nav) {
@@ -69,5 +70,31 @@ describe('content integrity', () => {
     expect(byId.subscribchek.status).toMatch(/closed testing/i);
     expect(byId.asanapals.status).toMatch(/testing/i);
     expect(everything).not.toMatch(/available on google play|download on google play/i);
+  });
+
+  it('derives the highlight counts from the project list', () => {
+    const count = (kind: string) => projects.filter((p) => p.kind === kind).length;
+    const byLabel = Object.fromEntries(highlights.map((h) => [h.label, h.value]));
+    expect(byLabel['open-source tools on npm']).toBe(String(count('Open source')));
+    expect(byLabel['Android apps in testing']).toBe(String(count('Android app')));
+  });
+
+  it('reserves the double-line frame for exactly two featured projects, one per group', () => {
+    const featured = projects.filter((p) => p.featured);
+    expect(featured.map((p) => p.id)).toEqual(['androjack-mcp', 'northstar-studioz']);
+    expect(new Set(featured.map((p) => p.group)).size).toBe(2);
+  });
+
+  it('keeps the games passion on the page without leaking the game itself', () => {
+    expect(everything).toMatch(/passion/i);
+    expect(everything).not.toMatch(/rollsong/i);
+  });
+
+  it('keeps JSON-LD software versions in step with the project list', () => {
+    const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
+    expect(html).toContain('"softwareVersion": "2.0.0"');
+    expect(html).toContain('"softwareVersion": "1.2.2"');
+    expect(projects.find((p) => p.id === 'androjack-mcp')!.status).toContain('2.0.0');
+    expect(projects.find((p) => p.id === 'context-fabric')!.status).toContain('1.2.2');
   });
 });

@@ -1,5 +1,6 @@
 import { contacts } from '../content/site';
 import SectionHeading from './SectionHeading';
+import CopyButton from './CopyButton';
 
 export default function Contact() {
   return (
@@ -7,7 +8,7 @@ export default function Contact() {
       <div className="container contact">
         <SectionHeading
           id="contact-title"
-          label="04 / Contact"
+          label="05 / Contact"
           title="Let’s talk"
           lead="If you have a business problem that could be a small, well-made product, email me. I read everything."
         />
@@ -18,6 +19,7 @@ export default function Contact() {
               <a className="mono-link" href={c.href} {...(c.external ? { rel: 'noopener noreferrer' } : {})}>
                 {c.value}
               </a>
+              {c.id === 'email' ? <CopyButton text={c.value} label="Copy email" /> : null}
             </li>
           ))}
         </ul>

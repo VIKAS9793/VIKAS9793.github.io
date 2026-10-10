@@ -7,7 +7,7 @@ interface Props {
 
 export default function SectionHeading({ id, label, title, lead }: Props) {
   return (
-    <div className="section-heading">
+    <div className="section-heading reveal">
       <p className="label">{label}</p>
       <h2 id={id} className="section-heading__title">
         {title}

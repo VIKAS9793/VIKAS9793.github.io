@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import type { Project } from '../content/projects';
 
-/** Wide screens read the case open; phones start collapsed so the page stays scannable. */
-function startsOpen(): boolean {
-  return typeof window.matchMedia === 'function' ? window.matchMedia('(min-width: 48rem)').matches : true;
-}
+/** Wide screens read the case open; phones collapse it so the page stays scannable. */
+const WIDE = '(min-width: 48rem)';
 
 export default function ProjectCard({ project }: { project: Project }) {
   const titleId = `project-${project.id}`;
-  const [open, setOpen] = useState(startsOpen);
+  // Starts open so prerendered HTML and no-JS visitors get the full text.
+  const [open, setOpen] = useState(true);
+
+  useLayoutEffect(() => {
+    if (typeof window.matchMedia === 'function' && !window.matchMedia(WIDE).matches) setOpen(false);
+  }, []);
   return (
-    <article className="card project" aria-labelledby={titleId}>
+    <article
+      className={`card project${project.featured ? ' frame project--featured' : ''}`}
+      aria-labelledby={titleId}
+    >
       <div className="project__head">
         <p className="project__id">
           {project.index} / {project.kind.toUpperCase()}
@@ -61,7 +67,9 @@ export default function ProjectCard({ project }: { project: Project }) {
               <a className="button button--tertiary" href={link.href} rel="noopener noreferrer">
                 {link.label}
                 <span className="sr-only"> (opens in a new tab)</span>
-                <span aria-hidden="true"> &#8599;</span>
+                <span className="arrow" aria-hidden="true">
+                  &#8599;
+                </span>
               </a>
             </li>
           ))}

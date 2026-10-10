@@ -7,13 +7,13 @@ export default function Approach() {
       <div className="container">
         <SectionHeading
           id="approach-title"
-          label="02 / Approach"
+          label="03 / Approach"
           title="How I build with AI"
           lead="AI does a lot of the typing. These are the parts that stay with me."
         />
         <ul className="approach-grid">
           {approach.map((row) => (
-            <li key={row.label} className="card approach">
+            <li key={row.label} className="card approach reveal">
               <p className="badge badge--brand">{row.label}</p>
               <h3 className="approach__title">{row.title}</h3>
               <p>{row.body}</p>

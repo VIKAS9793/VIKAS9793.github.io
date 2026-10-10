@@ -1,12 +1,14 @@
 import { site } from '../content/site';
-import IdentityCard from './IdentityCard';
+import HeroPortrait from './HeroPortrait';
 
 export default function Hero() {
   return (
     <section className="hero grid-bg" id="top" aria-labelledby="hero-title">
       <div className="container hero__inner">
         <div className="hero__copy">
-          <p className="label">Portfolio / {new Date().getFullYear()}</p>
+          <p className="label">
+            {site.name} / {site.role} / {site.location}
+          </p>
           <h1 id="hero-title" className="hero__title">
             {site.headline}
           </h1>
@@ -20,7 +22,7 @@ export default function Hero() {
             </a>
           </div>
         </div>
-        <IdentityCard />
+        <HeroPortrait />
       </div>
     </section>
   );

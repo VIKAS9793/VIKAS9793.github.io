@@ -32,6 +32,11 @@
   mask-image: linear-gradient(to bottom, #000 55%, transparent);
 }
 
+/* Text that can sit on a dot uses the stronger text colour so the worst case stays at AA. */
+.grid-bg .label {
+  color: var(--color-text-secondary);
+}
+
 /* ---------- Type helpers ---------- */
 .label {
   margin: 0;
@@ -323,48 +328,18 @@ h4 {
   }
 }
 
-/* ---------- Identity card (double-frame, used once) ---------- */
-.id-card {
+/* ---------- Hero portrait (double-line frame) ---------- */
+.portrait {
   width: 100%;
   max-width: 480px;
+  margin: 0;
   justify-self: center;
-}
-
-.id-card__frame {
-  position: relative;
-  display: grid;
-  gap: var(--space-5);
-  padding: var(--space-5);
+  padding: calc(var(--space-4) + var(--frame-gap));
   background: var(--color-bg-surface);
-  border: var(--frame-line) solid var(--color-frame);
-  border-radius: var(--frame-radius);
   box-shadow: var(--shadow-elevated);
 }
 
-/* Inner rule of the double frame, with a bridge tick at the middle of each side. */
-.id-card__frame::before,
-.id-card__frame::after {
-  content: '';
-  position: absolute;
-  pointer-events: none;
-}
-
-.id-card__frame::before {
-  inset: var(--frame-gap);
-  border: var(--frame-line) solid var(--color-frame);
-  border-radius: calc(var(--frame-radius) - var(--frame-gap));
-}
-
-.id-card__frame::after {
-  inset: 0;
-  background:
-    linear-gradient(var(--color-frame), var(--color-frame)) top center / var(--frame-line) var(--frame-gap) no-repeat,
-    linear-gradient(var(--color-frame), var(--color-frame)) bottom center / var(--frame-line) var(--frame-gap) no-repeat,
-    linear-gradient(var(--color-frame), var(--color-frame)) left center / var(--frame-gap) var(--frame-line) no-repeat,
-    linear-gradient(var(--color-frame), var(--color-frame)) right center / var(--frame-gap) var(--frame-line) no-repeat;
-}
-
-.id-card__photo {
+.portrait__image {
   width: 100%;
   height: auto;
   aspect-ratio: 1;
@@ -373,90 +348,40 @@ h4 {
   background: var(--color-bg-subtle);
 }
 
-.id-card__body {
-  display: grid;
-  gap: var(--space-3);
-  padding: 0 var(--space-2) var(--space-2);
+/*
+  Double-line frame: the system's mark for "look here first". Used on the hero portrait
+  and the two featured projects only; ordinary cards keep a single thin border.
+*/
+.frame {
+  position: relative;
+  border: var(--frame-line) solid var(--color-frame);
+  border-radius: var(--frame-radius);
 }
 
-.id-card__top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2) var(--space-4);
-}
-
-.id-card__name {
-  margin: 0;
-  font-size: var(--text-2xl);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-
-.id-card__rows {
-  display: grid;
-  margin: var(--space-2) 0 0;
-}
-
-.id-card__row {
-  display: grid;
-  gap: var(--space-1);
-  padding-block: var(--space-3);
-  border-top: var(--border-thin) dashed var(--color-border);
-}
-
-.id-card__row dd {
-  margin: 0;
-}
-
-@media (min-width: 30rem) {
-  .id-card__row {
-    grid-template-columns: 5.5rem minmax(0, 1fr);
-    align-items: baseline;
-  }
-}
-
-/* Registration marks: two only, outside the content. */
-.reg {
+.frame::before,
+.frame::after {
+  content: '';
   position: absolute;
-  width: 14px;
-  height: 14px;
   pointer-events: none;
 }
 
-.reg::before,
-.reg::after {
-  content: '';
-  position: absolute;
-  background: var(--color-accent);
+.frame::before {
+  inset: var(--frame-gap);
+  border: var(--frame-line) solid var(--color-frame);
+  border-radius: calc(var(--frame-radius) - var(--frame-gap));
 }
 
-.reg::before {
-  inset: 6px 0 auto;
-  height: 1px;
+.frame::after {
+  inset: 0;
+  background:
+    linear-gradient(var(--color-frame), var(--color-frame)) top center / var(--frame-line) var(--frame-gap) no-repeat,
+    linear-gradient(var(--color-frame), var(--color-frame)) bottom center / var(--frame-line) var(--frame-gap) no-repeat,
+    linear-gradient(var(--color-frame), var(--color-frame)) left center / var(--frame-gap) var(--frame-line) no-repeat,
+    linear-gradient(var(--color-frame), var(--color-frame)) right center / var(--frame-gap) var(--frame-line) no-repeat;
 }
 
-.reg::after {
-  inset: 0 auto 0 6px;
-  width: 1px;
-}
-
-.reg--tl {
-  top: -22px;
-  left: -22px;
-}
-
-.reg--br {
-  right: -22px;
-  bottom: -22px;
-}
-
-@media (max-width: 47.99rem) {
-  .reg {
-    display: none;
-  }
+.card.frame {
+  padding: calc(var(--card-padding) + var(--frame-gap));
 }
 
 /* ---------- Section headings ---------- */
@@ -776,7 +701,7 @@ h4 {
 
 .contact__row {
   display: grid;
-  gap: var(--space-1);
+  gap: var(--space-2) var(--space-4);
   padding: var(--space-4) var(--space-6);
   border-top: var(--border-thin) dashed var(--color-border);
 }
@@ -787,8 +712,8 @@ h4 {
 
 @media (min-width: 30rem) {
   .contact__row {
-    grid-template-columns: 7rem minmax(0, 1fr);
-    align-items: baseline;
+    grid-template-columns: 7rem minmax(0, 1fr) auto;
+    align-items: center;
   }
 }
 
@@ -862,6 +787,268 @@ h4 {
 
 @media (min-width: 48rem) {
   .project__case > .project__toggle {
+    display: none;
+  }
+}
+
+/* ---------- Highlights ---------- */
+.highlights {
+  padding-block: var(--space-8);
+  border-block: var(--border-thin) solid var(--color-border);
+  background: var(--color-bg-subtle);
+}
+
+.highlights__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-4);
+  margin: 0;
+}
+
+.highlights__item {
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+}
+
+.highlights__value {
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-brand);
+}
+
+.highlights__label {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 48rem) {
+  .highlights__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .highlights__item + .highlights__item {
+    padding-left: var(--space-6);
+    border-left: var(--border-thin) dashed var(--color-border-strong);
+  }
+}
+
+/* ---------- Games band ---------- */
+.games {
+  max-width: calc(var(--container-max) + var(--gutter) * 2);
+}
+
+@media (min-width: 60rem) {
+  .games .project {
+    max-width: 52rem;
+  }
+}
+
+.project--featured .project__name::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: var(--space-3);
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- Affordances ---------- */
+.button--small {
+  min-height: var(--button-min-size);
+  padding: var(--space-2) var(--space-4);
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: var(--space-1);
+  transition: transform var(--duration-standard) var(--ease);
+}
+
+a:hover > .arrow,
+a:focus-visible > .arrow {
+  transform: translate(2px, -2px);
+}
+
+.button--tertiary:hover {
+  text-decoration-thickness: 2px;
+}
+
+.footer-link {
+  color: inherit;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  inset: auto var(--space-2) 6px;
+  height: 2px;
+  background: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-standard) var(--ease);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current='true']::after {
+  transform: scaleX(1);
+}
+
+.nav-link[aria-current='true'] {
+  box-shadow: none;
+  border-radius: var(--radius-md);
+  color: var(--color-brand);
+}
+
+.project:hover:not(.frame) {
+  transform: translateY(-2px);
+}
+
+.project {
+  will-change: auto;
+  transition: border-color var(--duration-standard) var(--ease), box-shadow var(--duration-standard) var(--ease),
+    transform var(--duration-standard) var(--ease);
+}
+
+.project__case > :not(summary) {
+  overflow: clip;
+}
+
+/* ---------- Motion (compositor-only; off for reduced motion) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Scroll reveal moves content into place but never hides it. */
+  @keyframes settle {
+    from {
+      transform: translateY(24px);
+    }
+
+    to {
+      transform: none;
+    }
+  }
+
+  @keyframes draw {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Hero: staggered entrance on load. */
+  .hero__copy > *,
+  .portrait {
+    animation: rise var(--duration-slow) var(--ease) both;
+  }
+
+  .hero__copy > :nth-child(2) {
+    animation-delay: 60ms;
+  }
+
+  .hero__copy > :nth-child(3) {
+    animation-delay: 120ms;
+  }
+
+  .hero__copy > :nth-child(4) {
+    animation-delay: 180ms;
+  }
+
+  .portrait {
+    animation-delay: 160ms;
+    animation-duration: 500ms;
+  }
+
+  /* Scroll-linked reveal and progress bar where supported; content is simply visible elsewhere. */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+
+    .scroll-progress {
+      animation: draw linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+
+  /* Smooth open and close of a project case. */
+  .project__case::details-content {
+    block-size: 0;
+    opacity: 0;
+    transition: block-size var(--duration-slow) var(--ease), opacity var(--duration-slow) var(--ease),
+      content-visibility var(--duration-slow) allow-discrete;
+  }
+
+  .project__case[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+.scroll-progress {
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 2px;
+  background: var(--color-accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+}
+
+.not-found {
+  display: grid;
+  gap: var(--space-4);
+  padding-block: var(--space-24);
+}
+
+.not-found .container {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+
+@media print {
+  .reveal,
+  .hero__copy > *,
+  .portrait {
+    animation: none !important;
+  }
+
+  .scroll-progress,
+  .site-header {
     display: none;
   }
 }

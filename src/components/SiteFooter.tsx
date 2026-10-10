@@ -5,9 +5,14 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <div className="container site-footer__inner">
         <p>
-          &copy; {new Date().getFullYear()} {site.name}
+          &copy; {site.year} {site.name}
         </p>
-        <p>{site.location} // Built with AI-assisted development</p>
+        <p>
+          {site.location} // Built with AI-assisted development //{' '}
+          <a className="footer-link" href="#top">
+            Back to top
+          </a>
+        </p>
       </div>
     </footer>
   );

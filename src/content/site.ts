@@ -12,6 +12,7 @@ export interface ContactLink {
 }
 
 export const site = {
+  year: 2026,
   name: 'Vikas Sahani',
   role: 'Product builder',
   location: 'Mumbai, IN',
@@ -29,7 +30,7 @@ export const site = {
 
 export const nav: readonly NavItem[] = [
   { label: 'Work', href: '#work' },
-  { label: 'Approach', href: '#approach' },
+  { label: 'Games', href: '#games' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -142,6 +143,11 @@ export const education = {
   period: '2012 to 2015',
 } as const;
 
+export interface Highlight {
+  value: string;
+  label: string;
+}
+
 export interface ApproachRow {
   label: string;
   title: string;
@@ -176,5 +182,12 @@ export const about = {
   paragraphs: [
     'I work in finance during the day. For four and a half years that has meant customer-facing wealth and banking roles, today as a Virtual Relationship Manager at Aditya Birla Capital. Talking to customers about money every day taught me where products lose people: unclear next steps, hidden costs and a lack of trust.',
     'Outside work I build. I am not a traditional software engineer. I decide what to build and why, use AI to do the implementation work, and keep each project small enough to finish and check properly.',
+    'I am also passionate about games. That is why NorthStar Studioz exists: a place to explore how games are designed and built, alongside the business products I make.',
   ],
+} as const;
+
+export const games = {
+  label: '02 / Games',
+  title: 'Beyond products: games',
+  lead: 'Products solve problems I see at work. Games are where I explore for the joy of it. NorthStar Studioz is my way of learning how games are made.',
 } as const;
