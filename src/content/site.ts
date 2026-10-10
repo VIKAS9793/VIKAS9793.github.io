@@ -53,7 +53,7 @@ export const contacts: readonly ContactLink[] = [
   {
     id: 'linkedin',
     label: 'LinkedIn',
-    value: 'linkedin.com/in/vikas-sahani',
+    value: 'linkedin.com/in/vikas-sahani-727420358',
     href: 'https://www.linkedin.com/in/vikas-sahani-727420358',
     external: true,
   },

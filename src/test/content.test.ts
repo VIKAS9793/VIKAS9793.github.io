@@ -97,4 +97,10 @@ describe('content integrity', () => {
     expect(projects.find((p) => p.id === 'androjack-mcp')!.status).toContain('2.0.0');
     expect(projects.find((p) => p.id === 'context-fabric')!.status).toContain('1.2.2');
   });
+
+  it('shows the exact LinkedIn address it links to', () => {
+    const linkedin = contacts.find((c) => c.id === 'linkedin')!;
+    expect(linkedin.href).toBe('https://www.linkedin.com/in/vikas-sahani-727420358');
+    expect(linkedin.href).toContain(linkedin.value);
+  });
 });
