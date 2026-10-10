@@ -433,6 +433,7 @@ h4 {
 */
 .project {
   --summary-lines: 3;
+  container-type: inline-size;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto auto auto;
   align-content: start;
@@ -470,10 +471,11 @@ h4 {
 }
 
 .project__name {
-  /* Scales down on narrow screens so every name stays on one line. */
-  font-size: clamp(1.375rem, 0.9rem + 2.2vw, var(--text-3xl));
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  /* Hero-style display type: scales with the card so even the longest name stays on one line. */
+  font-size: clamp(1.5rem, 8.5cqi, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
   white-space: nowrap;
 }
 
@@ -482,10 +484,11 @@ h4 {
   -webkit-line-clamp: var(--summary-lines);
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-size: var(--text-lg);
-  line-height: 1.5;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
   /* The same number of lines is always reserved so a short summary does not shrink its card. */
-  min-height: calc(1.5em * var(--summary-lines));
+  min-height: calc(1.6em * var(--summary-lines));
 }
 
 .project.is-open .project__summary {
@@ -501,11 +504,7 @@ h4 {
 
 @media (max-width: 71.99rem) {
   .project {
-    --summary-lines: 4;
-  }
-
-  .project__summary {
-    font-size: var(--text-base);
+    --summary-lines: 3;
   }
 
   .project__tags {
@@ -530,7 +529,7 @@ h4 {
 
 @media (max-width: 29.99rem), (min-width: 48rem) and (max-width: 59.99rem) {
   .project {
-    --summary-lines: 5;
+    --summary-lines: 4;
   }
 }
 
