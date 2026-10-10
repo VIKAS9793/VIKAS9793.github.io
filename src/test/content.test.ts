@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { projects } from '../content/projects';
-import { about, approach, contacts, credentials, nav, site } from '../content/site';
+import { about, approach, contacts, credentials, education, experience, nav, site, skills } from '../content/site';
 
-const everything = JSON.stringify({ projects, about, approach, contacts, credentials, nav, site });
+const everything = JSON.stringify({ projects, about, approach, contacts, credentials, education, experience, nav, site, skills });
 
 describe('content integrity', () => {
   it('uses the supplied owner identity', () => {
@@ -41,11 +41,17 @@ describe('content integrity', () => {
     }
   });
 
-  it('keeps the two supplied certificates only', () => {
+  it('lists only certificates the owner supplied', () => {
     expect(credentials.map((c) => c.name)).toEqual([
       'IBM Product Manager Professional Certificate',
       'Google AI Professional Certificate',
+      'NISM Series V-A: Mutual Fund Distributor',
+      'IRDAI Corporate Agent (Composite)',
     ]);
+  });
+
+  it('lists the four supplied roles, newest first, with no unsupplied employers', () => {
+    expect(experience.map((r) => r.org)).toEqual(['Aditya Birla Capital', 'HDFC Bank', 'IndusInd Bank', 'ICICI Bank']);
   });
 
   it('every nav target exists as a section id in the app', () => {

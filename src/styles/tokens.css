@@ -87,6 +87,7 @@
   --color-border: var(--p-border-neutral);
   --color-border-strong: var(--p-strong-border);
   --color-border-focus: var(--p-forest-green);
+  --color-frame: var(--p-secondary-charcoal);
   --color-grid: var(--p-sage-gray);
 
   /* ---- Semantic layout ---- */
@@ -104,6 +105,8 @@
   --card-padding: var(--space-6);
   --card-gap: var(--space-5);
   --frame-radius: var(--radius-2xl);
+  --frame-line: 1.5px;
+  --frame-gap: 6px;
   --nav-height: 64px;
   --badge-radius: var(--radius-pill);
 }

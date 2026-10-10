@@ -45,7 +45,8 @@
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-weight: 700;
   color: var(--color-text-primary);
   text-wrap: balance;
@@ -333,11 +334,34 @@ h3 {
   position: relative;
   display: grid;
   gap: var(--space-5);
-  padding: var(--space-4);
+  padding: var(--space-5);
   background: var(--color-bg-surface);
-  border: 3px double var(--color-border-strong);
+  border: var(--frame-line) solid var(--color-frame);
   border-radius: var(--frame-radius);
   box-shadow: var(--shadow-elevated);
+}
+
+/* Inner rule of the double frame, with a bridge tick at the middle of each side. */
+.id-card__frame::before,
+.id-card__frame::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.id-card__frame::before {
+  inset: var(--frame-gap);
+  border: var(--frame-line) solid var(--color-frame);
+  border-radius: calc(var(--frame-radius) - var(--frame-gap));
+}
+
+.id-card__frame::after {
+  inset: 0;
+  background:
+    linear-gradient(var(--color-frame), var(--color-frame)) top center / var(--frame-line) var(--frame-gap) no-repeat,
+    linear-gradient(var(--color-frame), var(--color-frame)) bottom center / var(--frame-line) var(--frame-gap) no-repeat,
+    linear-gradient(var(--color-frame), var(--color-frame)) left center / var(--frame-gap) var(--frame-line) no-repeat,
+    linear-gradient(var(--color-frame), var(--color-frame)) right center / var(--frame-gap) var(--frame-line) no-repeat;
 }
 
 .id-card__photo {
@@ -604,9 +628,15 @@ h3 {
   color: var(--color-text-secondary);
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 40rem) {
   .approach-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 72rem) {
+  .approach-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -623,9 +653,85 @@ h3 {
   color: var(--color-text-secondary);
 }
 
-.about__creds-title {
-  margin-bottom: var(--space-4);
+.about__subhead {
+  margin: var(--space-10) 0 var(--space-4);
   font-weight: 500;
+}
+
+.about__main > .prose + .about__subhead,
+.about__side > .about__subhead:first-child {
+  margin-top: var(--space-12);
+}
+
+.about__side > .about__subhead:first-child {
+  margin-top: 0;
+}
+
+.timeline {
+  display: grid;
+  gap: var(--space-6);
+  border-left: var(--border-thin) dashed var(--color-border-strong);
+  padding-left: var(--space-6);
+  margin-left: var(--space-1);
+}
+
+.timeline__item {
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-6) - 4px);
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.timeline__period {
+  margin: 0;
+  font-family: var(--p-font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+}
+
+.timeline__role {
+  font-size: var(--text-lg);
+  line-height: 1.3;
+}
+
+.timeline__org {
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.timeline__points {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  color: var(--color-text-secondary);
+}
+
+.timeline__points li {
+  position: relative;
+  padding-left: var(--space-5);
+}
+
+.timeline__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 8px;
+  height: 1px;
+  background: var(--color-accent);
 }
 
 .creds {

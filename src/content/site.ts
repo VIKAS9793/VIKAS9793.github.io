@@ -20,7 +20,7 @@ export const site = {
   githubHandle: 'VIKAS9793',
   headline: 'I turn business problems into working products, with AI as my build partner.',
   intro:
-    'I am a product builder from Mumbai. I have spent more than four years in customer-facing finance, so I start from what people actually struggle with, then use AI-assisted development to build and ship the answer.',
+    'I am a product builder from Mumbai. I have spent four and a half years in customer-facing finance, so I start from what people actually struggle with, then use AI-assisted development to build and ship the answer.',
   description:
     'Vikas Sahani is a product builder from Mumbai who uses AI-assisted development to turn business problems into working products: Android apps, developer tools and mixed reality games.',
   portraitAlt:
@@ -75,7 +75,72 @@ export const credentials: readonly Credential[] = [
     issuer: 'Google, via Coursera',
     topics: ['Prompt engineering', 'Responsible AI', 'AI acumen'],
   },
+  {
+    name: 'NISM Series V-A: Mutual Fund Distributor',
+    issuer: 'NISM, valid until October 2027',
+    topics: ['Mutual funds', 'Investment products'],
+  },
+  {
+    name: 'IRDAI Corporate Agent (Composite)',
+    issuer: 'IRDAI, valid until February 2028',
+    topics: ['Insurance', 'Insurance regulation'],
+  },
 ];
+
+export interface Role {
+  title: string;
+  org: string;
+  period: string;
+  points: readonly string[];
+}
+
+/** Supplied by the owner from their r\u00e9sum\u00e9. Newest first. */
+export const experience: readonly Role[] = [
+  {
+    title: 'Virtual Relationship Manager',
+    org: 'Aditya Birla Capital',
+    period: 'Nov 2024 to present',
+    points: [
+      'Manage a \u20b9200 Cr investment portfolio (90% retail, 10% HNI) and a 3,500-customer SIP book.',
+      'Scaled monthly SIP mobilisation from \u20b950K to \u20b91L+.',
+      'Review portfolios against each investor\u2019s goals and explain outcomes in plain language, and map what makes investors redeem or stop SIPs to improve follow-ups.',
+      'Use company-approved Microsoft Copilot to speed up portfolio reviews and client emails, saving about 30 minutes per review.',
+    ],
+  },
+  {
+    title: 'Personal Banker',
+    org: 'HDFC Bank',
+    period: 'Jan 2024 to Jul 2024',
+    points: ['Managed a \u20b950-60 Cr Classic segment portfolio and mobilised \u20b910-20L in monthly fixed deposits.'],
+  },
+  {
+    title: 'Sales Officer',
+    org: 'IndusInd Bank',
+    period: 'Sep 2021 to Nov 2023',
+    points: ['Achieved 100-150% of a \u20b950L monthly personal loan target. ACE Award, FY 2022-23.'],
+  },
+  {
+    title: 'Customer Service Officer, Phone Banking',
+    org: 'ICICI Bank',
+    period: 'Mar 2021 to Jun 2021',
+    points: ['Resolved credit card and banking queries with a focus on first-call resolution.'],
+  },
+];
+
+export const skills: readonly string[] = [
+  'Wealth and investment services',
+  'SIP growth and retention',
+  'Goal-based portfolio review',
+  'Customer discovery',
+  'Mutual fund and protection cross-selling',
+  'AI-assisted analysis',
+  'CRM, KYC and AML',
+];
+
+export const education = {
+  degree: 'BSc, Mithibai College, University of Mumbai',
+  period: '2012 to 2015',
+} as const;
 
 export interface ApproachRow {
   label: string;
@@ -96,6 +161,11 @@ export const approach: readonly ApproachRow[] = [
     body: 'Specs, code generation, test scaffolding and drafting are done with AI tools, and I review what they produce before it ships.',
   },
   {
+    label: 'Guardrails',
+    title: 'The data',
+    body: 'At work I use only company-approved AI tools, within data-privacy guidelines. Personal AI tools are for my own projects and learning, and no client or employer data ever goes into them.',
+  },
+  {
     label: 'Checked',
     title: 'The claims',
     body: 'Versions, tool counts and statuses on this page are read from the projects themselves. If I cannot verify a number, it is not here.',
@@ -104,7 +174,7 @@ export const approach: readonly ApproachRow[] = [
 
 export const about = {
   paragraphs: [
-    'I work in finance during the day. For more than four years that has meant customer-facing roles across HDFC Bank, ICICI Bank, IndusInd Bank and, currently, Aditya Birla Capital as a Virtual Relationship Manager. Talking to customers about money every day taught me where products lose people: unclear next steps, hidden costs and a lack of trust.',
+    'I work in finance during the day. For four and a half years that has meant customer-facing wealth and banking roles, today as a Virtual Relationship Manager at Aditya Birla Capital. Talking to customers about money every day taught me where products lose people: unclear next steps, hidden costs and a lack of trust.',
     'Outside work I build. I am not a traditional software engineer. I decide what to build and why, use AI to do the implementation work, and keep each project small enough to finish and check properly.',
   ],
 } as const;
