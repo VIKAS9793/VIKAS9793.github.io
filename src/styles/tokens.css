@@ -101,7 +101,7 @@
   /* ---- Component tokens ---- */
   --button-radius: var(--radius-lg);
   --button-min-size: 44px;
-  --card-radius: var(--radius-xl);
+  --card-radius: var(--radius-2xl);
   --card-padding: var(--space-6);
   --card-gap: var(--space-5);
   --frame-radius: var(--radius-2xl);

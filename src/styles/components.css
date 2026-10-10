@@ -380,7 +380,9 @@ h4 {
     linear-gradient(var(--color-frame), var(--color-frame)) right center / var(--frame-gap) var(--frame-line) no-repeat;
 }
 
-.card.frame {
+.card.frame,
+.card.project {
+  /* Framed and plain cards share one padding so their sizes match. */
   padding: calc(var(--card-padding) + var(--frame-gap));
 }
 
@@ -407,6 +409,7 @@ h4 {
 .project-grid {
   display: grid;
   gap: var(--card-gap);
+  align-items: stretch;
 }
 
 .project-grid__item {
@@ -418,30 +421,25 @@ h4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .project-grid__item:first-child {
-    grid-column: 1 / -1;
+  /* Opening one card must not stretch its neighbour into empty space. */
+  .project-grid:has(.is-open) {
+    align-items: start;
   }
 }
 
-@media (min-width: 72rem) {
-  .project-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
-  .project-grid__item {
-    grid-column: span 2;
-  }
-
-  .project-grid__item:nth-child(-n + 2) {
-    grid-column: span 3;
-  }
-}
-
+/*
+  Expandable container card. Collapsed layout is identical for every card (head, summary,
+  tags, action bar), so cards share one size; the panel opens in place.
+*/
 .project {
+  --summary-lines: 3;
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto;
   align-content: start;
-  gap: var(--space-5);
-  transition: border-color var(--duration-standard) var(--ease), box-shadow var(--duration-standard) var(--ease);
+  gap: var(--space-4);
+  width: 100%;
+  transition: border-color var(--duration-standard) var(--ease), box-shadow var(--duration-standard) var(--ease),
+    transform var(--duration-standard) var(--ease);
 }
 
 .project:hover {
@@ -449,10 +447,18 @@ h4 {
   box-shadow: var(--shadow-elevated);
 }
 
+.project.is-open {
+  box-shadow: var(--shadow-elevated);
+}
+
 .project__head {
   display: grid;
-  gap: var(--space-3);
+  /* Row 3 reserves two lines so a long status never changes the card's size. */
+  grid-template-rows: auto auto calc(2 * 1.4 * var(--text-xs) + var(--space-2));
+  gap: var(--space-2);
   justify-items: start;
+  align-items: start;
+  align-content: start;
 }
 
 .project__id {
@@ -464,23 +470,165 @@ h4 {
 }
 
 .project__name {
-  font-size: var(--text-3xl);
+  /* Scales down on narrow screens so every name stays on one line. */
+  font-size: clamp(1.375rem, 0.9rem + 2.2vw, var(--text-3xl));
   line-height: 1.15;
   letter-spacing: -0.015em;
+  white-space: nowrap;
 }
 
 .project__summary {
+  display: -webkit-box;
+  -webkit-line-clamp: var(--summary-lines);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-size: var(--text-lg);
   line-height: 1.5;
+  /* The same number of lines is always reserved so a short summary does not shrink its card. */
+  min-height: calc(1.5em * var(--summary-lines));
+}
+
+.project.is-open .project__summary {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.project__tags {
+  align-content: start;
+  /* Two rows of tags are always reserved. */
+  min-height: calc(2 * (1.4 * var(--text-xs) + var(--space-2) + 2px) + var(--space-2));
+}
+
+@media (max-width: 71.99rem) {
+  .project {
+    --summary-lines: 4;
+  }
+
+  .project__summary {
+    font-size: var(--text-base);
+  }
+
+  .project__tags {
+    /* Narrower cards wrap tags onto a third row. */
+    min-height: calc(3 * (1.4 * var(--text-xs) + var(--space-2) + 2px) + 2 * var(--space-2));
+  }
+}
+
+.project__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+  padding-top: var(--space-3);
+  border-top: var(--border-thin) dashed var(--color-border-strong);
+}
+
+.project__bar {
+  min-height: calc(var(--button-min-size) + var(--space-3));
+}
+
+@media (max-width: 29.99rem), (min-width: 48rem) and (max-width: 59.99rem) {
+  .project {
+    --summary-lines: 5;
+  }
+}
+
+@media (max-width: 71.99rem) {
+  /* Narrower cards stack the toggle and the link in every card, so none wraps differently. */
+  .project__bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.project__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--button-min-size);
+  padding: 0 var(--space-4) 0 var(--space-3);
+  border: var(--border-thin) solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
   color: var(--color-text-primary);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease), border-color var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease);
+}
+
+.project__toggle:hover {
+  background: var(--color-bg-inverse);
+  border-color: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.project__chevron {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.project__chevron::before,
+.project__chevron::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 2px;
+  background: currentColor;
+  border-radius: var(--radius-pill);
+  transition: transform var(--duration-slow) var(--ease);
+}
+
+.project__chevron::before {
+  left: 1px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.project__chevron::after {
+  right: 1px;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.project.is-open .project__chevron::before {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.project.is-open .project__chevron::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Panel opens by animating its row from 0fr to 1fr: no measured heights, no jumps. */
+.project__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-slow) var(--ease);
+}
+
+.project.is-open .project__panel {
+  grid-template-rows: 1fr;
+}
+
+.project__panel-inner {
+  display: grid;
+  gap: var(--space-5);
+  min-height: 0;
+  overflow: hidden;
+  /* Keeps focus rings of the links inside from being clipped. */
+  padding: 0 var(--space-1);
+  margin: 0 calc(-1 * var(--space-1));
 }
 
 .project__facts {
   display: grid;
   gap: var(--space-4);
   margin: 0;
-  padding-top: var(--space-5);
-  border-top: var(--border-thin) dashed var(--color-border);
+  padding-top: var(--space-4);
 }
 
 .project__facts dd {
@@ -514,8 +662,7 @@ h4 {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2) var(--space-6);
-  margin-top: auto;
-  padding-top: var(--space-4);
+  padding-top: var(--space-3);
   border-top: var(--border-thin) solid var(--color-border);
 }
 
@@ -737,60 +884,6 @@ h4 {
   margin: 0;
 }
 
-/* ---------- Project case disclosure ---------- */
-.project__case {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.project__toggle {
-  display: flex;
-  align-items: center;
-  min-height: var(--button-min-size);
-  width: fit-content;
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--color-brand);
-  cursor: pointer;
-  list-style: none;
-}
-
-.project__toggle::-webkit-details-marker {
-  display: none;
-}
-
-.project__toggle::before {
-  content: '+';
-  display: inline-grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  margin-right: var(--space-2);
-  border: var(--border-thin) solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
-  font-family: var(--p-font-mono);
-  line-height: 1;
-}
-
-.project__case[open] > .project__toggle::before {
-  content: '\2212';
-}
-
-.project__toggle-open,
-.project__case[open] .project__toggle-closed {
-  display: none;
-}
-
-.project__case[open] .project__toggle-open {
-  display: inline;
-}
-
-@media (min-width: 48rem) {
-  .project__case > .project__toggle {
-    display: none;
-  }
-}
-
 /* ---------- Highlights ---------- */
 .highlights {
   padding-block: var(--space-8);
@@ -838,23 +931,25 @@ h4 {
 
 /* ---------- Games band ---------- */
 .games {
-  max-width: calc(var(--container-max) + var(--gutter) * 2);
+  display: grid;
+  gap: var(--space-8);
+  align-items: start;
 }
 
-@media (min-width: 60rem) {
-  .games .project {
-    max-width: 52rem;
+.games .section-heading {
+  margin-bottom: 0;
+}
+
+@media (min-width: 48rem) {
+  .games {
+    /* Same two columns as the product grid, so the studio card matches the others. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--card-gap);
   }
-}
 
-.project--featured .project__name::after {
-  content: '';
-  display: block;
-  width: 2.5rem;
-  height: 3px;
-  margin-top: var(--space-3);
-  background: var(--color-accent);
-  border-radius: var(--radius-pill);
+  .games .section-heading {
+    padding-right: var(--space-6);
+  }
 }
 
 /* ---------- Affordances ---------- */
@@ -908,19 +1003,8 @@ a:focus-visible > .arrow {
   color: var(--color-brand);
 }
 
-.project:hover:not(.frame) {
-  transform: translateY(-2px);
-}
 
-.project {
-  will-change: auto;
-  transition: border-color var(--duration-standard) var(--ease), box-shadow var(--duration-standard) var(--ease),
-    transform var(--duration-standard) var(--ease);
-}
 
-.project__case > :not(summary) {
-  overflow: clip;
-}
 
 /* ---------- Motion (compositor-only; off for reduced motion) ---------- */
 @media (prefers-reduced-motion: no-preference) {
@@ -997,19 +1081,6 @@ a:focus-visible > .arrow {
       animation-timeline: scroll(root block);
     }
   }
-
-  /* Smooth open and close of a project case. */
-  .project__case::details-content {
-    block-size: 0;
-    opacity: 0;
-    transition: block-size var(--duration-slow) var(--ease), opacity var(--duration-slow) var(--ease),
-      content-visibility var(--duration-slow) allow-discrete;
-  }
-
-  .project__case[open]::details-content {
-    block-size: auto;
-    opacity: 1;
-  }
 }
 
 .scroll-progress {
@@ -1050,5 +1121,13 @@ a:focus-visible > .arrow {
   .scroll-progress,
   .site-header {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project__panel,
+  .project__chevron::before,
+  .project__chevron::after {
+    transition: none;
   }
 }

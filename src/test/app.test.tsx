@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import App from '../App';
 import { projects } from '../content/projects';
 
@@ -37,5 +37,27 @@ describe('portfolio page', () => {
   it('offers a skip link as the first focusable element', () => {
     render(<App />);
     expect(screen.getAllByRole('link')[0]).toHaveTextContent(/skip to content/i);
+  });
+
+  it('expands a project card in place, and keeps collapsed details out of reach', () => {
+    render(<App />);
+    const card = screen.getByRole('article', { name: 'AndroJack MCP' });
+    const toggle = within(card).getByRole('button', { name: /show details/i });
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    const panel = card.querySelector('.project__panel')!;
+    expect(panel).toHaveAttribute('inert');
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    expect(panel).not.toHaveAttribute('inert');
+    expect(within(card).getByRole('button', { name: /hide details/i })).toBeInTheDocument();
+  });
+
+  it('gives every card the same collapsed structure', () => {
+    render(<App />);
+    for (const card of screen.getAllByRole('article')) {
+      for (const part of ['.project__head', '.project__summary', '.project__tags', '.project__bar', '.project__panel']) {
+        expect(card.querySelector(part)).not.toBeNull();
+      }
+    }
   });
 });

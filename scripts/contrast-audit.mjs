@@ -17,8 +17,9 @@ let failures = 0;
 for (const [width, height] of viewports) {
   const page = await (await browser.newContext({ viewport: { width, height }, reducedMotion: 'reduce' })).newPage();
   await page.goto(url, { waitUntil: 'networkidle' });
-  await page.addStyleTag({ content: '.project__case{display:block!important}' });
-  await page.evaluate(() => document.querySelectorAll('details').forEach((d) => (d.open = true)));
+  // Open every expandable card so its hidden text is measured too.
+  for (const toggle of await page.locator('.project__toggle').all()) await toggle.click();
+  await page.waitForTimeout(500);
 
   const report = await page.evaluate(() => {
     const parse = (c) => {
