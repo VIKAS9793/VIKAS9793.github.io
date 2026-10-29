@@ -373,13 +373,20 @@
 
 /* =========================================================
    Hero: Finance, the portrait, Product
-   --p is the share of the face still shown as a photograph (0 to 100). It is set on .duo and read by
-   the code layer's clip, the handle and the underlines, so one number moves everything together.
+   --p is the share of the frame given to the finance world (0 to 100). It is set on .duo and read by the
+   two worlds' clips, the handle and the underlines, so one number moves everything together. --open is the
+   opening reveal: how far the two worlds have opened out from the middle (0 to 1).
    ========================================================= */
 @property --p {
   syntax: '<number>';
   inherits: true;
-  initial-value: 100;
+  initial-value: 50;
+}
+
+@property --open {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
 }
 
 .hero {
@@ -463,7 +470,7 @@
 
 /* ---- The split portrait ---- */
 .duo {
-  --p: 100;
+  --p: 50;
   --portrait-w: min(78vw, 20rem);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -571,23 +578,46 @@
   object-fit: cover;
 }
 
-/* The same photograph redrawn as code, clipped so only the part right of the line shows. */
-.portrait__glyphs {
+/* Two worlds behind the person: finance on the left of the line, product on the right. They open out from
+   the middle once the page has loaded. */
+.portrait__worlds {
   position: absolute;
   inset: 0;
-  background: var(--espresso);
-  clip-path: inset(0 0 0 calc(var(--p) * 1%));
   visibility: hidden;
+  clip-path: inset(0 calc((1 - var(--open)) * 50%));
 }
 
-.duo[data-ready='true'] .portrait__glyphs {
+.duo[data-ready='true'] .portrait__worlds {
   visibility: visible;
 }
 
-.portrait__glyphs canvas {
+.world {
+  position: absolute;
+  inset: 0;
+}
+
+.world canvas {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.world--finance {
+  clip-path: inset(0 calc(100% - var(--p) * 1%) 0 0);
+}
+
+.world--product {
+  clip-path: inset(0 0 0 calc(var(--p) * 1%));
+}
+
+/* The same person, cut out, laid exactly over the photograph so the worlds appear behind them. */
+.portrait__cutout {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
 }
 
 .portrait__handle {
@@ -662,18 +692,18 @@
   stroke-linejoin: round;
 }
 
-/* The opening reveal: the code half sweeps in from the right edge to the middle. */
+/* The opening reveal: the two worlds open out from the middle line. */
 .duo.is-sweeping {
-  animation: duo-sweep 1.5s var(--ease-editorial) 0.45s both;
+  animation: duo-open 1.4s var(--ease-editorial) 0.45s both;
 }
 
-@keyframes duo-sweep {
+@keyframes duo-open {
   from {
-    --p: 100;
+    --open: 0;
   }
 
   to {
-    --p: 50;
+    --open: 1;
   }
 }
 

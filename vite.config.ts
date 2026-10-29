@@ -30,6 +30,8 @@ function preloadCriticalFonts(): Plugin {
 export default defineConfig({
   base: '/',
   plugins: [react(), preloadCriticalFonts()],
+  // The build day, so the prerendered page and the first browser render agree on anything that depends on the date.
+  define: { __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)) },
   build: { target: 'es2022', cssMinify: true },
   test: {
     globals: true,

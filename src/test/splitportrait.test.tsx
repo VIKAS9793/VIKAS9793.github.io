@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { duo } from '../content/site';
+import { tenureAt, tenureCopy } from '../content/tenure';
 import SplitPortrait from '../components/SplitPortrait';
 
 describe('split portrait', () => {
@@ -7,20 +8,20 @@ describe('split portrait', () => {
     render(<SplitPortrait calm={false} />);
     expect(screen.getByText(duo.left.word)).toBeInTheDocument();
     expect(screen.getByText(duo.right.word)).toBeInTheDocument();
-    expect(screen.getByText(duo.left.line)).toBeInTheDocument();
+    expect(screen.getByText(tenureCopy.heroLine(tenureAt(new Date())))).toBeInTheDocument();
     expect(screen.getByText(duo.right.line)).toBeInTheDocument();
     expect(screen.getByRole('img')).toHaveAccessibleName();
   });
 
-  it('is a keyboard-operable slider that starts on the plain photograph', () => {
+  it('is a keyboard-operable slider that starts with the line in the middle', () => {
     render(<SplitPortrait calm />);
     const slider = screen.getByRole('slider', { name: duo.sliderLabel });
     expect(slider).toHaveAttribute('tabindex', '0');
-    expect(slider).toHaveAttribute('aria-valuenow', '100');
+    expect(slider).toHaveAttribute('aria-valuenow', '50');
 
     fireEvent.keyDown(slider, { key: 'ArrowLeft' });
-    expect(slider).toHaveAttribute('aria-valuenow', '95');
-    expect(slider).toHaveAttribute('aria-valuetext', `${duo.left.word} 95 percent, ${duo.right.word} 5 percent`);
+    expect(slider).toHaveAttribute('aria-valuenow', '45');
+    expect(slider).toHaveAttribute('aria-valuetext', `${duo.left.word} 45 percent, ${duo.right.word} 55 percent`);
 
     fireEvent.keyDown(slider, { key: 'Home' });
     expect(slider).toHaveAttribute('aria-valuenow', '0');
@@ -32,18 +33,24 @@ describe('split portrait', () => {
     expect(slider).toHaveAttribute('aria-valuenow', '100'); // never past the other end
   });
 
-  it('moves the one number that drives the clip, the handle and the underlines', () => {
+  it('moves the one number that drives the worlds, the handle and the underlines', () => {
     const { container } = render(<SplitPortrait calm />);
     const slider = screen.getByRole('slider');
     fireEvent.keyDown(slider, { key: 'ArrowLeft' });
     fireEvent.keyDown(slider, { key: 'ArrowLeft' });
-    expect((container.querySelector('.duo') as HTMLElement).style.getPropertyValue('--p')).toBe('90');
+    expect((container.querySelector('.duo') as HTMLElement).style.getPropertyValue('--p')).toBe('40');
+  });
+
+  it('keeps both worlds decorative and does not ship the cut-out until the page is running', () => {
+    const { container } = render(<SplitPortrait calm />);
+    expect(container.querySelector('.portrait__worlds')).toHaveAttribute('aria-hidden', 'true');
+    expect(container.querySelector('.portrait__cutout')).toBeNull();
   });
 
   it('ignores keys it does not use', () => {
     render(<SplitPortrait calm />);
     const slider = screen.getByRole('slider');
     fireEvent.keyDown(slider, { key: 'a' });
-    expect(slider).toHaveAttribute('aria-valuenow', '100');
+    expect(slider).toHaveAttribute('aria-valuenow', '50');
   });
 });

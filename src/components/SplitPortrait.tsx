@@ -1,31 +1,39 @@
-import { useEffect, useRef, type AnimationEvent, type KeyboardEvent, type PointerEvent } from 'react';
+import { useEffect, useRef, useState, type AnimationEvent, type KeyboardEvent, type PointerEvent } from 'react';
 import { duo, site } from '../content/site';
-import { drawGlyphPortrait } from './glyphPortrait';
+import { tenureAt, tenureCopy } from '../content/tenure';
+import { drawWorlds } from './themedWorlds';
+import { useToday } from './useToday';
 
 /** How far the line moves for each arrow key press, in percent of the portrait's width. */
 const KEY_STEP = 5;
-/** Where the line rests once the reveal has finished: half the face in each world. */
+/** The portrait is cut in half at the middle until the visitor moves the line. */
 const REST = 50;
+
+const CUTOUT_SRC = '/images/vikas-cutout-720.webp';
 
 const clamp = (value: number) => Math.min(100, Math.max(0, value));
 const sliderText = (value: number) => `${duo.left.word} ${Math.round(value)} percent, ${duo.right.word} ${100 - Math.round(value)} percent`;
 
 /**
- * The hero: the word Finance, the portrait and the word Product. The photo is the page's real picture
- * and is there from the first paint. Once the page is running, the same photo is redrawn as code
- * characters and a clipped layer of it sweeps in from the right, so the face is half photograph and half
- * code. The line between them can be dragged (or moved with the arrow keys) to see more of either side.
+ * The hero: the word Finance, the portrait and the word Product. The photo is the page's real picture and
+ * is there from the first paint. Once the page has loaded, a second copy of the person, cut out from the
+ * background, is laid exactly over it, and two worlds open out from the middle behind them: finance
+ * symbols on the left and product symbols on the right, drawn around the person and never over them. The
+ * line between the worlds can be dragged (or moved with the arrow keys) to give either one more room.
  *
- * The position is one number, --p, the percentage of the face still shown as a photograph. It lives on
- * the root element as a CSS variable, so dragging never re-renders React.
+ * The position is one number, --p, the share of the frame given to the finance world. It lives on the root
+ * element as a CSS variable, so dragging never re-renders React.
  */
 export default function SplitPortrait({ calm }: { calm: boolean }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const financeRef = useRef<HTMLCanvasElement>(null);
+  const productRef = useRef<HTMLCanvasElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
+  const leftLine = tenureCopy.heroLine(tenureAt(useToday()));
   const dragging = useRef(false);
+  const [cutout, setCutout] = useState(false);
   const calmRef = useRef(calm);
   calmRef.current = calm;
 
@@ -39,68 +47,68 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
     handle.setAttribute('aria-valuetext', sliderText(next));
   };
 
-  /** Stops the opening reveal where it is, so a touch is never fought by an animation. */
+  /** Ends the opening reveal where it is, so a touch is never fought by an animation. */
   const settle = () => {
-    const root = rootRef.current;
-    if (!root || !root.classList.contains('is-sweeping')) return;
-    const now = Number.parseFloat(getComputedStyle(root).getPropertyValue('--p'));
-    root.classList.remove('is-sweeping');
-    setPosition(Number.isNaN(now) ? REST : now);
+    rootRef.current?.classList.remove('is-sweeping');
   };
 
   useEffect(() => {
     const root = rootRef.current;
     const frame = frameRef.current;
-    const image = imageRef.current;
-    const canvas = canvasRef.current;
-    if (!root || !frame || !image || !canvas) return;
+    const finance = financeRef.current;
+    const product = productRef.current;
+    if (!root || !frame || !finance || !product) return;
 
     let cancelled = false;
     let resizeTimer: number | undefined;
+    let cutoutImage: HTMLImageElement | null = null;
 
-    const colorsFromTokens = () => {
+    const colors = () => {
       const styles = getComputedStyle(root);
       const token = (name: string, fallback: string) => styles.getPropertyValue(name).trim() || fallback;
-      return { ground: token('--espresso', '#271b15'), ink: token('--cream', '#f8f1e6'), hot: token('--accent-warm', '#df8a34') };
+      return {
+        financeGround: token('--world-finance', '#f3dfc0'),
+        financeInk: token('--brown', '#5a3828'),
+        financeAccent: token('--accent-ink', '#9a4122'),
+        productGround: token('--world-product', '#cb4f15'),
+        productInk: token('--cream', '#f8f1e6'),
+        productAccent: token('--sand', '#ead9c2'),
+      };
     };
-    const fontFamily = () => `${getComputedStyle(root).getPropertyValue('--font-meta').trim() || 'monospace'}`;
-
-    const draw = () => drawGlyphPortrait(canvas, image, colorsFromTokens(), fontFamily());
+    const draw = () => (cutoutImage ? drawWorlds(finance, product, cutoutImage, colors()) : false);
 
     const start = async () => {
+      // The cut-out person is fetched only now, after the page has loaded, so it never competes with the photo.
+      const loaded = new Image();
+      loaded.src = CUTOUT_SRC;
       try {
-        await image.decode();
+        await loaded.decode();
       } catch {
-        /* a failed decode still leaves the photo; the code half is simply not offered */
+        return; // without the cut-out the page simply stays the plain photograph
       }
-      try {
-        await document.fonts.load('500 12px "DM Mono"');
-      } catch {
-        /* the fallback monospace face is fine */
-      }
-      if (cancelled || !draw()) return;
+      if (cancelled) return;
+      cutoutImage = loaded;
+      if (!draw()) return;
 
+      setCutout(true);
       root.dataset.ready = 'true';
-      if (calmRef.current) {
-        setPosition(REST);
-      } else {
-        // A short pause so the photograph is seen first, then the code half sweeps in to the middle.
-        root.classList.add('is-sweeping');
-      }
+      // A short pause so the photograph is seen first, then the two worlds open out from the middle.
+      if (!calmRef.current) root.classList.add('is-sweeping');
     };
 
-    // The photograph comes first. The code half is drawn in idle time after the page has loaded, so it never
-    // competes with the first paint or the headline.
+    // The photograph comes first. The worlds are drawn in idle time after the page has loaded, so they never
+    // compete with the first paint or the headline.
     const whenIdle = () => {
       const run = () => void start();
       if (typeof window.requestIdleCallback === 'function') window.requestIdleCallback(run, { timeout: 2500 });
       else window.setTimeout(run, 300);
     };
+    const image = imageRef.current;
     const afterLoad = () => {
       if (document.readyState === 'complete') whenIdle();
       else window.addEventListener('load', whenIdle, { once: true });
     };
-    if (image.complete && image.naturalWidth) afterLoad();
+    if (!image || (image.complete && image.naturalWidth)) afterLoad();
     else image.addEventListener('load', afterLoad, { once: true });
 
     // Redraw when the frame changes size (rotating a phone, resizing a window), after the resizing stops.
@@ -159,17 +167,16 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
     setPosition(keys[event.key]);
   };
 
-  // Sweeping ends at the resting split; hand the value over to the variable so dragging continues from there.
+  // The opening reveal is over: drop its class so the worlds simply stay open.
   const onAnimationEnd = (event: AnimationEvent<HTMLDivElement>) => {
-    if (event.target !== event.currentTarget || event.animationName !== 'duo-sweep') return;
+    if (event.target !== event.currentTarget || event.animationName !== 'duo-open') return;
     rootRef.current?.classList.remove('is-sweeping');
-    setPosition(REST);
   };
 
   return (
     <div className="duo" ref={rootRef} onAnimationEnd={onAnimationEnd}>
       <p className="duo__word duo__word--left">{duo.left.word}</p>
-      <p className="duo__line duo__line--left">{duo.left.line}</p>
+      <p className="duo__line duo__line--left">{leftLine}</p>
 
       <div
         className="portrait"
@@ -192,9 +199,15 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
           decoding="async"
           draggable={false}
         />
-        <div className="portrait__glyphs" aria-hidden="true">
-          <canvas ref={canvasRef} />
+        <div className="portrait__worlds" aria-hidden="true">
+          <div className="world world--finance">
+            <canvas ref={financeRef} />
+          </div>
+          <div className="world world--product">
+            <canvas ref={productRef} />
+          </div>
         </div>
+        {cutout && <img className="portrait__cutout" src={CUTOUT_SRC} width={720} height={960} alt="" aria-hidden="true" draggable={false} />}
         <div
           ref={handleRef}
           className="portrait__handle"
@@ -204,8 +217,8 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
           aria-orientation="horizontal"
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-valuenow={100}
-          aria-valuetext={sliderText(100)}
+          aria-valuenow={REST}
+          aria-valuetext={sliderText(REST)}
           onKeyDown={onKeyDown}
         >
           <span className="portrait__grip" aria-hidden="true">

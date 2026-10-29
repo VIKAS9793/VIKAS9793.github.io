@@ -18,7 +18,13 @@ The site follows the **Motion Editorial** system: a warm paper canvas, one espre
 
 ### Hero portrait
 
-The hero is one photograph shown half as a photo (Finance) and half as code (Product). The same image is redrawn once, in idle time after the page has loaded, as a grid of code characters on a canvas (`glyphPortrait.ts`), and a clipped layer of it sweeps in to the middle. One CSS variable, `--p`, is the share still shown as a photo; the clip, the draggable line and the underlines all read it, so dragging never re-renders React. The line is an accessible slider (arrow keys, Home and End). The plain photo is the page without JavaScript; Quiet mode and reduced motion skip the sweep and show the finished split.
+The hero is one portrait with two worlds behind it: **Finance** on the left of a draggable line and **Product** on the right. The photo is the real picture from the first paint. After the page has loaded, a second copy of the person, cut out from the background (`public/images/vikas-cutout-720.webp`), is laid exactly over it, and two canvases open out from the middle behind them (`themedWorlds.ts`): finance symbols (rupee, percent, charts, coins) on a ledger, and product symbols (code, cursor, wireframe, roadmap) on a dot grid. Symbols are placed in a loose grid and skipped wherever the person is, so they sit around the portrait and never over it. One CSS variable, `--p`, is the share of the frame given to the finance world; the clips, the handle and the underlines all read it, so dragging never re-renders React. The line is an accessible slider (arrow keys, Home and End). The plain photo is the page without JavaScript; Quiet mode and reduced motion skip the opening reveal.
+
+To change the photo, replace the three `vikas-portrait-*.webp` files (3:4) and the cutout, and set `--world-finance` and `--world-product` in `tokens.css` to the photo's two background colours.
+
+### Years in customer-facing finance
+
+The figure is never typed. `src/content/tenure.ts` works it out from the role dates in the experience list, read the way a résumé reads them (the month someone leaves is not counted; gaps do not count; "present" runs to today). It says "nearly" within a quarter of a whole year and "over" after it, and shows the figure rounded down to a tenth (4.9+). The prerendered page uses the build date; the browser switches to the real date straight after hydrating, so the text stays right between deploys. `llms.txt` is a static file, so it says "since 2021" instead of a number.
 
 ## Content rules
 

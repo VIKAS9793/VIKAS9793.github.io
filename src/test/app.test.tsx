@@ -25,7 +25,7 @@ describe('portfolio page', () => {
   it('keeps decoration hidden from assistive technology, and every photo described', () => {
     const { container } = render(<App />);
     expect(container.querySelector('.marquee')).toHaveAttribute('aria-hidden', 'true');
-    expect(container.querySelector('.portrait__glyphs')).toHaveAttribute('aria-hidden', 'true');
+    expect(container.querySelector('.portrait__worlds')).toHaveAttribute('aria-hidden', 'true');
     // Two meaningful images, both described and with reserved dimensions: the hero portrait and the bio photo.
     const images = screen.getAllByRole('img');
     expect(images).toHaveLength(2);
@@ -96,7 +96,7 @@ describe('portfolio page', () => {
     expect(html).not.toMatch(/data-reveal="armed"/);
     expect(html).not.toMatch(/opacity:\s*0[;"]/);
     expect(html).toContain(site.headlineEmphasis);
-    // The hero is the real photograph until the page is running: no code layer is switched on yet.
+    // The hero is the real photograph until the page is running: the worlds are not switched on yet.
     expect(html).not.toContain('data-ready');
   });
 });
