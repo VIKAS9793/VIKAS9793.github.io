@@ -34,14 +34,14 @@ export const projects: readonly Project[] = [
     index: '01',
     name: 'AndroJack MCP',
     kind: 'Open source',
-    status: 'Live, version 2.0.0',
+    status: 'Live, version 2.1.0',
     summary: 'Lets AI coding assistants check Android code against Google’s official documentation before handing it to you.',
     problem:
       'AI coding assistants often write Android code from outdated knowledge: deprecated APIs, wrong patterns, apps that Google Play rejects. Developers cannot trust the output without checking every line.',
     approach:
       'A plug-in for AI assistants, built on the open Model Context Protocol (MCP) standard. It gives the assistant live access to official Android documentation and checks the code it writes against a fixed rule set before you see it.',
     evidence: [
-      '23 tools and 28 validation rules in version 2.0.0',
+      '23 tools and 34 validation rules in version 2.1.0',
       'Published on npm and the VS Code Marketplace, with a one-command install',
       'Works with Claude Desktop, Cursor, Windsurf, VS Code Copilot, AWS Kiro, Google Antigravity and JetBrains AI',
     ],
@@ -64,7 +64,7 @@ export const projects: readonly Project[] = [
       'AI assistants forget your project between sessions, and the notes you keep for them go stale as the code changes, so they work from outdated context.',
     approach:
       'An MCP server that saves the project’s state on every git commit, spots when that saved context no longer matches the code, and hands the assistant a short briefing that fits its token budget. Five cooperating engines watch, check, rank, budget and compose it.',
-    evidence: ['Version 1.2.2 on npm', 'MIT licensed, open source', 'Requires Node.js 22 or later'],
+    evidence: ['Version 1.2.2 on npm', 'MIT licensed, open source', 'Runs on Node.js 22 to 24'],
     tags: ['MCP', 'Node.js', 'Context engineering', 'SQLite'],
     links: [
       { label: 'GitHub repository', href: 'https://github.com/VIKAS9793/context-fabric' },
@@ -99,7 +99,7 @@ export const projects: readonly Project[] = [
     problem:
       'Most wellness apps become one more thing you are failing at: scores, streaks and missed days that make you feel guilty instead of better.',
     approach:
-      'Companionship instead of tracking. Five animal companions guide small moments to move, rest, energise, restart and breathe. There are no scores, streaks or judgment, and the app works fully offline with no internet permission.',
+      'Companionship instead of tracking. Five animal companions guide small moments to move, rest, energise, restart and breathe. There are no scores, streaks or judgement, and the app works fully offline with no internet permission.',
     evidence: ['Built with Flutter for Android', 'Collects nothing and asks for no internet permission'],
     tags: ['Flutter', 'Offline-first', 'Wellbeing', 'No tracking'],
     links: [{ label: 'Visit the website', href: 'https://asanapals.space' }],

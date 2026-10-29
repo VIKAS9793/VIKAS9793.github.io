@@ -24,6 +24,8 @@
   --muted: #8b7c6c; /* decoration only: too light for text */
   --muted-ink: #6b5d4f; /* running secondary text on cream, paper and sand */
   --muted-dark: #bfae98; /* secondary text on espresso */
+  --world-finance: #f3dfc0; /* ground behind the Finance side of the hero portrait: the cream in the photo itself */
+  --world-product: #cb4f15; /* ground behind the Product side: the orange in the photo itself */
   --line: rgb(38 32 25 / 16%);
   --dark-line: rgb(255 250 242 / 16%);
 

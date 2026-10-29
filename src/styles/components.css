@@ -67,6 +67,10 @@
   background: var(--accent);
 }
 
+.wordmark__name {
+  white-space: nowrap;
+}
+
 .wordmark__name b {
   color: var(--accent-ink);
   font-weight: 800;
@@ -85,6 +89,7 @@
 }
 
 .nav-link {
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -155,6 +160,10 @@
 
   .quiet-toggle span {
     display: none;
+  }
+
+  .site-header__inner {
+    gap: 0.5rem;
   }
 
   .quiet-toggle {
@@ -372,38 +381,52 @@
 }
 
 /* =========================================================
-   Hero
+   Hero: Finance, the portrait, Product
+   --p is the share of the frame given to the finance world (0 to 100). It is set on .duo and read by the
+   two worlds' clips, the handle and the underlines, so one number moves everything together. --open is the
+   opening reveal: how far the two worlds have opened out from the middle (0 to 1).
    ========================================================= */
+@property --p {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 50;
+}
+
+@property --open {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
 .hero {
   position: relative;
-  padding: calc(var(--header-height) + clamp(2rem, 6vw, 4rem)) 0 clamp(3.5rem, 8vw, 6rem);
+  padding: calc(var(--header-height) + clamp(1.25rem, 3vw, 2rem)) 0 clamp(3rem, 7vw, 5rem);
   background: var(--cream);
   overflow: clip;
 }
 
-/* A tilted sand plane behind the stage, like a table top seen at an angle. */
+/* A tilted sand plane behind the lower half, like a table top seen at an angle. */
 .hero::before {
   content: '';
   position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 52%;
+  inset: auto 0 0 0;
+  height: 42%;
   background: color-mix(in srgb, var(--sand) 62%, var(--cream));
-  clip-path: polygon(0 24%, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 22%, 100% 0, 100% 100%, 0 100%);
 }
 
 .hero__inner {
   position: relative;
   display: grid;
-  gap: clamp(2rem, 5vw, 3rem);
-  align-items: center;
+  justify-items: center;
+  gap: clamp(1.2rem, 2.4vw, 1.6rem);
 }
 
 .hero__copy {
   display: grid;
-  justify-items: start;
-  gap: 1.6rem;
+  justify-items: center;
+  gap: 1.4rem;
+  text-align: center;
 }
 
 .eyebrow {
@@ -423,42 +446,24 @@
 }
 
 .hero__title {
+  max-width: 44rem;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: var(--text-hero);
-  line-height: 0.96;
+  font-size: clamp(1.75rem, 1.1rem + 2.6vw, 2.9rem);
+  line-height: 1.02;
   letter-spacing: -0.025em;
   text-wrap: balance;
-}
-
-.hero__intro {
-  max-width: 34rem;
-  color: var(--muted-ink);
-  font-size: clamp(1rem, 0.9rem + 0.45vw, 1.18rem);
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem 1.8rem;
 }
 
-.hero__note {
-  display: grid;
-  gap: 0.15rem;
-}
-
-.hero__note .meta {
-  color: var(--muted-ink);
-  font-size: 0.66rem;
-}
-
-.hero__note strong {
-  font-weight: 700;
-}
-
-/* The hero copy rises into place with plain CSS, so it never waits for JavaScript. It only moves, it
+/* The headline block rises into place with plain CSS, so it never waits for JavaScript. It only moves, it
    never starts transparent: text that is invisible does not count as painted, so a fade-in would hold
    back the page's largest-contentful-paint time by the length of the fade. */
 .hero__copy > * {
@@ -472,212 +477,278 @@
   }
 }
 
-@media (min-width: 900px) {
-  .hero__inner {
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-    min-height: min(760px, calc(100svh - var(--header-height) - 6rem));
-  }
-
-  .hero::before {
-    left: 46%;
-    width: auto;
-    height: 82%;
-    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
-  }
+/* ---- The split portrait ---- */
+.duo {
+  --p: 50;
+  --portrait-w: min(78vw, 20rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    'wl wr'
+    'fr fr'
+    'hint hint'
+    'cl cr';
+  gap: 0.9rem 1.25rem;
+  width: min(100%, 24rem);
 }
 
-/* ---- The staged still life ---- */
-.stage {
+.duo__word {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 1rem + 6vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.duo__word--left {
+  grid-area: wl;
+  justify-self: start;
+}
+
+.duo__word--right {
+  grid-area: wr;
+  justify-self: end;
+  font-style: italic;
+  color: var(--accent-ink);
+}
+
+/* Each word carries a rule that grows with its share of the face. */
+.duo__word::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin-top: 0.45rem;
+  background: currentColor;
+  transform: scaleX(0);
+}
+
+.duo[data-ready='true'] .duo__word--left::after {
+  transform: scaleX(calc(var(--p) / 100));
+  transform-origin: left;
+}
+
+.duo[data-ready='true'] .duo__word--right::after {
+  transform: scaleX(calc((100 - var(--p)) / 100));
+  transform-origin: right;
+}
+
+.duo__line {
+  color: var(--muted-ink);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.duo__line--left {
+  grid-area: cl;
+  justify-self: start;
+}
+
+.duo__line--right {
+  grid-area: cr;
+  justify-self: end;
+  text-align: right;
+}
+
+.duo__hint {
+  grid-area: hint;
+  visibility: hidden; /* takes its space from the start, so showing it never moves the page */
+  justify-self: center;
+  color: var(--muted-ink);
+  font-size: 0.66rem;
+}
+
+.duo[data-ready='true'] .duo__hint {
+  visibility: visible;
+}
+
+.portrait {
+  grid-area: fr;
   position: relative;
-  width: min(100%, 34rem);
-  aspect-ratio: 1;
-  margin-inline: auto;
+  width: var(--portrait-w);
+  aspect-ratio: 3 / 4;
+  justify-self: center;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  /* The two ground colours, split in the middle: what the picture sits on before the worlds open out. */
+  background: linear-gradient(90deg, var(--world-finance) 50%, var(--world-product) 50%);
+  box-shadow: var(--shadow-lift);
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.stage__rings {
+.duo[data-ready='true'] .portrait {
+  cursor: ew-resize;
+}
+
+.portrait__photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 1;
-  opacity: 0.28;
+  object-fit: cover;
+  pointer-events: none;
 }
 
-.stage__plinth {
+/* Two worlds behind the person: finance on the left of the line, product on the right. They open out from
+   the middle once the page has loaded. */
+.portrait__worlds {
   position: absolute;
-  left: 3%;
-  right: 3%;
-  bottom: 6%;
-  height: 40%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at 38% 30%, var(--paper), #e8d7bf 72%);
-  box-shadow:
-    0 30px 40px -20px rgb(79 49 25 / 38%),
-    inset 0 -10px 0 rgb(90 56 40 / 7%);
+  inset: 0;
+  visibility: hidden;
+  clip-path: inset(0 calc((1 - var(--open)) * 50%));
 }
 
-.stage__plinth::after {
-  content: '';
+.duo[data-ready='true'] .portrait__worlds {
+  visibility: visible;
+}
+
+.world {
   position: absolute;
-  inset: 12% 10%;
-  border-radius: 50%;
-  border: 1px solid rgb(90 56 40 / 18%);
+  inset: 0;
 }
 
-.plate {
-  position: absolute;
-  width: 46%;
-  aspect-ratio: 5 / 4;
-  display: grid;
-  align-content: space-between;
-  padding: clamp(0.6rem, 2.4%, 1rem);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-lift);
-}
-
-.plate__index {
-  font-family: var(--font-meta);
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  color: var(--muted-ink);
-}
-
-.plate__name {
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 0.7rem + 1.2vw, 1.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-
-.plate__kind {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-meta);
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-ink);
-}
-
-.plate__kind::before {
-  content: '';
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.plate--back {
-  left: 27%;
-  top: 11%;
-  z-index: 1;
-}
-
-.plate--left {
-  left: 3%;
-  top: 38%;
-  z-index: 2;
-}
-
-.plate--right {
-  left: 51%;
-  top: 43%;
-  z-index: 3;
-}
-
-.stage__cursor {
-  position: absolute;
-  left: 83%;
-  top: 65%;
-  z-index: 4;
-  width: 12%;
-}
-
-.stage__cursor svg {
+.world canvas {
+  display: block;
   width: 100%;
-  fill: var(--accent-deep);
-  stroke: var(--paper);
-  stroke-width: 2.2;
+  height: 100%;
+}
+
+.world--finance {
+  clip-path: inset(0 calc(100% - var(--p) * 1%) 0 0);
+}
+
+.world--product {
+  clip-path: inset(0 0 0 calc(var(--p) * 1%));
+}
+
+.portrait__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--p) * 1%);
+  width: 2.75rem;
+  translate: -50% 0;
+  display: none;
+  place-items: center;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+
+.duo[data-ready='true'] .portrait__handle {
+  display: grid;
+}
+
+/* Where container units exist the handle moves by transform, which is not layout, so the reveal can never
+   count as the page shifting. Elsewhere it falls back to the left offset above. */
+@supports (width: 1cqw) {
+  .portrait {
+    container-type: inline-size;
+  }
+
+  .portrait__handle {
+    left: 0;
+    translate: calc(var(--p) * 1cqw - 1.375rem) 0;
+  }
+}
+
+.portrait__handle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  translate: -50% 0;
+  background: var(--paper);
+  box-shadow: 0 0 0 1px rgb(39 27 21 / 30%);
+}
+
+.portrait__handle:focus-visible {
+  outline: none;
+}
+
+.portrait__grip {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: var(--shadow-soft), 0 0 0 1px rgb(39 27 21 / 22%);
+}
+
+.portrait__handle:focus-visible .portrait__grip {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+}
+
+.portrait__grip svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  fill: none;
+  stroke: var(--espresso);
+  stroke-width: 2;
+  stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 6px 8px rgb(79 49 25 / 28%));
 }
 
-.stage__ripple {
-  position: absolute;
-  left: 83%;
-  top: 65%;
-  z-index: 3;
-  width: 9%;
-  aspect-ratio: 1;
-  margin: -1% 0 0 1.5%;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  opacity: 0;
-  animation: ripple 1.4s ease-out 2.2s both;
+/* The opening reveal: the two worlds open out from the middle line. */
+.duo.is-sweeping {
+  animation: duo-open 1.4s var(--ease-editorial) 0.45s both;
 }
 
-@keyframes ripple {
-  0% {
-    opacity: 0.7;
-    transform: scale(0.4);
+@keyframes duo-open {
+  from {
+    --open: 0;
   }
 
-  100% {
-    opacity: 0;
-    transform: scale(2.6);
+  to {
+    --open: 1;
   }
 }
 
-.float {
-  position: absolute;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: var(--accent-warm);
-  opacity: 0;
-  animation: float-up 4s ease-out infinite;
-}
-
-.float:nth-of-type(1) {
-  left: 20%;
-  top: 30%;
-  animation-delay: 0.4s;
-}
-
-.float:nth-of-type(2) {
-  left: 78%;
-  top: 22%;
-  width: 0.4rem;
-  height: 0.4rem;
-  animation-delay: 1.6s;
-}
-
-.float:nth-of-type(3) {
-  left: 55%;
-  top: 8%;
-  width: 0.35rem;
-  height: 0.35rem;
-  animation-delay: 2.7s;
-}
-
-@keyframes float-up {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0.75);
+@media (min-width: 900px) {
+  .duo {
+    --portrait-w: clamp(15rem, min(30vw, calc((100svh - 25rem) * 0.75)), 23rem);
+    grid-template-columns: minmax(0, 1fr) var(--portrait-w) minmax(0, 1fr);
+    grid-template-areas:
+      'wl fr wr'
+      'cl fr cr'
+      '. hint .';
+    column-gap: clamp(2rem, 4vw, 4rem);
+    width: min(100%, 72rem);
   }
 
-  30% {
-    opacity: 0.55;
+  .duo__word {
+    font-size: clamp(2.6rem, 1rem + 3.4vw, 4.4rem);
   }
 
-  100% {
-    opacity: 0;
-    transform: translateY(-3.2rem) scale(1.2);
+  .duo__word--left {
+    align-self: end;
+    justify-self: end;
+  }
+
+  .duo__word--right {
+    align-self: end;
+    justify-self: start;
+  }
+
+  .duo__line {
+    max-width: 17rem;
+    font-size: 0.98rem;
+  }
+
+  .duo__line--left {
+    align-self: start;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .duo__line--right {
+    align-self: start;
+    justify-self: start;
+    text-align: left;
   }
 }
 
@@ -1553,14 +1624,6 @@
   color: var(--paper);
 }
 
-/* No JavaScript: the staged hero objects are decoration, so show them as they rest. */
-@media (scripting: none) {
-  .stage [style] {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
 /* =========================================================
    Cube text: letters that solve like a Rubik's cube
    Each letter is a prism. At rest nothing here is three-dimensional, so the text is the same flat,
@@ -1651,4 +1714,16 @@
   --face-a: #ffe6b8;
   --face-b: var(--paper);
   --face-c: var(--sand);
+}
+
+/* The narrowest phones have room for the name, one link and the toggle: Work goes, since the hero has its own
+   See the work button. */
+@media (max-width: 400px) {
+  .nav-list li[data-keep]:first-child {
+    display: none;
+  }
+
+  .wordmark {
+    gap: 0.45rem;
+  }
 }

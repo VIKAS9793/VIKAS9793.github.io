@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { highlights } from '../content/highlights';
+import { highlightsFor } from '../content/highlights';
+import { tenureAt } from '../content/tenure';
 import { projects } from '../content/projects';
 import { about, approach, contacts, credentials, education, experience, nav, site, skills } from '../content/site';
 
@@ -74,7 +75,7 @@ describe('content integrity', () => {
 
   it('derives the highlight counts from the project list', () => {
     const count = (kind: string) => projects.filter((p) => p.kind === kind).length;
-    const byLabel = Object.fromEntries(highlights.map((h) => [h.label, h.value]));
+    const byLabel = Object.fromEntries(highlightsFor(tenureAt(new Date())).map((h) => [h.label, h.value]));
     expect(byLabel['open-source tools on npm']).toBe(String(count('Open source')));
     expect(byLabel['Android apps in testing']).toBe(String(count('Android app')));
   });
@@ -92,9 +93,9 @@ describe('content integrity', () => {
 
   it('keeps JSON-LD software versions in step with the project list', () => {
     const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
-    expect(html).toContain('"softwareVersion": "2.0.0"');
+    expect(html).toContain('"softwareVersion": "2.1.0"');
     expect(html).toContain('"softwareVersion": "1.2.2"');
-    expect(projects.find((p) => p.id === 'androjack-mcp')!.status).toContain('2.0.0');
+    expect(projects.find((p) => p.id === 'androjack-mcp')!.status).toContain('2.1.0');
     expect(projects.find((p) => p.id === 'context-fabric')!.status).toContain('1.2.2');
   });
 

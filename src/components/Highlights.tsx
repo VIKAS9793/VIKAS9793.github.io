@@ -1,7 +1,10 @@
-import { highlights } from '../content/highlights';
+import { highlightsFor } from '../content/highlights';
+import { tenureAt } from '../content/tenure';
+import { useToday } from './useToday';
 import Reveal from './motion/Reveal';
 
 export default function Highlights() {
+  const highlights = highlightsFor(tenureAt(useToday()));
   return (
     <Reveal as="div" className="glance-wrap">
       <dl className="glance" aria-label="At a glance">

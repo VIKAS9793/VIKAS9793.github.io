@@ -1,9 +1,12 @@
 import { about, credentials, education, experience, site, skills } from '../content/site';
+import { tenureAt, tenureCopy } from '../content/tenure';
 import CubeText from './CubeText';
 import SectionLabel from './SectionLabel';
 import Reveal from './motion/Reveal';
+import { useToday } from './useToday';
 
 export default function About() {
+  const tenure = tenureAt(useToday());
   return (
     <section className="chapter chapter--paper" id="about" aria-labelledby="about-title">
       <div className="container about">
@@ -31,13 +34,11 @@ export default function About() {
               </figcaption>
             </Reveal>
             <Reveal className="prose">
-              {about.paragraphs.slice(0, 1).map((p) => (
-                <p key={p}>{p}</p>
-              ))}
+              <p>{tenureCopy.aboutLead(tenure)}</p>
               <blockquote className="pullquote">
                 <p>{about.pullQuote}</p>
               </blockquote>
-              {about.paragraphs.slice(1).map((p) => (
+              {about.paragraphs.map((p) => (
                 <p key={p}>{p}</p>
               ))}
             </Reveal>
