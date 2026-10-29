@@ -1,120 +1,59 @@
 /*
-  TONAL 2D design tokens.
-  Layer 1: primitives (raw values). Layer 2: semantic (purpose). Layer 3: component.
-  Components consume semantic or component tokens, never primitives or raw hex.
+  Motion Editorial design tokens.
+  A warm paper canvas, one espresso dark chapter and one terracotta accent. Components read these
+  tokens and never raw hex values. Reskin by changing the palette and the font trio only.
+
+  Two deliberate deviations from the published blueprint, both for WCAG AA text contrast
+  (src/test/contrast.test.ts pins every pair):
+    --muted (#8b7c6c) is only 2.9 to 3.9:1 on the light grounds, so running text uses --muted-ink.
+    --accent (#bd5d35) is 3.9 to 4.2:1 against cream and paper, so small text uses --accent-ink and
+    buttons use --accent-deep. A measured audit found terracotta labels at 4.16:1 on the sand ground.
 */
 :root {
-  /* ---- Primitive colour ---- */
-  --p-warm-cream: #f6f4ed;
-  --p-cream-surface: #efebe0;
-  --p-white: #ffffff;
-  --p-forest-green: #183d30;
-  --p-deep-forest: #123126;
-  --p-charcoal: #252923;
-  --p-secondary-charcoal: #454940;
-  --p-muted-charcoal: #5a5e55;
-  --p-terracotta: #c78c70;
-  --p-terracotta-ink: #8a4a30;
-  --p-sand: #e9e3d6;
-  --p-sage-gray: #b7b9aa;
-  --p-border-neutral: #d8d5ca;
-  --p-strong-border: #888b7e;
+  /* ---- Palette ---- */
+  --ink: #262019;
+  --espresso: #271b15;
+  --brown: #5a3828;
+  --accent: #bd5d35; /* large display type and decoration only */
+  --accent-warm: #df8a34; /* accent on the dark chapter */
+  --accent-deep: #a8492a; /* button and closing-chapter ground, and the focus ring */
+  --accent-ink: #9a4122; /* text-safe accent for small labels and links on every light ground, sand included */
+  --cream: #f8f1e6;
+  --paper: #fffaf2;
+  --sand: #ead9c2;
+  --muted: #8b7c6c; /* decoration only: too light for text */
+  --muted-ink: #6b5d4f; /* running secondary text on cream, paper and sand */
+  --muted-dark: #bfae98; /* secondary text on espresso */
+  --line: rgb(38 32 25 / 16%);
+  --dark-line: rgb(255 250 242 / 16%);
 
-  /* ---- Primitive type ---- */
-  --p-font-sans: 'Inter Variable', Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --p-font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', 'Roboto Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  /* ---- Type ---- */
+  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope Variable', Manrope, 'Helvetica Neue', Arial, sans-serif;
+  --font-meta: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* ---- Primitive spacing (4px base) ---- */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
+  --text-hero: clamp(2.75rem, 4.6vw + 1.2rem, 6rem);
+  --text-section: clamp(2.4rem, 4vw + 0.9rem, 5.4rem);
+  --text-card: clamp(1.5rem, 1rem + 1.2vw, 1.9rem);
+  --text-body: 1rem;
+  --text-small: 0.9rem;
+  --text-meta: 0.72rem;
 
-  /* ---- Primitive geometry ---- */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 24px;
-  --radius-pill: 999px;
-  --border-thin: 1px;
-  --border-emphasis: 2px;
+  /* ---- Layout ---- */
+  --content-width: 1170px;
+  --page-gutter: 5.5vw;
+  --section-space: clamp(6rem, 13vw, 10rem);
+  --header-height: 68px;
 
-  /* ---- Primitive elevation ---- */
-  --shadow-card: 0 2px 8px rgb(37 41 35 / 5%);
-  --shadow-elevated: 0 8px 24px rgb(37 41 35 / 8%);
+  /* ---- Motion ---- */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-reveal: 0.82s;
 
-  /* ---- Primitive motion ---- */
-  --duration-fast: 120ms;
-  --duration-standard: 200ms;
-  --duration-slow: 300ms;
-  --ease: cubic-bezier(0.2, 0, 0, 1);
+  /* ---- Depth ---- */
+  --shadow-soft: 0 18px 32px rgb(79 49 25 / 8%);
+  --shadow-lift: 0 26px 44px rgb(79 49 25 / 14%);
 
-  /* ---- Primitive type scale ---- */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 2rem;
-  --text-4xl: 2.5rem;
-  --text-5xl: 3.5rem;
-
-  /* ---- Semantic colour ---- */
-  --color-bg-page: var(--p-warm-cream);
-  --color-bg-surface: var(--p-white);
-  --color-bg-subtle: var(--p-cream-surface);
-  --color-bg-inverse: var(--p-forest-green);
-  --color-text-primary: var(--p-charcoal);
-  --color-text-secondary: var(--p-secondary-charcoal);
-  --color-text-muted: var(--p-muted-charcoal);
-  --color-text-inverse: var(--p-white);
-  --color-text-accent: var(--p-terracotta-ink);
-  --color-brand: var(--p-forest-green);
-  --color-brand-hover: var(--p-deep-forest);
-  --color-accent: var(--p-terracotta);
-  --color-neutral-chip: var(--p-sand);
-  --color-border: var(--p-border-neutral);
-  --color-border-strong: var(--p-strong-border);
-  --color-border-focus: var(--p-forest-green);
-  --color-frame: var(--p-secondary-charcoal);
-  --color-grid: var(--p-sage-gray);
-
-  /* ---- Semantic layout ---- */
-  --container-max: 1216px;
-  --reading-max: 68ch;
-  --gutter: var(--space-5);
-  --section-space: var(--space-16);
-  --grid-size: 24px;
-  --grid-opacity: 0.45;
-
-  /* ---- Component tokens ---- */
-  --button-radius: var(--radius-lg);
-  --button-min-size: 44px;
-  --card-radius: var(--radius-2xl);
-  --card-padding: var(--space-6);
-  --card-gap: var(--space-5);
-  --frame-radius: var(--radius-2xl);
-  --frame-line: 1.5px;
-  --frame-gap: 6px;
-  --nav-height: 64px;
-  --badge-radius: var(--radius-pill);
-}
-
-@media (min-width: 48rem) {
-  :root {
-    --gutter: var(--space-8);
-    --section-space: var(--space-24);
-    --card-padding: var(--space-8);
-  }
+  /* ---- Form ---- */
+  --radius-card: 3px;
+  --button-min-size: 48px;
 }

@@ -16,7 +16,7 @@ export default function CopyButton({ text, label }: { text: string; label: strin
 
   return (
     <>
-      <button type="button" className="button button--secondary button--small" onClick={copy}>
+      <button type="button" className="button button--on-dark button--small" onClick={copy}>
         {state === 'copied' ? 'Copied' : state === 'failed' ? 'Copy failed' : label}
       </button>
       <span className="sr-only" role="status" aria-live="polite">

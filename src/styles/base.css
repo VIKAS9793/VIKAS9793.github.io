@@ -7,19 +7,20 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+  scroll-padding-top: calc(var(--header-height) + 1rem);
 }
 
 body {
   margin: 0;
-  background: var(--color-bg-page);
-  color: var(--color-text-primary);
-  font-family: var(--p-font-sans);
-  font-size: var(--text-base);
-  line-height: 1.65;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.75;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 h1,
@@ -28,44 +29,54 @@ h3,
 h4,
 p,
 ul,
+ol,
 dl,
 dd,
-figure {
+figure,
+blockquote {
   margin: 0;
 }
 
-ul {
+ul,
+ol {
   padding: 0;
   list-style: none;
 }
 
-img {
+img,
+svg {
   display: block;
   max-width: 100%;
+}
+
+img {
   height: auto;
 }
 
 a {
-  color: var(--color-brand);
+  color: var(--accent-ink);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
+  text-underline-offset: 0.22em;
   overflow-wrap: anywhere;
 }
 
 a:hover {
-  color: var(--color-brand-hover);
-  text-decoration-thickness: 2px;
+  color: var(--ink);
+}
+
+button {
+  font: inherit;
+  color: inherit;
 }
 
 :focus-visible {
-  outline: var(--border-emphasis) solid var(--color-border-focus);
+  outline: 2px solid var(--accent-deep);
   outline-offset: 3px;
-  border-radius: var(--radius-sm);
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-text-primary);
+  background: var(--accent-warm);
+  color: var(--espresso);
 }
 
 .sr-only {
@@ -81,20 +92,28 @@ a:hover {
 }
 
 .skip-link {
-  position: absolute;
-  left: var(--space-4);
+  position: fixed;
+  left: 1rem;
   top: -100px;
   z-index: 100;
-  padding: var(--space-3) var(--space-4);
-  background: var(--color-bg-inverse);
-  color: var(--color-text-inverse);
-  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 700;
 }
 
 .skip-link:focus {
-  top: var(--space-4);
+  top: 1rem;
 }
 
+.container {
+  width: min(100% - 2 * var(--page-gutter), var(--content-width));
+  margin-inline: auto;
+}
+
+/* Calm mode (the Quiet toggle) and the operating system's reduced-motion setting both end here:
+   nothing moves, everything stays readable. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -103,7 +122,24 @@ a:hover {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
   }
+}
+
+:root[data-calm='true'] {
+  scroll-behavior: auto;
+}
+
+:root[data-calm='true'] *,
+:root[data-calm='true'] *::before,
+:root[data-calm='true'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  animation-delay: 0s !important;
+  scroll-behavior: auto !important;
+  transition-duration: 0.001ms !important;
 }

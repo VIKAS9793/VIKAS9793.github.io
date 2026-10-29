@@ -20,17 +20,21 @@ export const site = {
   email: 'vikassahani17@gmail.com',
   githubHandle: 'VIKAS9793',
   headline: 'I turn business problems into working products, with AI as my build partner.',
+  /** The same sentence in two parts, so the closing phrase can be set in italic accent type. */
+  headlineLead: 'I turn business problems into',
+  headlineEmphasis: 'working products.',
+  /** Shown beside the hero action, in place of the end of the headline. */
+  buildNote: 'AI as my build partner',
+  photoAlt: 'Vikas Sahani smiling at the camera, outdoors, in a navy t-shirt.',
   intro:
     'I am a product builder from Mumbai. I have spent four and a half years in customer-facing finance, so I start from what people actually struggle with, then use AI-assisted development to build and ship the answer.',
   description:
     'Vikas Sahani is a product builder from Mumbai who uses AI-assisted development to turn business problems into working products: Android apps, developer tools and mixed reality games.',
-  portraitAlt:
-    'Illustrated portrait of Vikas Sahani smiling beside a laptop, with scattered notes on one side and a winding path toward useful products on the other.',
 } as const;
 
 export const nav: readonly NavItem[] = [
   { label: 'Work', href: '#work' },
-  { label: 'Games', href: '#games' },
+  { label: 'Approach', href: '#approach' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -179,15 +183,21 @@ export const approach: readonly ApproachRow[] = [
 ];
 
 export const about = {
+  /** The owner's own sentence, set apart as the idea the rest of the page grows from. */
+  pullQuote:
+    'Talking to customers about money every day taught me where products lose people: unclear next steps, hidden costs and a lack of trust.',
   paragraphs: [
-    'I work in finance during the day. For four and a half years that has meant customer-facing wealth and banking roles, today as a Virtual Relationship Manager at Aditya Birla Capital. Talking to customers about money every day taught me where products lose people: unclear next steps, hidden costs and a lack of trust.',
+    'I work in finance during the day. For four and a half years that has meant customer-facing wealth and banking roles, today as a Virtual Relationship Manager at Aditya Birla Capital.',
     'Outside work I build. I am not a traditional software engineer. I decide what to build and why, use AI to do the implementation work, and keep each project small enough to finish and check properly.',
     'I am also passionate about games. That is why NorthStar Studioz exists: a place to explore how games are designed and built, alongside the business products I make.',
   ],
 } as const;
 
 export const games = {
-  label: '02 / Games',
+  number: '02',
+  label: 'Games',
   title: 'Beyond products: games',
+  titleLead: 'Beyond products:',
+  titleEmphasis: 'games.',
   lead: 'Products solve problems I see at work. Games are where I explore for the joy of it. NorthStar Studioz is my way of learning how games are made.',
 } as const;
