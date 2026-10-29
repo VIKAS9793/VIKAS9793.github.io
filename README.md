@@ -18,9 +18,9 @@ The site follows the **Motion Editorial** system: a warm paper canvas, one espre
 
 ### Hero portrait
 
-The hero is one portrait with two worlds behind it: **Finance** on the left of a draggable line and **Product** on the right. The photo is the real picture from the first paint. After the page has loaded, a second copy of the person, cut out from the background (`public/images/vikas-cutout-720.webp`), is laid exactly over it, and two canvases open out from the middle behind them (`themedWorlds.ts`): finance symbols (rupee, percent, charts, coins) on a ledger, and product symbols (code, cursor, wireframe, roadmap) on a dot grid. Symbols are placed in a loose grid and skipped wherever the person is, so they sit around the portrait and never over it. One CSS variable, `--p`, is the share of the frame given to the finance world; the clips, the handle and the underlines all read it, so dragging never re-renders React. The line is an accessible slider (arrow keys, Home and End). The plain photo is the page without JavaScript; Quiet mode and reduced motion skip the opening reveal.
+The hero is one portrait with two worlds behind it: **Finance** on the left of a draggable line and **Product** on the right. The picture is a head-and-shoulders cut-out of the person (`public/images/vikas-bust-*.webp`, transparent, with the shoulders curving away and the shirt fading out so nothing is cut off by the frame). It sits on two ground colours split down the middle, so it is there from the first paint. After the page has loaded, two canvases open out from the middle behind the person (`themedWorlds.ts`): finance symbols on a ruled ledger and product symbols on a dot grid. Every symbol carries a label taken from the portfolio's own skills list and approach (PORTFOLIO, SIP, GOALS, FUNDS, PROTECTION, DEPOSITS, KYC, GROWTH; DISCOVERY, SCOPE, SPECS, BUILD, AI, TESTS, REVIEW, SHIP), so nothing claims more than the page already says. Symbols are placed in a loose grid and skipped wherever the person is, and never across the middle line. One CSS variable, `--p`, is the share of the frame given to the finance world; the clips, the handle and the underlines all read it, so dragging never re-renders React. The line is an accessible slider (arrow keys, Home and End). Without JavaScript the page shows just the person on the two ground colours; Quiet mode and reduced motion skip the opening reveal.
 
-To change the photo, replace the three `vikas-portrait-*.webp` files (3:4) and the cutout, and set `--world-finance` and `--world-product` in `tokens.css` to the photo's two background colours.
+To change the picture, replace the three `vikas-bust-*.webp` files (3:4, transparent background) and set `--world-finance` and `--world-product` in `tokens.css` to the two ground colours.
 
 ### Years in customer-facing finance
 
@@ -57,5 +57,5 @@ src/
     motion/     MotionProvider, Reveal, ParallaxCard, ProgressBar, AmbientFloat
   styles/       tokens.css, base.css, components.css
   test/         contrast, content integrity, page structure, cube text
-public/images/  the bio photo (480 and 960 px) and the hero portrait (480, 720 and 960 px), WebP, and the social preview
+public/images/  the bio photo (480 and 960 px) and the hero cut-out `vikas-bust-*` (480, 720 and 960 px, WebP with transparency), and the social preview card (`og-card.jpg`, 1200 by 630)
 ```

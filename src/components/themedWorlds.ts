@@ -89,7 +89,7 @@ export function drawWorlds(
   const solid = (x: number, y: number) => {
     const gx = Math.floor(x / scale);
     const gy = Math.floor(y / scale);
-    return gx >= 0 && gy >= 0 && gx < gridW && gy < gridH && alpha[(gy * gridW + gx) * 4 + 3] > 24;
+    return gx >= 0 && gy >= 0 && gx < gridW && gy < gridH && alpha[(gy * gridW + gx) * 4 + 3] > 70;
   };
   const touchesPerson = (x: number, y: number, radius: number) => {
     if (solid(x, y)) return true;
@@ -110,6 +110,8 @@ export function drawWorlds(
       const x = (col + 0.5 + (noise(col, row, 1) - 0.5) * 0.3) * cell;
       const y = (row + 0.45 + (noise(col, row, 2) - 0.5) * 0.3) * cell;
       if (x < size * 1.2 || x > width - size * 1.2 || y < size * 0.7 || y > height - size * 1.6) continue;
+      // Not across the middle line, so nothing is cut in half while the line rests there.
+      if (Math.abs(x - width / 2) < size * 1.5) continue;
       if (touchesPerson(x, y, size * 0.65) || touchesPerson(x, y + size * 0.85, size * 0.65)) continue;
       found.push({ x, y, size, turn: (noise(col, row, 4) - 0.5) * 0.18, pick: 0 });
     }

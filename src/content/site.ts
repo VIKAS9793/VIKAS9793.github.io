@@ -26,7 +26,7 @@ export const site = {
   /** Shown beside the hero action, in place of the end of the headline. */
   buildNote: 'AI as my build partner',
   photoAlt: 'Vikas Sahani smiling at the camera, outdoors, in a navy t-shirt.',
-  heroPhotoAlt: 'Portrait of Vikas Sahani in a dark shirt and patterned tie, looking at the camera, in front of a cream and orange background.',
+  heroPhotoAlt: 'Head and shoulders portrait of Vikas Sahani in a dark shirt and patterned tie, looking at the camera.',
   intro:
     'I am a product builder from Mumbai. I have spent years in customer-facing finance, so I start from what people actually struggle with, then use AI-assisted development to build and ship the answer.',
   description:

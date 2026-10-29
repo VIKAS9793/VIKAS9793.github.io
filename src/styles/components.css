@@ -67,6 +67,10 @@
   background: var(--accent);
 }
 
+.wordmark__name {
+  white-space: nowrap;
+}
+
 .wordmark__name b {
   color: var(--accent-ink);
   font-weight: 800;
@@ -85,6 +89,7 @@
 }
 
 .nav-link {
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -155,6 +160,10 @@
 
   .quiet-toggle span {
     display: none;
+  }
+
+  .site-header__inner {
+    gap: 0.5rem;
   }
 
   .quiet-toggle {
@@ -559,7 +568,8 @@
   justify-self: center;
   overflow: hidden;
   border-radius: var(--radius-card);
-  background: var(--sand);
+  /* The two ground colours, split in the middle: what the picture sits on before the worlds open out. */
+  background: linear-gradient(90deg, var(--world-finance) 50%, var(--world-product) 50%);
   box-shadow: var(--shadow-lift);
   touch-action: pan-y;
   user-select: none;
@@ -576,6 +586,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 }
 
 /* Two worlds behind the person: finance on the left of the line, product on the right. They open out from
@@ -608,16 +619,6 @@
 
 .world--product {
   clip-path: inset(0 0 0 calc(var(--p) * 1%));
-}
-
-/* The same person, cut out, laid exactly over the photograph so the worlds appear behind them. */
-.portrait__cutout {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
 }
 
 .portrait__handle {
@@ -1713,4 +1714,16 @@
   --face-a: #ffe6b8;
   --face-b: var(--paper);
   --face-c: var(--sand);
+}
+
+/* The narrowest phones have room for the name, one link and the toggle: Work goes, since the hero has its own
+   See the work button. */
+@media (max-width: 400px) {
+  .nav-list li[data-keep]:first-child {
+    display: none;
+  }
+
+  .wordmark {
+    gap: 0.45rem;
+  }
 }

@@ -41,10 +41,13 @@ describe('split portrait', () => {
     expect((container.querySelector('.duo') as HTMLElement).style.getPropertyValue('--p')).toBe('40');
   });
 
-  it('keeps both worlds decorative and does not ship the cut-out until the page is running', () => {
+  it('keeps both worlds decorative and draws the person above them', () => {
     const { container } = render(<SplitPortrait calm />);
-    expect(container.querySelector('.portrait__worlds')).toHaveAttribute('aria-hidden', 'true');
-    expect(container.querySelector('.portrait__cutout')).toBeNull();
+    const worlds = container.querySelector('.portrait__worlds')!;
+    expect(worlds).toHaveAttribute('aria-hidden', 'true');
+    const photo = container.querySelector('.portrait__photo')!;
+    // Later in the document is drawn on top: the person must come after the worlds.
+    expect(worlds.compareDocumentPosition(photo) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it('ignores keys it does not use', () => {

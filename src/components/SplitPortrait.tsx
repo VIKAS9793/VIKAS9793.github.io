@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type AnimationEvent, type KeyboardEvent, type PointerEvent } from 'react';
+import { useEffect, useRef, type AnimationEvent, type KeyboardEvent, type PointerEvent } from 'react';
 import { duo, site } from '../content/site';
 import { tenureAt, tenureCopy } from '../content/tenure';
 import { drawWorlds } from './themedWorlds';
@@ -9,17 +9,15 @@ const KEY_STEP = 5;
 /** The portrait is cut in half at the middle until the visitor moves the line. */
 const REST = 50;
 
-const CUTOUT_SRC = '/images/vikas-cutout-720.webp';
-
 const clamp = (value: number) => Math.min(100, Math.max(0, value));
 const sliderText = (value: number) => `${duo.left.word} ${Math.round(value)} percent, ${duo.right.word} ${100 - Math.round(value)} percent`;
 
 /**
- * The hero: the word Finance, the portrait and the word Product. The photo is the page's real picture and
- * is there from the first paint. Once the page has loaded, a second copy of the person, cut out from the
- * background, is laid exactly over it, and two worlds open out from the middle behind them: finance
- * symbols on the left and product symbols on the right, drawn around the person and never over them. The
- * line between the worlds can be dragged (or moved with the arrow keys) to give either one more room.
+ * The hero: the word Finance, the portrait and the word Product. The portrait is a cut-out of the person,
+ * head and shoulders, drawn straight onto two ground colours, so it is there from the first paint. Once the
+ * page has loaded, two worlds open out from the middle behind the person: finance symbols on the left and
+ * product symbols on the right, drawn around the person and never over them. The line between the worlds can
+ * be dragged (or moved with the arrow keys) to give either one more room.
  *
  * The position is one number, --p, the share of the frame given to the finance world. It lives on the root
  * element as a CSS variable, so dragging never re-renders React.
@@ -33,7 +31,6 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
   const handleRef = useRef<HTMLDivElement>(null);
   const leftLine = tenureCopy.heroLine(tenureAt(useToday()));
   const dragging = useRef(false);
-  const [cutout, setCutout] = useState(false);
   const calmRef = useRef(calm);
   calmRef.current = calm;
 
@@ -61,7 +58,6 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
 
     let cancelled = false;
     let resizeTimer: number | undefined;
-    let cutoutImage: HTMLImageElement | null = null;
 
     const colors = () => {
       const styles = getComputedStyle(root);
@@ -76,45 +72,40 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
       };
     };
     const fontFamily = () => getComputedStyle(root).getPropertyValue('--font-meta').trim() || 'monospace';
-    const draw = () => (cutoutImage ? drawWorlds(finance, product, cutoutImage, colors(), fontFamily()) : false);
+    const image = imageRef.current;
+    if (!image) return;
+    const draw = () => drawWorlds(finance, product, image, colors(), fontFamily());
 
     const start = async () => {
-      // The cut-out person is fetched only now, after the page has loaded, so it never competes with the photo.
-      const loaded = new Image();
-      loaded.src = CUTOUT_SRC;
       try {
-        await loaded.decode();
+        await image.decode();
       } catch {
-        return; // without the cut-out the page simply stays the plain photograph
+        return; // without a decoded picture the page simply stays as it is
       }
       try {
         await document.fonts.load('500 10px "DM Mono"'); // the labels are drawn in this face
       } catch {
         /* the fallback monospace face is fine */
       }
-      if (cancelled) return;
-      cutoutImage = loaded;
-      if (!draw()) return;
+      if (cancelled || !draw()) return;
 
-      setCutout(true);
       root.dataset.ready = 'true';
-      // A short pause so the photograph is seen first, then the two worlds open out from the middle.
+      // A short pause so the picture is seen first, then the two worlds open out from the middle.
       if (!calmRef.current) root.classList.add('is-sweeping');
     };
 
-    // The photograph comes first. The worlds are drawn in idle time after the page has loaded, so they never
+    // The picture comes first. The worlds are drawn in idle time after the page has loaded, so they never
     // compete with the first paint or the headline.
     const whenIdle = () => {
       const run = () => void start();
       if (typeof window.requestIdleCallback === 'function') window.requestIdleCallback(run, { timeout: 2500 });
       else window.setTimeout(run, 300);
     };
-    const image = imageRef.current;
     const afterLoad = () => {
       if (document.readyState === 'complete') whenIdle();
       else window.addEventListener('load', whenIdle, { once: true });
     };
-    if (!image || (image.complete && image.naturalWidth)) afterLoad();
+    if (image.complete && image.naturalWidth) afterLoad();
     else image.addEventListener('load', afterLoad, { once: true });
 
     // Redraw when the frame changes size (rotating a phone, resizing a window), after the resizing stops.
@@ -192,19 +183,6 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
         onPointerUp={stopDragging}
         onPointerCancel={stopDragging}
       >
-        <img
-          ref={imageRef}
-          className="portrait__photo"
-          src="/images/vikas-portrait-480.webp"
-          srcSet="/images/vikas-portrait-480.webp 480w, /images/vikas-portrait-720.webp 720w, /images/vikas-portrait-960.webp 960w"
-          sizes="(min-width: 900px) 368px, min(78vw, 320px)"
-          width={960}
-          height={1280}
-          alt={site.heroPhotoAlt}
-          fetchPriority="high"
-          decoding="async"
-          draggable={false}
-        />
         <div className="portrait__worlds" aria-hidden="true">
           <div className="world world--finance">
             <canvas ref={financeRef} />
@@ -213,7 +191,19 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
             <canvas ref={productRef} />
           </div>
         </div>
-        {cutout && <img className="portrait__cutout" src={CUTOUT_SRC} width={720} height={960} alt="" aria-hidden="true" draggable={false} />}
+        <img
+          ref={imageRef}
+          className="portrait__photo"
+          src="/images/vikas-bust-480.webp"
+          srcSet="/images/vikas-bust-480.webp 480w, /images/vikas-bust-720.webp 720w, /images/vikas-bust-960.webp 960w"
+          sizes="(min-width: 900px) 368px, min(78vw, 320px)"
+          width={960}
+          height={1280}
+          alt={site.heroPhotoAlt}
+          fetchPriority="high"
+          decoding="async"
+          draggable={false}
+        />
         <div
           ref={handleRef}
           className="portrait__handle"
