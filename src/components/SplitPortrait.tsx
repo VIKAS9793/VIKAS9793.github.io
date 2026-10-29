@@ -75,7 +75,8 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
         productAccent: token('--sand', '#ead9c2'),
       };
     };
-    const draw = () => (cutoutImage ? drawWorlds(finance, product, cutoutImage, colors()) : false);
+    const fontFamily = () => getComputedStyle(root).getPropertyValue('--font-meta').trim() || 'monospace';
+    const draw = () => (cutoutImage ? drawWorlds(finance, product, cutoutImage, colors(), fontFamily()) : false);
 
     const start = async () => {
       // The cut-out person is fetched only now, after the page has loaded, so it never competes with the photo.
@@ -85,6 +86,11 @@ export default function SplitPortrait({ calm }: { calm: boolean }) {
         await loaded.decode();
       } catch {
         return; // without the cut-out the page simply stays the plain photograph
+      }
+      try {
+        await document.fonts.load('500 10px "DM Mono"'); // the labels are drawn in this face
+      } catch {
+        /* the fallback monospace face is fine */
       }
       if (cancelled) return;
       cutoutImage = loaded;
