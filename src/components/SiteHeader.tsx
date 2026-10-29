@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useMotionValueEvent } from 'motion/react';
 import { nav, site } from '../content/site';
+import QuietToggle from './QuietToggle';
+import ProgressBar from './motion/ProgressBar';
+import { useEditorial } from './motion/editorial';
 
 /** Marks the nav link of the section currently in view. Progressive: works without it. */
 function useActiveSection(ids: readonly string[]): string | null {
@@ -30,36 +34,47 @@ function useActiveSection(ids: readonly string[]): string | null {
 }
 
 const sectionIds = nav.map((item) => item.href.slice(1));
+const keepOnPhone = new Set(['#work', '#contact']);
 
 export default function SiteHeader() {
   const active = useActiveSection(sectionIds);
+  const { scrollY } = useEditorial();
+  const [stuck, setStuck] = useState(false);
+  useMotionValueEvent(scrollY, 'change', (y) => setStuck(y > 24));
+
+  const [firstName, ...rest] = site.name.split(' ');
 
   return (
-    <header className="site-header">
-      <div className="scroll-progress" aria-hidden="true" />
-      <div className="container site-header__inner">
-        <a className="wordmark" href="#top" aria-label={`${site.name}, back to top`}>
-          <span className="wordmark__mark" aria-hidden="true">
-            VS
-          </span>
-          <span className="wordmark__name">{site.name}</span>
-        </a>
-        <nav aria-label="Primary">
-          <ul className="nav-list">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <a
-                  className="nav-link"
-                  href={item.href}
-                  aria-current={active === item.href.slice(1) ? 'true' : undefined}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <>
+      <ProgressBar />
+      <header className={`site-header${stuck ? ' is-stuck' : ''}`}>
+        <div className="container site-header__inner">
+          <a className="wordmark" href="#top" aria-label={`${site.name}, back to top`}>
+            <span className="wordmark__dot" aria-hidden="true" />
+            <span className="wordmark__name">
+              {firstName.toLowerCase()} <b>{rest.join(' ').toLowerCase()}</b>
+            </span>
+          </a>
+          <div className="site-header__tools">
+            <nav aria-label="Primary">
+              <ul className="nav-list">
+                {nav.map((item) => (
+                  <li key={item.href} {...(keepOnPhone.has(item.href) ? { 'data-keep': '' } : {})}>
+                    <a
+                      className="nav-link"
+                      href={item.href}
+                      aria-current={active === item.href.slice(1) ? 'true' : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <QuietToggle />
+          </div>
+        </div>
+      </header>
+    </>
   );
 }

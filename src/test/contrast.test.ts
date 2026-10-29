@@ -20,53 +20,59 @@ function ratio(a: string, b: string): number {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-const surfaces = ['p-warm-cream', 'p-cream-surface', 'p-white', 'p-sand'];
+const lightGrounds = ['cream', 'paper', 'sand'];
 
-describe('TONAL 2D colour pairs meet WCAG AA (4.5:1) for text', () => {
-  it.each(surfaces)('primary text on %s', (s) => {
-    expect(ratio(token('p-charcoal'), token(s))).toBeGreaterThanOrEqual(4.5);
+describe('Motion Editorial colour pairs meet WCAG AA', () => {
+  it.each(lightGrounds)('ink text on %s (4.5:1)', (ground) => {
+    expect(ratio(token('ink'), token(ground))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it.each(surfaces)('secondary text on %s', (s) => {
-    expect(ratio(token('p-secondary-charcoal'), token(s))).toBeGreaterThanOrEqual(4.5);
+  it.each(lightGrounds)('secondary text (muted-ink) on %s (4.5:1)', (ground) => {
+    expect(ratio(token('muted-ink'), token(ground))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it.each(surfaces)('muted text on %s', (s) => {
-    expect(ratio(token('p-muted-charcoal'), token(s))).toBeGreaterThanOrEqual(4.5);
+  it.each(lightGrounds)('small accent text (accent-ink) on %s (4.5:1)', (ground) => {
+    expect(ratio(token('accent-ink'), token(ground))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it.each(['p-warm-cream', 'p-cream-surface', 'p-white'])('accent ink on %s', (s) => {
-    expect(ratio(token('p-terracotta-ink'), token(s))).toBeGreaterThanOrEqual(4.5);
+  it('brown tag text on the tag ground (sand over paper) (4.5:1)', () => {
+    expect(ratio(token('brown'), token('sand'))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it('white on forest green (primary button, inverse badge)', () => {
-    expect(ratio(token('p-white'), token('p-forest-green'))).toBeGreaterThanOrEqual(4.5);
-    expect(ratio(token('p-white'), token('p-deep-forest'))).toBeGreaterThanOrEqual(4.5);
+  it('paper text on the accent button and the closing chapter (4.5:1)', () => {
+    expect(ratio(token('paper'), token('accent-deep'))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it('charcoal on terracotta (accent badge)', () => {
-    expect(ratio(token('p-charcoal'), token('p-terracotta'))).toBeGreaterThanOrEqual(4.5);
+  it('accent-deep text on the paper button face (light button, 4.5:1)', () => {
+    expect(ratio(token('accent-deep'), token('paper'))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it('focus ring (forest green) is a 3:1 non-text contrast against the page', () => {
-    expect(ratio(token('p-forest-green'), token('p-warm-cream'))).toBeGreaterThanOrEqual(3);
+  it('paper and sand text on the espresso chapter (4.5:1)', () => {
+    expect(ratio(token('paper'), token('espresso'))).toBeGreaterThanOrEqual(4.5);
+    expect(ratio(token('sand'), token('espresso'))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it('secondary text stays AA when it sits directly on a grid dot (worst case)', () => {
-    const opacity = Number(css.match(/--grid-opacity:\s*([0-9.]+)/)![1]);
-    const mix = (fg: string, bg: string) => {
-      const c = (hex: string, i: number) => parseInt(hex.slice(i, i + 2), 16);
-      const ch = (i: number) => Math.round(c(fg, i) * opacity + c(bg, i) * (1 - opacity));
-      return `#${[1, 3, 5].map((i) => ch(i).toString(16).padStart(2, '0')).join('')}`;
-    };
-    for (const surface of ['p-warm-cream', 'p-cream-surface']) {
-      const dot = mix(token('p-sage-gray'), token(surface));
-      expect(ratio(token('p-secondary-charcoal'), dot)).toBeGreaterThanOrEqual(4.5);
+  it('muted-dark and accent-warm text on the espresso chapter (4.5:1)', () => {
+    expect(ratio(token('muted-dark'), token('espresso'))).toBeGreaterThanOrEqual(4.5);
+    expect(ratio(token('accent-warm'), token('espresso'))).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it('the bright accent is for large display type only (3:1) on the grounds it sits on', () => {
+    for (const ground of ['cream', 'paper', 'sand']) {
+      expect(ratio(token('accent'), token(ground))).toBeGreaterThanOrEqual(3);
+    }
+    expect(ratio(token('accent'), token('espresso'))).toBeGreaterThanOrEqual(3);
+  });
+
+  it('records why the published muted colour is not used for text', () => {
+    for (const ground of lightGrounds) {
+      expect(ratio(token('muted'), token(ground))).toBeLessThan(4.5);
     }
   });
 
-  it('control boundaries meet the 3:1 non-text contrast', () => {
-    expect(ratio(token('p-strong-border'), token('p-warm-cream'))).toBeGreaterThanOrEqual(3);
-    expect(ratio(token('p-secondary-charcoal'), token('p-white'))).toBeGreaterThanOrEqual(3);
+  it('focus ring (accent-deep) is a 3:1 non-text contrast against the page', () => {
+    for (const ground of lightGrounds) {
+      expect(ratio(token('accent-deep'), token(ground))).toBeGreaterThanOrEqual(3);
+    }
   });
 });

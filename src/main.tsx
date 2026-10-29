@@ -1,7 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import '@fontsource-variable/inter/wght.css';
-import '@fontsource-variable/jetbrains-mono/wght.css';
+import '@fontsource/dm-serif-display/400.css';
+import '@fontsource/dm-serif-display/400-italic.css';
+import '@fontsource-variable/manrope/wght.css';
+import '@fontsource/dm-mono/400.css';
+import '@fontsource/dm-mono/500.css';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/components.css';
