@@ -4,7 +4,7 @@
 
 ## Projects
 
-- [AndroJack MCP](https://github.com/VIKAS9793/AndroJack-mcp): open-source MCP server that checks AI-written Android code against Google's official documentation. Version 2.0.0.
+- [AndroJack MCP](https://github.com/VIKAS9793/AndroJack-mcp): open-source MCP server that checks AI-written Android code against Google's official documentation. Version 2.1.0.
 - [Context Fabric](https://github.com/VIKAS9793/context-fabric): open-source MCP server that keeps AI assistants' project context in step with the code. Version 1.2.2.
 - [SubscribCHEK](https://subscribchek.netlify.app): Android app that shows what subscriptions cost per year. In closed testing on Google Play.
 - [AsanaPals](https://asanapals.space): offline Android wellness app with animal companions. In testing.

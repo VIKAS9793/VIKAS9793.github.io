@@ -93,9 +93,9 @@ describe('content integrity', () => {
 
   it('keeps JSON-LD software versions in step with the project list', () => {
     const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
-    expect(html).toContain('"softwareVersion": "2.0.0"');
+    expect(html).toContain('"softwareVersion": "2.1.0"');
     expect(html).toContain('"softwareVersion": "1.2.2"');
-    expect(projects.find((p) => p.id === 'androjack-mcp')!.status).toContain('2.0.0');
+    expect(projects.find((p) => p.id === 'androjack-mcp')!.status).toContain('2.1.0');
     expect(projects.find((p) => p.id === 'context-fabric')!.status).toContain('1.2.2');
   });
 
