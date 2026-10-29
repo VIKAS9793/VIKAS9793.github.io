@@ -26,10 +26,19 @@ export const site = {
   /** Shown beside the hero action, in place of the end of the headline. */
   buildNote: 'AI as my build partner',
   photoAlt: 'Vikas Sahani smiling at the camera, outdoors, in a navy t-shirt.',
+  heroPhotoAlt: 'Black and white portrait of Vikas Sahani in a dark shirt and patterned tie, looking at the camera.',
   intro:
     'I am a product builder from Mumbai. I have spent four and a half years in customer-facing finance, so I start from what people actually struggle with, then use AI-assisted development to build and ship the answer.',
   description:
     'Vikas Sahani is a product builder from Mumbai who uses AI-assisted development to turn business problems into working products: Android apps, developer tools and mixed reality games.',
+} as const;
+
+/** The two sides of the hero portrait. The lines restate facts already on the page. */
+export const duo = {
+  left: { word: 'Finance', line: 'Four and a half years in customer-facing finance.' },
+  right: { word: 'Product', line: 'Turning business problems into working products, with AI as my build partner.' },
+  sliderLabel: 'Portrait: move the line to show more of the finance side or the product side',
+  hint: 'Drag the line to switch sides',
 } as const;
 
 export const nav: readonly NavItem[] = [

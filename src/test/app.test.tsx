@@ -2,7 +2,7 @@ import { renderToString } from 'react-dom/server';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import App from '../App';
 import { projects } from '../content/projects';
-import { site } from '../content/site';
+import { duo, site } from '../content/site';
 
 describe('portfolio page', () => {
   it('has one h1 and the expected landmarks', () => {
@@ -22,25 +22,28 @@ describe('portfolio page', () => {
     }
   });
 
-  it('keeps the hero object decorative, and the photo described', () => {
+  it('keeps decoration hidden from assistive technology, and every photo described', () => {
     const { container } = render(<App />);
-    const stage = container.querySelector('.stage')!;
-    expect(stage).toHaveAttribute('aria-hidden', 'true');
     expect(container.querySelector('.marquee')).toHaveAttribute('aria-hidden', 'true');
-    // The photo is the only meaningful image: it has a description and reserved dimensions.
+    expect(container.querySelector('.portrait__glyphs')).toHaveAttribute('aria-hidden', 'true');
+    // Two meaningful images, both described and with reserved dimensions: the hero portrait and the bio photo.
     const images = screen.getAllByRole('img');
-    expect(images).toHaveLength(1);
-    expect(images[0]).toHaveAccessibleName(site.photoAlt);
-    expect(images[0]).toHaveAttribute('width');
-    expect(images[0]).toHaveAttribute('height');
+    expect(images).toHaveLength(2);
+    expect(images[0]).toHaveAccessibleName(site.heroPhotoAlt);
+    expect(images[1]).toHaveAccessibleName(site.photoAlt);
+    for (const image of images) {
+      expect(image).toHaveAttribute('width');
+      expect(image).toHaveAttribute('height');
+    }
   });
 
-  it('sets the headline as one sentence, with the AI note beside the action', () => {
+  it('sets the headline as one sentence, with the AI note on the Product side of the portrait', () => {
     render(<App />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(`${site.headlineLead} ${site.headlineEmphasis}`);
     // The parts must add up to the full sentence used in the page description and search results.
     expect(site.headline).toBe(`${site.headlineLead} ${site.headlineEmphasis.replace(/\.$/, '')}, with ${site.buildNote.replace(/^AI/, 'AI')}.`);
-    expect(screen.getByText(site.buildNote)).toBeInTheDocument();
+    expect(duo.right.line).toContain(site.buildNote);
+    expect(screen.getByText(duo.right.line)).toBeInTheDocument();
   });
 
   it('opens every external link safely and labels it for screen readers', () => {
@@ -88,11 +91,12 @@ describe('portfolio page', () => {
     expect(document.documentElement.dataset.calm).toBe('false');
   });
 
-  it('never ships content hidden: the prerendered page has no hidden text outside the decorative stage', () => {
+  it('never ships content hidden: the prerendered page has no hidden text or armed reveals', () => {
     const html = renderToString(<App />);
-    const withoutStage = html.replace(/<div class="stage"[\s\S]*?<\/div><span class="stage__ripple">/, '');
-    expect(withoutStage).not.toMatch(/data-reveal="armed"/);
-    expect(withoutStage).not.toMatch(/opacity:\s*0[;"]/);
+    expect(html).not.toMatch(/data-reveal="armed"/);
+    expect(html).not.toMatch(/opacity:\s*0[;"]/);
     expect(html).toContain(site.headlineEmphasis);
+    // The hero is the real photograph until the page is running: no code layer is switched on yet.
+    expect(html).not.toContain('data-ready');
   });
 });
