@@ -13,8 +13,9 @@ import { isCalmNow } from './motion/editorial';
 /**
  * Words that solve like a Rubik's cube.
  *
- * Every letter is a small prism. When the words arrive, each one turns through scrambled faces, one
- * quarter turn at a time, and clicks into the right letter, left to right. The real letters stay in the
+ * The emphasised phrase (the <em> in a headline) is made of small prisms. When it arrives, each letter
+ * turns through scrambled faces, one quarter turn at a time, and clicks into the right letter, left to
+ * right. The rest of the headline is ordinary text. The real letters stay in the
  * page as ordinary text; the scrambled faces are drawn from attributes by CSS, so they are never in
  * the document text, never read aloud, never copied and never seen by a search engine. The animation
  * code loads in its own chunk and is skipped entirely in Quiet mode or with reduced motion.
@@ -55,9 +56,14 @@ function Cube({ char, index }: { char: string; index: number }) {
   );
 }
 
-/** Splits text into word groups of cubes, keeping spaces as plain text so lines still wrap between words. */
-function cubes(node: ReactNode, counter: { i: number }, path: string): ReactNode {
+/**
+ * Turns the emphasised phrase (the text inside <em>) into word groups of cubes and leaves every other
+ * word as plain text. Spaces stay plain text so lines still wrap between words. Keeping the effect to
+ * the accent phrase is what keeps the page fast: the cost grows with the number of letters.
+ */
+function cubes(node: ReactNode, counter: { i: number }, path: string, inside: boolean): ReactNode {
   if (typeof node === 'string' || typeof node === 'number') {
+    if (!inside) return node;
     return String(node)
       .split(/(\s+)/)
       .map((token, t) => {
@@ -72,10 +78,11 @@ function cubes(node: ReactNode, counter: { i: number }, path: string): ReactNode
         );
       });
   }
-  if (Array.isArray(node)) return node.map((child, i) => cubes(child, counter, `${path}-${i}`));
+  if (Array.isArray(node)) return node.map((child, i) => cubes(child, counter, `${path}-${i}`, inside));
   if (isValidElement(node)) {
     const element = node as ReactElement<{ children?: ReactNode }>;
-    return cloneElement(element, { key: element.key ?? path }, cubes(element.props.children, counter, path));
+    const within = inside || element.type === 'em';
+    return cloneElement(element, { key: element.key ?? path }, cubes(element.props.children, counter, path, within));
   }
   return node;
 }
@@ -102,7 +109,7 @@ interface Props {
 export default function CubeText({ as: Tag = 'span', className, id, style, children, trigger = 'view', delay = 0.15 }: Props) {
   const ref = useRef<HTMLElement>(null);
   const counter = { i: 0 };
-  const content = cubes(children, counter, 'c');
+  const content = cubes(children, counter, 'c', false);
 
   useEffect(() => {
     const root = ref.current;

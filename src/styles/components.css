@@ -458,16 +458,17 @@
   font-weight: 700;
 }
 
-/* The hero copy rises in with plain CSS, so it never waits for JavaScript. */
+/* The hero copy rises into place with plain CSS, so it never waits for JavaScript. It only moves, it
+   never starts transparent: text that is invisible does not count as painted, so a fade-in would hold
+   back the page's largest-contentful-paint time by the length of the fade. */
 .hero__copy > * {
   animation: rise 0.9s var(--ease-editorial) both;
-  animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+  animation-delay: calc(var(--i, 0) * 70ms);
 }
 
 @keyframes rise {
   from {
-    opacity: 0;
-    transform: translateY(26px);
+    transform: translateY(22px);
   }
 }
 
