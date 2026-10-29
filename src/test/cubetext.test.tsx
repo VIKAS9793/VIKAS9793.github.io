@@ -28,6 +28,19 @@ describe('CubeText (letters that solve like a cube)', () => {
     }
   });
 
+  it('deals the same scrambled faces every time, and never the real letter', () => {
+    const first = render(<CubeText as="h2">Hello world</CubeText>);
+    const deal = (root: HTMLElement) => [...root.querySelectorAll('.cube__face[data-c]')].map((f) => f.getAttribute('data-c'));
+    const a = deal(first.container);
+    first.unmount();
+    const second = render(<CubeText as="h2">Hello world</CubeText>);
+    expect(deal(second.container)).toEqual(a);
+    const letters = [...second.container.querySelectorAll('.cube__face--front')].map((f) => f.textContent);
+    second.container.querySelectorAll('.cube').forEach((cube, i) => {
+      for (const face of cube.querySelectorAll('.cube__face[data-c]')) expect(face.getAttribute('data-c')).not.toBe(letters[i]);
+    });
+  });
+
   it('keeps each word together so a line can only break between words', () => {
     const { container } = render(<CubeText as="h2">one two</CubeText>);
     expect(container.querySelectorAll('.cube-word')).toHaveLength(2);

@@ -1607,10 +1607,6 @@
   content: attr(data-c);
 }
 
-.cubetext[data-cubes='run'] .cube__rotor {
-  will-change: transform;
-}
-
 .cubetext[data-cubes='run'] .cube__face--front {
   backface-visibility: hidden;
   transform: translateZ(var(--depth));
