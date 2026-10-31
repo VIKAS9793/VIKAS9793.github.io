@@ -1,4 +1,4 @@
-export type ProjectKind = 'Studio' | 'Open source' | 'Android app';
+export type ProjectKind = 'Studio' | 'Open source' | 'Android app' | 'Hackathon project';
 export type ProjectGroup = 'products' | 'games';
 
 export interface ProjectLink {
@@ -106,10 +106,34 @@ export const projects: readonly Project[] = [
     privateNote: 'Source code is private.',
   },
   {
+    id: 'agentcosign',
+    group: 'products',
+    index: '05',
+    name: 'AgentCoSign',
+    kind: 'Hackathon project',
+    status: 'Latest: built for the PayPal AI Hackathon 2026',
+    summary: 'Lets an AI agent propose PayPal refunds while fixed rules decide, and a person co-signs the risky ones on their phone.',
+    problem:
+      'Handing refunds to an AI agent is all or nothing. Leave it off and nothing is automated; switch it on and a tricked or mistaken request can move money nobody approved.',
+    approach:
+      'The agent holds no PayPal keys and can only propose. A fixed set of 18 rules, with no AI inside them, decides: small clean refunds go out on their own, larger ones wait for the merchant to approve with a fingerprint or face on their phone, and unsafe ones are refused. Every step is written to a signed record that shows if anything was changed afterwards.',
+    evidence: [
+      'Runs only on PayPal’s test sandbox with no real money, and is not production software. An independent project, not affiliated with PayPal',
+      'Live demo and a 2 minute 28 second video. Fifteen test refunds sent in the sandbox were all confirmed by PayPal',
+      'Attacks typed live from a real phone found one real defect, which was fixed and tested again. The test sets are small and written by me',
+    ],
+    tags: ['AI agents', 'Python', 'Passkeys', 'Fintech'],
+    links: [
+      { label: 'GitHub repository', href: 'https://github.com/VIKAS9793/AgentCoSign' },
+      { label: 'Live demo', href: 'https://agentcosign-demo.onrender.com' },
+      { label: 'Watch the demo', href: 'https://youtu.be/MBnqli0L1aI' },
+    ],
+  },
+  {
     id: 'northstar-studioz',
     group: 'games',
     featured: true,
-    index: '05',
+    index: '06',
     name: 'NorthStar Studioz',
     kind: 'Studio',
     status: 'First game in development',
