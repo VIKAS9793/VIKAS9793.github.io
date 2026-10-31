@@ -86,6 +86,21 @@ describe('content integrity', () => {
     expect(new Set(featured.map((p) => p.group)).size).toBe(2);
   });
 
+  it('adds AgentCoSign as the latest product, honest about being a sandbox hackathon project', () => {
+    const project = projects.find((p) => p.id === 'agentcosign')!;
+    expect(project.group).toBe('products');
+    expect(project.index).toBe('05');
+    expect(project.status).toMatch(/hackathon/i);
+    // Not on npm, so it must stay out of the "open-source tools on npm" count.
+    expect(project.kind).toBe('Hackathon project');
+    expect(project.links[0].href).toBe('https://github.com/VIKAS9793/AgentCoSign');
+    const claims = [project.summary, ...project.evidence].join(' ');
+    expect(claims).toMatch(/sandbox/i);
+    expect(claims).toMatch(/not production software/i);
+    expect(claims).toMatch(/not affiliated with PayPal/i);
+    expect(new Set(projects.map((p) => p.index)).size).toBe(projects.length);
+  });
+
   it('keeps the games passion on the page without leaking the game itself', () => {
     expect(everything).toMatch(/passion/i);
     expect(everything).not.toMatch(/rollsong/i);

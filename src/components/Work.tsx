@@ -15,7 +15,7 @@ export default function Work() {
         <Reveal className="chapter__head">
           <SectionLabel number="01">Work</SectionLabel>
           <CubeText as="h2" id="work-title" className="chapter__title">
-            Four products, <em>each from a real problem.</em>
+            Five products, <em>each from a real problem.</em>
           </CubeText>
           <p className="chapter__lead">
             Ordered by reach. Each one starts with a real problem and says plainly what exists today. Start with the first.
